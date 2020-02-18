@@ -1,0 +1,17 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+
+.header-buttons{
+    margin-right: 20rem;
+}
+
+.header-buttons button{
+   margin: 2px;
+}  
+
+#title{
+    margin-left: 20rem;
+}

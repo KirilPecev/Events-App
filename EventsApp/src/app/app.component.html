@@ -1,3 +1,18 @@
-<div>
-    <h1>{{title}}</h1>
-</div>
+<mat-toolbar color="primary">
+    <span id="title"><fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}</span>
+
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+
+    <div class="header-buttons">
+        <button>
+            <fa-icon class="fa-lg" [icon]="faHome"></fa-icon> Home
+        </button>
+        <button>
+            <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon> Friends
+        </button>
+        <button>
+            <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon> Notifications
+        </button>
+    </div>
+</mat-toolbar>

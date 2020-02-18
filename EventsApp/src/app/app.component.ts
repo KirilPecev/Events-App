@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faHome, faUserFriends, faFlag, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'EventsApp';
+  faHome = faHome;
+  faUserFriends = faUserFriends;
+  faFlag = faFlag;
+  faCalendarWeek = faCalendarWeek;
 }
