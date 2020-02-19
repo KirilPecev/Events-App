@@ -1,6 +1,6 @@
 .feed{
     margin-top: 2px;
-    margin-left: 430px;
+    margin-left: 33.22%;
 }
 
 .sharePublication{
@@ -12,12 +12,12 @@
     border-width: 4px;
     border-radius: 4px;
     padding: 5px 8px 8px 15px;
-    width: 100%;
+    width: 234%;
     margin-bottom: 0px;
 }
 
 .sharePublication textarea{
-    width: 470px;
+    width: 234%;
     height: 80px;
     padding: 12px 20px;
     box-sizing: border-box;
