@@ -1,0 +1,32 @@
+.feed{
+    margin-top: 2px;
+    margin-left: 430px;
+}
+
+.sharePublication{
+    position: fixed;
+}
+
+.sharePublication p{
+    border-style: groove;
+    border-width: 4px;
+    border-radius: 4px;
+    padding: 5px 8px 8px 15px;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+.sharePublication textarea{
+    width: 470px;
+    height: 80px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+.sharePublication div button{
+    margin-right: 5px;
+}
