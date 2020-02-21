@@ -9,30 +9,30 @@
     margin-bottom: 20px;
 }
 
-figcaption{
+figcaption {
     font-style: italic;
     font-size: 18px;
     margin-bottom: 5px;
 }
 
-.pic .sharedBy h2 {
+.sharedBy h2 {
     display: inline-block;
     padding: 5px;
     padding-top: 6px;
     margin-top: 5px;
 }
 
-.pic .sharedBy hr {
+.sharedBy hr {
     margin-top: 0px;
     border: 1px solid #ccc;
 }
 
-.pic .sharedBy img {
+.sharedBy img {
     width: 7%;
     border-radius: 50%;
 }
 
-.pic img {
+img {
     width: 100%;
 }
 
@@ -45,4 +45,17 @@ figcaption{
 .buttons button {
     width: 100%;
     margin-right: 5px;
+}
+
+.post {
+    border: none;
+    width: 100%;
+    padding: 8px 8px;
+    border-bottom: 1px groove;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+.status hr{
+  margin: 0px;
 }
