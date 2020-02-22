@@ -10,13 +10,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
 import { PublicationComponent } from './publication/publication.component';
 import { HeaderComponent } from './header/header.component';
+import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
+import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageFeedComponent,
     PublicationComponent,
-    HeaderComponent
+    HeaderComponent,
+    LeftSidebarComponent,
+    RightSidebarComponent
   ],
   imports: [
     BrowserModule,
