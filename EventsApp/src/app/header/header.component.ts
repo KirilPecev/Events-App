@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { faHome, faUserFriends, faFlag, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
   faUserFriends = faUserFriends;
   faFlag = faFlag;
   faCalendarWeek = faCalendarWeek;
+  faSignInAlt = faSignInAlt;
+  faUserPlus = faUserPlus;
+
+  @Input() isLoggedIn: boolean;
 
   constructor() { }
 
