@@ -2,38 +2,39 @@
     /* This fills the remaining space, by using flexbox. 
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
-  }
+}
 
-  .fix-me{
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 1;
-  }
+.fix-me {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
 
-.header-buttons{
+.header-buttons {
     margin-right: 17%;
 }
 
-.header-buttons button{
-   margin: 2px;
-   text-decoration: none;
-}  
+.header-buttons button {
+    margin: 2px;
+    text-decoration: none;
+}
 
-#title{
+#title {
     margin-left: 21%;
 }
 
-aside{
+aside {
     height: 100%;
 }
 
-.main{
+.main {
     margin-top: 64px;
 }
 
 /* sidebar */
-.sidebar{
+
+.sidebar {
     position: fixed;
     float: left;
     height: 100%;
@@ -43,12 +44,12 @@ aside{
     overflow-x: hidden;
 }
 
-.sidebar div{
+.sidebar div {
     float: left;
     margin-left: 57.5%;
 }
 
-.sidebar a{
+.sidebar a {
     margin-bottom: 2px;
     padding: 6px 32px;
     text-decoration: none;
@@ -59,32 +60,41 @@ aside{
     height: 35px;
 }
 
-.sidebar img{
+.sidebar img {
     border-radius: 50%;
     width: 13%;
 }
 
-.sidebar hr{
+.sidebar hr {
     border-style: inset;
     border-width: 1px;
 }
 
-.sidebar p{
-    font-size: 24px;
+ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
-.sidebar span a{
+.info h1 {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.info a {
+    display: block;
     font-size: 16px;
     padding-left: 0%;
     margin-bottom: 5px;
+    text-decoration: none;
+    height: 35px;
 }
 
-.sidebar span a:hover{
-    padding-left: 0%;
+.info a:hover {
     color: rgb(0, 255, 64);
 }
 
-.right-sidebar{
+.right-sidebar {
     position: fixed;
     height: 100%;
     width: 32.6%;
@@ -92,4 +102,17 @@ aside{
     margin-left: 67.35%;
     background-color: whitesmoke;
     overflow-x: hidden;
+}
+
+.right{
+    position: absolute;
+    margin: 5px;  
+}
+
+.right span a{
+    margin-right: 6px;
+}
+
+.right span{
+    display: flex;
 }

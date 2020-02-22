@@ -42,9 +42,15 @@ img {
     margin-right: 10px;
 }
 
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
 .buttons button {
-    width: 100%;
-    margin-right: 5px;
+    width: 49.8%;
+    margin-right: 0px;
+    background-color: #673ab7;
 }
 
 .post {

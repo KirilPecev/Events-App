@@ -27,6 +27,13 @@
     resize: none;
 }
 
-.sharePublication div button {
-    margin-right: 5px;
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    width: 49.8%;
+    margin-right: 0px;
+    background-color: #673ab7;
 }
