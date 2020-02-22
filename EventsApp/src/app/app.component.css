@@ -1,38 +1,6 @@
-.example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
-}
-
-.fix-me {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1;
-}
-
-.header-buttons {
-    margin-right: 17%;
-}
-
-.header-buttons button {
-    margin: 2px;
-    text-decoration: none;
-}
-
-#title {
-    margin-left: 21%;
-}
-
-aside {
-    height: 100%;
-}
-
 .main {
     margin-top: 64px;
 }
-
-/* sidebar */
 
 .sidebar {
     position: fixed;
@@ -70,7 +38,7 @@ aside {
     border-width: 1px;
 }
 
-ul{
+ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -104,15 +72,15 @@ ul{
     overflow-x: hidden;
 }
 
-.right{
+.right {
     position: absolute;
-    margin: 5px;  
+    margin: 5px;
 }
 
-.right span a{
+.right span a {
     margin-right: 6px;
 }
 
-.right span{
+.right span {
     display: flex;
 }
