@@ -12,6 +12,7 @@ import { PublicationComponent } from './publication/publication.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
+import { HomePageIndexComponent } from './home-page-index/home-page-index.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
     PublicationComponent,
     HeaderComponent,
     LeftSidebarComponent,
-    RightSidebarComponent
+    RightSidebarComponent,
+    HomePageIndexComponent
   ],
   imports: [
     BrowserModule,
