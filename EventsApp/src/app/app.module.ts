@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
 import { HomePageIndexComponent } from './home-page-index/home-page-index.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomePageIndexComponent } from './home-page-index/home-page-index.compon
     HeaderComponent,
     LeftSidebarComponent,
     RightSidebarComponent,
-    HomePageIndexComponent
+    HomePageIndexComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
