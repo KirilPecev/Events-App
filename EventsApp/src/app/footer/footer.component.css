@@ -1,6 +1,9 @@
 div {
     position: fixed;
-    height: 64px;
     bottom: 0;
     width: 100%;
+}
+p{
+    margin: auto;
+    letter-spacing: 5px;
 }
