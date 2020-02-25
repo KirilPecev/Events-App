@@ -1,8 +1,6 @@
 div {
-    position: absolute;
+    position: fixed;
+    height: 64px;
     bottom: 0;
     width: 100%;
-}
-p{
-    justify-content: center;
 }
