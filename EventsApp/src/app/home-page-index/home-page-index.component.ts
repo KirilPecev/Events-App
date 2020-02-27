@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ViewChildren, ElementRef, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
+
 
 @Component({
   selector: 'app-home-page-index',
   templateUrl: './home-page-index.component.html',
-  styleUrls: ['./home-page-index.component.css']
+  styleUrls: ['./home-page-index.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomePageIndexComponent implements OnInit {
 
