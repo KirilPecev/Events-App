@@ -15,6 +15,8 @@ import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
 import { HomePageIndexComponent } from './home-page-index/home-page-index.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatCardModule } from '@angular/material/card';
+import { LoginComponent } from './login/login.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { MatCardModule } from '@angular/material/card';
     LeftSidebarComponent,
     RightSidebarComponent,
     HomePageIndexComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { MatCardModule } from '@angular/material/card';
     BrowserAnimationsModule,
     MatToolbarModule,
     FontAwesomeModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,8 @@
 <app-header [isLoggedIn]="isLoggedIn"></app-header>
 <div class="main">
-    <app-home-page-index *ngIf="!isLoggedIn"></app-home-page-index>
+    <app-login></app-login>
+    <!-- <app-home-page-index *ngIf="!isLoggedIn"></app-home-page-index>
     <app-left-sidebar *ngIf="isLoggedIn"></app-left-sidebar>
     <app-right-sidebar *ngIf="isLoggedIn"></app-right-sidebar>
-    <app-home-page-feed *ngIf="isLoggedIn"></app-home-page-feed>
+    <app-home-page-feed *ngIf="isLoggedIn"></app-home-page-feed> -->
 </div>
