@@ -1,9 +1,5 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css");
 
-body {
-    font-family: sans-serif;
-}
-
 .loginBox {
     color:#673ab7;
     width: 280px;

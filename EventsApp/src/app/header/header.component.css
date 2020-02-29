@@ -23,3 +23,11 @@
 #title {
     margin-left: 21%;
 }
+
+.title{
+    color: aliceblue;
+}
+
+.title:hover{
+    text-decoration: none;
+}

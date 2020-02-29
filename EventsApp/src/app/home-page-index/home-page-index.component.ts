@@ -4,10 +4,11 @@ import { Component, OnInit, ViewChildren, QueryList, ViewEncapsulation } from '@
 @Component({
   selector: 'app-home-page-index',
   templateUrl: './home-page-index.component.html',
-  styleUrls: ['./home-page-index.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./home-page-index.component.css']
 })
 export class HomePageIndexComponent implements OnInit {
+
+  isLoggedIn = true;
 
   @ViewChildren("r") rs: QueryList<any>;
 
