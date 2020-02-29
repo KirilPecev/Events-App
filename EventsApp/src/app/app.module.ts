@@ -16,8 +16,8 @@ import { HomePageIndexComponent } from './home-page-index/home-page-index.compon
 import { FooterComponent } from './footer/footer.component';
 import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './login/login.component';
-import { MatInputModule } from '@angular/material/input';
 import { RegisterComponent } from './register/register.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
