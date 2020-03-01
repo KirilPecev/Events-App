@@ -5,18 +5,18 @@
                 <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
             </a>
         </span>
-        
+
         <span class="example-fill-remaining-space"></span>
 
         <div *ngIf="isLoggedIn" class="header-buttons">
-            <button class="btn btn-light btn-sm">
-                <fa-icon class="fa-lg" [icon]="faHome"></fa-icon> Home
+            <button class="btn btn-light btn-sm" title="Home">
+                <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
             </button>
-            <button class="btn btn-light btn-sm">
-                <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon> Friends
+            <button class="btn btn-light btn-sm" title="Friends" matBadge="5" matBadgePosition="above after" matBadgeColor="warn" matBadgeSize="small">
+                <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
             </button>
-            <button class="btn btn-light btn-sm">
-                <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon> Notifications
+            <button class="btn btn-light btn-sm" title="Notifications" matBadge="22" matBadgePosition="above after" matBadgeColor="warn" matBadgeSize="small">
+                <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
             </button>
         </div>
         <div *ngIf="!isLoggedIn" class="header-buttons">

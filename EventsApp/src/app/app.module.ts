@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatInputModule } from '@angular/material/input';
     MatToolbarModule,
     FontAwesomeModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
