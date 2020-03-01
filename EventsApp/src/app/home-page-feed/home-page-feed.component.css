@@ -5,8 +5,8 @@
 }
 
 .sharePublication {
-    position: relative;
-    width: 50.7%;
+    position: absolute;
+    width: 34%;
     border: 2px solid #ccc;
     padding: 2px;
 }

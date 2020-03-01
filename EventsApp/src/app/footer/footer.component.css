@@ -1,9 +1,14 @@
+mat-toolbar {
+    height: 43px;
+}
+
 div {
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-p{
+
+p {
     margin: auto;
     letter-spacing: 5px;
 }

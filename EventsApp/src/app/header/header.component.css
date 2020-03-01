@@ -4,6 +4,10 @@
     flex: 1 1 auto;
 }
 
+mat-toolbar{
+    height: 43px;
+}
+
 .fix-me {
     position: fixed;
     top: 0;

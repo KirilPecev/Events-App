@@ -2,15 +2,14 @@
     position: fixed;
     height: 100%;
     width: 32.6%;
-    top: 64px;
     margin-left: 67.35%;
     background-color: whitesmoke;
     overflow-x: hidden;
 }
 
 .right {
-    position: absolute;
-    margin: 5px;
+    position: relative;
+    margin: 0px;
 }
 
 .right span a {
