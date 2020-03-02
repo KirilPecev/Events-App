@@ -22,6 +22,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { FriendsComponent } from './friends/friends.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FriendsComponent } from './friends/friends.component';
     LoginComponent,
     RegisterComponent,
     NotificationsComponent,
-    FriendsComponent
+    FriendsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
