@@ -19,6 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { MatBadgeModule } from '@angular/material/badge';
     LeftSidebarComponent,
     RightSidebarComponent,
     HomePageIndexComponent,
-    FooterComponent,
+  FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +44,11 @@ import { MatBadgeModule } from '@angular/material/badge';
     FontAwesomeModule,
     MatCardModule,
     MatInputModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NotificationsComponent]
 })
 export class AppModule { }

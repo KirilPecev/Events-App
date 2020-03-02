@@ -1,0 +1,29 @@
+.notifications ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.notifications .profile {
+    border-radius: 50%;
+    width: 13%;
+}
+
+.notifications p{
+    display: inline-block;
+    width: 51%;
+}
+
+.notifications .pic {
+    width: 13%;
+}
+
+.notifications li{
+    width: 100%;
+    border-bottom: 1px solid #673ab7;
+    margin-bottom: 5px;
+}
+
+.notifications li:hover {
+    background-color: khaki;
+}
