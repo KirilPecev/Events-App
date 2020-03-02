@@ -13,11 +13,11 @@
                 <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
             </button>
             <button class="btn btn-light btn-sm" title="Friends" matBadge="5" matBadgePosition="above after"
-                matBadgeColor="warn" matBadgeSize="small">
+                matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
                 <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
             </button>
             <button class="btn btn-light btn-sm" title="Notifications" matBadge="22" matBadgePosition="above after"
-                matBadgeColor="warn" matBadgeSize="small" (click)="openDialog()">
+                matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
                 <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
             </button>
         </div>

@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { FriendsComponent } from './friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
   FooterComponent,
     LoginComponent,
     RegisterComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NotificationsComponent]
+  entryComponents: [NotificationsComponent, FriendsComponent]
 })
 export class AppModule { }
