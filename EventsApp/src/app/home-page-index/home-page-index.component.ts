@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ViewEncapsulation, Input } from '@angular/core';
+import { UserService } from '../services/userService';
 
 
 @Component({
@@ -8,11 +9,11 @@ import { Component, OnInit, ViewChildren, QueryList, ViewEncapsulation } from '@
 })
 export class HomePageIndexComponent implements OnInit {
 
-  isLoggedIn = true;
-
   @ViewChildren("r") rs: QueryList<any>;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+
+  isLoggedIn = this.userService.isLoggedIn;
 
   show() {
     let index = 0;

@@ -1,4 +1,3 @@
-<app-header [isLoggedIn]="isLoggedIn"></app-header>
 <app-home-page-feed *ngIf="isLoggedIn"></app-home-page-feed>
 <div *ngIf="!isLoggedIn">
     <div class="slidershow middle">
@@ -37,4 +36,3 @@
         </mat-card-content>
     </mat-card>
 </div>
-<app-footer *ngIf="!isLoggedIn"></app-footer>
