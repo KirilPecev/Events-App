@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderModule } from '../header/header.module';
 import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
+import { ProfileModule } from '../profile/profile.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
     FontAwesomeModule,
     MatInputModule,
     HeaderModule,
-    HomePageIndexModule
+    HomePageIndexModule,
+    ProfileModule
   ]
 })
 export class SharedModule { }

@@ -19,6 +19,8 @@ import { FriendsComponent } from './friends/friends.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { SharedModule } from './shared/shared.module';
+import { SharePublicationComponent } from './share-publication/share-publication.component';
+import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { SharedModule } from './shared/shared.module';
     RegisterComponent,
     NotificationsComponent,
     FriendsComponent,
-    ProfileComponent
+    ProfileComponent,
+    SharePublicationComponent,
+    UpcomingEventsComponent
   ],
   imports: [
     BrowserModule,
