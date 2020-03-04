@@ -23,6 +23,7 @@ import { SharePublicationComponent } from './share-publication/share-publication
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 import { DaybookComponent } from './daybook/daybook.component';
 import { UserInformationComponent } from './user-information/user-information.component';
+import { UserContactsComponent } from './user-contacts/user-contacts.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UserInformationComponent } from './user-information/user-information.co
     SharePublicationComponent,
     UpcomingEventsComponent,
     DaybookComponent,
-    UserInformationComponent
+    UserInformationComponent,
+    UserContactsComponent
   ],
   imports: [
     BrowserModule,

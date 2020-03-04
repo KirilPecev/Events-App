@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.information {
+    position: relative;
+    margin: auto;
+    width: 50%;
+    margin-top: 15px;
+    border: 1px solid #673ab7;
+}
+
+.headerContent {
+    margin-left: 10px;
+}
+
+h1 {
+    display: inline;
+    margin-left: 10px;
+}
+
+.container {
+    width: 98%;
+    height: 500px;
+    margin: 1%;
+    border: 1px solid #673ab7;
+}
+
+.container mat-drawer {
+    width: 25%;
+}
+
+.buttons button {
+    display: block;
+    margin-left: 2%;
+}

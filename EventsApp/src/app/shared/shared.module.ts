@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
+import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderModule } from '../header/header.module';
 import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
-import { ProfileModule } from '../profile/profile.module';
+import { UserInformationModule } from '../user-information/user-information.module';
 
 
 @NgModule({
@@ -17,15 +19,17 @@ import { ProfileModule } from '../profile/profile.module';
     FontAwesomeModule,
     MatInputModule,
     HeaderModule,
-    HomePageIndexModule
+    HomePageIndexModule,
+    MatButtonModule
   ],
   exports: [
     MatToolbarModule,
     FontAwesomeModule,
     MatInputModule,
+    MatButtonModule,
     HeaderModule,
     HomePageIndexModule,
-    ProfileModule
+    UserInformationModule
   ]
 })
 export class SharedModule { }

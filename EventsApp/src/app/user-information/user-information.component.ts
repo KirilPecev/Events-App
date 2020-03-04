@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-information',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-information.component.css']
 })
 export class UserInformationComponent implements OnInit {
+
+  faUser = faUser;
 
   constructor() { }
 
