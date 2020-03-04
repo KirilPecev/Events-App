@@ -6,13 +6,12 @@
         <span class="playedEvents">Played events: 5</span>
         <mat-toolbar color="primary" class="info">
             <div class=buttons>
-                <button mat-button>Daybook</button>
-                <button mat-button>Information</button>
+                <button mat-button routerLink="/profile">Daybook</button>
+                <button mat-button [routerLink]="[{ outlets: { profile: ['information'] } }]">Information</button>
                 <button mat-button>Friends</button>
                 <button mat-button>Pictures</button>
             </div>
         </mat-toolbar>
     </div>
 </div>
-<!-- <app-daybook></app-daybook> -->
-<app-user-information></app-user-information>
+<router-outlet name="profile"></router-outlet>

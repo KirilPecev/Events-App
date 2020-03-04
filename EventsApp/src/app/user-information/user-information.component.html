@@ -8,13 +8,12 @@
     <mat-drawer-container class="container">
         <mat-drawer mode="side" opened>
             <div class="buttons">
-                <button mat-button color="primary">Contacts</button>
-                <button mat-button color="primary">Basic information</button>
+                <button mat-button color="primary" [routerLink]="[{ outlets: { info: ['contacts'] } }]">Contacts</button>
+                <button mat-button color="primary" [routerLink]="[{ outlets: { info: ['basic-info'] } }]">Basic information</button>
             </div>
         </mat-drawer>
         <mat-drawer-content>
-            <!-- <app-user-contacts></app-user-contacts> -->
-            <app-user-basic-information></app-user-basic-information>
+            <router-outlet name="info"></router-outlet>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>
