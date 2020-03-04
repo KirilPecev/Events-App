@@ -45,18 +45,3 @@
     font-size: 18px;
     margin-left: 10%;
 }
-
-.feed {
-    position: relative;
-    padding-left: 41%;
-    width: 100%;
-    padding-top: 15px;
-}
-
-.upcomingEvents {
-    position: absolute;
-    left: 25%;
-    margin-top: 15px;
-    padding: 10px;
-    border: 1px solid #673ab7;
-}

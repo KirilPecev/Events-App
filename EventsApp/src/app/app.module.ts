@@ -21,6 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { SharePublicationComponent } from './share-publication/share-publication.component';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
+import { DaybookComponent } from './daybook/daybook.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.compo
     FriendsComponent,
     ProfileComponent,
     SharePublicationComponent,
-    UpcomingEventsComponent
+    UpcomingEventsComponent,
+    DaybookComponent
   ],
   imports: [
     BrowserModule,
