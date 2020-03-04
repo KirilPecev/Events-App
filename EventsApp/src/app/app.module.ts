@@ -24,6 +24,7 @@ import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.compo
 import { DaybookComponent } from './daybook/daybook.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
+import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UserContactsComponent } from './user-contacts/user-contacts.component';
     UpcomingEventsComponent,
     DaybookComponent,
     UserInformationComponent,
-    UserContactsComponent
+    UserContactsComponent,
+    UserBasicInformationComponent
   ],
   imports: [
     BrowserModule,
