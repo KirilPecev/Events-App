@@ -22,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
 import { SharePublicationComponent } from './share-publication/share-publication.component';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 import { DaybookComponent } from './daybook/daybook.component';
+import { UserInformationComponent } from './user-information/user-information.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DaybookComponent } from './daybook/daybook.component';
     ProfileComponent,
     SharePublicationComponent,
     UpcomingEventsComponent,
-    DaybookComponent
+    DaybookComponent,
+    UserInformationComponent
   ],
   imports: [
     BrowserModule,
