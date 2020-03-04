@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    margin: auto;
+    width: 50%;
+    height: 100%;
+    border: 2px solid #673ab7;
+}
+
+.header {
+    position: relative;
+    padding-top: 2%;
+}
+
+.header img {
+    position: relative;
+    border-radius: 50%;
+    border: 2px solid #673ab7;
+    width: 20%;
+}
+
+.header span {
+    position: absolute;
+    top: 60%;
+    left: 20%;
+    font-size: 30px;
+}
+
+.header .playedEvents {
+    left: 70%;
+}
+
+.header .info {
+    margin-top: -5%;
+}
+
+.info .buttons {
+    padding-left: 30%;
+}
+
+.buttons button {
+    font-size: 18px;
+    margin-left: 10%;
+}
+
+.feed {
+    position: relative;
+    padding-left: 41%;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.upcomingEvents {
+    position: absolute;
+    left: 25%;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #673ab7;
+}

@@ -1,1 +1,23 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="header">
+        <img src="https://scontent.fsof7-1.fna.fbcdn.net/v/t1.0-9/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_sid=85a577&_nc_ohc=VXElPVDDENUAX_yjALV&_nc_ht=scontent.fsof7-1.fna&oh=e9d92c5e55712041ed94d05431b3a7e3&oe=5E80D25B"
+            alt="">
+        <span>Kiril Pecev</span>
+        <span class="playedEvents">Played events: 5</span>
+        <mat-toolbar color="primary" class="info">
+            <div class=buttons>
+                <button mat-button>Daybook</button>
+                <button mat-button>Information</button>
+                <button mat-button>Friends</button>
+                <button mat-button>Pictures</button>
+            </div>
+        </mat-toolbar>
+    </div>
+</div>
+<div class="containter">
+    <app-upcoming-events class="upcomingEvents" [title]="'My upcoming events'"></app-upcoming-events>
+    <div class="feed">
+        <app-share-publication></app-share-publication>
+        <app-publication></app-publication>
+    </div>
+</div>
