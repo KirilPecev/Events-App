@@ -8,7 +8,7 @@
             <div class=buttons>
                 <button mat-button routerLink="/profile">Daybook</button>
                 <button mat-button [routerLink]="[{ outlets: { profile: ['information'] } }]">Information</button>
-                <button mat-button>Friends</button>
+                <button mat-button [routerLink]="[{ outlets: { profile: ['friends'] } }]">Friends</button>
                 <button mat-button>Pictures</button>
             </div>
         </mat-toolbar>

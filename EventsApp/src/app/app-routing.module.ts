@@ -9,6 +9,7 @@ import { DaybookComponent } from './daybook/daybook.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
+import { UserFriendsComponent } from './user-friends/user-friends.component';
 
 
 const routes: Routes = [
@@ -22,9 +23,10 @@ const routes: Routes = [
         path: "information", component: UserInformationComponent, outlet: "profile", children: [
           { path: "", component: UserContactsComponent, outlet: "info" },
           { path: "contacts", component: UserContactsComponent, outlet: "info" },
-          { path: "basic-info", component: UserBasicInformationComponent, outlet: "info" }
+          { path: "basic-info", component: UserBasicInformationComponent, outlet: "info" },
         ]
-      }
+      },
+      { path: "friends", component: UserFriendsComponent, outlet: "profile" }
     ]
   }
 ];

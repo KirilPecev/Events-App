@@ -10,7 +10,6 @@ import { HeaderModule } from '../header/header.module';
 import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
 import { UserInformationModule } from '../user-information/user-information.module';
 
-
 @NgModule({
   declarations: [],
   imports: [
