@@ -10,6 +10,7 @@ import { UserInformationComponent } from './user-information/user-information.co
 import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
 import { UserFriendsComponent } from './user-friends/user-friends.component';
+import { UserPicturesComponent } from './user-pictures/user-pictures.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
         ]
       },
       { path: "friends", component: UserFriendsComponent, outlet: "profile" },
-      { path: "pictures", component: UserFriendsComponent, outlet: "profile" }
+      { path: "pictures", component: UserPicturesComponent, outlet: "profile" }
     ]
   }
 ];

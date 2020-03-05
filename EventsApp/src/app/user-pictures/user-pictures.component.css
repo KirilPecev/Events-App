@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.pictures {
+    position: relative;
+    margin: auto;
+    width: 50%;
+    margin-top: 15px;
+    border: 1px solid #673ab7;
+}
+
+.headerContent {
+    margin-left: 10px;
+}
+
+h1 {
+    display: inline;
+    margin-left: 10px;
+}
+
+.list {
+    padding: 5px;
+}
+
+.item {
+    display: inline-block;
+    margin-left: 5px;
+    width: 24.41%;
+    margin-bottom: 5px;
+}
+
+.item img {
+    height: 228px;
+    width: 230px;
+}
