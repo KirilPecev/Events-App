@@ -26,7 +26,8 @@ const routes: Routes = [
           { path: "basic-info", component: UserBasicInformationComponent, outlet: "info" },
         ]
       },
-      { path: "friends", component: UserFriendsComponent, outlet: "profile" }
+      { path: "friends", component: UserFriendsComponent, outlet: "profile" },
+      { path: "pictures", component: UserFriendsComponent, outlet: "profile" }
     ]
   }
 ];

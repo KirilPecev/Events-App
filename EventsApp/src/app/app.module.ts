@@ -26,6 +26,7 @@ import { UserInformationComponent } from './user-information/user-information.co
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
 import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
 import { UserFriendsComponent } from './user-friends/user-friends.component';
+import { UserPicturesComponent } from './user-pictures/user-pictures.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserFriendsComponent } from './user-friends/user-friends.component';
     UserInformationComponent,
     UserContactsComponent,
     UserBasicInformationComponent,
-    UserFriendsComponent
+    UserFriendsComponent,
+    UserPicturesComponent
   ],
   imports: [
     BrowserModule,

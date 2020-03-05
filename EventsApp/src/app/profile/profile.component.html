@@ -9,7 +9,7 @@
                 <button mat-button routerLink="/profile">Daybook</button>
                 <button mat-button [routerLink]="[{ outlets: { profile: ['information'] } }]">Information</button>
                 <button mat-button [routerLink]="[{ outlets: { profile: ['friends'] } }]">Friends</button>
-                <button mat-button>Pictures</button>
+                <button mat-button [routerLink]="[{ outlets: { profile: ['pictures'] } }]">Pictures</button>
             </div>
         </mat-toolbar>
     </div>
