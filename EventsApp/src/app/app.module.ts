@@ -28,6 +28,8 @@ import { UserBasicInformationComponent } from './user-basic-information/user-bas
 import { UserFriendsComponent } from './user-friends/user-friends.component';
 import { UserPicturesComponent } from './user-pictures/user-pictures.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { SportEventComponent } from './sport-event/sport-event.component';
+import { OtherEventComponent } from './other-event/other-event.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { CreateEventComponent } from './create-event/create-event.component';
     UserBasicInformationComponent,
     UserFriendsComponent,
     UserPicturesComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    SportEventComponent,
+    OtherEventComponent
   ],
   imports: [
     BrowserModule,

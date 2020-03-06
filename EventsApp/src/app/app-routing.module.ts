@@ -12,6 +12,8 @@ import { UserContactsComponent } from './user-contacts/user-contacts.component';
 import { UserFriendsComponent } from './user-friends/user-friends.component';
 import { UserPicturesComponent } from './user-pictures/user-pictures.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { SportEventComponent } from './sport-event/sport-event.component';
+import { OtherEventComponent } from './other-event/other-event.component';
 
 
 const routes: Routes = [
@@ -32,7 +34,12 @@ const routes: Routes = [
       { path: "pictures", component: UserPicturesComponent, outlet: "profile" }
     ]
   },
-  { path: "create-event", component: CreateEventComponent },
+  {
+    path: "create-event", component: CreateEventComponent, children: [
+      { path: "sport-event", component: SportEventComponent, outlet: "event" },
+      { path: "other-event", component: OtherEventComponent, outlet: "event" },
+    ]
+  },
 ];
 
 @NgModule({
