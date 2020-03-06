@@ -20,6 +20,6 @@ mat-card-content{
     padding-left: 3.5%;
 }
 
-mat-card-actions button {
-    padding-left: 45%;
+mat-card-actions {
+    margin-left: 45%;
 }
