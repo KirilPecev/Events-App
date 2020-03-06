@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-other-event',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./other-event.component.css']
 })
 export class OtherEventComponent implements OnInit {
+
+  nameFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   constructor() { }
 
