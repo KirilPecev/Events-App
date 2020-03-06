@@ -1,0 +1,25 @@
+.container {
+    margin: auto;
+    width: 70%;
+    padding-top: 1%;
+}
+
+mat-card {
+    display: inline-block;
+    width: 45%;
+    height: 200px;
+}
+
+.freeSpace {
+    display: inline-block;
+    width: 5%;
+}
+
+mat-card-content{
+    padding-top: 1%;
+    padding-left: 3.5%;
+}
+
+mat-card-actions button {
+    padding-left: 45%;
+}
