@@ -14,6 +14,8 @@ import { UserPicturesComponent } from './user-pictures/user-pictures.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { SportEventComponent } from './sport-event/sport-event.component';
 import { OtherEventComponent } from './other-event/other-event.component';
+import { PublicationComponent } from './publication/publication.component';
+import { EventsComponent } from './events/events.component';
 
 
 const routes: Routes = [
@@ -39,7 +41,7 @@ const routes: Routes = [
       { path: "sport-event", component: SportEventComponent, outlet: "event" },
       { path: "other-event", component: OtherEventComponent, outlet: "event" },
     ]
-  },
+  }
 ];
 
 @NgModule({
