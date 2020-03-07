@@ -12,6 +12,31 @@ export class OtherEventComponent implements OnInit {
     Validators.required
   ]);
 
+  locationFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  sportFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  timeFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  dateFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  availablePositionsFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  positionFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+
   constructor() { }
 
   ngOnInit(): void {

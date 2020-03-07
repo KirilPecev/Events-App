@@ -1,1 +1,77 @@
-<p>other-event works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Other event</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <table cellspacing="0">
+                <td>
+                    <mat-form-field>
+                        <mat-label>Event name:</mat-label>
+                        <input type="text" matInput [formControl]="nameFormControl" placeholder="Let's play">
+                        <mat-error *ngIf="!nameFormControl.hasError('required')">
+                            Please enter a valid name
+                        </mat-error>
+                        <mat-error *ngIf="nameFormControl.hasError('required')">
+                            Event name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Location:</mat-label>
+                        <input type="text" matInput [formControl]="locationFormControl" placeholder="Vasil Levski">
+                        <mat-error *ngIf="!locationFormControl.hasError('required')">
+                            Please enter a valid location
+                        </mat-error>
+                        <mat-error *ngIf="locationFormControl.hasError('required')">
+                            Location is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Sport:</mat-label>
+                        <input type="text" matInput [formControl]="sportFormControl" placeholder="Football">
+                        <mat-error *ngIf="!sportFormControl.hasError('required')">
+                            Please enter a valid sport
+                        </mat-error>
+                        <mat-error *ngIf="sportFormControl.hasError('required')">
+                            Sport is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Time:</mat-label>
+                        <input type="time" matInput [formControl]="timeFormControl">
+                        <mat-error *ngIf="timeFormControl.hasError('required')">
+                            Time is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Date:</mat-label>
+                        <input type="date" matInput [formControl]="dateFormControl">
+                        <mat-error *ngIf="dateFormControl.hasError('required')">
+                            Date is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Available positions:</mat-label>
+                        <input type="number" matInput [formControl]="availablePositionsFormControl" placeholder="10">
+                        <mat-error *ngIf="!availablePositionsFormControl.hasError('required')">
+                            Please enter a valid date
+                        </mat-error>
+                        <mat-error *ngIf="availablePositionsFormControl.hasError('required')">
+                            Positions are <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </table>
+        </form>
+    </mat-card-content>
+</mat-card>

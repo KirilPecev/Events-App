@@ -1,0 +1,21 @@
+mat-card{
+    margin: auto;
+    width: 61%;
+}
+
+mat-card-header{
+    margin-left: 40%;
+    padding-bottom: 2%;
+}
+
+td {
+    padding-right: 10px;
+}
+
+.positions{
+    padding-top: 3%;
+}
+
+.position{
+    padding-right: 10px;
+}
