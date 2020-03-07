@@ -1,17 +1,16 @@
 .leftSidebar {
-    width: 36%;
+    width: 35%;
     padding-left: 21%;
     height: 100%;
 }
 
 .rightSidebar {
-    width: 36%;
+    width: 35%;
     height: 100%;
 }
 
 .feed {
-    position: absolute;
-    height: 100%;
+    padding: 0.2%;
     background-color: whitesmoke;
     -ms-overflow-style: none;
 }
