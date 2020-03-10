@@ -2,11 +2,14 @@
     width: 35%;
     padding-left: 21%;
     height: 100%;
+    padding-right: 1%;
+    border-right: 1px solid #673ab7;
 }
 
 .rightSidebar {
     width: 35%;
     height: 100%;
+    border-left: 1px solid #673ab7;
 }
 
 .feed {
