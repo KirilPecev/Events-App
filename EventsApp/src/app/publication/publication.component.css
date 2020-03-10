@@ -1,14 +1,6 @@
-.publications {
-    position: relative;
-    top: 210px;
-    margin-top: 10px;
-    width: 33.9%;
-}
-
-.publication {
-    border: 0px solid #ccc;
-    background-color: whitesmoke;
-    margin-bottom: 20px;
+mat-card{
+    margin-top: 2%;
+    border: 1px solid #673ab7;
 }
 
 figcaption {
@@ -22,11 +14,6 @@ figcaption {
     padding: 5px;
     padding-top: 6px;
     margin-top: 5px;
-}
-
-.sharedBy hr {
-    margin-top: 0px;
-    border: 1px solid #ccc;
 }
 
 .sharedBy img {
@@ -44,26 +31,8 @@ img {
     margin-right: 10px;
 }
 
-.buttons{
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttons button {
-    width: 49.8%;
-    margin-right: 0px;
-    background-color: #673ab7;
-}
-
 .post {
     border: none;
     width: 100%;
-    padding: 8px 8px;
-    border-bottom: 1px groove;
-    background-color: #f8f8f8;
-    resize: none;
-}
-
-.status hr{
-  margin: 0px;
+    padding: 8px 0px;
 }
