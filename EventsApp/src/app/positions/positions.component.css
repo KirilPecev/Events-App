@@ -1,8 +1,22 @@
-.available div{
+.available div {
     display: inline;
     padding: 2%;
 }
 
 .available button {
+    margin: 1%;
+}
+
+.busy div {    
+    display: inline;
+    padding: 2%;
+}
+
+.busy h3 {
+    display: inline;
+    border-bottom: 1px solid #673ab7;
+}
+
+.busy button {
     margin: 1%;
 }
