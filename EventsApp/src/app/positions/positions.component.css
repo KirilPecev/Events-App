@@ -1,22 +1,20 @@
-.available div {
-    display: inline;
-    padding: 2%;
-}
+ div {
+     display: inline-block;
+     padding: 2%;
+ }
 
-.available button {
-    margin: 1%;
-}
+ button {
+     display: inline;
+     margin-left: 10px;
+ }
 
-.busy div {    
-    display: inline;
-    padding: 2%;
-}
+ h3 {
+     display: inline;
+     margin-left: 5px;
+     border-bottom: 1px solid #673ab7;
+ }
 
-.busy h3 {
-    display: inline;
-    border-bottom: 1px solid #673ab7;
-}
-
-.busy button {
-    margin: 1%;
-}
+ span {
+     font-size: 1.2em;
+     font-weight: bold;
+ }
