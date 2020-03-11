@@ -8,6 +8,7 @@ mat-card {
     display: inline-block;
     width: 45%;
     height: 200px;
+    border: 1px solid #673ab7;
 }
 
 .freeSpace {
@@ -15,7 +16,7 @@ mat-card {
     width: 5%;
 }
 
-mat-card-content{
+mat-card-content {
     padding-top: 1%;
     padding-left: 3.5%;
 }
@@ -24,6 +25,6 @@ mat-card-actions {
     margin-left: 45%;
 }
 
-.creation{
+.creation {
     padding-top: 5%;
 }
