@@ -16,12 +16,19 @@ import { SportEventComponent } from './sport-event/sport-event.component';
 import { OtherEventComponent } from './other-event/other-event.component';
 import { PublicationComponent } from './publication/publication.component';
 import { EventsComponent } from './events/events.component';
+import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
 
 
 const routes: Routes = [
   { path: "", component: HomePageIndexComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
+  {
+    path: "feed", component: HomePageFeedComponent, children: [
+      { path: "", component: PublicationComponent, outlet: "feed" },
+      { path: "events", component: EventsComponent, outlet: "feed" }
+    ]
+  },
   {
     path: "profile", component: ProfileComponent, children: [
       { path: "", component: DaybookComponent, outlet: "profile" },

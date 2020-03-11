@@ -4,7 +4,7 @@
     </mat-sidenav>
     <mat-sidenav-content class="feed">
         <app-share-publication></app-share-publication>
-        <app-publication></app-publication>
+        <router-outlet name="feed"></router-outlet>
     </mat-sidenav-content>
     <mat-sidenav class="rightSidebar" mode="side" opened fixedInViewport="true" fixedTopGap="50" position="end">
         <app-right-sidebar></app-right-sidebar>

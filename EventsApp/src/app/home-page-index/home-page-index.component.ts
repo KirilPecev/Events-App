@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList, ViewEncapsulation, Input } from '@angular/core';
 import { UserService } from '../services/userService';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,14 @@ export class HomePageIndexComponent implements OnInit {
 
   @ViewChildren("r") rs: QueryList<any>;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {
+    if (this.isLoggedIn) {
+      this.router.navigate(["/feed"]); //TODO: Use guard
+    }
+  }
 
   isLoggedIn = this.userService.isLoggedIn;
 
