@@ -7,11 +7,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HeaderModule } from '../header/header.module';
 import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
 import { UserInformationModule } from '../user-information/user-information.module';
+import { PositionsModule } from '../positions/positions.module';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { UserInformationModule } from '../user-information/user-information.modu
     HomePageIndexModule,
     MatButtonModule,
     MatCardModule,
-    MatSidenavModule
+    MatSidenavModule,
+    PositionsModule
   ],
   exports: [
     MatToolbarModule,
@@ -35,7 +37,8 @@ import { UserInformationModule } from '../user-information/user-information.modu
     HomePageIndexModule,
     UserInformationModule,
     MatCardModule,
-    MatSidenavModule
+    MatSidenavModule,
+    PositionsModule
   ]
 })
 export class SharedModule { }

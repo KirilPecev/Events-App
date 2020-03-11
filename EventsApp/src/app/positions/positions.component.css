@@ -1,0 +1,8 @@
+.available div{
+    display: inline;
+    padding: 2%;
+}
+
+.available button {
+    margin: 1%;
+}

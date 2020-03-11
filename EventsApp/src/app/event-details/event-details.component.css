@@ -1,0 +1,45 @@
+.content {
+    margin: auto;
+    width: 50%;
+}
+
+mat-card {
+    margin-top: 4%;
+    border: 1px solid #673ab7;
+}
+
+mat-card-header {
+    padding-left: 30%;
+}
+
+mat-card-header h2 {
+    font-size: 1.5em;
+    color: #673ab7;
+}
+
+mat-card-subtitle {
+    text-align: center;
+}
+
+mat-card-content h3 {
+    display: inline-block;
+    color: #673ab7;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+mat-card-content span {
+    display: block;
+    font-size: 1.3em;
+}
+
+.positions div{
+    display: inline-block;
+    padding: 4%;
+}
+
+.positions span{
+    display: inline-block;
+    margin-left: 5px;
+    border-bottom: 1px solid #673ab7;
+}

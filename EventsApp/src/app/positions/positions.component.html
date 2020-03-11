@@ -1,0 +1,45 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Available positions
+            </mat-panel-title>
+            <mat-panel-description>
+                Join in your favourite position
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="available">
+            <div>
+                <span>Goalkeeper</span>
+                <button mat-flat-button color="primary">Join</button>
+            </div>
+            <div>
+                <span>Attacking midfield</span>
+                <button mat-flat-button color="primary">Join</button>
+            </div>
+            <div>
+                <span>Wide midfield</span>
+                <button mat-flat-button color="primary">Join</button>
+            </div>
+            <div>
+                <span>Second striker</span>
+                <button mat-flat-button color="primary">Join</button>
+            </div>
+            <div>
+                <span>Centre forward</span>
+                <button mat-flat-button color="primary">Join</button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Busy positions
+            </mat-panel-title>
+            <mat-panel-description>
+                Check which positions are busy
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+    </mat-expansion-panel>
+</mat-accordion>
