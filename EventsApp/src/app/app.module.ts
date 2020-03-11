@@ -32,6 +32,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { SportEventComponent } from './sport-event/sport-event.component';
 import { OtherEventComponent } from './other-event/other-event.component';
 import { EventsComponent } from './events/events.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { EventsComponent } from './events/events.component';
     CreateEventComponent,
     SportEventComponent,
     OtherEventComponent,
-    EventsComponent
+    EventsComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ import { OtherEventComponent } from './other-event/other-event.component';
 import { PublicationComponent } from './publication/publication.component';
 import { EventsComponent } from './events/events.component';
 import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 const routes: Routes = [
@@ -48,7 +49,8 @@ const routes: Routes = [
       { path: "sport-event", component: SportEventComponent, outlet: "event" },
       { path: "other-event", component: OtherEventComponent, outlet: "event" },
     ]
-  }
+  },
+  { path: "events/details", pathMatch: "full", component: EventDetailsComponent }
 ];
 
 @NgModule({
