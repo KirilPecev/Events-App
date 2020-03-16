@@ -27,11 +27,11 @@ h1 {
 .item {
     display: inline-block;
     margin-left: 5px;
-    width: 24.41%;
+    width: 256px;
     margin-bottom: 5px;
 }
 
 .item img {
-    height: 228px;
-    width: 230px;
+    height: 230px;
+    width: 258px;
 }

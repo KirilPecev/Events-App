@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     dialogConfig.closeOnNavigation = true;
     dialogConfig.disableClose = false;
     dialogConfig.height = "25%";
-    dialogConfig.width = "20%";
+    dialogConfig.width = "23%";
     dialogConfig.position = {
       "top": "50px",
       "right": "25.6%"

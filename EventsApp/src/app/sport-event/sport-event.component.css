@@ -1,6 +1,6 @@
 mat-card{
     margin: auto;
-    width: 61%;
+    width: 73.7%;
 }
 
 mat-card-header{
@@ -9,6 +9,7 @@ mat-card-header{
 }
 
 td {
+    display: inline-block;
     padding-right: 10px;
 }
 

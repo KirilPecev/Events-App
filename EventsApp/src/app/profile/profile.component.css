@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+.container::-webkit-scrollbar {
+    display: none;
+}
+
 .container {
     margin: auto;
     width: 50%;
@@ -24,8 +28,8 @@
 
 .header span {
     position: absolute;
-    top: 60%;
-    left: 20%;
+    top: 50%;
+    left: 21%;
     font-size: 30px;
 }
 
@@ -38,7 +42,7 @@
 }
 
 .info .buttons {
-    padding-left: 30%;
+    padding-left: 25%;
 }
 
 .buttons button {
