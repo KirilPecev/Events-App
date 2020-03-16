@@ -1,6 +1,7 @@
 .registerBox {
     color:#673ab7;
     width: 280px;
+    height: 70%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -17,10 +18,7 @@
 
 mat-form-field {
     width: 100%;
-    overflow: hidden;
     font-size: 20px;
-    padding: 8px 0;
-    margin: 8px 0;
 }
 
 .registerBox fa-icon{
@@ -29,7 +27,7 @@ mat-form-field {
 }
 
 input{
-    font-size: 20px !important;
+    font-size: 20px;
 }
 
 .registerBox .btn{
@@ -39,7 +37,6 @@ input{
     color:#673ab7;
     font-size: 18px;
     cursor: pointer;
-    margin: 12px 0;
 }
 
 .registerBox span{
