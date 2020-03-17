@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -15,4 +15,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login(data) {
+    data.reset();
+  }
 }
