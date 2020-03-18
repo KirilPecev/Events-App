@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-other-event',
@@ -8,36 +8,23 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class OtherEventComponent implements OnInit {
 
-  nameFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  eventForm: FormGroup
 
-  locationFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  constructor(fb: FormBuilder) {
+    this.eventForm = fb.group({
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      location: ['', [Validators.required]],
+      sport: ['', [Validators.required]],
+      time: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      availablePositions: ['', [Validators.required, Validators.min(1)]],
+    });
+  }
 
-  sportFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  timeFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  dateFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  availablePositionsFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  positionFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-
-  constructor() { }
+  create() {
+    console.log(this.eventForm.value);
+    this.eventForm.reset();
+  }
 
   ngOnInit(): void {
   }

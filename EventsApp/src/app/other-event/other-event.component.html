@@ -3,40 +3,34 @@
         <mat-card-title>Other event</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form [formGroup]="eventForm" (ngSubmit)="create()">
             <table cellspacing="0">
                 <td>
                     <mat-form-field>
                         <mat-label>Event name:</mat-label>
-                        <input type="text" matInput [formControl]="nameFormControl" placeholder="Let's play">
-                        <mat-error *ngIf="!nameFormControl.hasError('required')">
+                        <input type="text" matInput formControlName="name" placeholder="Let's play">
+                        <mat-error *ngIf="eventForm.get('name').errors?.minlength && eventForm.get('name').touched">
                             Please enter a valid name
                         </mat-error>
-                        <mat-error *ngIf="nameFormControl.hasError('required')">
-                            Event name is <strong>required</strong>
+                        <mat-error *ngIf="eventForm.get('name').errors?.required && eventForm.get('name').touched">
+                            Event name is <strong>required</strong>!
                         </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <mat-label>Location:</mat-label>
-                        <input type="text" matInput [formControl]="locationFormControl" placeholder="Vasil Levski">
-                        <mat-error *ngIf="!locationFormControl.hasError('required')">
-                            Please enter a valid location
-                        </mat-error>
-                        <mat-error *ngIf="locationFormControl.hasError('required')">
-                            Location is <strong>required</strong>
+                        <input type="text" matInput formControlName="location" placeholder="Vasil Levski">
+                        <mat-error *ngIf="eventForm.get('location').errors?.required && eventForm.get('location').touched">
+                            Location is <strong>required</strong>!
                         </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <mat-label>Sport:</mat-label>
-                        <input type="text" matInput [formControl]="sportFormControl" placeholder="Football">
-                        <mat-error *ngIf="!sportFormControl.hasError('required')">
-                            Please enter a valid sport
-                        </mat-error>
-                        <mat-error *ngIf="sportFormControl.hasError('required')">
+                        <input type="text" matInput formControlName="sport" placeholder="Football">
+                        <mat-error *ngIf="eventForm.get('sport').errors?.required && eventForm.get('sport').touched">
                             Sport is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
@@ -44,32 +38,35 @@
                 <td>
                     <mat-form-field>
                         <mat-label>Time:</mat-label>
-                        <input type="time" matInput [formControl]="timeFormControl">
-                        <mat-error *ngIf="timeFormControl.hasError('required')">
-                            Time is <strong>required</strong>
+                        <input type="time" matInput formControlName="time">
+                        <mat-error *ngIf="eventForm.get('time').errors?.required && eventForm.get('time').touched">
+                            Time is <strong>required</strong>!
                         </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <mat-label>Date:</mat-label>
-                        <input type="date" matInput [formControl]="dateFormControl">
-                        <mat-error *ngIf="dateFormControl.hasError('required')">
-                            Date is <strong>required</strong>
+                        <input type="date" matInput formControlName="date">
+                        <mat-error *ngIf="eventForm.get('date').errors?.required && eventForm.get('date').touched">
+                            Date is <strong>required</strong>!
                         </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field>
                         <mat-label>Available positions:</mat-label>
-                        <input type="number" matInput [formControl]="availablePositionsFormControl" placeholder="10">
-                        <mat-error *ngIf="!availablePositionsFormControl.hasError('required')">
-                            Please enter a valid date
+                        <input type="number" matInput formControlName="availablePositions" placeholder="10">
+                        <mat-error *ngIf="eventForm.get('availablePositions').errors?.required && eventForm.get('availablePositions').touched">
+                            Positions are <strong>required</strong>!
                         </mat-error>
-                        <mat-error *ngIf="availablePositionsFormControl.hasError('required')">
-                            Positions are <strong>required</strong>
+                        <mat-error *ngIf="eventForm.get('availablePositions').errors?.min && eventForm.get('availablePositions').touched">
+                            Positions must be at least <strong>1</strong>!
                         </mat-error>
                     </mat-form-field>
+                </td>
+                <td>
+                   <button mat-flat-button color="primary" [disabled]="eventForm.invalid">Create</button>
                 </td>
             </table>
         </form>

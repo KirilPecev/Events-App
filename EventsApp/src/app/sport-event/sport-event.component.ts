@@ -18,7 +18,7 @@ export class SportEventComponent implements OnInit {
       sport: ['', [Validators.required]],
       time: ['', [Validators.required]],
       date: ['', [Validators.required]],
-      availablePositions: ['', [Validators.required, Validators.minLength(1)]],
+      availablePositions: ['', [Validators.required, Validators.min(1)]],
       position: ['', [Validators.required]]
     });
   }
