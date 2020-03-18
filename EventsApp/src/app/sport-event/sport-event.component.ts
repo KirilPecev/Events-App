@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sport-event',
@@ -7,37 +7,26 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./sport-event.component.css']
 })
 export class SportEventComponent implements OnInit {
-  nameFormControl = new FormControl('', [
-    Validators.required
-  ]);
 
-  locationFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  sportFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  timeFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  dateFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  availablePositionsFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  positionFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
+  eventForm: FormGroup
   positions: number = 0;
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.eventForm = fb.group({
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      location: ['', [Validators.required]],
+      sport: ['', [Validators.required]],
+      time: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      availablePositions: ['', [Validators.required, Validators.minLength(1)]],
+      position: ['', [Validators.required]]
+    });
+  }
+
+  create() {
+    console.log(this.eventForm.value);
+    this.eventForm.reset();
+  }
 
   ngOnInit(): void {
   }
