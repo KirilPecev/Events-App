@@ -33,6 +33,7 @@ input {
 .registerBox button {
     width: 100%;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .registerBox span {
