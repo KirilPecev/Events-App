@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { dateValidator } from '../shared/validators';
 
 @Component({
   selector: 'app-sport-event',
@@ -17,7 +18,7 @@ export class SportEventComponent implements OnInit {
       location: ['', [Validators.required]],
       sport: ['', [Validators.required]],
       time: ['', [Validators.required]],
-      date: ['', [Validators.required]],
+      date: ['', [Validators.required, dateValidator]],
       availablePositions: ['', [Validators.required, Validators.min(1)]],
       position: ['', [Validators.required]]
     });

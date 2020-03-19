@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { passwordMatch } from './validators';
+import { passwordMatch } from '../shared/validators';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register(){
+  register() {
     console.log(this.registerForm.value);
     this.registerForm.reset();
   }

@@ -51,6 +51,9 @@
                         <mat-error *ngIf="eventForm.get('date').errors?.required && eventForm.get('date').touched">
                             Date is <strong>required</strong>!
                         </mat-error>
+                        <mat-error *ngIf="eventForm.get('date').errors?.dateValidator && !eventForm.get('date').errors?.required && eventForm.get('date').touched">
+                            Please check your date!
+                        </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
