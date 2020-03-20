@@ -1,9 +1,9 @@
-mat-card{
+mat-card {
     margin: auto;
     width: 73.7%;
 }
 
-mat-card-header{
+mat-card-header {
     margin-left: 40%;
     padding-bottom: 2%;
 }
@@ -13,10 +13,14 @@ td {
     padding-right: 10px;
 }
 
-.positions{
+.positions {
     padding-top: 3%;
 }
 
-.position{
+.position {
     padding-right: 10px;
+}
+
+mat-form-field {
+    width: 200px;
 }
