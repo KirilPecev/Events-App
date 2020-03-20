@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomePageIndexComponent } from './home-page-index/home-page-index.component';
 import { ProfileComponent } from './profile/profile.component';
-import { DaybookComponent } from './daybook/daybook.component';
+import { UserDaybookComponent } from './user-daybook/user-daybook.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: "profile", component: ProfileComponent, children: [
-      { path: "", component: DaybookComponent, outlet: "profile" },
+      { path: "", component: UserDaybookComponent, outlet: "profile" },
       {
         path: "information", component: UserInformationComponent, outlet: "profile", children: [
           { path: "", component: UserContactsComponent, outlet: "info" },

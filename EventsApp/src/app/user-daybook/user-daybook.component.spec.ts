@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DaybookComponent } from './daybook.component';
+import { UserDaybookComponent } from './user-daybook.component';
 
-describe('DaybookComponent', () => {
-  let component: DaybookComponent;
-  let fixture: ComponentFixture<DaybookComponent>;
+describe('UserDaybookComponent', () => {
+  let component: UserDaybookComponent;
+  let fixture: ComponentFixture<UserDaybookComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DaybookComponent ]
+      declarations: [ UserDaybookComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DaybookComponent);
+    fixture = TestBed.createComponent(UserDaybookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

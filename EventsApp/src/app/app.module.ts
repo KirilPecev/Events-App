@@ -22,7 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { SharePublicationComponent } from './share-publication/share-publication.component';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
-import { DaybookComponent } from './daybook/daybook.component';
+import { UserDaybookComponent } from './user-daybook/user-daybook.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
 import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
@@ -52,7 +52,7 @@ import { PositionsComponent } from './positions/positions.component';
     ProfileComponent,
     SharePublicationComponent,
     UpcomingEventsComponent,
-    DaybookComponent,
+    UserDaybookComponent,
     UserInformationComponent,
     UserContactsComponent,
     UserBasicInformationComponent,
