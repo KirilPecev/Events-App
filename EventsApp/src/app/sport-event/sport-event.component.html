@@ -21,7 +21,8 @@
                     <mat-form-field>
                         <mat-label>Location:</mat-label>
                         <input type="text" matInput formControlName="location" placeholder="Vasil Levski">
-                        <mat-error *ngIf="eventForm.get('location').errors?.required && eventForm.get('location').touched">
+                        <mat-error
+                            *ngIf="eventForm.get('location').errors?.required && eventForm.get('location').touched">
                             Location is <strong>required</strong>!
                         </mat-error>
                     </mat-form-field>
@@ -37,22 +38,15 @@
                 </td>
                 <td>
                     <mat-form-field>
-                        <mat-label>Time:</mat-label>
-                        <input type="time" matInput formControlName="time">
-                        <mat-error *ngIf="eventForm.get('time').errors?.required && eventForm.get('time').touched">
-                            Time is <strong>required</strong>!
+                        <mat-label>Date and time:</mat-label>
+                        <input type="datetime-local" matInput formControlName="dateTime">
+                        <mat-error
+                            *ngIf="eventForm.get('dateTime').errors?.required && eventForm.get('dateTime').touched">
+                            Date and time are <strong>required</strong>!
                         </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Date:</mat-label>
-                        <input type="date" matInput formControlName="date">
-                        <mat-error *ngIf="eventForm.get('date').errors?.required && eventForm.get('date').touched">
-                            Date is <strong>required</strong>!
-                        </mat-error>
-                        <mat-error *ngIf="eventForm.get('date').errors?.dateValidator && !eventForm.get('date').errors?.required && eventForm.get('date').touched">
-                            Please check your date!
+                        <mat-error
+                            *ngIf="eventForm.get('dateTime').errors?.dateTimeValidator && !eventForm.get('dateTime').errors?.required && eventForm.get('dateTime').touched">
+                            Please check your date and time!
                         </mat-error>
                     </mat-form-field>
                 </td>
@@ -61,16 +55,18 @@
                         <mat-label>Available positions:</mat-label>
                         <input type="number" matInput formControlName="availablePositions" placeholder="10"
                             [(ngModel)]="positions">
-                        <mat-error *ngIf="eventForm.get('availablePositions').errors?.required && eventForm.get('availablePositions').touched">
+                        <mat-error
+                            *ngIf="eventForm.get('availablePositions').errors?.required && eventForm.get('availablePositions').touched">
                             Positions are <strong>required</strong>!
                         </mat-error>
-                        <mat-error *ngIf="eventForm.get('availablePositions').errors?.minlength && eventForm.get('availablePositions').touched">
+                        <mat-error
+                            *ngIf="eventForm.get('availablePositions').errors?.minlength && eventForm.get('availablePositions').touched">
                             Positions must be at least <strong>1</strong>!
                         </mat-error>
                     </mat-form-field>
                 </td>
                 <td>
-                   <button mat-flat-button color="primary" [disabled]="eventForm.invalid">Create</button>
+                    <button mat-flat-button color="primary" [disabled]="eventForm.invalid">Create</button>
                 </td>
             </table>
             <div class="positions">
