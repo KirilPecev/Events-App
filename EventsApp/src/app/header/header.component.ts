@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { FriendsComponent } from '../friends/friends.component';
@@ -11,7 +11,6 @@ import { FriendsComponent } from '../friends/friends.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   title = 'EventsApp';
   faHome = faHome;
   faUserFriends = faUserFriends;
@@ -19,6 +18,7 @@ export class HeaderComponent implements OnInit {
   faCalendarWeek = faCalendarWeek;
   faSignInAlt = faSignInAlt;
   faUserPlus = faUserPlus;
+  faSignOutAlt = faSignOutAlt;
 
   @Input() isLoggedIn: boolean;
 
@@ -56,6 +56,10 @@ export class HeaderComponent implements OnInit {
     };
 
     this.notificationsDialog.open(FriendsComponent, dialogConfig);
+  }
+
+  logout(){
+
   }
 
   ngOnInit(): void {

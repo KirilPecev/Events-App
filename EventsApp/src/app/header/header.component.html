@@ -19,6 +19,9 @@
             matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
             <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
         </button>
+        <button class="btn btn-light btn-sm" title="Logout" (click)="logout()">
+        <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
+    </button>
     </div>
     <div *ngIf="!isLoggedIn" class="header-buttons">
         <button class="btn btn-light btn-sm" routerLink="/login">
