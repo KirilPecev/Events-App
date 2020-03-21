@@ -1,40 +1,39 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { User } from '../models/user';
+import { User } from '../models/user-model';
+import { handleError } from './error-handler';
 
 @Injectable({
     providedIn: "root"
 })
 export class UserService {
-    isLoggedIn: boolean = false;
+    isLoggedIn: boolean = true;
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) { }
 
     login(email: string, password: string): Observable<User> {
         const url = "";
         return this.http.post<User>(url, { email, password })
             .pipe(
-                catchError(this.handleError<User>('login'))
+                catchError(handleError<User>('login'))
             );
     }
 
     register(data): Observable<User> {
         const url = "";
-        console.log(data);
         return this.http.post<User>(url, { data })
             .pipe(
-                catchError(this.handleError<User>('register'))
+                catchError(handleError<User>('register'))
             );
     }
 
-    handleError<T>(operation = "operation", result?: T) {
-        return (error: any): Observable<T> => {
-            console.log(error);
-
-            return of(result as T);
-        }
+    logout(): Observable<any> {
+        const url = "";
+        return this.http.get<any>(url)
+            .pipe(
+                catchError(handleError<any>('logout'))
+            );
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import { UserService } from '../services/user.service';
+import { UserService } from '../core/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,9 +20,11 @@ export class LoginComponent implements OnInit {
 
   login(data) {
     this.userService.login(data.value.email, data.value.password)
-      .subscribe(() => {
-        this.router.navigate(['feed']);
-        data.reset();
+      .subscribe({
+        complete() {
+          this.router.navigate(['feed']);
+          data.reset();
+        }
       });
   }
 }

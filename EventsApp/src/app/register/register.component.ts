@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passwordMatch } from '../shared/validators';
-import { UserService } from '../services/user.service';
+import { UserService } from '../core/services/user.service';
 import { Router } from '@angular/router';
 
 
@@ -29,9 +29,11 @@ export class RegisterComponent implements OnInit {
   register() {
     console.log(this.registerForm.value);
     this.userService.register(this.registerForm.value)
-      .subscribe(() => {
-        this.router.navigate(['login']);
-        this.registerForm.reset();
+      .subscribe({
+        complete() {
+          this.router.navigate(['login']);
+          this.registerForm.reset();
+        }
       });
   }
 

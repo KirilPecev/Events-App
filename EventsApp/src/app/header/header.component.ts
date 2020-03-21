@@ -4,6 +4,9 @@ import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus,
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationsComponent } from '../notifications/notifications.component';
 import { FriendsComponent } from '../friends/friends.component';
+import { UserService } from '../core/services/user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -22,7 +25,14 @@ export class HeaderComponent implements OnInit {
 
   @Input() isLoggedIn: boolean;
 
-  constructor(private notificationsDialog: MatDialog, private friendsDialog: MatDialog) { }
+  constructor(
+    private notificationsDialog: MatDialog,
+    private router: Router,
+    private userService: UserService,
+  ) { }
+
+  ngOnInit(): void {
+  }
 
   openNotificationsDialog() {
     const dialogConfig = new MatDialogConfig();
@@ -58,11 +68,8 @@ export class HeaderComponent implements OnInit {
     this.notificationsDialog.open(FriendsComponent, dialogConfig);
   }
 
-  logout(){
-
+  logout() {
+    this.userService.logout()
+      .subscribe(() => this.router.navigate(['']));
   }
-
-  ngOnInit(): void {
-  }
-
 }
