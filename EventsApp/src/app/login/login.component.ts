@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   faUser = faUser;
   faLock = faLock;
 
-  constructor(private route: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   login(data) {
     this.userService.login(data.value.email, data.value.password)
       .subscribe(() => {
-        this.route.navigate(['feed']);
-        data.reset()
+        this.router.navigate(['feed']);
+        data.reset();
       });
   }
 }

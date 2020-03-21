@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passwordMatch } from '../shared/validators';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private userService: UserService, private router: Router) {
     this.registerForm = fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -26,7 +28,11 @@ export class RegisterComponent implements OnInit {
 
   register() {
     console.log(this.registerForm.value);
-    this.registerForm.reset();
+    this.userService.register(this.registerForm.value)
+      .subscribe(() => {
+        this.router.navigate(['login']);
+        this.registerForm.reset();
+      });
   }
 
   ngOnInit(): void {

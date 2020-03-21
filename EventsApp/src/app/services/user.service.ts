@@ -21,6 +21,15 @@ export class UserService {
             );
     }
 
+    register(data): Observable<User> {
+        const url = "";
+        console.log(data);
+        return this.http.post<User>(url, { data })
+            .pipe(
+                catchError(this.handleError<User>('register'))
+            );
+    }
+
     handleError<T>(operation = "operation", result?: T) {
         return (error: any): Observable<T> => {
             console.log(error);
