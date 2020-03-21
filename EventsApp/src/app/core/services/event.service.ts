@@ -19,7 +19,7 @@ export class EventService {
         const url = "";
         this.http.put<Event>(url, data)
             .pipe(
-                catchError(handleError<Event>("create"))
+                catchError(handleError<Event>("edit"))
             );
     }
 
@@ -27,7 +27,7 @@ export class EventService {
         const url = "";
         this.http.delete<Event>(url)
             .pipe(
-                catchError(handleError<Event>("create"))
+                catchError(handleError<Event>("delete"))
             );
     }
 
@@ -35,7 +35,15 @@ export class EventService {
         const url = "";
         this.http.get<Event>(url)
             .pipe(
-                catchError(handleError<Event>("create"))
+                catchError(handleError<Event>("details"))
+            );
+    }
+
+    all(){
+        const url = "";
+        this.http.get<Event[]>(url)
+            .pipe(
+                catchError(handleError<Event>("all"))
             );
     }
 }
