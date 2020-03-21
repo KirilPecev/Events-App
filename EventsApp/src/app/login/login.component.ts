@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +12,17 @@ import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 export class LoginComponent implements OnInit {
   faUser = faUser;
   faLock = faLock;
-  constructor() { }
+
+  constructor(private route: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   login(data) {
-    data.reset();
+    this.userService.login(data.value.email, data.value.password)
+      .subscribe(() => {
+        this.route.navigate(['feed']);
+        data.reset()
+      });
   }
 }
