@@ -18,6 +18,7 @@ import { PublicationComponent } from './publication/publication.component';
 import { EventsComponent } from './events/events.component';
 import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -25,13 +26,13 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   {
-    path: "feed", component: HomePageFeedComponent, children: [
+    path: "feed", canActivate: [AuthGuard], component: HomePageFeedComponent, children: [
       { path: "", component: PublicationComponent, outlet: "feed" },
       { path: "events", component: EventsComponent, outlet: "feed" }
     ]
   },
   {
-    path: "profile", component: ProfileComponent, children: [
+    path: "profile", canActivateChild: [AuthGuard], component: ProfileComponent, children: [
       { path: "", component: UserDaybookComponent, outlet: "profile" },
       {
         path: "information", component: UserInformationComponent, outlet: "profile", children: [
@@ -45,9 +46,9 @@ const routes: Routes = [
     ]
   },
   {
-    path: "create-event", component: CreateEventComponent, children: [
+    path: "create-event", canActivate: [AuthGuard], component: CreateEventComponent, children: [
       { path: "sport-event", component: SportEventComponent, outlet: "event" },
-      { path: "other-event", component: OtherEventComponent, outlet: "event" },
+      { path: "other-event", component: OtherEventComponent, outlet: "event" }
     ]
   },
   { path: "events/details", pathMatch: "full", component: EventDetailsComponent }
