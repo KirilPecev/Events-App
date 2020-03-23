@@ -18,21 +18,21 @@ import { PublicationComponent } from './publication/publication.component';
 import { EventsComponent } from './events/events.component';
 import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
-import { AuthGuard } from './guards/auth.guard';
-
+import { AuthGuard } from './guards/auth/auth.guard';
+import { AnonymousGuard } from './guards/anonymous/anonymous.guard';
 
 const routes: Routes = [
   { path: "", component: HomePageIndexComponent },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent, canActivate: [AnonymousGuard] },
+  { path: "register", component: RegisterComponent, canActivate: [AnonymousGuard] },
   {
-    path: "feed", canActivate: [AuthGuard], component: HomePageFeedComponent, children: [
+    path: "feed", component: HomePageFeedComponent, canActivate: [AuthGuard], children: [
       { path: "", component: PublicationComponent, outlet: "feed" },
       { path: "events", component: EventsComponent, outlet: "feed" }
     ]
   },
   {
-    path: "profile", canActivateChild: [AuthGuard], component: ProfileComponent, children: [
+    path: "profile", component: ProfileComponent, canActivateChild: [AuthGuard], children: [
       { path: "", component: UserDaybookComponent, outlet: "profile" },
       {
         path: "information", component: UserInformationComponent, outlet: "profile", children: [
@@ -46,12 +46,13 @@ const routes: Routes = [
     ]
   },
   {
-    path: "create-event", canActivate: [AuthGuard], component: CreateEventComponent, children: [
+    path: "create-event", component: CreateEventComponent, canActivate: [AuthGuard], children: [
       { path: "sport-event", component: SportEventComponent, outlet: "event" },
       { path: "other-event", component: OtherEventComponent, outlet: "event" }
     ]
   },
-  { path: "events/details", pathMatch: "full", component: EventDetailsComponent }
+  { path: "events/details", pathMatch: "full", component: EventDetailsComponent, canActivate: [AuthGuard] },
+  { path: "**", redirectTo: "" }
 ];
 
 @NgModule({

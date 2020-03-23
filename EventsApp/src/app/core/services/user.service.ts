@@ -9,7 +9,7 @@ import { handleError } from './error-handler';
     providedIn: "root"
 })
 export class UserService {
-    isLoggedIn: boolean = false;
+    isLoggedIn: boolean = true;
 
     constructor(private http: HttpClient) { }
 
