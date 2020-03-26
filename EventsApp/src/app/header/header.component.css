@@ -23,6 +23,7 @@
     color: aliceblue;
 }
 
+.title,
 .title>a:hover {
     text-decoration: none;
 }

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title = 'EventsApp';
+  title = 'Evenity';
   faHome = faHome;
   faUserFriends = faUserFriends;
   faFlag = faFlag;
