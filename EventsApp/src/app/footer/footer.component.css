@@ -1,14 +1,14 @@
-mat-toolbar {
-    height: 50px;
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
-div {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.fancy {
+  margin: 0 auto;
+  letter-spacing: 0.55vw;
 }
 
-p {
-    margin: auto;
-    letter-spacing: 5px;
+.site-footer {
+    height: 60px;
 }
