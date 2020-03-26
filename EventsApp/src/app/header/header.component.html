@@ -1,34 +1,34 @@
-<mat-toolbar color="primary" class="fix-me">
-    <span id="title" class=".navbar-brand">
-        <a routerLink="/" class="title">
-            <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
-        </a>
-    </span>
+<header class="fixed-top">
+    <mat-toolbar color="primary" class="site-header">
+        <div fxFlex fxLayout fxLayoutAlign="space-between center" class="site-wrapper">
+            <h1 class="title">
+                <a routerLink="/" class="title">
+                    <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
+                </a>
+            </h1>
 
-    <span class="example-fill-remaining-space"></span>
-
-    <div *ngIf="isLoggedIn" class="header-buttons">
-        <button class="btn btn-light btn-sm" title="Home" routerLink="/">
-            <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
-        </button>
-        <button class="btn btn-light btn-sm" title="Friends" matBadge="5" matBadgePosition="above after"
-            matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
-            <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
-        </button>
-        <button class="btn btn-light btn-sm" title="Notifications" matBadge="22" matBadgePosition="above after"
-            matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
-            <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
-        </button>
-        <button class="btn btn-light btn-sm" title="Logout" (click)="logout()">
-        <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
-    </button>
-    </div>
-    <div *ngIf="!isLoggedIn" class="header-buttons">
-        <button class="btn btn-light btn-sm" routerLink="/login">
-            <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
-        </button>
-        <button class="btn btn-light btn-sm" routerLink="/register">
-            <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
-        </button>
-    </div>
-</mat-toolbar>
+            <div *ngIf="isLoggedIn" class="header-buttons" fxLayoutGap="10px">
+                <button mat-button title="Home" routerLink="/">
+                        <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
+                    </button>
+                <button mat-button title="Friends" matBadge="5" matBadgePosition="above after" matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
+                        <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
+                    </button>
+                <button mat-button title="Notifications" matBadge="22" matBadgePosition="above after" matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
+                        <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
+                    </button>
+                <button mat-button title="Logout" (click)="logout()">
+                        <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
+                    </button>
+            </div>
+            <div *ngIf="!isLoggedIn" class="header-buttons" fxLayoutGap="5px">
+                <button mat-button routerLink="/login">
+                        <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
+                    </button>
+                <button mat-button routerLink="/register">
+                        <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
+                    </button>
+            </div>
+        </div>
+    </mat-toolbar>
+</header>

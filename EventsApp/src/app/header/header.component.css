@@ -1,14 +1,13 @@
-.example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
+.site-header {
+    height: 60px;
 }
 
-mat-toolbar{
-    height: 50px;
+.site-wrapper {
+    max-width: 60em;
+    margin: 0 auto;
 }
 
-.fix-me {
+.fixed-top {
     position: fixed;
     top: 0;
     left: 0;
@@ -16,23 +15,14 @@ mat-toolbar{
     z-index: 1;
 }
 
-.header-buttons {
-    margin-right: 25%;
-}
-
 .header-buttons button {
-    margin: 5px;
     text-decoration: none;
 }
 
-#title {
-    margin-left: 21%;
-}
-
-.title{
+.title {
     color: aliceblue;
 }
 
-.title:hover{
+.title>a:hover {
     text-decoration: none;
 }
