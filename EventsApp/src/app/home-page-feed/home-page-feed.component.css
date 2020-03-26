@@ -1,19 +1,15 @@
+mat-sidenav-container {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 70px);
+}
+
 .leftSidebar {
     max-width: 35%;
     padding-left: 21%;
     height: 100%;
     padding-right: 1%;
     border-right: 1px solid #673ab7;
-}
-
-@media screen and (max-width:900px) {
-    .leftSidebar {
-        width: 20%;
-        padding-left: 1%;
-        height: 100%;
-        padding-right: 1%;
-        border-right: 1px solid #673ab7;
-    }
 }
 
 .rightSidebar {
@@ -29,10 +25,4 @@
 
 .feed::-webkit-scrollbar {
     display: none;
-}
-
-mat-sidenav-container {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 50px);
 }
