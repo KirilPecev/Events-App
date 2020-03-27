@@ -1,35 +1,37 @@
 <header class="fixed-top">
-    <mat-toolbar color="primary" class="site-header">
-        <div fxFlex fxLayout fxLayoutAlign="space-between center" class="site-wrapper">
-            <h1 class="title">
-                <a routerLink="/" class="title">
-                    <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
-                </a>
-            </h1>
-            <div *ngIf="isLoggedIn" class="header-buttons">
-                <button mat-icon-button title="Home" routerLink="/">
-                    <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
-                </button>
-                <button mat-icon-button title="Friends" matBadge="5" matBadgePosition="above after" matBadgeColor="warn"
-                    matBadgeSize="small" (click)="openFriendsDialog()">
-                    <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
-                </button>
-                <button mat-icon-button title="Notifications" matBadge="22" matBadgePosition="above after"
-                    matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
-                    <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
-                </button>
-                <button mat-icon-button title="Logout" (click)="logout()">
-                    <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
-                </button>
+    <div class="site-wrapper">
+        <mat-toolbar color="primary" class="site-header">
+            <div fxFlex fxLayout fxLayoutAlign="space-between center">
+                <h1 class="title">
+                    <a routerLink="/" class="title">
+                        <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
+                    </a>
+                </h1>
+                <div *ngIf="isLoggedIn" class="header-buttons">
+                    <button mat-icon-button title="Home" routerLink="/">
+                        <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
+                    </button>
+                    <button mat-icon-button title="Friends" matBadge="5" matBadgePosition="above after"
+                        matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
+                        <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
+                    </button>
+                    <button mat-icon-button title="Notifications" matBadge="22" matBadgePosition="above after"
+                        matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
+                        <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
+                    </button>
+                    <button mat-icon-button title="Logout" (click)="logout()">
+                        <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
+                    </button>
+                </div>
+                <div *ngIf="!isLoggedIn" class="header-buttons">
+                    <button mat-button routerLink="/login">
+                        <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
+                    </button>
+                    <button mat-button routerLink="/register">
+                        <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
+                    </button>
+                </div>
             </div>
-            <div *ngIf="!isLoggedIn" class="header-buttons">
-                <button mat-button routerLink="/login">
-                    <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
-                </button>
-                <button mat-button routerLink="/register">
-                    <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
-                </button>
-            </div>
-        </div>
-    </mat-toolbar>
+        </mat-toolbar>
+    </div>
 </header>

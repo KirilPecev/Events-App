@@ -1,29 +1,28 @@
-.site-header {
-    height: 60px;
+header {
+  background-color: #673ab7;
 }
 
-.site-wrapper {
-    max-width: 60em;
-    margin: 0 auto;
+.site-header {
+  max-height: 4em;
 }
 
 .fixed-top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .header-buttons button {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .title {
-    color: aliceblue;
+  color: aliceblue;
 }
 
 .title,
 .title>a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }

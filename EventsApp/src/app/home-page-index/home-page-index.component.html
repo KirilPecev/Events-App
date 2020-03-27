@@ -1,40 +1,11 @@
-<div *ngIf="!isLoggedIn">
-    <div class="slidershow middle">
-        <div class="slides">
-            <input #r type="radio" name="r" id="r1" checked>
-            <input #r type="radio" name="r" id="r2">
-            <input #r type="radio" name="r" id="r3">
-            <div class="slide s1">
-                <img src="https://mocah.org/uploads/posts/125542-football-team-al-ahly-sc-egyptian-sports-club-4k.jpg"
-                    alt="">
-            </div>
-            <div class="slide">
-                <img src="https://wallpaperaccess.com/full/877446.jpg" alt="">
-            </div>
-            <div class="slide">
-                <img src="https://media.glassdoor.com/l/7d/72/d4/3b/tech-meetup.jpg" alt="">
-            </div>
-        </div>
-        <div class="navigation">
-            <label for="r1" class="bar"></label>
-            <label for="r2" class="bar"></label>
-            <label for="r3" class="bar"></label>
-        </div>
-    </div>
-    <mat-card>
-        <mat-card-title class="title">Welcome to EventsApp</mat-card-title>
-        <mat-card-content class="content">
-            <p>
-                EventsApp is an event management application. Manage your events, share with friends and give feedback
-                to
-                them.
-            </p>
-            <ul>
-                <li>Track/Create your events and invite friends to join them.</li>
-                <li>Join to events from all kinds. There has no limits.</li>
-                <li>Share pictures and posts.</li>
-                <li>Add friends and play with them.</li>
-            </ul>
-        </mat-card-content>
-    </mat-card>
-</div>
+<main *ngIf="!isLoggedIn" class="site-wrapper" fxLayout="row" fxLayoutAlign="space-around center">
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+    <mat-card></mat-card>   
+</main>
