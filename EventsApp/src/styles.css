@@ -17,7 +17,7 @@ ol {
 }
 
 .site-wrapper {
-    max-width: 60em;
+    max-width: 75em;
     margin: 0 auto;
     border: 1px solid green;
 }

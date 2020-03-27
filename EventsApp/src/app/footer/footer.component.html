@@ -1,7 +1,33 @@
 <footer class="fixed-bottom">
-    <mat-toolbar color="primary" class="site-footer">
-        <div fxFlex fxLayout fxLayoutAlign="center center">
-            <span class="fancy">Created by Kiril Pecev 2020</span>
-        </div>
-    </mat-toolbar>
+    <div class="site-wrapper">
+        <mat-toolbar color="primary" class="site-footer">
+            <mat-toolbar-row>
+                <ul class="social-links" fxFlex fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="1em">
+                    <li>
+                        <a href="#">
+                            <fa-icon [icon]="faFacebookSquare"></fa-icon> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <fa-icon [icon]="faInstagramSquare"></fa-icon> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <fa-icon [icon]="faGithubSquare"></fa-icon> Github
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <fa-icon [icon]="faTwitterSquare"></fa-icon> Twitter
+                        </a>
+                    </li>
+                </ul>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span class="copyright">&copy; 2020 Kiril Pecev.</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
 </footer>

@@ -1,14 +1,30 @@
-.fixed-bottom {
-  position: fixed;
-  bottom: 0;
+footer {
+  background-color: #673ab7;
   width: 100%;
 }
 
-.fancy {
-  margin: 0 auto;
-  letter-spacing: 0.55vw;
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
 }
 
-.site-footer {
-    height: 60px;
+.social-links {
+  display: block;
+  font-size: 0.8em;
+  padding-top: 1em;
+  padding-bottom: 0;
+}
+
+.social-links>li {
+  display: inline-block;
+  text-transform: uppercase
+}
+
+.social-links>li>a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.copyright{
+  font-size: 0.7em;
 }
