@@ -1,50 +1,14 @@
-.registerBox {
-    color: #673ab7;
-    width: 280px;
-    height: 70%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.container {
+  min-height: calc(100vh - 6em - 20vh);
 }
 
-.registerBox h1 {
-    float: left;
-    font-size: 40px;
-    border-bottom: 6px solid #673ab7;
-    margin-bottom: 50px;
-    padding: 13px 0;
+.register-card {
+  width: 20em;
+  margin: 0 auto;
 }
 
-mat-form-field {
-    width: 100%;
-    font-size: 20px;
-}
-
-.registerBox fa-icon {
-    margin-right: 6px;
-    color: #673ab7;
-}
-
-input {
-    font-size: 20px;
-}
-
-.registerBox button {
-    width: 100%;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.registerBox span {
-    display: table;
-    margin: auto;
-}
-
-.error {
-    position: absolute;
-    display: block;
-    color: #f44336;
-    font-size: 15px;
-    padding-top: 15px;
+.register-card button {
+  display: block;
+  margin-top: 1em;
+  width: 100%;
 }
