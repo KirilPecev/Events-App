@@ -15,16 +15,16 @@ footer {
   padding-bottom: 0;
 }
 
-.social-links>li {
+.social-links > li {
   display: inline-block;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
-.social-links>li>a {
+.social-links > li > a {
   text-decoration: none;
   color: #fff;
 }
 
-.copyright{
+.copyright {
   font-size: 0.7em;
 }
