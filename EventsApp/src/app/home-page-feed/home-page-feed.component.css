@@ -1,28 +1,20 @@
-mat-sidenav-container {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 70px);
+.container {
+  z-index: -1;
 }
 
-.leftSidebar {
-    max-width: 35%;
-    padding-left: 21%;
-    height: 100%;
-    padding-right: 1%;
-    border-right: 1px solid #673ab7;
-}
-
-.rightSidebar {
-    width: 35%;
-    height: 100%;
-    border-left: 1px solid #673ab7;
+.sidebar {
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 15em;
 }
 
 .feed {
-    padding: 0.2%;
-    background-color: whitesmoke;
+  width: 50em;
+  padding: 0 1em;
+  height: 100vh;
 }
 
 .feed::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

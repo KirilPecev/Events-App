@@ -1,12 +1,16 @@
-<mat-sidenav-container>
-    <mat-sidenav class="leftSidebar" mode="side" opened fixedInViewport="true" fixedTopGap="70" position="start">
-        <app-left-sidebar></app-left-sidebar>
-    </mat-sidenav>
-    <mat-sidenav-content class="feed">
-        <app-share-publication></app-share-publication>
-        <router-outlet name="feed"></router-outlet>
-    </mat-sidenav-content>
-    <mat-sidenav class="rightSidebar" mode="side" opened fixedInViewport="true" fixedTopGap="70" position="end">
-        <app-right-sidebar></app-right-sidebar>
-    </mat-sidenav>
-</mat-sidenav-container>
+<main class="site-wrapper container">
+    <mat-sidenav-container fxFill>
+        <mat-sidenav class="sidebar" mode="side" opened fixedInViewport="true" fixedTopGap="64" fxHide.lt-sm>
+            <app-left-sidebar></app-left-sidebar>
+            <app-right-sidebar fxHide fxShow.lt-md></app-right-sidebar>
+        </mat-sidenav>
+        <mat-sidenav class="sidebar" mode="side" opened fixedInViewport="false" fixedTopGap="64" position="end"
+            fxHide fxShow.md>
+            <app-right-sidebar></app-right-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content class="feed" fxFlex>
+            <app-share-publication></app-share-publication>
+            <router-outlet name="feed"></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</main>
