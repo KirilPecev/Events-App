@@ -1,11 +1,11 @@
 <main class="site-wrapper container">
-    <mat-sidenav-container fxFill>
+    <mat-sidenav-container>
         <mat-sidenav class="sidebar" mode="side" opened fixedInViewport="true" fixedTopGap="64" fxHide.lt-sm>
             <app-left-sidebar></app-left-sidebar>
             <app-right-sidebar fxHide fxShow.lt-md></app-right-sidebar>
         </mat-sidenav>
-        <mat-sidenav class="sidebar" mode="side" opened fixedInViewport="false" fixedTopGap="64" position="end"
-            fxHide fxShow.md>
+        <mat-sidenav class="sidebar" mode="side" opened fixedInViewport="false" fixedTopGap="64" position="end" fxHide
+            fxShow.gt-sm>
             <app-right-sidebar></app-right-sidebar>
         </mat-sidenav>
         <mat-sidenav-content class="feed" fxFlex>
