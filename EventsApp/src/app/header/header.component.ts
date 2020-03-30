@@ -39,27 +39,18 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
-    this.openNotificationsDialog();
+    this.openFriendsDialog();
   }
 
   ngOnInit(): void {}
 
   openNotificationsDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.hasBackdrop = true;
-    dialogConfig.closeOnNavigation = true;
-    dialogConfig.disableClose = false;
+    const dialogConfig = this.getDialogConfig();
     this.dialog.open(NotificationsComponent, dialogConfig);
   }
 
   openFriendsDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.hasBackdrop = true;
-    dialogConfig.closeOnNavigation = true;
-    dialogConfig.disableClose = false;
-
+    const dialogConfig = this.getDialogConfig();
     this.dialog.open(FriendsComponent, dialogConfig);
   }
 
@@ -67,5 +58,15 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout().subscribe(() => this.router.navigate([""]));
+  }
+
+  private getDialogConfig() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.closeOnNavigation = true;
+    dialogConfig.disableClose = false;
+
+    return dialogConfig;
   }
 }

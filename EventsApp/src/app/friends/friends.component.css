@@ -1,21 +1,16 @@
-.friends ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
+li{
+    padding-bottom: 0.8em;
 }
 
-.friends .profile {
-    border-radius: 50%;
-    width: 13%;
+.profile-picture {
+  border-radius: 50%;
+  width: 3em;
 }
 
-.friends li{
-    width: 100%;
-    border-bottom: 1px solid #673ab7;
-    margin-bottom: 5px;
+.name{
+    padding-left: 0.3em;
 }
 
-.buttons{
-    display: inline;
-    margin-left: 19px;
+.buttons {
+  padding-left: 1em;
 }
