@@ -1,0 +1,23 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.info h1 {
+  padding: 0;
+  margin-bottom: 4%;
+}
+
+.info a {
+  display: block;
+  font-size: 16px;
+  padding-left: 0%;
+  margin-bottom: 5px;
+  text-decoration: none;
+  height: 35px;
+}
+
+.info a:hover {
+  color: #673ab7;
+}

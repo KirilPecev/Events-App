@@ -2,15 +2,22 @@
     <div class="site-wrapper">
         <mat-toolbar color="primary" class="site-header">
             <div fxFlex fxLayout fxLayoutAlign="space-between center">
+                <button mat-icon-button title="Menu" [matMenuTriggerFor]="menu" fxHide fxShow.lt-sm>
+                    <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
+                </button>
+                <mat-menu #menu="matMenu" fxHide fxShow.lt-sm>
+                    <button mat-menu-item routerLink="/profile">My Profile</button>
+                    <button mat-menu-item routerLink="/create-event">Create event</button>
+                    <button mat-menu-item routerLink="/events">Events</button>
+                    <hr>
+                    <app-joined-events class="events"></app-joined-events>
+                </mat-menu>
                 <h1 class="title">
                     <a routerLink="/" class="title">
                         <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
                     </a>
                 </h1>
                 <div *ngIf="isLoggedIn" class="header-buttons">
-                    <button mat-icon-button title="Menu" (click)="openMenuDialog()" fxHide fxShow.lt-sm>
-                        <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
-                    </button>
                     <button mat-icon-button title="Home" routerLink="/">
                         <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
                     </button>

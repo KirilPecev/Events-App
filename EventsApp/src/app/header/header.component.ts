@@ -15,6 +15,8 @@ import { NotificationsComponent } from "../notifications/notifications.component
 import { FriendsComponent } from "../friends/friends.component";
 import { UserService } from "../core/services/user.service";
 import { Router } from "@angular/router";
+import { LeftSidebarComponent } from "../left-sidebar/left-sidebar.component";
+import { RightSidebarComponent } from "../right-sidebar/right-sidebar.component";
 
 @Component({
   selector: "app-header",
@@ -38,9 +40,7 @@ export class HeaderComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private userService: UserService
-  ) {
-    this.openFriendsDialog();
-  }
+  ) {}
 
   ngOnInit(): void {}
 
@@ -53,8 +53,6 @@ export class HeaderComponent implements OnInit {
     const dialogConfig = this.getDialogConfig();
     this.dialog.open(FriendsComponent, dialogConfig);
   }
-
-  openMenuDialog() {}
 
   logout() {
     this.userService.logout().subscribe(() => this.router.navigate([""]));

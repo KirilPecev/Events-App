@@ -52,6 +52,7 @@ const routes: Routes = [
     ]
   },
   { path: "events/details", pathMatch: "full", component: EventDetailsComponent, canActivate: [AuthGuard] },
+  { path: "events", pathMatch: "full", component: EventsComponent, canActivate: [AuthGuard] },
   { path: "**", redirectTo: "" }
 ];
 

@@ -26,3 +26,7 @@ header {
 .title>a:hover {
   text-decoration: none;
 }
+
+.events{
+  padding: 0 0;
+}
