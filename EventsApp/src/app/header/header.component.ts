@@ -1,20 +1,28 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
-import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus, faSignOutAlt, faBars } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NotificationsComponent } from '../notifications/notifications.component';
-import { FriendsComponent } from '../friends/friends.component';
-import { UserService } from '../core/services/user.service';
-import { Router } from '@angular/router';
-
+import {
+  faHome,
+  faUserFriends,
+  faFlag,
+  faCalendarWeek,
+  faSignInAlt,
+  faUserPlus,
+  faSignOutAlt,
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { NotificationsComponent } from "../notifications/notifications.component";
+import { FriendsComponent } from "../friends/friends.component";
+import { UserService } from "../core/services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  title = 'Evenity';
+  title = "Evenity";
   faHome = faHome;
   faUserFriends = faUserFriends;
   faFlag = faFlag;
@@ -27,50 +35,37 @@ export class HeaderComponent implements OnInit {
   @Input() isLoggedIn: boolean;
 
   constructor(
-    private notificationsDialog: MatDialog,
+    private dialog: MatDialog,
     private router: Router,
-    private userService: UserService,
-  ) { }
-
-  ngOnInit(): void {
+    private userService: UserService
+  ) {
+    this.openNotificationsDialog();
   }
+
+  ngOnInit(): void {}
 
   openNotificationsDialog() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.autoFocus = true;
     dialogConfig.hasBackdrop = true;
     dialogConfig.closeOnNavigation = true;
     dialogConfig.disableClose = false;
-    dialogConfig.height = "25%";
-    dialogConfig.width = "23%";
-    dialogConfig.position = {
-      "top": "50px",
-      "right": "25.6%"
-    };
-
-    this.notificationsDialog.open(NotificationsComponent, dialogConfig);
+    this.dialog.open(NotificationsComponent, dialogConfig);
   }
 
   openFriendsDialog() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.autoFocus = true;
     dialogConfig.hasBackdrop = true;
     dialogConfig.closeOnNavigation = true;
     dialogConfig.disableClose = false;
-    dialogConfig.height = "25%";
-    dialogConfig.width = "20%";
-    dialogConfig.position = {
-      "top": "50px",
-      "right": "28%"
-    };
 
-    this.notificationsDialog.open(FriendsComponent, dialogConfig);
+    this.dialog.open(FriendsComponent, dialogConfig);
   }
 
+  openMenuDialog() {}
+
   logout() {
-    this.userService.logout()
-      .subscribe(() => this.router.navigate(['']));
+    this.userService.logout().subscribe(() => this.router.navigate([""]));
   }
 }

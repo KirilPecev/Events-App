@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { HeaderModule } from '../header/header.module';
 import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
@@ -26,7 +27,8 @@ import { PositionsModule } from '../positions/positions.module';
     MatButtonModule,
     MatCardModule,
     MatSidenavModule,
-    PositionsModule
+    PositionsModule,
+    MatDialogModule
   ],
   exports: [
     MatToolbarModule,
@@ -38,7 +40,8 @@ import { PositionsModule } from '../positions/positions.module';
     UserInformationModule,
     MatCardModule,
     MatSidenavModule,
-    PositionsModule
+    PositionsModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

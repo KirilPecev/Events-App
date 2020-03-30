@@ -1,30 +1,17 @@
-.notifications ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
+mat-dialog-content li:hover {
+  background-color: aqua;
+  cursor: pointer;
 }
 
-.notifications .profile {
-    border-radius: 50%;
-    width: 13%;
+.profile-picture {
+  border-radius: 50%;
+  width: 3em;
 }
 
-.notifications p{
-    display: inline-block;
-    width: 152px;
+.pic {
+  width: 3em;
 }
 
-.notifications .pic {
-    width: 13%;
-}
-
-.notifications li{
-    width: 100%;
-    border-bottom: 1px solid #673ab7;
-    margin-bottom: 5px;
-}
-
-.notifications li:hover {
-    background-color: khaki;
+.content {
+  padding: 0 0.8em;
 }

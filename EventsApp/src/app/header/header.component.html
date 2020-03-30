@@ -8,7 +8,7 @@
                     </a>
                 </h1>
                 <div *ngIf="isLoggedIn" class="header-buttons">
-                    <button mat-icon-button title="Menu" (click)="openFriendsDialog()" fxHide fxShow.lt-sm>
+                    <button mat-icon-button title="Menu" (click)="openMenuDialog()" fxHide fxShow.lt-sm>
                         <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
                     </button>
                     <button mat-icon-button title="Home" routerLink="/">
