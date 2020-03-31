@@ -1,26 +1,9 @@
-mat-card {
+mat-card{
+    max-width: 77em;
     margin: auto;
-    width: 73.7%;
 }
 
-mat-card-header {
-    margin-left: 40%;
-    padding-bottom: 2%;
-}
-
-td {
-    display: inline-block;
-    padding-right: 10px;
-}
-
-.positions {
-    padding-top: 3%;
-}
-
-.position {
-    padding-right: 10px;
-}
-
-mat-form-field {
-    width: 200px;
+mat-card-content button{
+    width: 100%;
+    margin-top: 0.8em;
 }

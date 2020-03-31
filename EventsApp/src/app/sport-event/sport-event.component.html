@@ -1,76 +1,59 @@
-<mat-card>
+<mat-card fxFlex.lt-lg="90%" fxLayout="column" fxLayoutAlign="center center">
     <mat-card-header>
         <mat-card-title>Sport event</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form [formGroup]="eventForm" (ngSubmit)="create()">
-            <table cellspacing="0">
-                <td>
-                    <mat-form-field>
-                        <mat-label>Event name:</mat-label>
-                        <input type="text" matInput formControlName="name" placeholder="Let's play">
-                        <mat-error *ngIf="eventForm.get('name').errors?.minlength && eventForm.get('name').touched">
-                            Please enter a valid name
-                        </mat-error>
-                        <mat-error *ngIf="eventForm.get('name').errors?.required && eventForm.get('name').touched">
-                            Event name is <strong>required</strong>!
-                        </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Location:</mat-label>
-                        <input type="text" matInput formControlName="location" placeholder="Vasil Levski">
-                        <mat-error
-                            *ngIf="eventForm.get('location').errors?.required && eventForm.get('location').touched">
-                            Location is <strong>required</strong>!
-                        </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Sport:</mat-label>
-                        <input type="text" matInput formControlName="sport" placeholder="Football">
-                        <mat-error *ngIf="eventForm.get('sport').errors?.required && eventForm.get('sport').touched">
-                            Sport is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Date and time:</mat-label>
-                        <input type="datetime-local" matInput formControlName="dateTime">
-                        <mat-error
-                            *ngIf="eventForm.get('dateTime').errors?.required && eventForm.get('dateTime').touched">
-                            Date and time are <strong>required</strong>!
-                        </mat-error>
-                        <mat-error
-                            *ngIf="eventForm.get('dateTime').errors?.dateTimeValidator && !eventForm.get('dateTime').errors?.required && eventForm.get('dateTime').touched">
-                            Please check your date and time!
-                        </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Available positions:</mat-label>
-                        <input type="number" matInput formControlName="availablePositions" placeholder="10"
-                            [(ngModel)]="positions">
-                        <mat-error
-                            *ngIf="eventForm.get('availablePositions').errors?.required && eventForm.get('availablePositions').touched">
-                            Positions are <strong>required</strong>!
-                        </mat-error>
-                        <mat-error
-                            *ngIf="eventForm.get('availablePositions').errors?.minlength && eventForm.get('availablePositions').touched">
-                            Positions must be at least <strong>1</strong>!
-                        </mat-error>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <button mat-flat-button color="primary" [disabled]="eventForm.invalid">Create</button>
-                </td>
-            </table>
-            <div class="positions">
-                <mat-form-field class="position" *ngFor="let a of [].constructor(positions); let i = index">
+        <form [formGroup]="eventForm" (ngSubmit)="create()" fxFlex fxLayout="row wrap" fxLayoutGap="1em">
+            <mat-form-field>
+                <mat-label>Event name:</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Let's play">
+                <mat-error *ngIf="eventForm.get('name').errors?.minlength && eventForm.get('name').touched">
+                    Please enter a valid name
+                </mat-error>
+                <mat-error *ngIf="eventForm.get('name').errors?.required && eventForm.get('name').touched">
+                    Event name is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Location:</mat-label>
+                <input type="text" matInput formControlName="location" placeholder="Vasil Levski">
+                <mat-error *ngIf="eventForm.get('location').errors?.required && eventForm.get('location').touched">
+                    Location is <strong>required</strong>!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Sport:</mat-label>
+                <input type="text" matInput formControlName="sport" placeholder="Football">
+                <mat-error *ngIf="eventForm.get('sport').errors?.required && eventForm.get('sport').touched">
+                    Sport is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Date and time:</mat-label>
+                <input type="datetime-local" matInput formControlName="dateTime">
+                <mat-error *ngIf="eventForm.get('dateTime').errors?.required && eventForm.get('dateTime').touched">
+                    Date and time are <strong>required</strong>!
+                </mat-error>
+                <mat-error
+                    *ngIf="eventForm.get('dateTime').errors?.dateTimeValidator && !eventForm.get('dateTime').errors?.required && eventForm.get('dateTime').touched">
+                    Please check your date and time!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Available positions:</mat-label>
+                <input type="number" matInput formControlName="availablePositions" placeholder="10"
+                    [(ngModel)]="positions">
+                <mat-error
+                    *ngIf="eventForm.get('availablePositions').errors?.required && eventForm.get('availablePositions').touched">
+                    Positions are <strong>required</strong>!
+                </mat-error>
+                <mat-error
+                    *ngIf="eventForm.get('availablePositions').errors?.minlength && eventForm.get('availablePositions').touched">
+                    Positions must be at least <strong>1</strong>!
+                </mat-error>
+            </mat-form-field>
+            <div fxFlex fxLayout="row wrap" fxLayoutGap="1em">
+                <mat-form-field *ngFor="let a of [].constructor(positions); let i = index">
                     <mat-label>Position-{{i+1}}:</mat-label>
                     <input type="text" matInput formControlName="position" placeholder="Goalkeeper">
                     <mat-error *ngIf="eventForm.get('position').errors?.required && eventForm.get('position').touched">
@@ -78,6 +61,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <button mat-flat-button color="primary" [disabled]="eventForm.invalid">Create</button>
         </form>
     </mat-card-content>
 </mat-card>
