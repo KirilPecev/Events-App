@@ -1,38 +1,26 @@
 mat-card {
-    margin-top: 2%;
-    border: 1px solid #673ab7;
-}
-
-.sharedBy img {
-    border-radius: 50%;
-    width: 7%;
-}
-
-.sharedBy h2 {
-    display: inline-block;
-    padding: 5px;
-    padding-top: 6px;
-    margin-top: 5px;
-}
-
-.info{
-    padding-top: 2%;
-}
-
-.info p {
-    display: inline-block;
-    margin-top: 0px;
-    margin-right: 10px;
+  margin: 0.5em auto;
+  border: 1px solid #673ab7;
 }
 
 mat-card-content h3 {
-    display: inline-block;
-    color: #673ab7;
-    font-weight: bold;
-    font-size: 1.1em;
+  display: inline-block;
+  color: #673ab7;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 mat-card-content span {
-    display: block;
-    font-size: 1.3em;
+  display: block;
+  font-size: 1.3em;
+}
+
+.info {
+  padding-top: 1em;
+}
+
+.info p {
+  display: inline-block;
+  margin-top: 0px;
+  margin-right: 10px;
 }
