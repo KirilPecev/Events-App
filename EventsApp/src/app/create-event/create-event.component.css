@@ -3,3 +3,7 @@ mat-card {
     min-height: 15em;
     border: 1px solid #673ab7;
 }
+
+.small-screen{
+    margin-bottom: 1em;
+}
