@@ -4,6 +4,7 @@
 
 .header > img {
   border-radius: 50%;
+  z-index: 10;
 }
 
 .header > p {
@@ -14,5 +15,8 @@
 
 .menu {
   margin-top: -1em;
-  z-index: -1;
+}
+
+.content{
+    margin: auto;
 }
