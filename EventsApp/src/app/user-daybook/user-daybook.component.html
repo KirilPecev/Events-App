@@ -1,6 +1,6 @@
-<app-upcoming-events class="upcomingEvents" [title]="'My upcoming events'"></app-upcoming-events>
-<div class="feed">
-    <div class="content">
+<div fxLayout="row wrap">
+    <app-upcoming-events fxFlex="40%" fxHide.xs [title]="'My upcoming events'"></app-upcoming-events>
+    <div fxFlex="60%" fxFlex.xs="100%">
         <app-share-publication></app-share-publication>
         <app-publication></app-publication>
     </div>
