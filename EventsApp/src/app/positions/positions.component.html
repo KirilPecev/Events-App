@@ -1,5 +1,5 @@
 <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel [ngClass.xs]="{'mobile-screen': true}">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Available positions
@@ -31,7 +31,7 @@
             </div>
         </div>
     </mat-expansion-panel>
-    <mat-expansion-panel>
+    <mat-expansion-panel [ngClass.xs]="{'mobile-screen': true}">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Busy positions
