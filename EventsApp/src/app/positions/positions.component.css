@@ -1,20 +1,23 @@
- div {
-     display: inline-block;
-     padding: 2%;
- }
+mat-expansion-panel{
+    min-height: 5em;
+}
 
- button {
-     display: inline;
-     margin-left: 10px;
- }
+button {
+  display: inline;
+  margin-left: 10px;
+}
 
- h3 {
-     display: inline;
-     margin-left: 5px;
-     border-bottom: 1px solid #673ab7;
- }
+h3 {
+  display: inline;
+  margin-left: 5px;
+  border-bottom: 1px solid #673ab7;
+}
 
- span {
-     font-size: 1.2em;
-     font-weight: bold;
- }
+span {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.container div{
+    margin-bottom: 1em;
+}

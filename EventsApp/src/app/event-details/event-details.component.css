@@ -1,15 +1,6 @@
-.content {
-    margin: auto;
-    width: 50%;
-}
-
 mat-card {
-    margin-top: 4%;
+    margin: 1em auto;
     border: 1px solid #673ab7;
-}
-
-mat-card-header {
-    padding-left: 30%;
 }
 
 mat-card-header h2 {
@@ -31,15 +22,4 @@ mat-card-content h3 {
 mat-card-content span {
     display: block;
     font-size: 1.3em;
-}
-
-.positions div{
-    display: inline-block;
-    padding: 4%;
-}
-
-.positions span{
-    display: inline-block;
-    margin-left: 5px;
-    border-bottom: 1px solid #673ab7;
 }
