@@ -1,15 +1,17 @@
-<div class="information">
+<div class="container site-wrapper">
     <mat-toolbar color="primary">
-        <div class="headerContent">
+        <mat-toolbar-row fxLayoutGap="0.5em">
             <fa-icon class="fa-lg" [icon]="faUser"></fa-icon>
-            <h1>Information</h1>
-        </div>
+            <h1>INFORMATION</h1>
+        </mat-toolbar-row>
     </mat-toolbar>
-    <mat-drawer-container class="container">
+    <mat-drawer-container class="drawer-container">
         <mat-drawer mode="side" opened>
-            <div class="buttons">
-                <button mat-button color="primary" [routerLink]="[{ outlets: { info: ['contacts'] } }]">Contacts</button>
-                <button mat-button color="primary" [routerLink]="[{ outlets: { info: ['basic-info'] } }]">Basic information</button>
+            <div class="buttons" fxLayout="column" fxLayoutAlign="start start">
+                <button mat-button color="primary"
+                    [routerLink]="[{ outlets: { info: ['contacts'] } }]">Contacts</button>
+                <button mat-button color="primary" [routerLink]="[{ outlets: { info: ['basic-info'] } }]">Basic
+                    information</button>
             </div>
         </mat-drawer>
         <mat-drawer-content>

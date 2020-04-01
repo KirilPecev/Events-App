@@ -1,6 +1,6 @@
-<div fxLayout="row wrap">
-    <app-upcoming-events fxFlex="40%" fxHide.xs [title]="'My upcoming events'"></app-upcoming-events>
-    <div fxFlex="60%" fxFlex.xs="100%">
+<div fxLayout="row wrap" fxLayoutAlign="space-between start" class="container site-wrapper">
+    <app-upcoming-events fxHide.xs [title]="'My upcoming events'"></app-upcoming-events>
+    <div fxFlex="60%" fxFlex.lt-md="100%" fxFlex.xs="100%">
         <app-share-publication></app-share-publication>
         <app-publication></app-publication>
     </div>
