@@ -10,11 +10,32 @@
 .item {
   border: 1px solid #673ab7;
   padding: 0.5em;
-  max-height: 8em;
-  min-width: 22em;
+  max-height: 10em;
+  min-width: 29em;
+  margin-bottom: 0.8em;
 }
 
 .item img {
-  height: 5em;
-  width: 5em;
+  height: 7em;
+  width: 7em;
+}
+
+@media (max-width: 420px) {
+  .item {
+    border: 1px solid #673ab7;
+    padding: 0.5em;
+    max-height: 10em;
+    min-width: 25em;
+    margin-bottom: 0.6em;
+  }
+}
+
+@media (max-width: 350px) {
+  .item {
+    border: 1px solid #673ab7;
+    padding: 0.5em;
+    max-height: 10em;
+    min-width: 22em;
+    margin-bottom: 0.4em;
+  }
 }
