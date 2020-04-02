@@ -1,12 +1,20 @@
-<div class="info">
-    <h1>Basic information</h1>
+<div fxLayout="column">
+    <h1 class="title">Basic information</h1>
     <hr>
-    <h2>Birthday</h2>
-    <span>19.05.1998</span>
-    <hr>
-    <h2>Gender</h2>
-    <span>Male</span>
-    <hr>
-    <h2>Favourite sport</h2>
-    <span>Fitness</span>
+    <div fxLayout="column">
+        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+            <h2 fxFlex="40%">Birthday</h2>
+            <span>19.05.1998</span>
+        </div>
+        <hr>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+            <h2 fxFlex="40%">Gender</h2>
+            <span>Male</span>
+        </div>
+        <hr>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+            <h2 fxFlex="40%">Favourite sport</h2>
+            <span>Fitness</span>
+        </div>
+    </div>
 </div>
