@@ -1,7 +1,9 @@
 <div class="container site-wrapper" fxLayout="column">
-    <mat-toolbar color="primary" fxLayoutGap="0.5em">
-        <fa-icon class="fa-lg" [icon]="faUsers"></fa-icon>
-        <h1>FRIENDS</h1>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row fxLayoutGap="0.5em">
+            <fa-icon class="fa-lg" [icon]="faUsers"></fa-icon>
+            <h1>FRIENDS</h1>
+        </mat-toolbar-row>
     </mat-toolbar>
     <div class="list" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
         <div class="item" fxLayout="row" fxLayoutAlign="space-between center">
