@@ -1,7 +1,7 @@
 <header class="fixed-top">
     <div class="site-wrapper">
         <mat-toolbar color="primary" class="site-header">
-            <div fxFlex fxLayout fxLayoutAlign="space-between center">
+            <mat-toolbar-row fxFlex fxLayout fxLayoutAlign="space-between center">
                 <button mat-icon-button title="Menu" [matMenuTriggerFor]="menu" fxHide fxShow.lt-sm>
                     <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
                 </button>
@@ -13,11 +13,7 @@
                     <app-joined-events class="events"></app-joined-events>
                     <app-upcoming-events title="My upcoming events"></app-upcoming-events>
                 </mat-menu>
-                <h1 class="title">
-                    <a routerLink="/" class="title">
-                        <fa-icon class="fa-lg" [icon]="faCalendarWeek"></fa-icon> {{title}}
-                    </a>
-                </h1>
+                <h1 class="mat-title">{{title}} </h1>
                 <div *ngIf="isLoggedIn" class="header-buttons">
                     <button mat-icon-button title="Home" routerLink="/">
                         <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
@@ -42,7 +38,7 @@
                         <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
                     </button>
                 </div>
-            </div>
+            </mat-toolbar-row>
         </mat-toolbar>
     </div>
 </header>
