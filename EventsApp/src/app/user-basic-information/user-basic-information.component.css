@@ -6,3 +6,14 @@
 .content{
     height: 5em;
 }
+
+@media (max-width: 370px) {
+  .content > h2 {
+    font-size: medium;
+  }
+
+  .title {
+    font-size: large;
+    font-weight: bold;
+  }
+}
