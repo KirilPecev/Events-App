@@ -1,19 +1,12 @@
-.sidebar button {
-    display: block;
-    width: 100%;
-}
-
 .sidebar img {
-    border-radius: 50%;
-    width: 13%;
+  border-radius: 50%;
+  width: 1.9em;
 }
 
-.eventBtn {
-    margin-bottom: 4%;
+.sidebar span{
+    margin: auto 0.3em;
 }
 
 .sidebar hr {
-    border-style: inset;
-    border-width: 1px;
-    border-color: #673ab7;
+  border: 1px inset #673ab7;
 }
