@@ -16,3 +16,16 @@
 .menu {
   margin-top: -1em;
 }
+
+@media (max-width: 620px) {
+  .header > p {
+    font-size: large;
+  }
+}
+
+@media (max-width: 340px) {
+  .header > p {
+    font-size: medium;
+  }
+}
+
