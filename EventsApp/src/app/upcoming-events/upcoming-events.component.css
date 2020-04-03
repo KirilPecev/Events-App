@@ -1,24 +1,7 @@
-.info {
-    width: 100%;
-}
-
-.info ul {
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-}
-
-.info a {
-    display: inline-block;
-    font-size: 16px;
-    margin-bottom: 15px;
+ul > li > a {
     text-decoration: none;
 }
 
-.info span{
-    margin-left: 5px;
-}
-
-.info a:hover {
-    color: #673ab7;
+.info {
+  font-size: small;
 }
