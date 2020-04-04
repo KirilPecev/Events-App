@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
 
-import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserDaybookComponent } from './profile/user-daybook/user-daybook.component';
@@ -19,12 +17,9 @@ import { EventsComponent } from './events/events.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { AnonymousGuard } from './guards/anonymous/anonymous.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "login", component: LoginComponent, canActivate: [AnonymousGuard] },
-  { path: "register", component: RegisterComponent, canActivate: [AnonymousGuard] },
   {
     path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard], children: [
       { path: "", component: PublicationComponent, outlet: "dashboard" },
