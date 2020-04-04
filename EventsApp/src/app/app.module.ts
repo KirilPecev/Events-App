@@ -23,7 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { SharedModule } from './shared/shared.module';
 import { SharePublicationComponent } from './share-publication/share-publication.component';
-import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
+import { UpcomingEventsComponent } from './shared/event-helpers/upcoming-events/upcoming-events.component';
 import { UserDaybookComponent } from './profile/user-daybook/user-daybook.component';
 import { UserInformationComponent } from './profile/user-information/user-information.component';
 import { UserContactsComponent } from './profile/user-contacts/user-contacts.component';
@@ -36,7 +36,7 @@ import { OtherEventComponent } from './events/other-event/other-event.component'
 import { EventsComponent } from './events/events.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { PositionsComponent } from './events/positions/positions.component';
-import { JoinedEventsComponent } from './joined-events/joined-events.component';
+import { JoinedEventsComponent } from './shared/event-helpers/joined-events/joined-events.component';
 
 @NgModule({
   declarations: [
