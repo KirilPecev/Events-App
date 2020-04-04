@@ -8,12 +8,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout'
 
-import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { PublicationComponent } from './publication/publication.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
-import { HomePageIndexComponent } from './home-page-index/home-page-index.component';
+import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -41,12 +41,12 @@ import { JoinedEventsComponent } from './joined-events/joined-events.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageFeedComponent,
+    DashboardComponent,
     PublicationComponent,
     HeaderComponent,
     LeftSidebarComponent,
     RightSidebarComponent,
-    HomePageIndexComponent,
+    HomeComponent,
     FooterComponent,
     LoginComponent,
     RegisterComponent,

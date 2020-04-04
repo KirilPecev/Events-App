@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { HeaderModule } from '../header/header.module';
-import { HomePageIndexModule } from '../home-page-index/home-page-index.module';
+import { HomePageIndexModule } from '../home/home.module';
 import { UserInformationModule } from '../user-information/user-information.module';
 import { PositionsModule } from '../positions/positions.module';
 

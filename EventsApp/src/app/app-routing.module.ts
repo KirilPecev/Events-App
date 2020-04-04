@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
 import { RegisterComponent } from './register/register.component';
-import { HomePageIndexComponent } from './home-page-index/home-page-index.component';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserDaybookComponent } from './user-daybook/user-daybook.component';
 import { UserInformationComponent } from './user-information/user-information.component';
@@ -16,19 +16,19 @@ import { SportEventComponent } from './sport-event/sport-event.component';
 import { OtherEventComponent } from './other-event/other-event.component';
 import { PublicationComponent } from './publication/publication.component';
 import { EventsComponent } from './events/events.component';
-import { HomePageFeedComponent } from './home-page-feed/home-page-feed.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { AnonymousGuard } from './guards/anonymous/anonymous.guard';
 
 const routes: Routes = [
-  { path: "", component: HomePageIndexComponent },
+  { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent, canActivate: [AnonymousGuard] },
   { path: "register", component: RegisterComponent, canActivate: [AnonymousGuard] },
   {
-    path: "feed", component: HomePageFeedComponent, canActivate: [AuthGuard], children: [
-      { path: "", component: PublicationComponent, outlet: "feed" },
-      { path: "events", component: EventsComponent, outlet: "feed" }
+    path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard], children: [
+      { path: "", component: PublicationComponent, outlet: "dashboard" },
+      { path: "events", component: EventsComponent, outlet: "dashboard" }
     ]
   },
   {

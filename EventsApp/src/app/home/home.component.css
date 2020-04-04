@@ -2,7 +2,7 @@ mat-card {
   width: 24em;
 }
 
-mat-card>img {
+mat-card > img {
   width: 24em;
   height: auto;
 }
