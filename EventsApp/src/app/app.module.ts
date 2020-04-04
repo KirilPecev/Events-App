@@ -17,8 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { FriendsComponent } from './friends/friends.component';
+import { NotificationsComponent } from './shared/layout/notifications/notifications.component';
+import { FriendsComponent } from './shared/layout/friends/friends.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { SharedModule } from './shared/shared.module';

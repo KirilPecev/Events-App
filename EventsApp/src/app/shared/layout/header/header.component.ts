@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 
 import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus, faSignOutAlt, faBars} from "@fortawesome/free-solid-svg-icons";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { NotificationsComponent } from "../../../notifications/notifications.component";
-import { FriendsComponent } from "../../../friends/friends.component";
+import { NotificationsComponent } from "../notifications/notifications.component";
+import { FriendsComponent } from "../friends/friends.component";
 import { UserService } from "../../../core/services/user.service";
 import { Router } from "@angular/router";
 
