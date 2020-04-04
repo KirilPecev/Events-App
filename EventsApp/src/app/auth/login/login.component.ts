@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGoogle, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { UserService } from "../core/services/user.service";
+import { UserService } from "../../core/services/user.service";
 import { Router } from "@angular/router";
 
 @Component({
