@@ -30,12 +30,12 @@ import { UserContactsComponent } from './user-contacts/user-contacts.component';
 import { UserBasicInformationComponent } from './user-basic-information/user-basic-information.component';
 import { UserFriendsComponent } from './user-friends/user-friends.component';
 import { UserPicturesComponent } from './user-pictures/user-pictures.component';
-import { CreateEventComponent } from './create-event/create-event.component';
-import { SportEventComponent } from './sport-event/sport-event.component';
-import { OtherEventComponent } from './other-event/other-event.component';
+import { CreateEventComponent } from './events/create-event/create-event.component';
+import { SportEventComponent } from './events/sport-event/sport-event.component';
+import { OtherEventComponent } from './events/other-event/other-event.component';
 import { EventsComponent } from './events/events.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { PositionsComponent } from './positions/positions.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
+import { PositionsComponent } from './events/positions/positions.component';
 import { JoinedEventsComponent } from './joined-events/joined-events.component';
 
 @NgModule({

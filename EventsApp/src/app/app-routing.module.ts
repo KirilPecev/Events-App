@@ -11,13 +11,13 @@ import { UserBasicInformationComponent } from './user-basic-information/user-bas
 import { UserContactsComponent } from './user-contacts/user-contacts.component';
 import { UserFriendsComponent } from './user-friends/user-friends.component';
 import { UserPicturesComponent } from './user-pictures/user-pictures.component';
-import { CreateEventComponent } from './create-event/create-event.component';
-import { SportEventComponent } from './sport-event/sport-event.component';
-import { OtherEventComponent } from './other-event/other-event.component';
+import { CreateEventComponent } from './events/create-event/create-event.component';
+import { SportEventComponent } from './events/sport-event/sport-event.component';
+import { OtherEventComponent } from './events/other-event/other-event.component';
 import { PublicationComponent } from './publication/publication.component';
 import { EventsComponent } from './events/events.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { AnonymousGuard } from './guards/anonymous/anonymous.guard';
 

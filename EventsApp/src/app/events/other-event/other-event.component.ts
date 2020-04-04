@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { dateTimeValidator } from '../shared/validators';
+import { dateTimeValidator } from '../../shared/validators';
 
 @Component({
   selector: 'app-other-event',
