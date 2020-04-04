@@ -14,7 +14,7 @@ import { UserPicturesComponent } from './profile/user-pictures/user-pictures.com
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { SportEventComponent } from './events/sport-event/sport-event.component';
 import { OtherEventComponent } from './events/other-event/other-event.component';
-import { PublicationComponent } from './publication/publication.component';
+import { PublicationComponent } from './shared/publication/publication.component';
 import { EventsComponent } from './events/events.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';

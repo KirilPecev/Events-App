@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout'
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PublicationComponent } from './publication/publication.component';
+import { PublicationComponent } from './shared/publication/publication.component';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { LeftSidebarComponent } from './shared/layout/left-sidebar/left-sidebar.component';
 import { RightSidebarComponent } from './shared/layout/right-sidebar/right-sidebar.component';
@@ -22,7 +22,7 @@ import { FriendsComponent } from './friends/friends.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { SharedModule } from './shared/shared.module';
-import { SharePublicationComponent } from './share-publication/share-publication.component';
+import { SharePublicationComponent } from './shared/publication/share-publication/share-publication.component';
 import { UpcomingEventsComponent } from './shared/event-helpers/upcoming-events/upcoming-events.component';
 import { UserDaybookComponent } from './profile/user-daybook/user-daybook.component';
 import { UserInformationComponent } from './profile/user-information/user-information.component';
