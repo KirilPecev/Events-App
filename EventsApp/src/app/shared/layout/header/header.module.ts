@@ -4,8 +4,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 
-import { NotificationsComponent } from '../notifications/notifications.component';
-import { FriendsComponent } from '../friends/friends.component';
+import { NotificationsComponent } from '../../../notifications/notifications.component';
+import { FriendsComponent } from '../../../friends/friends.component';
 
 @NgModule({
   declarations: [],

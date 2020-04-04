@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 
-import { HeaderModule } from '../header/header.module';
+import { HeaderModule } from './layout/header/header.module';
 import { HomePageIndexModule } from '../home/home.module';
 import { UserInformationModule } from '../user-information/user-information.module';
 import { PositionsModule } from '../positions/positions.module';

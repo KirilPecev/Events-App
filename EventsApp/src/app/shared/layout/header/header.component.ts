@@ -1,22 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 
-import {
-  faHome,
-  faUserFriends,
-  faFlag,
-  faCalendarWeek,
-  faSignInAlt,
-  faUserPlus,
-  faSignOutAlt,
-  faBars
-} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { NotificationsComponent } from "../notifications/notifications.component";
-import { FriendsComponent } from "../friends/friends.component";
-import { UserService } from "../core/services/user.service";
+import { NotificationsComponent } from "../../../notifications/notifications.component";
+import { FriendsComponent } from "../../../friends/friends.component";
+import { UserService } from "../../../core/services/user.service";
 import { Router } from "@angular/router";
-import { LeftSidebarComponent } from "../left-sidebar/left-sidebar.component";
-import { RightSidebarComponent } from "../right-sidebar/right-sidebar.component";
 
 @Component({
   selector: "app-header",
@@ -32,7 +21,6 @@ export class HeaderComponent implements OnInit {
   faSignInAlt = faSignInAlt;
   faUserPlus = faUserPlus;
   faSignOutAlt = faSignOutAlt;
-  faBars = faBars;
 
   @Input() isLoggedIn: boolean;
 

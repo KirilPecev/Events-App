@@ -10,11 +10,11 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PublicationComponent } from './publication/publication.component';
-import { HeaderComponent } from './header/header.component';
-import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
-import { RightSidebarComponent } from './right-sidebar/right-sidebar.component';
+import { HeaderComponent } from './shared/layout/header/header.component';
+import { LeftSidebarComponent } from './shared/layout/left-sidebar/left-sidebar.component';
+import { RightSidebarComponent } from './shared/layout/right-sidebar/right-sidebar.component';
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './shared/layout/footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NotificationsComponent } from './notifications/notifications.component';
