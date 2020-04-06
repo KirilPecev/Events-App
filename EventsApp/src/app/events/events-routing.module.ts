@@ -15,12 +15,12 @@ const authRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: "events/create-event/sport-event",
+        path: "sport-event",
         component: SportEventComponent,
         outlet: "event",
       },
       {
-        path: "events/create-event/other-event",
+        path: "other-event",
         component: OtherEventComponent,
         outlet: "event",
       },
@@ -28,13 +28,11 @@ const authRoutes: Routes = [
   },
   {
     path: "events/details",
-    pathMatch: "full",
     component: EventDetailsComponent,
     canActivate: [AuthGuard],
   },
   {
     path: "events",
-    pathMatch: "full",
     component: EventsComponent,
     canActivate: [AuthGuard],
   },
