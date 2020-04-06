@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 
 import { SharedModule } from "../shared/shared.module";
 import { AuthGuard } from "../guards/auth/auth.guard";
-import { ProfileRoutingModule } from "./profile-routing,module";
+import { ProfileRoutingModule } from "./profile-routing.module";
 import { ProfileComponent } from "./profile.component";
 import { UserBasicInformationComponent } from "./user-basic-information/user-basic-information.component";
 import { UserContactsComponent } from "./user-contacts/user-contacts.component";

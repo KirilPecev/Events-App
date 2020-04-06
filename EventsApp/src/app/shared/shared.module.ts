@@ -10,12 +10,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatDialogModule } from "@angular/material/dialog";
 import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { HeaderModule } from "./layout/header/header.module";
-import { UserInformationModule } from "../profile/user-information/user-information.module";
-import { PositionsModule } from "../events/positions/positions.module";
 import { JoinedEventsComponent } from "./event-helpers/joined-events/joined-events.component";
 import { UpcomingEventsComponent } from "./event-helpers/upcoming-events/upcoming-events.component";
 import { FriendsComponent } from "./layout/friends/friends.component";
@@ -49,8 +46,6 @@ import { SharePublicationComponent } from './publication/share-publication/share
     MatButtonModule,
     MatCardModule,
     MatSidenavModule,
-    PositionsModule,
-    MatDialogModule,
     FlexLayoutModule,
   ],
   exports: [
@@ -64,11 +59,8 @@ import { SharePublicationComponent } from './publication/share-publication/share
     MatInputModule,
     MatButtonModule,
     HeaderModule,
-    UserInformationModule,
     MatCardModule,
     MatSidenavModule,
-    PositionsModule,
-    MatDialogModule,
     FlexLayoutModule,
     JoinedEventsComponent,
     UpcomingEventsComponent,
