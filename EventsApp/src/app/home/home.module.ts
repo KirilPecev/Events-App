@@ -1,14 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { NgModule } from "@angular/core";
 
+import { SharedModule } from "../shared/shared.module";
+import { HomeComponent } from "./home.component";
+import { HomeRoutingModule } from "./home-routing.module";
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    MatCardModule
-  ],
-  exports: [MatCardModule]
+  imports: [SharedModule, HomeRoutingModule],
+  declarations: [HomeComponent],
 })
-export class HomePageIndexModule { }
+export class HomeModule {}
