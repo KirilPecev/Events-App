@@ -18,30 +18,35 @@ const authRoutes: Routes = [
     children: [
       { path: "", component: UserDaybookComponent, outlet: "profile" },
       {
-        path: "profile/information",
+        path: "information",
         component: UserInformationComponent,
         outlet: "profile",
         children: [
-          { path: "", component: UserContactsComponent, outlet: "info" },
           {
-            path: "profile/information/contacts",
+            path: "",
+            component: UserContactsComponent,
+            outlet: "info",
+            pathMatch: "full",
+          },
+          {
+            path: "contacts",
             component: UserContactsComponent,
             outlet: "info",
           },
           {
-            path: "profile/information/basic-info",
+            path: "basic-info",
             component: UserBasicInformationComponent,
             outlet: "info",
           },
         ],
       },
       {
-        path: "profile/friends",
+        path: "friends",
         component: UserFriendsComponent,
         outlet: "profile",
       },
       {
-        path: "profile/pictures",
+        path: "pictures",
         component: UserPicturesComponent,
         outlet: "profile",
       },
