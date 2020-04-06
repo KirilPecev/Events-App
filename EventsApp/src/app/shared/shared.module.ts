@@ -11,16 +11,18 @@ import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatBadgeModule } from "@angular/material/badge";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatMenuModule } from "@angular/material/menu";
 
-import { HeaderModule } from "./layout/header/header.module";
 import { JoinedEventsComponent } from "./event-helpers/joined-events/joined-events.component";
 import { UpcomingEventsComponent } from "./event-helpers/upcoming-events/upcoming-events.component";
 import { FriendsComponent } from "./layout/friends/friends.component";
 import { LeftSidebarComponent } from "./layout/left-sidebar/left-sidebar.component";
 import { RightSidebarComponent } from "./layout/right-sidebar/right-sidebar.component";
 import { NotificationsComponent } from "./layout/notifications/notifications.component";
-import { PublicationComponent } from './publication/publication.component';
-import { SharePublicationComponent } from './publication/share-publication/share-publication.component';
+import { PublicationComponent } from "./publication/publication.component";
+import { SharePublicationComponent } from "./publication/share-publication/share-publication.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { SharePublicationComponent } from './publication/share-publication/share
     RightSidebarComponent,
     NotificationsComponent,
     PublicationComponent,
-    SharePublicationComponent
+    SharePublicationComponent,
   ],
   imports: [
     CommonModule,
@@ -39,10 +41,12 @@ import { SharePublicationComponent } from './publication/share-publication/share
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    MatDialogModule,
+    MatBadgeModule,
+    MatMenuModule,
     MatToolbarModule,
     FontAwesomeModule,
     MatInputModule,
-    HeaderModule,
     MatButtonModule,
     MatCardModule,
     MatSidenavModule,
@@ -54,11 +58,13 @@ import { SharePublicationComponent } from './publication/share-publication/share
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    MatDialogModule,
+    MatBadgeModule,
+    MatMenuModule,
     MatToolbarModule,
     FontAwesomeModule,
     MatInputModule,
     MatButtonModule,
-    HeaderModule,
     MatCardModule,
     MatSidenavModule,
     FlexLayoutModule,
@@ -69,7 +75,8 @@ import { SharePublicationComponent } from './publication/share-publication/share
     RightSidebarComponent,
     NotificationsComponent,
     PublicationComponent,
-    SharePublicationComponent
+    SharePublicationComponent,
   ],
+  entryComponents: [NotificationsComponent, FriendsComponent],
 })
 export class SharedModule {}
