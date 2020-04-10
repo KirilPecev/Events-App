@@ -10,7 +10,7 @@ import { UserFriendsComponent } from "./user-friends/user-friends.component";
 import { UserPicturesComponent } from "./user-pictures/user-pictures.component";
 import { AuthGuard } from "../guards/auth/auth.guard";
 
-const authRoutes: Routes = [
+const profileRoutes: Routes = [
   {
     path: "profile",
     component: ProfileComponent,
@@ -55,7 +55,7 @@ const authRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(authRoutes)],
+  imports: [RouterModule.forChild(profileRoutes)],
   exports: [RouterModule],
 })
 export class ProfileRoutingModule {}
