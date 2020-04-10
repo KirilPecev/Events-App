@@ -8,7 +8,7 @@ import { EventDetailsComponent } from "./event-details/event-details.component";
 import { EventsComponent } from "./events.component";
 import { AuthGuard } from "../guards/auth/auth.guard";
 
-const authRoutes: Routes = [
+const eventsRoutes: Routes = [
   {
     path: "events/create-event",
     component: CreateEventComponent,
@@ -39,7 +39,7 @@ const authRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(authRoutes)],
+  imports: [RouterModule.forChild(eventsRoutes)],
   exports: [RouterModule],
 })
 export class EventsRoutingModule {}
