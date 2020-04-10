@@ -6,7 +6,7 @@ import { PublicationComponent } from "../shared/publication/publication.componen
 import { EventsComponent } from "../events/events.component";
 import { AuthGuard } from "../guards/auth/auth.guard";
 
-const authRoutes: Routes = [
+const dashboardRoutes: Routes = [
   {
     path: "dashboard",
     component: DashboardComponent,
@@ -19,7 +19,7 @@ const authRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(authRoutes)],
+  imports: [RouterModule.forChild(dashboardRoutes)],
   exports: [RouterModule],
 })
 export class DashboardRoutingModule {}
