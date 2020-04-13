@@ -8,7 +8,7 @@
     </div>
     <mat-toolbar color="primary" class="menu">
         <mat-toolbar-row fxLayoutAlign="space-evenly end">
-            <button mat-button routerLink="/profile">Daybook</button>
+            <button mat-button [routerLink]="['/profile', userId]">Daybook</button>
             <button mat-button [routerLink]="[{ outlets: { profile: ['information'] } }]">Information</button>
             <button mat-button [routerLink]="[{ outlets: { profile: ['friends'] } }]">Friends</button>
             <button mat-button [routerLink]="[{ outlets: { profile: ['pictures'] } }]">Pictures</button>

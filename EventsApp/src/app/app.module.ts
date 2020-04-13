@@ -9,9 +9,7 @@ import { FooterComponent } from "./shared/layout/footer/footer.component";
 import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
-import { EventsModule } from "./events/events.module";
 import { HomeModule } from "./home/home.module";
-import { ProfileModule } from "./profile/profile.module";
 import { CoreModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -24,7 +22,6 @@ import { CoreModule } from '@angular/flex-layout';
     HomeModule,
     AuthModule,
     DashboardModule,
-    ProfileModule,
     AppRoutingModule,
   ],
   providers: [],

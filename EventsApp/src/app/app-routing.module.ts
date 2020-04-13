@@ -6,6 +6,10 @@ const routes: Routes = [
     path: "events",
     loadChildren: () => import("./events/events.module").then(m => m.EventsModule)
   },
+  {
+    path: "profile",
+    loadChildren: () => import("./profile/profile.module").then(m => m.ProfileModule)
+  },
   { path: "**", redirectTo: "" },
 ];
 

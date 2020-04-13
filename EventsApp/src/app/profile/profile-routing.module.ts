@@ -12,7 +12,7 @@ import { AuthGuard } from "../guards/auth/auth.guard";
 
 const profileRoutes: Routes = [
   {
-    path: "profile",
+    path: ":user",
     component: ProfileComponent,
     canActivateChild: [AuthGuard],
     children: [
