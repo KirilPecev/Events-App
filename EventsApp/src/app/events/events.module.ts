@@ -9,7 +9,6 @@ import { OtherEventComponent } from "./other-event/other-event.component";
 import { SportEventComponent } from "./sport-event/sport-event.component";
 import { EventsComponent } from "./events.component";
 import { PositionsComponent } from "./positions/positions.component";
-import { AuthGuard } from "../guards/auth/auth.guard";
 
 @NgModule({
   imports: [SharedModule, EventsRoutingModule, MatExpansionModule],
@@ -20,7 +19,6 @@ import { AuthGuard } from "../guards/auth/auth.guard";
     OtherEventComponent,
     SportEventComponent,
     PositionsComponent,
-  ],
-  providers: [AuthGuard],
+  ]
 })
 export class EventsModule {}

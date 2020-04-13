@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 
 import { SharedModule } from "../shared/shared.module";
-import { AuthGuard } from "../guards/auth/auth.guard";
 import { ProfileRoutingModule } from "./profile-routing.module";
 import { ProfileComponent } from "./profile.component";
 import { UserBasicInformationComponent } from "./user-basic-information/user-basic-information.component";
@@ -21,7 +20,6 @@ import { UserPicturesComponent } from './user-pictures/user-pictures.component';
     UserFriendsComponent,
     UserInformationComponent,
     UserPicturesComponent
-  ],
-  providers: [AuthGuard],
+  ]
 })
 export class ProfileModule {}
