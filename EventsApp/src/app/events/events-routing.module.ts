@@ -10,7 +10,7 @@ import { AuthGuard } from "../guards/auth/auth.guard";
 
 const eventsRoutes: Routes = [
   {
-    path: "events/create-event",
+    path: "create-event",
     component: CreateEventComponent,
     canActivate: [AuthGuard],
     children: [
@@ -27,12 +27,12 @@ const eventsRoutes: Routes = [
     ],
   },
   {
-    path: "events/details",
+    path: "details",
     component: EventDetailsComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: "events",
+    path: "",
     component: EventsComponent,
     canActivate: [AuthGuard],
   },

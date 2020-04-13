@@ -25,7 +25,6 @@ import { CoreModule } from '@angular/flex-layout';
     AuthModule,
     DashboardModule,
     ProfileModule,
-    EventsModule,
     AppRoutingModule,
   ],
   providers: [],
