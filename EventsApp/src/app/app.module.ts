@@ -12,12 +12,14 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { EventsModule } from "./events/events.module";
 import { HomeModule } from "./home/home.module";
 import { ProfileModule } from "./profile/profile.module";
+import { CoreModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     SharedModule,
     HomeModule,
     AuthModule,
