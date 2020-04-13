@@ -31,10 +31,10 @@
                     </button>
                 </div>
                 <div *ngIf="!isLoggedIn" class="header-buttons">
-                    <button mat-button routerLink="/login">
+                    <button mat-button routerLink="/auth/login">
                         <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
                     </button>
-                    <button mat-button routerLink="/register">
+                    <button mat-button routerLink="/auth/register">
                         <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
                     </button>
                 </div>
