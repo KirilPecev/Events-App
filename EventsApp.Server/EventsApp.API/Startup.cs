@@ -1,6 +1,7 @@
 namespace EventsApp.API
 {
     using Data;
+    using Data.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -22,7 +23,7 @@ namespace EventsApp.API
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services
-                .AddIdentity<IdentityUser, IdentityRole>()
+                .AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<EvenityDbContext>();
 
             services.AddControllers();
