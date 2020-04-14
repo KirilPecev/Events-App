@@ -1,0 +1,14 @@
+.container {
+  min-height: calc(100vh - 6em - 20vh);
+}
+
+.register-card {
+  width: 20em;
+  margin: 0 auto;
+}
+
+.register-card button {
+  display: block;
+  margin-top: 1em;
+  width: 100%;
+}

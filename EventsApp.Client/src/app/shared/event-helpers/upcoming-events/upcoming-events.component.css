@@ -1,0 +1,8 @@
+ul > li > a {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.info {
+  font-size: small;
+}

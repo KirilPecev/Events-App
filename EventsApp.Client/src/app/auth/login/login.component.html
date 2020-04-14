@@ -1,0 +1,58 @@
+<div class="container site-wrapper" fxFlex fxLayout fxLayoutAlign="center center">
+    <mat-card class="login-card">
+        <mat-card-content>
+            <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                <h2>Log In</h2>
+                <mat-error *ngIf="">
+                    The username and password were not recognised
+                </mat-error>
+                <mat-form-field>
+                    <mat-label>
+                        <fa-icon class="fa-lg" [icon]="faUser"></fa-icon>
+                        Email
+                    </mat-label>
+                    <input matInput type="email" ngModel name="email" #email="ngModel" required email>
+                    <mat-error *ngIf="email.errors?.required">
+                        Email is <strong>required</strong>!
+                    </mat-error>
+                    <mat-error *ngIf="email.errors?.email">
+                        Invalid email!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
+                        <fa-icon class="fa-lg" [icon]="faLock"></fa-icon>
+                        Password
+                    </mat-label>
+                    <input matInput type="password" ngModel name="password" #password="ngModel" required>
+                    <mat-error *ngIf="password.errors?.required">
+                        Password is <strong>required</strong>!
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="loginForm.invalid">SIGN IN</button>
+            </form>
+            <p>Don't have an account? <a routerLink="/register">Register Now!</a></p>
+        </mat-card-content>
+        <hr>
+        <p>Or login with social media:</p>
+        <mat-card-actions>
+            <ul class="social-login" fxFlex fxLayout fxLayoutAlign="space-around center">
+                <li>
+                    <a href="#">
+                        <fa-icon class="fa-lg fb" [icon]="faFacebookF"></fa-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <fa-icon class="fa-lg google" [icon]="faGoogle"></fa-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <fa-icon class="fa-lg twitter" [icon]="faTwitter"></fa-icon>
+                    </a>
+                </li>
+            </ul>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,17 @@
+mat-dialog-content li:hover {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  width: 3em;
+}
+
+.pic {
+  width: 3em;
+}
+
+.content {
+  padding: 0 0.8em;
+}

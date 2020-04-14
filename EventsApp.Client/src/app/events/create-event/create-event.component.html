@@ -1,0 +1,45 @@
+<div class="site-wrapper" fxFlex fxLayout="column" fxLayoutAlign="center" fxLayoutGap="4em">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <mat-card fxFlex.lt-md="85%" [ngClass.lt-md]="{'small-screen':true}">
+            <mat-card-header>
+                <mat-card-title>
+                    Sport event
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Click start to continue with creation
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    Create event from any sport. Choose date and location, add positions and play.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button [routerLink]="[{ outlets: { event: ['sport-event'] } }]" mat-button
+                    color="primary">START</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card fxFlex.lt-md="85%">
+            <mat-card-header>
+                <mat-card-title>
+                    Other kind event
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Click start to continue with creation
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    Create event from any kind different from sport. Choose date and location and play.
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button [routerLink]="[{ outlets: { event: ['other-event'] } }]" mat-button
+                    color="primary">START</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div>
+        <router-outlet name="event"></router-outlet>
+    </div>
+</div>

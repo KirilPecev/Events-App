@@ -1,0 +1,25 @@
+mat-card {
+    margin: 1em auto;
+    border: 1px solid #673ab7;
+}
+
+mat-card-header h2 {
+    font-size: 1.5em;
+    color: #673ab7;
+}
+
+mat-card-subtitle {
+    text-align: center;
+}
+
+mat-card-content h3 {
+    display: inline-block;
+    color: #673ab7;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+mat-card-content span {
+    display: block;
+    font-size: 1.3em;
+}

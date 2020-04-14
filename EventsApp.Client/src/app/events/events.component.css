@@ -1,0 +1,26 @@
+mat-card {
+  margin: 0.5em auto;
+  border: 1px solid #673ab7;
+}
+
+mat-card-content h3 {
+  display: inline-block;
+  color: #673ab7;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+mat-card-content span {
+  display: block;
+  font-size: 1.3em;
+}
+
+.info {
+  padding-top: 1em;
+}
+
+.info p {
+  display: inline-block;
+  margin-top: 0px;
+  margin-right: 10px;
+}

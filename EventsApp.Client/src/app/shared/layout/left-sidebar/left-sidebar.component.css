@@ -1,0 +1,12 @@
+.sidebar img {
+  border-radius: 50%;
+  width: 1.9em;
+}
+
+.sidebar span{
+    margin: auto 0.3em;
+}
+
+.sidebar hr {
+  border: 1px inset #673ab7;
+}

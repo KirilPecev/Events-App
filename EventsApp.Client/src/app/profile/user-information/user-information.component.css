@@ -1,0 +1,10 @@
+.container {
+  margin-top: 0.5em;
+  border: 1px solid #673ab7;
+}
+
+.drawer-container {
+  min-height: 28em;
+  margin: 0.5em;
+  border: 1px solid #673ab7;
+}

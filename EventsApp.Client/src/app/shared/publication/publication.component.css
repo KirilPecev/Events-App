@@ -1,0 +1,64 @@
+.container {
+  margin: 1em 0;
+}
+
+.container > mat-card {
+  border: 1px solid #673ab7;
+}
+
+.content > figure > figcaption {
+  font-style: italic;
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.content > figure > img {
+  width: 100%;
+}
+
+.shared-by {
+  margin-bottom: 0.5em;
+}
+
+.shared-by img {
+  width: 2.5em;
+  border-radius: 50%;
+}
+
+.shared-by h2 {
+  margin: auto;
+}
+
+.info {
+  margin-top: 1em;
+}
+
+.post {
+  border: none;
+  width: 100%;
+  padding: 8px 0px;
+}
+
+@media (max-width: 500px) {
+  .content > figure > figcaption {
+    font-size: 1.2em;
+  }
+
+  .shared-by h2 {
+    font-size: 0.9em;
+  }
+
+  .shared-by img {
+    width: 2em;
+  }
+}
+
+@media (max-width: 357px) {
+  .content > figure > figcaption {
+    font-size: 1em;
+  }
+
+  .shared-by h2 {
+    font-size: 0.7em;
+  }
+}
