@@ -5,7 +5,7 @@ namespace EventsApp.API.Data.Migrations
     using Microsoft.EntityFrameworkCore.Metadata;
     using System;
 
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(EvenityDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

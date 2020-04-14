@@ -7,7 +7,7 @@
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        //[Authorize]
+        [Authorize]
         public IActionResult Get()
         {
             return Ok("works");
