@@ -25,7 +25,7 @@
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
                  => services
                     .AddDbContext<EvenityDbContext>(options => options
-                        .UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                        .UseSqlServer(configuration.GetDefaultConnectionString()));
 
         public static IServiceCollection AddIdentity(this IServiceCollection services)
         {
