@@ -1,19 +1,20 @@
 ﻿namespace EventsApp.API.Data.Models
 {
-    using Common;
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;
+
+    using static ValidationConstants.User;
 
     public class User : IdentityUser
     {
         [Required]
-        [MaxLength(DataConstants.User.FirstNameMaxLength)]
-        [MinLength(DataConstants.User.FirstNameMinimumLength)]
+        [MaxLength(FirstNameMaxLength)]
+        [MinLength(FirstNameMinimumLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(DataConstants.User.LastNameMaxLength)]
-        [MinLength(DataConstants.User.LastNameMinimumLength)]
+        [MaxLength(LastNameMaxLength)]
+        [MinLength(LastNameMinimumLength)]
         public string LastName { get; set; }
     }
 }

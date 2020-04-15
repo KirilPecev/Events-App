@@ -1,6 +1,6 @@
-﻿namespace EventsApp.API.Common
+﻿namespace EventsApp.API.Data
 {
-    public static class DataConstants
+    public static class ValidationConstants
     {
         public static class User
         {
