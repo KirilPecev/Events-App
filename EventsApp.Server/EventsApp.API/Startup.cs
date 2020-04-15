@@ -20,6 +20,7 @@ namespace EventsApp.API
                 .AddIdentity()
                 .AddJwtAuthentication(services.GetAppSettings(this.Configuration))
                 .AddApplicationServices()
+                .AddSwagger()
                 .AddControllers();
         }
 
@@ -30,7 +31,9 @@ namespace EventsApp.API
                 app.UseDatabaseErrorPage();
             }
 
-            app.UseRouting()
+            app
+                .UseSwaggerUI()
+                .UseRouting()
                 .UseCors(opt => opt
                     .AllowAnyHeader()
                     .AllowAnyMethod()
