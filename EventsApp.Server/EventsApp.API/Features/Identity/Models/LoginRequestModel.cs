@@ -1,4 +1,4 @@
-﻿namespace EventsApp.API.Models.Identity
+﻿namespace EventsApp.API.Features.Identity.Models
 {
     using System.ComponentModel.DataAnnotations;
 
