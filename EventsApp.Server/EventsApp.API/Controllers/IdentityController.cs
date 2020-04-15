@@ -45,7 +45,7 @@
         }
 
         [Route(nameof(Login))]
-        public async Task<ActionResult<string>> Login(LoginRequestModel model)
+        public async Task<ActionResult<object>> Login(LoginRequestModel model)
         {
             User user = await this.userManager.FindByEmailAsync(model.Email);
             if (user == null)
@@ -75,7 +75,10 @@
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
             string encryptedToken = tokenHandler.WriteToken(token);
 
-            return encryptedToken;
+            return new
+            {
+                Token = encryptedToken
+            };
         }
     }
 }
