@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using static Data.ValidationConstants.User;
 
-    public class RegisterUserRequestModel
+    public class RegisterRequestModel
     {
         [Required]
         [MaxLength(FirstNameMaxLength)]
