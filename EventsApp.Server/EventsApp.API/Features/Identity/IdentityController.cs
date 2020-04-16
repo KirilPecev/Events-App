@@ -23,7 +23,7 @@
 
         [HttpPost]
         [Route(nameof(Register))]
-        public async Task<ActionResult> Register(RegisterUserRequestModel model)
+        public async Task<ActionResult> Register(RegisterRequestModel model)
         {
             User user = new User()
             {
