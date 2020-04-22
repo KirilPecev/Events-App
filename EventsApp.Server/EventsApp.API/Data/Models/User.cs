@@ -10,7 +10,7 @@
     {
         public User()
         {
-            this.Friends = new HashSet<PendingFriend>();
+            this.Friends = new HashSet<Friend>();
         }
 
         [Required]
@@ -23,6 +23,6 @@
         [MinLength(LastNameMinimumLength)]
         public string LastName { get; set; }
 
-        public ICollection<PendingFriend> Friends { get; set; }
+        public ICollection<Friend> Friends { get; set; }
     }
 }

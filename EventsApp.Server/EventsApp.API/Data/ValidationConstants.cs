@@ -37,5 +37,12 @@
         {
             public const int DescriptionMaxLength = 200;
         }
+
+        public static class Notification
+        {
+            public const int DescriptionMaxLength = 30;
+
+            public const int DescriptionMinLength = 2;
+        }
     }
 }
