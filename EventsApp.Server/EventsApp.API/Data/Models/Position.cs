@@ -2,9 +2,13 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static ValidationConstants.Position;
+
     public class Position : BaseModel<int>
     {
         [Required]
+        [MaxLength(NameMaxLength)]
+        [MinLength(NameMinLength)]
         public string Name { get; set; }
 
         [Required]

@@ -25,5 +25,12 @@
 
             public const int LocationMinLength = 2;
         }
+
+        public static class Position
+        {
+            public const int NameMaxLength = 30;
+
+            public const int NameMinLength = 2;
+        }
     }
 }
