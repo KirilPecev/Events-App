@@ -2,9 +2,11 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static ValidationConstants.Publication;
+
     public class Publication : BaseModel<int>
     {
-        [Required]
+        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
