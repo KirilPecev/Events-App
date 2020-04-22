@@ -11,6 +11,8 @@
         public User()
         {
             this.Friends = new HashSet<Friend>();
+            this.Notifications = new HashSet<Notification>();
+            this.Events = new List<Event>();
         }
 
         [Required]
@@ -23,6 +25,12 @@
         [MinLength(LastNameMinimumLength)]
         public string LastName { get; set; }
 
+        public ICollection<Picture> Pictures { get; set; }
+
         public ICollection<Friend> Friends { get; set; }
+
+        public ICollection<Notification> Notifications { get; set; }
+
+        public ICollection<Event> Events { get; set; }
     }
 }
