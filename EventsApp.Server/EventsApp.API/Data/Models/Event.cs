@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using static ValidationConstants.Event;
+
     public class Event : BaseModel<int>
     {
         public Event()
@@ -12,12 +14,17 @@
         }
         
         [Required]
+        [MaxLength(NameMaxLength)]
+        [MinLength(NameMinLength)]
         public string Name { get; set; }
 
         [Required]
+        [MaxLength(SportMaxLength)]
+        [MinLength(SportMinLength)]
         public string Sport { get; set; }
 
         [Required]
+        [MinLength(LocationMinLength)]
         public string Location { get; set; }
 
         [Required]
