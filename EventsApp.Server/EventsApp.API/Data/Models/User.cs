@@ -1,6 +1,7 @@
 ﻿namespace EventsApp.API.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +11,7 @@
     {
         public User()
         {
+            this.Pictures = new HashSet<Picture>();
             this.Friends = new HashSet<Friend>();
             this.Notifications = new HashSet<Notification>();
             this.Events = new List<Event>();
@@ -24,6 +26,16 @@
         [MaxLength(LastNameMaxLength)]
         [MinLength(LastNameMinimumLength)]
         public string LastName { get; set; }
+
+        public string FacebookUrl { get; set; }
+
+        public DateTime Birthday { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public string FavoriteSport { get; set; }
+
+        public string ProfilePictureUrl { get; set; }
 
         public ICollection<Picture> Pictures { get; set; }
 
