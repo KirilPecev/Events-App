@@ -18,5 +18,8 @@
         [Required]
         public string CreatorId { get; set; }
         public User Creator { get; set; }
+
+        public string EventId { get; set; }
+        public Event Event { get; set; }
     }
 }
