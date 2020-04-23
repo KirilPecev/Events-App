@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Data
 {
+    using EntityTypeConfigurations;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Models;
@@ -23,6 +24,8 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new FriendEntityTypeConfiguration());
+
             base.OnModelCreating(builder);
         }
     }

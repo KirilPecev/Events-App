@@ -13,6 +13,7 @@
         {
             this.Pictures = new HashSet<Picture>();
             this.Friends = new HashSet<Friend>();
+            this.MainUserFriends = new HashSet<Friend>();
             this.Notifications = new HashSet<Notification>();
             this.Events = new List<Event>();
         }
@@ -40,6 +41,8 @@
         public ICollection<Picture> Pictures { get; set; }
 
         public ICollection<Friend> Friends { get; set; }
+
+        public ICollection<Friend> MainUserFriends { get; set; }
 
         public ICollection<Notification> Notifications { get; set; }
 
