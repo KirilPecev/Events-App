@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class Friend : BaseModel<int>
+    public class Friend
     {
         [Required]
         public string UserId { get; set; }
@@ -13,6 +13,6 @@
         public User UserFriend { get; set; }
 
         [Required]
-        public FriendStatus Status { get; set; }
+        public int Status { get; set; }
     }
 }
