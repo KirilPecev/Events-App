@@ -2,7 +2,6 @@
 {
     using Data;
     using Data.Models;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using System.Collections.Generic;
@@ -12,13 +11,9 @@
     public class PublicationService : IPublicationService
     {
         private readonly EvenityDbContext data;
-
-        private readonly UserManager<User> userManager;
-
-        public PublicationService(EvenityDbContext data, UserManager<User> userManager)
+        public PublicationService(EvenityDbContext data)
         {
             this.data = data;
-            this.userManager = userManager;
         }
 
         public async Task<int> Create(string imageUrl, string description, string userId)
