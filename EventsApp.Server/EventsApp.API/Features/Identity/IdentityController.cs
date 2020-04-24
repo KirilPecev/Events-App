@@ -1,6 +1,5 @@
 ﻿namespace EventsApp.API.Features.Identity
 {
-    using Controllers;
     using Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
