@@ -25,6 +25,7 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new FriendEntityTypeConfiguration());
+            builder.ApplyConfiguration(new PublicationEntityTypeConfiguration());
 
             base.OnModelCreating(builder);
         }

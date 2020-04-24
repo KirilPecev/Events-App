@@ -6,7 +6,7 @@
 
     public class Publication : BaseModel<int>
     {
-        public int Type { get; set; }
+        public PublicationTypes Type { get; set; }
 
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
