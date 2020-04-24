@@ -1,4 +1,4 @@
-﻿namespace EventsApp.API.Controllers
+﻿namespace EventsApp.API.Features
 {
     using Microsoft.AspNetCore.Mvc;
 
