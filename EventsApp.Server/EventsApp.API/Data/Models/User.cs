@@ -16,6 +16,7 @@
             this.MainUserFriends = new HashSet<Friend>();
             this.Notifications = new HashSet<Notification>();
             this.Events = new List<Event>();
+            this.Publications = new List<Publication>();
         }
 
         [Required]
@@ -47,5 +48,7 @@
         public ICollection<Notification> Notifications { get; set; }
 
         public ICollection<Event> Events { get; set; }
+
+        public ICollection<Publication> Publications { get; set; }
     }
 }
