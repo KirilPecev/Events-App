@@ -14,6 +14,10 @@
 
         public Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId);
 
-        public Task<IEnumerable<PublicationListingServiceModel>> GetAll();
+        public Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId);
+
+        public Task<bool> Like(int id, string userId);
+
+        public Task<bool> Unlike(int id, string userId);
     }
 }

@@ -15,5 +15,7 @@
         public string UserImgUrl { get; set; }
 
         public string Creator { get; set; }
+
+        public bool IsLiked { get; set; }
     }
 }

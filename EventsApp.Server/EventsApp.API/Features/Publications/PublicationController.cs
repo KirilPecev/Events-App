@@ -22,7 +22,11 @@
         [HttpGet]
         [Route(nameof(GetAll))]
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll()
-            => await this.publicationService.GetAll();
+        {
+            string userId = this.User.GetId();
+
+            return await this.publicationService.GetAll(userId);
+        }
 
         [HttpGet]
         [Route(nameof(Mine))]
@@ -75,6 +79,38 @@
             bool deleted = await this.publicationService.Delete(id, userId);
 
             if (!deleted)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route(nameof(Like))]
+        public async Task<ActionResult> Like(int id)
+        {
+            string userId = this.User.GetId();
+
+            bool updated = await this.publicationService.Like(id, userId);
+
+            if (!updated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route(nameof(Unlike))]
+        public async Task<ActionResult> Unlike(int id)
+        {
+            string userId = this.User.GetId();
+
+            bool updated = await this.publicationService.Unlike(id, userId);
+
+            if (!updated)
             {
                 return BadRequest();
             }

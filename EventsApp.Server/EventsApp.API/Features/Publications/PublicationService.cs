@@ -80,13 +80,14 @@
                     ImageUrl = p.ImageUrl,
                     Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
                     UserImgUrl = p.Creator.ProfilePictureUrl,
-                   // Likes = p.Likes,
+                    Likes = p.Likes.Count,
+                    IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares
 
                 })
                 .ToListAsync();
 
-        public async Task<IEnumerable<PublicationListingServiceModel>> GetAll()
+        public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
             => await this.data
                  .Publications
                     .Select(p => new PublicationListingServiceModel()
@@ -96,10 +97,51 @@
                         ImageUrl = p.ImageUrl,
                         Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
                         UserImgUrl = p.Creator.ProfilePictureUrl,
-                       // Likes = p.Likes,
+                        Likes = p.Likes.Count,
+                        IsLiked = p.Likes.Any(l => l.LikerId == userId),
                         Shares = p.Shares
                     })
                 .ToListAsync();
+
+        public async Task<bool> Like(int id, string userId)
+        {
+            Publication publication = await this.GetById(id);
+
+            if (publication == null)
+            {
+                return false;
+            }
+
+            publication.Likes.Add(new Like()
+            {
+                LikerId = userId
+            });
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> Unlike(int id, string userId)
+        {
+            Publication publication = await this.GetById(id);
+
+            if (publication == null)
+            {
+                return false;
+            }
+
+            Like like = await this.data.Likes.FirstOrDefaultAsync(l => l.LikerId == userId);
+
+            publication.Likes.Remove(like);
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<Publication> GetById(int id)
+            => await this.data.Publications.FirstOrDefaultAsync(p => p.Id == id);
 
         private async Task<Publication> GetByIdAndByUserId(int id, string userId)
             => await this.data
