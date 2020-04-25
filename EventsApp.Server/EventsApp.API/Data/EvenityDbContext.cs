@@ -22,10 +22,13 @@
 
         public DbSet<Publication> Publications { get; set; }
 
+        public DbSet<Like> Likes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new FriendEntityTypeConfiguration());
             builder.ApplyConfiguration(new PublicationEntityTypeConfiguration());
+            builder.ApplyConfiguration(new LikeEntityTypeConfiguration());
 
             base.OnModelCreating(builder);
         }

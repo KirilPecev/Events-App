@@ -26,7 +26,7 @@
                 Description = description,
                 ImageUrl = imageUrl,
                 CreatorId = userId,
-                Likes = 0,
+                //Likes = 0,
                 Shares = 0
             };
 
@@ -80,7 +80,7 @@
                     ImageUrl = p.ImageUrl,
                     Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
                     UserImgUrl = p.Creator.ProfilePictureUrl,
-                    Likes = p.Likes,
+                   // Likes = p.Likes,
                     Shares = p.Shares
 
                 })
@@ -96,7 +96,7 @@
                         ImageUrl = p.ImageUrl,
                         Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
                         UserImgUrl = p.Creator.ProfilePictureUrl,
-                        Likes = p.Likes,
+                       // Likes = p.Likes,
                         Shares = p.Shares
                     })
                 .ToListAsync();

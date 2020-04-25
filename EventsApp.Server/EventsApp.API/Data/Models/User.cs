@@ -17,6 +17,7 @@
             this.Notifications = new HashSet<Notification>();
             this.Events = new List<Event>();
             this.Publications = new List<Publication>();
+            this.Likes = new List<Like>();
         }
 
         [Required]
@@ -50,5 +51,7 @@
         public ICollection<Event> Events { get; set; }
 
         public ICollection<Publication> Publications { get; set; }
+
+        public ICollection<Like> Likes { get; set; }
     }
 }
