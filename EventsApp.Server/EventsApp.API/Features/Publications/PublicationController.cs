@@ -117,5 +117,21 @@
 
             return Ok();
         }
+
+        [HttpPut]
+        [Route(nameof(Share))]
+        public async Task<ActionResult> Share(int id)
+        {
+            string userId = this.User.GetId();
+
+            bool updated = await this.publicationService.Share(id, userId);
+
+            if (!updated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -18,6 +18,7 @@
             this.Events = new List<Event>();
             this.Publications = new List<Publication>();
             this.Likes = new List<Like>();
+            this.Shares = new List<Share>();
         }
 
         [Required]
@@ -53,5 +54,7 @@
         public ICollection<Publication> Publications { get; set; }
 
         public ICollection<Like> Likes { get; set; }
+
+        public ICollection<Share> Shares { get; set; }
     }
 }

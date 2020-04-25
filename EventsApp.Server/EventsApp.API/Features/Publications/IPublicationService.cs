@@ -19,5 +19,7 @@
         public Task<bool> Like(int id, string userId);
 
         public Task<bool> Unlike(int id, string userId);
+
+        public Task<bool> Share(int id, string userId);
     }
 }

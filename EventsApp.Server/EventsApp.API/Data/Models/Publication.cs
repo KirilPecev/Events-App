@@ -10,6 +10,7 @@
         public Publication()
         {
             this.Likes = new List<Like>();
+            this.Shares = new List<Share>();
         }
 
         public PublicationTypes Type { get; set; }
@@ -19,12 +20,12 @@
 
         public string ImageUrl { get; set; }
 
-        public int Shares { get; set; }
-
         [Required]
         public string CreatorId { get; set; }
         public User Creator { get; set; }
 
         public ICollection<Like> Likes { get; set; }
+
+        public ICollection<Share> Shares { get; set; }
     }
 }

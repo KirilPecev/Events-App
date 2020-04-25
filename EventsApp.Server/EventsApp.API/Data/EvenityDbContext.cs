@@ -24,6 +24,8 @@
 
         public DbSet<Like> Likes { get; set; }
 
+        public DbSet<Share> Shares { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new FriendEntityTypeConfiguration());

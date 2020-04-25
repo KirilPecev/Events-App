@@ -11,6 +11,7 @@
     public class PublicationService : IPublicationService
     {
         private readonly EvenityDbContext data;
+
         public PublicationService(EvenityDbContext data)
         {
             this.data = data;
@@ -26,8 +27,6 @@
                 Description = description,
                 ImageUrl = imageUrl,
                 CreatorId = userId,
-                //Likes = 0,
-                Shares = 0
             };
 
             this.data.Add(publication);
@@ -82,7 +81,7 @@
                     UserImgUrl = p.Creator.ProfilePictureUrl,
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
-                    Shares = p.Shares
+                    Shares = p.Shares.Count
 
                 })
                 .ToListAsync();
@@ -99,7 +98,7 @@
                         UserImgUrl = p.Creator.ProfilePictureUrl,
                         Likes = p.Likes.Count,
                         IsLiked = p.Likes.Any(l => l.LikerId == userId),
-                        Shares = p.Shares
+                        Shares = p.Shares.Count
                     })
                 .ToListAsync();
 
@@ -134,6 +133,27 @@
             Like like = await this.data.Likes.FirstOrDefaultAsync(l => l.LikerId == userId);
 
             publication.Likes.Remove(like);
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> Share(int id, string userId)
+        {
+            Publication publication = await this.GetById(id);
+
+            if (publication == null)
+            {
+                return false;
+            }
+
+            Share share = new Share()
+            {
+                UserId = userId
+            };
+
+            publication.Shares.Add(share);
 
             await this.data.SaveChangesAsync();
 
