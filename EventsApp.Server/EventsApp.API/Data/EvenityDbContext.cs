@@ -31,6 +31,7 @@
             builder.ApplyConfiguration(new FriendEntityTypeConfiguration());
             builder.ApplyConfiguration(new PublicationEntityTypeConfiguration());
             builder.ApplyConfiguration(new LikeEntityTypeConfiguration());
+            builder.ApplyConfiguration(new ShareEntityTypeConfiguration());
 
             base.OnModelCreating(builder);
         }
