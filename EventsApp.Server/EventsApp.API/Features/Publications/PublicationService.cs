@@ -69,11 +69,13 @@
         }
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
-            => await this.data
+        {
+            List<PublicationListingServiceModel> publications = await this.data
                 .Publications
                 .Where(p => p.CreatorId == userId)
                 .Select(p => new PublicationListingServiceModel()
                 {
+                    Id = p.Id,
                     Type = p.Type.ToString().ToLower(),
                     Description = p.Description,
                     ImageUrl = p.ImageUrl,
@@ -86,21 +88,62 @@
                 })
                 .ToListAsync();
 
-        public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
-            => await this.data
-                 .Publications
-                    .Select(p => new PublicationListingServiceModel()
-                    {
-                        Type = p.Type.ToString().ToLower(),
-                        Description = p.Description,
-                        ImageUrl = p.ImageUrl,
-                        Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
-                        UserImgUrl = p.Creator.ProfilePictureUrl,
-                        Likes = p.Likes.Count,
-                        IsLiked = p.Likes.Any(l => l.LikerId == userId),
-                        Shares = p.Shares.Count
-                    })
+            List<PublicationListingServiceModel> sharedPublications = await this.data
+                .Shares
+                .Where(s => s.UserId == userId)
+                .Select(s => new PublicationListingServiceModel()
+                {
+                    Id = s.PublicationId,
+                    Type = s.Publication.Type.ToString().ToLower(),
+                    Description = s.Publication.Description,
+                    ImageUrl = s.Publication.ImageUrl,
+                    Creator = $"{s.Publication.Creator.FirstName} {s.Publication.Creator.LastName}",
+                    UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
+                    Likes = s.Publication.Likes.Count,
+                    IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
+                    Shares = s.Publication.Shares.Count
+                })
                 .ToListAsync();
+
+            return publications.Concat(sharedPublications);
+        }
+
+        public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
+        {
+            List<PublicationListingServiceModel> publications = await this.data
+                .Publications
+                .Select(p => new PublicationListingServiceModel()
+                {
+                    Id = p.Id,
+                    Type = p.Type.ToString().ToLower(),
+                    Description = p.Description,
+                    ImageUrl = p.ImageUrl,
+                    Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
+                    UserImgUrl = p.Creator.ProfilePictureUrl,
+                    Likes = p.Likes.Count,
+                    IsLiked = p.Likes.Any(l => l.LikerId == userId),
+                    Shares = p.Shares.Count
+                })
+                .ToListAsync();
+
+            List<PublicationListingServiceModel> sharedPublications = await this.data
+                .Shares
+                .Select(s => new PublicationListingServiceModel()
+                {
+                    Id = s.PublicationId,
+                    Type = s.Publication.Type.ToString().ToLower(),
+                    Description = s.Publication.Description,
+                    ImageUrl = s.Publication.ImageUrl,
+                    Creator = $"{s.Publication.Creator.FirstName} {s.Publication.Creator.LastName}",
+                    UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
+                    Likes = s.Publication.Likes.Count,
+                    IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
+                    Shares = s.Publication.Shares.Count
+                })
+                .ToListAsync();
+
+            return publications.Concat(sharedPublications);
+        }
 
         public async Task<bool> Like(int id, string userId)
         {
