@@ -70,6 +70,7 @@
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
         {
+            //Get all mine publications
             List<PublicationListingServiceModel> publications = await this.data
                 .Publications
                 .Where(p => p.CreatorId == userId)
@@ -88,6 +89,7 @@
                 })
                 .ToListAsync();
 
+            //Get all mine shared publications
             List<PublicationListingServiceModel> sharedPublications = await this.data
                 .Shares
                 .Where(s => s.UserId == userId)
@@ -105,14 +107,18 @@
                 })
                 .ToListAsync();
 
+            //Return all concatenated
             return publications.Concat(sharedPublications);
         }
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
         {
-            List<PublicationListingServiceModel> publications = await this.data
-                .Publications
-                .Select(p => new PublicationListingServiceModel()
+            //Get all friends publications
+            var friendPublications = await this.data
+                .Friends
+                .Where(f=>f.UserId == userId && f.Status == 2)
+                .SelectMany(f=>f.UserFriend.Publications)
+                .Select(p=>new PublicationListingServiceModel()
                 {
                     Id = p.Id,
                     Type = p.Type.ToString().ToLower(),
@@ -126,8 +132,11 @@
                 })
                 .ToListAsync();
 
-            List<PublicationListingServiceModel> sharedPublications = await this.data
-                .Shares
+            //Get all shared publications from friends
+            var friendSharedPublications = await this.data
+                .Friends
+                .Where(f => f.UserId == userId && f.Status == 2)
+                .SelectMany(f => f.UserFriend.Shares)
                 .Select(s => new PublicationListingServiceModel()
                 {
                     Id = s.PublicationId,
@@ -142,7 +151,11 @@
                 })
                 .ToListAsync();
 
-            return publications.Concat(sharedPublications);
+            //Get all mine publications with all my shared publications
+            var mine = await this.GetByUser(userId);
+
+            //Return all concatenated
+            return friendPublications.Concat(friendSharedPublications).Concat(mine);
         }
 
         public async Task<bool> Like(int id, string userId)
