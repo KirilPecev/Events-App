@@ -19,7 +19,7 @@
 
         public async Task<int> Create(string imageUrl, string description, string userId)
         {
-            PublicationTypes type = string.IsNullOrEmpty(imageUrl) ? PublicationTypes.Image : PublicationTypes.Post;
+            PublicationTypes type = string.IsNullOrEmpty(imageUrl) ? PublicationTypes.Post : PublicationTypes.Image;
 
             Publication publication = new Publication()
             {
