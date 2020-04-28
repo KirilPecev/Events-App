@@ -11,8 +11,9 @@
         public Event()
         {
             this.Positions = new List<Position>();
+            this.Likes = new List<Like>();
         }
-        
+
         [Required]
         [MaxLength(NameMaxLength)]
         [MinLength(NameMinLength)]
@@ -30,13 +31,11 @@
         [Required]
         public DateTime DateTime { get; set; }
 
-        public int Likes { get; set; }
-
-        public int Shares { get; set; }
-
         [Required]
         public string CreatorId { get; set; }
         public User Creator { get; set; }
+
+        public ICollection<Like> Likes { get; set; }
 
         public ICollection<Position> Positions { get; set; }
     }
