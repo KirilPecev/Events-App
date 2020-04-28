@@ -77,14 +77,9 @@
             return true;
         }
 
-        public async Task<EventDetailsServiceModel> GetDetails(int id)
+        public Task<EventDetailsServiceModel> GetDetails(int id)
         {
-            Event current = await this.GetById(id);
-
-            EventDetailsServiceModel details = new EventDetailsServiceModel()
-            {
-
-            };
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<EventListingServiceModel>> GetByUser(string userId)

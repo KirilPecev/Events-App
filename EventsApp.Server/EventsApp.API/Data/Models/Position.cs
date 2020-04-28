@@ -11,7 +11,6 @@
         [MinLength(NameMinLength)]
         public string Name { get; set; }
 
-        [Required]
         public string ParticipantId { get; set; }
         public User Participant { get; set; }
 
