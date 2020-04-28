@@ -4,6 +4,7 @@
     using Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Models;
+    using Positions;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -11,10 +12,12 @@
     public class EventService : IEventService
     {
         private readonly EvenityDbContext data;
+        private readonly IPositionService positionService;
 
-        public EventService(EvenityDbContext data)
+        public EventService(EvenityDbContext data, IPositionService positionService)
         {
             this.data = data;
+            this.positionService = positionService;
         }
 
         public async Task<int> Create(string name, string sport, string location, string dateTime, string[] positions, string userId)
@@ -32,7 +35,7 @@
 
             await this.data.SaveChangesAsync();
 
-            //TODO: Add positions -- IPositionsService
+            int positionResult = await this.positionService.Create(newEvent.Id, positions);
 
             return newEvent.Id;
         }
