@@ -7,6 +7,7 @@
     using Positions;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class EventService : IEventService
@@ -80,57 +81,85 @@
             return true;
         }
 
-        public Task<EventDetailsServiceModel> GetDetails(int id)
+        public async Task<EventDetailsServiceModel> GetDetails(int id, string userId)
         {
-            throw new NotImplementedException();
+            var availablePositions = await this.data
+                .Events
+                .Where(e => e.Id == id)
+                .SelectMany(e => e.Positions)
+                .Where(e => e.ParticipantId == null)
+                .Select(e => new EventPositionServiceModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name
+                })
+                .ToListAsync();
+
+            var busyPositions = await this.data
+                .Events
+                .Where(e => e.Id == id)
+                .SelectMany(e => e.Positions)
+                .Where(e => e.ParticipantId != null)
+                .Select(e => new EventPositionServiceModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    CanQuit = e.ParticipantId == userId,
+                    Participant = $"{e.Participant.FirstName} {e.Participant.LastName}"
+                })
+                .ToListAsync();
+
+            return await this.data
+                 .Events
+                 .Where(e => e.Id == id)
+                 .Select(e => new EventDetailsServiceModel()
+                 {
+                     Id = e.Id,
+                     Name = e.Name,
+                     Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
+                     Location = e.Location,
+                     Sport = e.Sport,
+                     Date = e.DateTime.ToShortDateString(),
+                     Time = e.DateTime.ToShortTimeString(),
+                     AvailablePositions = e.Positions.Count(p => p.ParticipantId != null),
+                     AvailablePositionsList = availablePositions,
+                     BusyPositionsList = busyPositions
+                 })
+                 .FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<EventListingServiceModel>> GetByUser(string userId)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<EventListingServiceModel>> GetByUser(string userId)
+            => await this.data
+                .Events
+                .Where(e => e.CreatorId == userId)
+                .Select(e => new EventListingServiceModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
+                    Location = e.Location,
+                    Sport = e.Sport,
+                    Date = e.DateTime.ToShortDateString(),
+                    Time = e.DateTime.ToShortTimeString(),
+                    AvailablePositions = e.Positions.Count(p => p.ParticipantId != null)
+                })
+                .ToListAsync();
 
-        public Task<IEnumerable<EventListingServiceModel>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> Like(int id, string userId)
-        {
-            Event current = await this.GetById(id);
-
-            if (current == null)
-            {
-                return false;
-            }
-
-            current.Likes.Add(new Like()
-            {
-                LikerId = userId
-            });
-
-            await this.data.SaveChangesAsync();
-
-            return true;
-        }
-
-        public async Task<bool> Unlike(int id, string userId)
-        {
-            Event current = await this.GetById(id);
-
-            if (current == null)
-            {
-                return false;
-            }
-
-            Like like = await this.data.Likes.FirstOrDefaultAsync(l => l.LikerId == userId);
-
-            current.Likes.Remove(like);
-
-            await this.data.SaveChangesAsync();
-
-            return true;
-        }
+        public async Task<IEnumerable<EventListingServiceModel>> GetAll()
+            => await this.data
+                .Events
+                .Select(e => new EventListingServiceModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
+                    Location = e.Location,
+                    Sport = e.Sport,
+                    Date = e.DateTime.ToShortDateString(),
+                    Time = e.DateTime.ToShortTimeString(),
+                    AvailablePositions = e.Positions.Count(p => p.ParticipantId != null)
+                })
+                .ToListAsync();
 
         private async Task<Event> GetByIdAndUserId(int id, string userId)
             => await this.data

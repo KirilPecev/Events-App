@@ -12,14 +12,10 @@
 
         public Task<bool> Delete(int id, string userId);
 
-        public Task<EventDetailsServiceModel> GetDetails(int id);
+        public Task<EventDetailsServiceModel> GetDetails(int id, string userId);
 
         public Task<IEnumerable<EventListingServiceModel>> GetByUser(string userId);
 
         public Task<IEnumerable<EventListingServiceModel>> GetAll();
-
-        public Task<bool> Like(int id, string userId);
-
-        public Task<bool> Unlike(int id, string userId);
     }
 }
