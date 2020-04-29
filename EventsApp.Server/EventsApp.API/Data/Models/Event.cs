@@ -11,7 +11,6 @@
         public Event()
         {
             this.Positions = new List<Position>();
-            this.Likes = new List<Like>();
         }
 
         [Required]
@@ -34,8 +33,6 @@
         [Required]
         public string CreatorId { get; set; }
         public User Creator { get; set; }
-
-        public ICollection<Like> Likes { get; set; }
 
         public ICollection<Position> Positions { get; set; }
     }
