@@ -1,11 +1,13 @@
 ﻿namespace EventsApp.API.Features.Events
 {
     using Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    [Authorize]
     public class EventController : ApiController
     {
         private readonly IEventService eventService;
