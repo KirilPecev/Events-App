@@ -26,7 +26,7 @@
             Event newEvent = new Event()
             {
                 Name = name,
-                Sport = sport,
+                Sport = sport ?? "other",
                 Location = location,
                 DateTime = DateTime.Parse(dateTime),
                 CreatorId = userId,
