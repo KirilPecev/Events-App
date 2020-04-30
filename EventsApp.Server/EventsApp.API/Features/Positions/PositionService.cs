@@ -40,7 +40,7 @@
 
             bool isJoined = await this.CheckIfUserIsAlreadyJoined(eventId, userId);
 
-            if (isJoined)
+            if (isJoined || position.ParticipantId != null)
             {
                 return false;
             }
