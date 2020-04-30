@@ -38,6 +38,13 @@
         {
             Position position = await this.GetByIdAndEventId(eventId, positionId);
 
+            bool isJoined = await this.CheckIfUserIsAlreadyJoined(eventId, userId);
+
+            if (isJoined)
+            {
+                return false;
+            }
+
             position.ParticipantId = userId;
 
             await this.data.SaveChangesAsync();
@@ -48,6 +55,13 @@
         public async Task<bool> Unjoin(int eventId, int positionId, string userId)
         {
             Position position = await this.GetByIdAndEventId(eventId, positionId);
+
+            bool isJoined = await this.CheckIfUserIsAlreadyJoined(eventId, userId);
+
+            if (!isJoined)
+            {
+                return false;
+            }
 
             position.ParticipantId = null;
 
@@ -61,5 +75,10 @@
                 .Positions
                 .FirstOrDefaultAsync(p => p.EventId == eventId && p.Id == positionId);
 
+
+        private async Task<bool> CheckIfUserIsAlreadyJoined(int eventId, string userId)
+            => await this.data
+                .Positions
+                .AnyAsync(p => p.EventId == eventId && p.ParticipantId == userId);
     }
 }
