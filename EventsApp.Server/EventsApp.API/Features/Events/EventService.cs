@@ -2,6 +2,7 @@
 {
     using Data;
     using Data.Models;
+    using Infrastructure.Extensions;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using Positions;
@@ -120,8 +121,8 @@
                      isAdmin = e.CreatorId == userId,
                      Location = e.Location,
                      Sport = e.Sport,
-                     Date = e.DateTime.ToString("MM/dd/yyyy"),
-                     Time = e.DateTime.ToString("HH:mm"),
+                     Date = e.DateTime.ToDateFormat(),
+                     Time = e.DateTime.ToTimeFormat(),
                      AvailablePositions = e.Positions.Count(p => p.ParticipantId != null),
                      AvailablePositionsList = availablePositions,
                      BusyPositionsList = busyPositions
@@ -140,8 +141,8 @@
                     Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
                     Location = e.Location,
                     Sport = e.Sport,
-                    Date = e.DateTime.ToString("MM/dd/yyyy"),
-                    Time = e.DateTime.ToString("HH:mm"),
+                    Date = e.DateTime.ToDateFormat(),
+                    Time = e.DateTime.ToTimeFormat(),
                     AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
                 .ToListAsync();
@@ -156,8 +157,8 @@
                     Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
                     Location = e.Location,
                     Sport = e.Sport,
-                    Date = e.DateTime.ToString("MM/dd/yyyy"),
-                    Time = e.DateTime.ToString("HH:mm"),
+                    Date = e.DateTime.ToDateFormat(),
+                    Time = e.DateTime.ToTimeFormat(),
                     AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
                 .ToListAsync();
