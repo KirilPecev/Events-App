@@ -117,10 +117,11 @@
                      Id = e.Id,
                      Name = e.Name,
                      Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
+                     isAdmin = e.CreatorId == userId,
                      Location = e.Location,
                      Sport = e.Sport,
-                     Date = e.DateTime.ToShortDateString(),
-                     Time = e.DateTime.ToShortTimeString(),
+                     Date = e.DateTime.ToString("MM/dd/yyyy"),
+                     Time = e.DateTime.ToString("HH:mm"),
                      AvailablePositions = e.Positions.Count(p => p.ParticipantId != null),
                      AvailablePositionsList = availablePositions,
                      BusyPositionsList = busyPositions
@@ -139,9 +140,9 @@
                     Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
                     Location = e.Location,
                     Sport = e.Sport,
-                    Date = e.DateTime.ToShortDateString(),
-                    Time = e.DateTime.ToShortTimeString(),
-                    AvailablePositions = e.Positions.Count(p => p.ParticipantId != null)
+                    Date = e.DateTime.ToString("MM/dd/yyyy"),
+                    Time = e.DateTime.ToString("HH:mm"),
+                    AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
                 .ToListAsync();
 
@@ -155,9 +156,9 @@
                     Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
                     Location = e.Location,
                     Sport = e.Sport,
-                    Date = e.DateTime.ToShortDateString(),
-                    Time = e.DateTime.ToShortTimeString(),
-                    AvailablePositions = e.Positions.Count(p => p.ParticipantId != null)
+                    Date = e.DateTime.ToString("MM/dd/yyyy"),
+                    Time = e.DateTime.ToString("HH:mm"),
+                    AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
                 .ToListAsync();
 

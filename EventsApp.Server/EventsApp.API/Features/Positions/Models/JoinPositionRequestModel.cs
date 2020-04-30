@@ -9,8 +9,5 @@
 
         [Required]
         public int PositionId { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
     }
 }
