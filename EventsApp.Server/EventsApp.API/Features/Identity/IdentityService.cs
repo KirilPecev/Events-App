@@ -1,10 +1,12 @@
 ﻿namespace EventsApp.API.Features.Identity
 {
     using Microsoft.IdentityModel.Tokens;
+    using Models;
     using System;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
+    using System.Threading.Tasks;
 
     public class IdentityService : IIdentityService
     {
@@ -29,6 +31,31 @@
             string encryptedToken = tokenHandler.WriteToken(token);
 
             return encryptedToken;
+        }
+
+        public Task<UserListingServiceModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserListingServiceModel> MineFriends(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddFriend(string userId, string friendId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemoveFriend(string userId, string friendId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<UserDetailsServiceModel> Details(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
