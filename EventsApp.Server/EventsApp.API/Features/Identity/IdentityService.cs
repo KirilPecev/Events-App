@@ -3,6 +3,7 @@
     using Microsoft.IdentityModel.Tokens;
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
@@ -33,12 +34,12 @@
             return encryptedToken;
         }
 
-        public Task<UserListingServiceModel> GetAll()
+        public Task<IEnumerable<UserListingServiceModel>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<UserListingServiceModel> MineFriends(string userId)
+        public Task<IEnumerable<UserListingServiceModel>> MineFriends(string userId)
         {
             throw new NotImplementedException();
         }

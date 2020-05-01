@@ -1,10 +1,13 @@
 ﻿namespace EventsApp.API.Features.Identity
 {
     using Data.Models;
+    using Infrastructure.Extensions;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using Models;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public class IdentityController : ApiController
@@ -64,6 +67,62 @@
             {
                 Token = token
             };
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route(nameof(GetAll))]
+        public async Task<IEnumerable<UserListingServiceModel>> GetAll()
+         => await this.identityService.GetAll();
+
+        [Authorize]
+        [HttpGet]
+        [Route(nameof(MyFriends))]
+        public async Task<IEnumerable<UserListingServiceModel>> MyFriends()
+        {
+            string userId = this.User.GetId();
+
+            return await this.identityService.MineFriends(userId);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route(nameof(Details))]
+        public async Task<UserDetailsServiceModel> Details(string userId)
+            => await this.identityService.Details(userId);
+
+        [Authorize]
+        [HttpPut]
+        [Route(nameof(AddFriend))]
+        public async Task<ActionResult> AddFriend(string friendId)
+        {
+            string userId = this.User.GetId();
+
+            bool added = await this.identityService.AddFriend(userId, friendId);
+
+            if (!added)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route(nameof(RemoveFriend))]
+        public async Task<ActionResult> RemoveFriend(string friendId)
+        {
+            string userId = this.User.GetId();
+
+            bool removed = await this.identityService.RemoveFriend(userId, friendId);
+
+            if (!removed)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
     }
 }
