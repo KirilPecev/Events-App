@@ -71,9 +71,9 @@
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(GetAll))]
-        public async Task<IEnumerable<UserListingServiceModel>> GetAll()
-         => await this.identityService.GetAll();
+        [Route(nameof(GetByName))]
+        public async Task<IEnumerable<UserListingServiceModel>> GetByName(string name)
+         => await this.identityService.GetByName(name);
 
         [Authorize]
         [HttpGet]
@@ -82,7 +82,18 @@
         {
             string userId = this.User.GetId();
 
-            return await this.identityService.MineFriends(userId);
+            return await this.identityService.AcceptedFriends(userId);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route(nameof(PendingFriends))]
+        public async Task<IEnumerable<UserListingServiceModel>> PendingFriends()
+        {
+            string userId = this.User.GetId();
+
+            return await this.identityService.PendingFriends(userId);
         }
 
         [Authorize]
@@ -118,6 +129,40 @@
             bool removed = await this.identityService.RemoveFriend(userId, friendId);
 
             if (!removed)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route(nameof(AcceptFriendship))]
+        public async Task<ActionResult> AcceptFriendship(string friendId)
+        {
+            string userId = this.User.GetId();
+
+            bool accepted = await this.identityService.AcceptFriendship(userId, friendId);
+
+            if (!accepted)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route(nameof(UpdateUserInformation))]
+        public async Task<ActionResult> UpdateUserInformation(UpdateUserRequestModel model)
+        {
+            string userId = this.User.GetId();
+
+            bool updated = await this.identityService.UpdateUserInformation(model.Mobile, model.FacebookUrl, model.FavoriteSport, userId);
+
+            if (!updated)
             {
                 return BadRequest();
             }

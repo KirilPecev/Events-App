@@ -2,6 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
     using Models;
 
     public class FriendEntityTypeConfiguration : IEntityTypeConfiguration<Friend>
@@ -21,6 +22,12 @@
                 .HasOne(x => x.UserFriend)
                 .WithMany(x => x.Friends)
                 .HasForeignKey(x => x.FriendId);
+
+            var converter = new EnumToNumberConverter<FriendStatus, int>();
+
+            builder
+                .Property(p => p.Status)
+                .HasConversion(converter);
         }
     }
 }

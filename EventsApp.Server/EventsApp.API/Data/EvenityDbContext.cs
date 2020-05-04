@@ -28,6 +28,7 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new UserEntityTypeConfiguration());
             builder.ApplyConfiguration(new FriendEntityTypeConfiguration());
             builder.ApplyConfiguration(new PublicationEntityTypeConfiguration());
             builder.ApplyConfiguration(new LikeEntityTypeConfiguration());

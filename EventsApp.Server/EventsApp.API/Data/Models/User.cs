@@ -35,7 +35,7 @@
 
         public DateTime Birthday { get; set; }
 
-        public int Gender { get; set; }
+        public Gender Gender { get; set; }
 
         public string FavoriteSport { get; set; }
 

@@ -8,14 +8,20 @@
     {
         string GenerateJwtToken(string userId, string userEmail, string secret);
 
-        Task<IEnumerable<UserListingServiceModel>> GetAll();
+        Task<IEnumerable<UserListingServiceModel>> GetByName(string name);
 
-        Task<IEnumerable<UserListingServiceModel>> MineFriends(string userId);
+        Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId);
 
+        Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId);
+        
         Task<bool> AddFriend(string userId, string friendId);
 
         Task<bool> RemoveFriend(string userId, string friendId);
 
         Task<UserDetailsServiceModel> Details(string userId);
+
+        Task<bool> AcceptFriendship(string userId, string friendId);
+
+        Task<bool> UpdateUserInformation(string mobile, string facebookUrl, string favoriteSport, string userId);
     }
 }

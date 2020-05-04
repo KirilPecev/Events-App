@@ -13,6 +13,6 @@
         public User UserFriend { get; set; }
 
         [Required]
-        public int Status { get; set; }
+        public FriendStatus Status { get; set; }
     }
 }

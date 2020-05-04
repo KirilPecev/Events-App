@@ -116,9 +116,9 @@
             //Get all friends publications
             var friendPublications = await this.data
                 .Friends
-                .Where(f=>f.UserId == userId && f.Status == 2)
-                .SelectMany(f=>f.UserFriend.Publications)
-                .Select(p=>new PublicationListingServiceModel()
+                .Where(f => f.UserId == userId && f.Status == FriendStatus.Accepted)
+                .SelectMany(f => f.UserFriend.Publications)
+                .Select(p => new PublicationListingServiceModel()
                 {
                     Id = p.Id,
                     Type = p.Type.ToString().ToLower(),
@@ -135,7 +135,7 @@
             //Get all shared publications from friends
             var friendSharedPublications = await this.data
                 .Friends
-                .Where(f => f.UserId == userId && f.Status == 2)
+                .Where(f => f.UserId == userId && f.Status == FriendStatus.Accepted)
                 .SelectMany(f => f.UserFriend.Shares)
                 .Select(s => new PublicationListingServiceModel()
                 {
