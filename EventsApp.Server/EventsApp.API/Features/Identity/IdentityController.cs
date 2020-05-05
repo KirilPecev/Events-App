@@ -120,7 +120,7 @@
         }
 
         [Authorize]
-        [HttpPut]
+        [HttpDelete]
         [Route(nameof(RemoveFriend))]
         public async Task<ActionResult> RemoveFriend(string friendId)
         {

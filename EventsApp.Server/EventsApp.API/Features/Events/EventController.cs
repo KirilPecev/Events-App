@@ -67,7 +67,7 @@
             return Ok();
         }
 
-        [HttpPut]
+        [HttpDelete]
         [Route(nameof(Delete))]
         public async Task<ActionResult> Delete(int id)
         {
