@@ -4,6 +4,7 @@
     using Data.Models;
     using Features.Events;
     using Features.Identity;
+    using Features.Pictures;
     using Features.Positions;
     using Features.Publications;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -78,7 +79,8 @@
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddTransient<IPublicationService, PublicationService>()
                 .AddTransient<IPositionService, PositionService>()
-                .AddTransient<IEventService, EventService>();
+                .AddTransient<IEventService, EventService>()
+                .AddTransient<IPictureService, PictureService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services
