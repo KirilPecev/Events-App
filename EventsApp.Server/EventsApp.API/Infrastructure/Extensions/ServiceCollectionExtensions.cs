@@ -4,6 +4,7 @@
     using Data.Models;
     using Features.Events;
     using Features.Identity;
+    using Features.Notifications;
     using Features.Pictures;
     using Features.Positions;
     using Features.Publications;
@@ -80,7 +81,8 @@
                 .AddTransient<IPublicationService, PublicationService>()
                 .AddTransient<IPositionService, PositionService>()
                 .AddTransient<IEventService, EventService>()
-                .AddTransient<IPictureService, PictureService>();
+                .AddTransient<IPictureService, PictureService>()
+                .AddTransient<INotificationService, NotificationService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services
