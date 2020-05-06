@@ -7,6 +7,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using static Infrastructure.WebConstants;
+
     [Authorize]
     public class EventController : ApiController
     {
@@ -68,7 +70,7 @@
         }
 
         [HttpDelete]
-        [Route(nameof(Delete))]
+        [Route(Id)]
         public async Task<ActionResult> Delete(int id)
         {
             string userId = this.User.GetId();
