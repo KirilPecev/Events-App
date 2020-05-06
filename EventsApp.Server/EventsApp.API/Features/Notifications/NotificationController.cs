@@ -29,14 +29,14 @@
         }
 
         [HttpPost]
-        [Route(nameof(Add))]
-        public async Task<ActionResult> Add(CreateNotificationRequestModel model)
+        [Route(nameof(Create))]
+        public async Task<ActionResult> Create(CreateNotificationRequestModel model)
         {
             string userId = this.User.GetId();
 
             int id = await this.notificationService.Create(model.Description, model.ImageUrl, userId);
 
-            return Created(nameof(Add), id);
+            return Created(nameof(Create), id);
         }
 
         [HttpDelete]
