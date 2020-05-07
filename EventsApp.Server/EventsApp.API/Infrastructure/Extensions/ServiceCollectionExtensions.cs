@@ -5,7 +5,6 @@
     using Features.Events;
     using Features.Identity;
     using Features.Notifications;
-    using Features.Pictures;
     using Features.Positions;
     using Features.Publications;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
