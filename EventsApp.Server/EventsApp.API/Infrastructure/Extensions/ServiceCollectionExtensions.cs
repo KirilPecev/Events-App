@@ -81,7 +81,6 @@
                 .AddTransient<IPublicationService, PublicationService>()
                 .AddTransient<IPositionService, PositionService>()
                 .AddTransient<IEventService, EventService>()
-                .AddTransient<IPictureService, PictureService>()
                 .AddTransient<INotificationService, NotificationService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
