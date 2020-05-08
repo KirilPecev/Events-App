@@ -9,13 +9,19 @@ import { UserService } from '../services/user.service';
 export class TokenInterceptorService implements  HttpInterceptor{
 
   constructor(public userService: UserService) {}
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.userService.getToken()}`
-      }
-    });
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const headersConfig = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+
+    const token = this.userService.getToken();
+
+    if (token) {
+      headersConfig['Authorization'] = `Bearer ${token}`;
+    }
+
+    const request = req.clone({ setHeaders: headersConfig });
     return next.handle(request);
   }
 
