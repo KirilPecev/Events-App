@@ -1,56 +1,36 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { catchError } from "rxjs/operators";
-import { Observable, of } from "rxjs";
-import { User } from "../models/user-model";
-import { handleError } from "./error-handler";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  isLoggedIn: boolean = false;
+  private loginPath = environment.apiUrl + "identity/login";
+  private registerPath = environment.apiUrl + "identity/register";
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<User> {
-    const url = "";
-    return this.http
-      .post<User>(url, { email, password })
-      .pipe(catchError(handleError<User>("login")));
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(this.loginPath, { email, password });
   }
 
-  register(data): Observable<User> {
-    const url = "";
-    return this.http
-      .post<User>(url, { data })
-      .pipe(catchError(handleError<User>("register")));
+  register(data): Observable<any> {
+    return this.http.post(this.registerPath, data);
   }
 
-  logout(): Observable<any> {
-    const url = "";
-    return this.http.get<any>(url).pipe(catchError(handleError<any>("logout")));
+  saveToken(token) {
+    localStorage.setItem("token", token);
   }
 
-  addFriend(id: string) {
-    const url = "";
-    let httpParams = new HttpParams().set("id", id);
-    let options = { params: httpParams };
-    return this.http
-      .get<any>(url, options)
-      .pipe(catchError(handleError<any>("addFriend")));
+  getToken() {
+    return localStorage.getItem("token");
   }
 
-  deleteFriend(id: string) {
-    const url = "";
-    let httpParams = new HttpParams().set("id", id);
-    let options = { params: httpParams };
-    return this.http
-      .delete<any>(url, options)
-      .pipe(catchError(handleError<any>("addFriend")));
+  isLoggedIn() {
+    return this.getToken() ? true : false;
   }
 
-  getUserId(): string {
-    return "1";
-  }
+  getUserId() {}
 }

@@ -43,8 +43,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.userService.logout().subscribe(() => this.router.navigate([""]));
-  }
+  //   this.userService.logout().subscribe(() => this.router.navigate([""]));
+   }
 
   private getDialogConfig() {
     const dialogConfig = new MatDialogConfig();

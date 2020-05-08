@@ -10,5 +10,5 @@ export class AppComponent {
 
   constructor(private userService: UserService) { }
 
-  isLoggedIn = this.userService.isLoggedIn;
+  isLoggedIn = this.userService.isLoggedIn();
 }

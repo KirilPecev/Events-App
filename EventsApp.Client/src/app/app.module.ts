@@ -10,6 +10,9 @@ import { SharedModule } from "./shared/shared.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { HomeModule } from "./home/home.module";
 import { CoreModule } from '@angular/flex-layout';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './core/interceptors/token-interceptor.service';
+import { ErrorInterceptorService } from './core/interceptors/error-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -22,7 +25,18 @@ import { CoreModule } from '@angular/flex-layout';
     DashboardModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
