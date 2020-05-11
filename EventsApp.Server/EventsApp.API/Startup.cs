@@ -13,6 +13,8 @@ namespace EventsApp.API
 
         public IConfiguration Configuration { get; }
 
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public void ConfigureServices(IServiceCollection services)
         {
             services
@@ -21,6 +23,17 @@ namespace EventsApp.API
                 .AddJwtAuthentication(services.GetAppSettings(this.Configuration))
                 .AddApplicationServices()
                 .AddSwagger()
+                .AddCors(options =>
+                {
+                    options.AddPolicy(name: MyAllowSpecificOrigins,
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:4200",
+                                "https://localhost:44320")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                        });
+                })
                 .AddControllers();
         }
 
@@ -35,9 +48,9 @@ namespace EventsApp.API
                 .UseSwaggerUI()
                 .UseRouting()
                 .UseCors(opt => opt
+                    .AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin())
+                    .AllowAnyMethod())
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
