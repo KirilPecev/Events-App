@@ -1,6 +1,15 @@
 import { Component, OnInit, Input } from "@angular/core";
 
-import { faHome, faUserFriends, faFlag, faCalendarWeek, faSignInAlt, faUserPlus, faSignOutAlt, faBars} from "@fortawesome/free-solid-svg-icons";
+import {
+  faHome,
+  faUserFriends,
+  faFlag,
+  faCalendarWeek,
+  faSignInAlt,
+  faUserPlus,
+  faSignOutAlt,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { NotificationsComponent } from "../notifications/notifications.component";
 import { FriendsComponent } from "../friends/friends.component";
@@ -10,7 +19,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.css"]
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
   title = "Evenity";
@@ -22,13 +31,14 @@ export class HeaderComponent implements OnInit {
   faUserPlus = faUserPlus;
   faSignOutAlt = faSignOutAlt;
   faBars = faBars;
-  @Input() isLoggedIn: boolean;
 
   constructor(
     private dialog: MatDialog,
     private router: Router,
     private userService: UserService
   ) {}
+
+  isLoggedIn = () => this.userService.isLoggedIn();
 
   ngOnInit(): void {}
 
@@ -43,8 +53,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-  //   this.userService.logout().subscribe(() => this.router.navigate([""]));
-   }
+    this.userService.logout();
+    this.router.navigate([""]);
+  }
 
   private getDialogConfig() {
     const dialogConfig = new MatDialogConfig();

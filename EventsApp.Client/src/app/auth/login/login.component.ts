@@ -22,14 +22,20 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {}
+  serverError: boolean = false;
 
   login(data) {
-    this.userService
-      .login(data.value.email, data.value.password)
-      .subscribe((data) => {
+    this.userService.login(data.value.email, data.value.password).subscribe(
+      (data) => {
         this.userService.saveToken(data["token"]);
         this.router.navigate(["feed"]);
         data.reset();
-      });
+      },
+      (error) => {
+        if (error.status === 401) {
+          this.serverError = true;
+        }
+      }
+    );
   }
 }

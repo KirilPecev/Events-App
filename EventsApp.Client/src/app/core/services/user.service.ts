@@ -20,6 +20,10 @@ export class UserService {
     return this.http.post(this.registerPath, data);
   }
 
+  logout() {
+    localStorage.removeItem("token");
+  }
+
   saveToken(token) {
     localStorage.setItem("token", token);
   }
