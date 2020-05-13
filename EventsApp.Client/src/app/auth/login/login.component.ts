@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       (data) => {
         this.userService.saveToken(data["token"]);
         this.router.navigate(["feed"]);
-        data.reset();
       },
       (error) => {
         if (error.status === 401) {

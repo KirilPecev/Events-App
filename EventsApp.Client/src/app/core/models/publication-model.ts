@@ -1,6 +1,11 @@
-export interface Publication{
-    title:string;
-    content: string;
-    likes: number;
-    shares: number;
+export interface Publication {
+  id: number;
+  type: string;
+  description: string;
+  imageUrl: string;
+  likes: Int16Array;
+  shares: Int16Array;
+  userImgUrl: string;
+  creator: string;
+  isLiked: boolean;
 }

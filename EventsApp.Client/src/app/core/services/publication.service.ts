@@ -1,42 +1,58 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { handleError } from './error-handler';
-import { Publication } from '../models/publication-model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { Publication } from "../models/publication-model";
 
-Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class PublicationService {
-    constructor(private http: HttpClient) { }
+  private publicationPath = environment.apiUrl + "publication";
 
-    create(data) {
-        const url = "";
-        this.http.post<Publication>(url, data)
-            .pipe(
-                catchError(handleError<Publication>("create"))
-            );
-    }
+  constructor(private http: HttpClient) {}
 
-    edit(data) {
-        const url = "";
-        this.http.put<Publication>(url, data)
-            .pipe(
-                catchError(handleError<Publication>("edit"))
-            );
-    }
+  create(data): Observable<Publication> {
+    return this.http.post<Publication>(this.publicationPath + "/create", data);
+  }
 
-    delete(id: number) {
-        const url = "";
-        this.http.delete<Publication>(url)
-            .pipe(
-                catchError(handleError<Publication>("delete"))
-            );
-    }
+  edit(data): Observable<Publication> {
+    return this.http.put<Publication>(this.publicationPath + "/update", data);
+  }
 
-    all() {
-        const url = "";
-        this.http.get<Publication[]>(url)
-            .pipe(
-                catchError(handleError<Publication>("all"))
-            );
-    }
+  delete(id: number) {
+    return this.http.delete(this.publicationPath + "/" + id);
+  }
+
+  getPublications(): Observable<Array<Publication>> {
+    return this.http.get<Array<Publication>>(this.publicationPath + "/getall");
+  }
+
+  getMinePublications(): Observable<Array<Publication>> {
+    return this.http.get<Array<Publication>>(this.publicationPath + "/mine");
+  }
+
+  like(id) {
+    return this.http.put<Publication>(this.publicationPath + "/like", {
+      params: {
+        id: id,
+      },
+    });
+  }
+
+  unlike(id) {
+    return this.http.put<Publication>(this.publicationPath + "/unlike", {
+      params: {
+        id: id,
+      },
+    });
+  }
+
+  share(id) {
+    return this.http.put<Publication>(this.publicationPath + "/share", {
+      params: {
+        id: id,
+      },
+    });
+  }
 }
