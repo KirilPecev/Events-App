@@ -33,26 +33,14 @@ export class PublicationService {
   }
 
   like(id) {
-    return this.http.put<Publication>(this.publicationPath + "/like", {
-      params: {
-        id: id,
-      },
-    });
+    return this.http.put<Publication>(this.publicationPath + "/like", id);
   }
 
   unlike(id) {
-    return this.http.put<Publication>(this.publicationPath + "/unlike", {
-      params: {
-        id: id,
-      },
-    });
+    return this.http.put<Publication>(this.publicationPath + "/unlike", id);
   }
 
   share(id) {
-    return this.http.put<Publication>(this.publicationPath + "/share", {
-      params: {
-        id: id,
-      },
-    });
+    return this.http.put<Publication>(this.publicationPath + "/share", id);
   }
 }

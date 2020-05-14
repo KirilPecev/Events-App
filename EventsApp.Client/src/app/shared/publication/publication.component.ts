@@ -14,8 +14,17 @@ export class PublicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.publications$ = this.publicationService.getPublications();
-    this.publications$.subscribe(s=>{
-      console.log(s);
-    })
+  }
+
+  like(id) {
+    this.publicationService.like(id).subscribe((data) => {});
+  }
+
+  unlike(id) {
+    this.publicationService.unlike(id).subscribe((data) => {});
+  }
+
+  share(id) {
+    this.publicationService.share(id).subscribe((data) => {});
   }
 }

@@ -18,8 +18,9 @@
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
+            <button *ngIf="!publication.isLiked" mat-button (click)="like(publication.id)">LIKE</button>
+            <button *ngIf="publication.isLiked" mat-button (click)="like(publication.id)">UNLIKE</button>
+            <button mat-button (click)="share(publication.id)">SHARE</button>
         </mat-card-actions>
     </mat-card>
 </div>

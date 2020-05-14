@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PublicationService } from "src/app/core/services/publication.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-share-publication",
@@ -10,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class SharePublicationComponent implements OnInit {
   publicationForm: FormGroup;
 
-  constructor(fb: FormBuilder, private publicationService: PublicationService) {
+  constructor(fb: FormBuilder, private publicationService: PublicationService, private router: Router) {
     this.publicationForm = fb.group({
       description: [""],
     });
@@ -24,6 +25,7 @@ export class SharePublicationComponent implements OnInit {
     };
     this.publicationService.create(data).subscribe((data) => {
       this.publicationForm.reset();
+      this.router.navigate(["dashboard"]);
     });
   }
 }
