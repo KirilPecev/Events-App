@@ -21,6 +21,11 @@
         {
             PublicationTypes type = string.IsNullOrEmpty(imageUrl) ? PublicationTypes.Post : PublicationTypes.Image;
 
+            if (string.IsNullOrEmpty(imageUrl) || string.IsNullOrEmpty(description))
+            {
+                return -1;
+            }
+
             Publication publication = new Publication()
             {
                 Type = type,
@@ -108,7 +113,7 @@
                 .ToListAsync();
 
             //Return all concatenated
-            return publications.Concat(sharedPublications);
+            return publications.Concat(sharedPublications).OrderByDescending(r => r.Id);
         }
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
@@ -155,7 +160,7 @@
             var mine = await this.GetByUser(userId);
 
             //Return all concatenated
-            return friendPublications.Concat(friendSharedPublications).Concat(mine);
+            return friendPublications.Concat(friendSharedPublications).Concat(mine).OrderByDescending(r => r.Id);
         }
 
         public async Task<bool> Like(int id, string userId)
