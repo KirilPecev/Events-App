@@ -48,6 +48,11 @@
                 model.Description,
                 userId);
 
+            if (id == -1)
+            {
+                return BadRequest();
+            }
+
             return Created(nameof(this.Create), id);
         }
 
@@ -88,7 +93,7 @@
 
         [HttpPut]
         [Route(nameof(Like))]
-        public async Task<ActionResult> Like(int id)
+        public async Task<ActionResult> Like([FromBody] int id)
         {
             string userId = this.User.GetId();
 
@@ -104,7 +109,7 @@
 
         [HttpPut]
         [Route(nameof(Unlike))]
-        public async Task<ActionResult> Unlike(int id)
+        public async Task<ActionResult> Unlike([FromBody] int id)
         {
             string userId = this.User.GetId();
 
@@ -120,7 +125,7 @@
 
         [HttpPut]
         [Route(nameof(Share))]
-        public async Task<ActionResult> Share(int id)
+        public async Task<ActionResult> Share([FromBody] int id)
         {
             string userId = this.User.GetId();
 
