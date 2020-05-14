@@ -21,7 +21,7 @@
         {
             PublicationTypes type = string.IsNullOrEmpty(imageUrl) ? PublicationTypes.Post : PublicationTypes.Image;
 
-            if (string.IsNullOrEmpty(imageUrl) || string.IsNullOrEmpty(description))
+            if (string.IsNullOrEmpty(imageUrl) && string.IsNullOrEmpty(description))
             {
                 return -1;
             }
