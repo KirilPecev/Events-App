@@ -1,49 +1,35 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { handleError } from './error-handler';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { Observable } from "rxjs";
 
-Injectable()
+Injectable();
 export class EventService {
-    constructor(private http: HttpClient) { }
+  private eventPath = environment.apiUrl + "event";
 
-    create(data) {
-        const url = "";
-        this.http.post<Event>(url, data)
-            .pipe(
-                catchError(handleError<Event>("create"))
-            );
-    }
+  constructor(private http: HttpClient) {}
 
-    edit(data) {
-        const url = "";
-        this.http.put<Event>(url, data)
-            .pipe(
-                catchError(handleError<Event>("edit"))
-            );
-    }
+  create(data): Observable<Event> {
+    return this.http.post<Event>(this.eventPath + "/create", data);
+  }
+  
+  edit(data): Observable<Event> {
+    return this.http.put<Event>(this.eventPath + "/update", data);
+  }
 
-    delete(id: number) {
-        const url = "";
-        this.http.delete<Event>(url)
-            .pipe(
-                catchError(handleError<Event>("delete"))
-            );
-    }
+  delete(id: number) {
+    return this.http.delete(this.eventPath + "/" + id);
+  }
 
-    details(id: number) {
-        const url = "";
-        this.http.get<Event>(url)
-            .pipe(
-                catchError(handleError<Event>("details"))
-            );
-    }
+  getEvents(): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(this.eventPath + "/getall");
+  }
 
-    all(){
-        const url = "";
-        this.http.get<Event[]>(url)
-            .pipe(
-                catchError(handleError<Event>("all"))
-            );
-    }
+  getMineEvents(): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(this.eventPath + "/mine");
+  }
+
+  getDetails(id): Observable<Event> {
+    return this.http.get<Event>(this.eventPath + "/details/" + id);
+  }
 }
