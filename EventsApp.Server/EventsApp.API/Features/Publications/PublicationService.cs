@@ -191,7 +191,7 @@
                 return false;
             }
 
-            Like like = await this.data.Likes.FirstOrDefaultAsync(l => l.LikerId == userId);
+            Like like = await this.data.Likes.FirstOrDefaultAsync(l => l.LikerId == userId && l.PublicationId == id);
 
             publication.Likes.Remove(like);
 
