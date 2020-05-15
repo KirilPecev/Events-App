@@ -18,16 +18,17 @@
         public async Task<int> Create(int eventId, string[] positions)
         {
             List<Position> newPositions = new List<Position>();
+            int counter = 1;
             foreach (var position in positions)
             {
                 newPositions.Add(new Position()
                 {
                     EventId = eventId,
-                    Name = position
+                    Name = string.IsNullOrEmpty(position) ? counter++.ToString() : position
                 });
             }
 
-            this.data.Positions.AddRange(newPositions);
+            await this.data.Positions.AddRangeAsync(newPositions);
 
             var result = await this.data.SaveChangesAsync();
 
