@@ -27,7 +27,7 @@ const eventsRoutes: Routes = [
     ],
   },
   {
-    path: "details",
+    path: "details/:id",
     component: EventDetailsComponent,
     canActivate: [AuthGuard],
   },
