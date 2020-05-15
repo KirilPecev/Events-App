@@ -145,6 +145,7 @@
                     Time = e.DateTime.ToTimeFormat(),
                     AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
+                .OrderByDescending(x => x.Id)
                 .ToListAsync();
 
         public async Task<IEnumerable<EventListingServiceModel>> GetAll()
@@ -161,6 +162,7 @@
                     Time = e.DateTime.ToTimeFormat(),
                     AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
+                .OrderByDescending(x=>x.Id)
                 .ToListAsync();
 
         private async Task<Event> GetByIdAndUserId(int id, string userId)
