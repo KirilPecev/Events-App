@@ -15,6 +15,7 @@ import { TokenInterceptorService } from "./core/interceptors/token-interceptor.s
 import { ErrorInterceptorService } from "./core/interceptors/error-interceptor.service";
 import { UserService } from "./core/services/user.service";
 import { PublicationService } from "./core/services/publication.service";
+import { EventService } from './core/services/event.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -30,6 +31,7 @@ import { PublicationService } from "./core/services/publication.service";
   providers: [
     UserService,
     PublicationService,
+    EventService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

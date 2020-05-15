@@ -22,7 +22,7 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Sport:</mat-label>
+                <mat-label>Topic:</mat-label>
                 <input type="text" matInput formControlName="sport" placeholder="Football">
                 <mat-error *ngIf="eventForm.get('sport').errors?.required && eventForm.get('sport').touched">
                     Sport is <strong>required</strong>

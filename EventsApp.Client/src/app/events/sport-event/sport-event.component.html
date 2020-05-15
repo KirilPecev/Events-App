@@ -39,24 +39,13 @@
                     Please check your date and time!
                 </mat-error>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Available positions:</mat-label>
-                <input type="number" matInput formControlName="availablePositions" placeholder="10"
-                    [(ngModel)]="positions">
-                <mat-error
-                    *ngIf="eventForm.get('availablePositions').errors?.required && eventForm.get('availablePositions').touched">
-                    Positions are <strong>required</strong>!
-                </mat-error>
-                <mat-error
-                    *ngIf="eventForm.get('availablePositions').errors?.minlength && eventForm.get('availablePositions').touched">
-                    Positions must be at least <strong>1</strong>!
-                </mat-error>
-            </mat-form-field>
-            <div fxFlex fxLayout="row wrap" fxLayoutGap="1em">
-                <mat-form-field *ngFor="let a of [].constructor(positions); let i = index">
+            <button class="btn" type="button" mat-flat-button color="primary" (click)="addPosition()">Add position</button>
+            <div fxFlex fxLayout="row wrap" fxLayoutGap="1em" formArrayName="positions">
+                <mat-form-field *ngFor="let position of positionForms.controls; let i = index" [formGroupName]="i">
                     <mat-label>Position-{{i+1}}:</mat-label>
                     <input type="text" matInput formControlName="position" placeholder="Goalkeeper">
-                    <mat-error *ngIf="eventForm.get('position').errors?.required && eventForm.get('position').touched">
+                    <mat-error
+                        *ngIf="position.errors?.required && position.touched">
                         Position name is <strong>required</strong>!
                     </mat-error>
                 </mat-form-field>

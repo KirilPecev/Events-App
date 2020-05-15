@@ -1,8 +1,10 @@
 export interface Event {
-    name: string;
-    location: string;
-    sport: string;
-    dateTime: Date;
-    availablePositions: number;
-    positions: [];
+  id: number;
+  name: string;
+  location: string;
+  sport: string;
+  availablePositions: number;
+  creator: string;
+  date: string;
+  time: string;
 }

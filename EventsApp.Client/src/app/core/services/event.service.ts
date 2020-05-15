@@ -2,8 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
+import { Event } from "../models/event-model";
 
-Injectable();
+@Injectable({
+  providedIn: "root",
+})
 export class EventService {
   private eventPath = environment.apiUrl + "event";
 
@@ -12,7 +15,7 @@ export class EventService {
   create(data): Observable<Event> {
     return this.http.post<Event>(this.eventPath + "/create", data);
   }
-  
+
   edit(data): Observable<Event> {
     return this.http.put<Event>(this.eventPath + "/update", data);
   }
