@@ -1,6 +1,6 @@
-﻿namespace EventsApp.API.Features.Events.Models
+﻿namespace EventsApp.API.Features.Positions.Models
 {
-    public class EventPositionServiceModel
+    public class PositionListingServiceModel
     {
         public int Id { get; set; }
 
@@ -9,5 +9,7 @@
         public string Participant { get; set; }
 
         public bool CanQuit { get; set; }
+
+        public bool CanJoin { get; set; }
     }
 }

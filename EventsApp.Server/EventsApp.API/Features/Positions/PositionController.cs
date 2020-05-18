@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Features.Positions
 {
+    using System.Collections.Generic;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -47,5 +48,15 @@
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route(nameof(GetAvailablePositions))]
+        public async Task<IEnumerable<PositionListingServiceModel>> GetAvailablePositions(int eventId)
+            => await this.positionService.GetAvailablePositions(eventId);
+
+        [HttpGet]
+        [Route(nameof(GetBusyPositions))]
+        public async Task<IEnumerable<PositionListingServiceModel>> GetBusyPositions(int eventId)
+            => await this.positionService.GetBusyPositions(eventId);
     }
 }

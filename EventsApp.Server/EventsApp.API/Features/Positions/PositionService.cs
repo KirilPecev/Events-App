@@ -4,7 +4,9 @@
     using Data.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+    using Models;
 
     public class PositionService : IPositionService
     {
@@ -70,6 +72,38 @@
 
             return true;
         }
+
+        public async Task<IEnumerable<PositionListingServiceModel>> GetAvailablePositions(int eventId, string userId)
+        {
+            bool isUserJoined =
+                await this.data
+                    .Positions
+                    .AnyAsync(p => p.EventId == eventId && p.ParticipantId == userId);
+
+            return await this.data
+                   .Positions
+                   .Where(p => p.EventId == eventId && p.Participant == null)
+                   .Select(p => new PositionListingServiceModel()
+                   {
+                       Id = p.Id,
+                       Name = p.Name,
+                       CanJoin = !isUserJoined
+                   })
+                   .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PositionListingServiceModel>> GetBusyPositions(int eventId, string userId)
+            => await this.data
+            .Positions
+            .Where(p => p.EventId == eventId && p.Participant != null)
+            .Select(p => new PositionListingServiceModel()
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Participant = $"{p.Participant.FirstName} {p.Participant.LastName}",
+                CanQuit = p.ParticipantId == userId
+            })
+            .ToListAsync();
 
         private async Task<Position> GetByIdAndEventId(int eventId, int positionId)
             => await this.data

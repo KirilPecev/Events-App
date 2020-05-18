@@ -33,7 +33,7 @@
                 CreatorId = userId,
             };
 
-            this.data.Events.Add(newEvent);
+            await this.data.Events.AddAsync(newEvent);
 
             await this.data.SaveChangesAsync();
 
@@ -140,7 +140,7 @@
                     Time = e.DateTime.ToTimeFormat(),
                     AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
                 })
-                .OrderByDescending(x=>x.Id)
+                .OrderByDescending(x => x.Id)
                 .ToListAsync();
 
         private async Task<Event> GetByIdAndUserId(int id, string userId)
