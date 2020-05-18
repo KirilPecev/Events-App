@@ -34,7 +34,7 @@
         }
 
         [HttpGet]
-        [Route(nameof(Details))]
+        [Route(Id)]
         public async Task<EventDetailsServiceModel> Details(int id)
         {
             string userId = this.User.GetId();

@@ -21,9 +21,5 @@
         public string Creator { get; set; }
 
         public bool isAdmin { get; set; }
-
-        public ICollection<EventPositionServiceModel> AvailablePositionsList { get; set; }
-
-        public ICollection<EventPositionServiceModel> BusyPositionsList { get; set; }
     }
 }

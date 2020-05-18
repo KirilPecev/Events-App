@@ -84,31 +84,11 @@
 
         public async Task<EventDetailsServiceModel> GetDetails(int id, string userId)
         {
-            var availablePositions = await this.data
+            int availablePositions = await this.data
                 .Events
                 .Where(e => e.Id == id)
                 .SelectMany(e => e.Positions)
-                .Where(e => e.ParticipantId == null)
-                .Select(e => new EventPositionServiceModel()
-                {
-                    Id = e.Id,
-                    Name = e.Name
-                })
-                .ToListAsync();
-
-            var busyPositions = await this.data
-                .Events
-                .Where(e => e.Id == id)
-                .SelectMany(e => e.Positions)
-                .Where(e => e.ParticipantId != null)
-                .Select(e => new EventPositionServiceModel()
-                {
-                    Id = e.Id,
-                    Name = e.Name,
-                    CanQuit = e.ParticipantId == userId,
-                    Participant = $"{e.Participant.FirstName} {e.Participant.LastName}"
-                })
-                .ToListAsync();
+                .CountAsync(e => e.ParticipantId == null);
 
             return await this.data
                  .Events
@@ -123,9 +103,7 @@
                      Sport = e.Sport,
                      Date = e.DateTime.ToDateFormat(),
                      Time = e.DateTime.ToTimeFormat(),
-                     AvailablePositions = e.Positions.Count(p => p.ParticipantId != null),
-                     AvailablePositionsList = availablePositions,
-                     BusyPositionsList = busyPositions
+                     AvailablePositions = availablePositions
                  })
                  .FirstOrDefaultAsync();
         }
