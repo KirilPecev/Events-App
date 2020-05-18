@@ -1,7 +1,5 @@
 ﻿namespace EventsApp.API.Features.Events.Models
 {
-    using System.Collections.Generic;
-
     public class EventDetailsServiceModel
     {
         public int Id { get; set; }
@@ -20,6 +18,6 @@
 
         public string Creator { get; set; }
 
-        public bool isAdmin { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

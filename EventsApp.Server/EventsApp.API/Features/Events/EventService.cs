@@ -98,7 +98,7 @@
                      Id = e.Id,
                      Name = e.Name,
                      Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
-                     isAdmin = e.CreatorId == userId,
+                     IsAdmin = e.CreatorId == userId,
                      Location = e.Location,
                      Sport = e.Sport,
                      Date = e.DateTime.ToDateFormat(),
