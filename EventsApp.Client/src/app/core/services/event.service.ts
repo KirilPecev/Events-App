@@ -33,6 +33,6 @@ export class EventService {
   }
 
   getDetails(id): Observable<Event> {
-    return this.http.get<Event>(this.eventPath + "/details/" + id);
+    return this.http.get<Event>(this.eventPath + "/" + id);
   }
 }

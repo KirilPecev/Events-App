@@ -1,32 +1,32 @@
-<div class="site-wrapper">
+<div class="site-wrapper" *ngIf="(event$|async) as e">
     <mat-card fxFlex.xs="90%" fxLayout="column" fxLayoutAlign="center" fxFlexFill>
         <mat-card-header fxFlexAlign="center">
             <mat-card-title>
-                <h2>Welcome to Football event</h2>
+                <h2>Welcome to {{e.name}}</h2>
             </mat-card-title>
-            <mat-card-subtitle>Creator - Kiril Pecev</mat-card-subtitle>
+            <mat-card-subtitle>Creator - {{e.creator}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <div>
                 <span>
                     <h3>Sport:</h3>
-                    Football
+                    {{e.sport}}
                 </span>
                 <span>
                     <h3>Location:</h3>
-                    Sofia - Vasil Levski stadium
+                    {{e.location}}
                 </span>
                 <span>
                     <h3>Date:</h3>
-                    15.03.2020
+                    {{e.date}}
                 </span>
                 <span>
                     <h3>Time:</h3>
-                    15:00
+                    {{e.time}}
                 </span>
                 <span>
                     <h3>Available positions:</h3>
-                    5
+                    {{e.availablePositions}}
                 </span>
             </div>
             <hr>

@@ -7,4 +7,5 @@ export interface Event {
   creator: string;
   date: string;
   time: string;
+  isAdmin: boolean;
 }
