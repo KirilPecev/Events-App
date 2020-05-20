@@ -1,10 +1,10 @@
 ﻿namespace EventsApp.API.Features.Positions
 {
-    using System.Collections.Generic;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Models;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     [Authorize]
@@ -52,11 +52,19 @@
         [HttpGet]
         [Route(nameof(GetAvailablePositions))]
         public async Task<IEnumerable<PositionListingServiceModel>> GetAvailablePositions(int eventId)
-            => await this.positionService.GetAvailablePositions(eventId);
+        {
+            string userId = this.User.GetId();
+
+            return await this.positionService.GetAvailablePositions(eventId, userId);
+        }
 
         [HttpGet]
         [Route(nameof(GetBusyPositions))]
         public async Task<IEnumerable<PositionListingServiceModel>> GetBusyPositions(int eventId)
-            => await this.positionService.GetBusyPositions(eventId);
+        {
+            string userId = this.User.GetId();
+
+            return await this.positionService.GetBusyPositions(eventId, userId);
+        }
     }
 }
