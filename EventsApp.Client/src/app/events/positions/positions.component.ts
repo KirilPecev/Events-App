@@ -12,19 +12,42 @@ export class PositionsComponent implements OnInit {
   @Input() eventId: number;
   constructor(private positionService: PositionService) {}
 
-  availablePositions$: Observable<Array<Position>>;
+  availablePositions: Array<Position>;
+  availablePositionsCount = 0;
+
   busyPositions$: Observable<Array<Position>>;
 
   ngOnInit(): void {
-    this.availablePositions$ = this.positionService.getAvailablePositions(this.eventId);
+    this.fetch(); 
+  }
+
+  fetch() {
+    this.positionService.getAvailablePositions(this.eventId).subscribe(data => {
+      this.availablePositions = data;
+      this.availablePositionsCount = data.length;
+    });
     this.busyPositions$ = this.positionService.getBusyPositions(this.eventId);
   }
 
-  join(id){
+  join(id) {
+    let data = {
+      eventId: this.eventId,
+      positionId: id,
+    };
 
+    this.positionService.join(data).subscribe((data) => {
+      this.fetch();
+    });
   }
 
-  quit(id){
-    
+  quit(id) {
+    let data = {
+      eventId: this.eventId,
+      positionId: id,
+    };
+
+    this.positionService.unjoin(data).subscribe((data) => {
+      this.fetch();
+    });
   }
 }

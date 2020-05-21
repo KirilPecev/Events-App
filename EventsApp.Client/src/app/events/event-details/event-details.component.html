@@ -26,12 +26,12 @@
                 </span>
                 <span>
                     <h3>Available positions:</h3>
-                    {{e.availablePositions}}
+                    {{positions.availablePositionsCount}}
                 </span>
             </div>
             <hr>
             <div>
-                <app-positions [eventId]="e.id"></app-positions>
+                <app-positions [eventId]="e.id" #positions></app-positions>
             </div>
         </mat-card-content>
     </mat-card>

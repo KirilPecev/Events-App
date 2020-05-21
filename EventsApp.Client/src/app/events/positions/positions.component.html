@@ -8,7 +8,7 @@
                 Join in your favourite position
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <div fxLayout="row wrap" fxLayoutGap="2em" class="container" *ngFor="let position of (availablePositions$ | async)">
+        <div fxLayout="row wrap" fxLayoutGap="2em" class="container" *ngFor="let position of availablePositions">
             <div>
                 <span>{{position.name}}</span>
                 <button mat-flat-button color="primary" *ngIf="position.canJoin" (click)="join(position.id)">Join</button>

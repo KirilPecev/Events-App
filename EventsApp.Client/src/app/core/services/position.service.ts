@@ -27,4 +27,12 @@ export class PositionService {
       { params }
     );
   }
+
+  join(data) {
+    return this.http.put(this.positionPath + "/join", data);
+  }
+
+  unjoin(data) {
+    return this.http.put(this.positionPath + "/unjoin", data);
+  }
 }
