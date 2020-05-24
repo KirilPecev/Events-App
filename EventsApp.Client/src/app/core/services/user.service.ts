@@ -1,14 +1,16 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
+import {User} from "../models/user-model"
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  private loginPath = environment.apiUrl + "identity/login";
-  private registerPath = environment.apiUrl + "identity/register";
+  private path = environment.apiUrl;
+  private loginPath = this.path + "identity/login";
+  private registerPath = this.path + "identity/register";
 
   constructor(private http: HttpClient) {}
 
@@ -36,5 +38,16 @@ export class UserService {
     return this.getToken() ? true : false;
   }
 
-  getUserId() {}
+  getUserInformation(id) {
+    const params = new HttpParams().set("Id", id);
+    return this.http.get<User>(this.path, { params });
+  }
+
+  saveUserId(id) {
+    localStorage.setItem("userId", id);
+  }
+
+  getUserId() {
+    return localStorage.getItem("userId");
+  }
 }

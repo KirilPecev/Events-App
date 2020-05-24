@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(data.value.email, data.value.password).subscribe(
       (data) => {
         this.userService.saveToken(data["token"]);
+        this.userService.saveUserId(data["userId"]);
         this.router.navigate(["feed"]);
       },
       (error) => {
