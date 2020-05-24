@@ -1,20 +1,20 @@
-<div fxLayout="column">
+<div fxLayout="column" *ngIf="(this.information$ | async) as user">
     <h1 class="title">Basic information</h1>
     <hr>
     <div fxLayout="column">
         <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
             <h2 fxFlex="40%">Birthday</h2>
-            <span>19.05.1998</span>
+            <span>{{user.birthday}}</span>
         </div>
         <hr>
         <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
             <h2 fxFlex="40%">Gender</h2>
-            <span>Male</span>
+            <span>{{user.gender}}</span>
         </div>
         <hr>
         <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
             <h2 fxFlex="40%">Favourite sport</h2>
-            <span>Fitness</span>
+            <span>{{user.favouriteSport}}</span>
         </div>
     </div>
 </div>

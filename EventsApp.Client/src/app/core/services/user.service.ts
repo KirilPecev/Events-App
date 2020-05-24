@@ -40,7 +40,12 @@ export class UserService {
 
   getUserInformation(id) {
     const params = new HttpParams().set("Id", id);
-    return this.http.get<User>(this.path, { params });
+    return this.http.get<User>(this.path + "/userinfo", { params });
+  }
+
+  getUserContacts(id) {
+    const params = new HttpParams().set("Id", id);
+    return this.http.get<User>(this.path + "/usercontacts", { params });
   }
 
   saveUserId(id) {

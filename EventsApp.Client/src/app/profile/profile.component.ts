@@ -15,5 +15,4 @@ export class ProfileComponent implements OnInit {
   }
 
   userId = this.userService.getUserId();
- 
 }
