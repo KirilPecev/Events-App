@@ -65,7 +65,8 @@
 
             return new LoginResponseModel()
             {
-                Token = token
+                Token = token,
+                UserId = user.Id
             };
         }
 
