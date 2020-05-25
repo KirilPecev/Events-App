@@ -21,6 +21,9 @@ export class UserContactsComponent implements OnInit {
 
   getInformation(){
     let userId = this.route.snapshot.pathFromRoot[2].params["userId"];
-    this.contacts$ = this.userService.getUserContacts(userId);
+    this.contacts$ = this.userService.getUserInformation(userId);
+    this.contacts$.subscribe(data=>{
+      console.log(data);
+    });
   }
 }

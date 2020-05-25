@@ -2,15 +2,15 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import {User} from "../models/user-model"
+import { User } from "../models/user-model";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  private path = environment.apiUrl;
-  private loginPath = this.path + "identity/login";
-  private registerPath = this.path + "identity/register";
+  private path = environment.apiUrl + "identity";
+  private loginPath = this.path + "/login";
+  private registerPath = this.path + "/register";
 
   constructor(private http: HttpClient) {}
 
@@ -38,14 +38,13 @@ export class UserService {
     return this.getToken() ? true : false;
   }
 
-  getUserInformation(id) {
-    const params = new HttpParams().set("Id", id);
-    return this.http.get<User>(this.path + "/userinfo", { params });
+  getUserInformation(id: string) {
+    return this.http.get<User>(this.path + "/" + id);
   }
 
-  getUserContacts(id) {
-    const params = new HttpParams().set("Id", id);
-    return this.http.get<User>(this.path + "/usercontacts", { params });
+  getCreatedEventsAmount(id: string) {
+    const params = new HttpParams().set("userId", id);
+    return this.http.get<User>(this.path + "/createdeventscount", { params });
   }
 
   saveUserId(id) {
