@@ -9,6 +9,8 @@
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    
+    using static Infrastructure.WebConstants;
 
     public class IdentityController : ApiController
     {
@@ -99,9 +101,16 @@
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(Details))]
-        public async Task<UserDetailsServiceModel> Details(string userId)
-            => await this.identityService.Details(userId);
+        [Route(Id)]
+        public async Task<UserDetailsServiceModel> Details(string id)
+            => await this.identityService.Details(id);
+
+        [Authorize]
+        [HttpGet]
+        [Route(nameof(CreatedEventsCount))]
+        public async Task<int> CreatedEventsCount(string userId)
+            => await this.identityService.GetCreatedEventsAmountByUser(userId);
+
 
         [Authorize]
         [HttpPut]

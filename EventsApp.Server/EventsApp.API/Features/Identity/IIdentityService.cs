@@ -23,5 +23,7 @@
         Task<bool> AcceptFriendship(string userId, string friendId);
 
         Task<bool> UpdateUserInformation(string mobile, string facebookUrl, string favoriteSport, string userId);
+
+        Task<int> GetCreatedEventsAmountByUser(string userId);
     }
 }

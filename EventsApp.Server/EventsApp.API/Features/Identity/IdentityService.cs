@@ -50,16 +50,19 @@
 
         public async Task<UserDetailsServiceModel> Details(string userId)
         {
-            int createdEvents = this.data.Events.Count(e => e.CreatorId == userId);
-
             return await this.userManager
                 .Users
                 .Where(u => u.Id == userId)
                 .Select(u => new UserDetailsServiceModel()
                 {
+                    Id = u.Id,
                     FullName = $"{u.FirstName} {u.LastName}",
-                    ProfilePictureUrl = u.ProfilePictureUrl,
-                    CreatedEvents = createdEvents
+                    Email = u.Email,
+                    Mobile = u.PhoneNumber,
+                    Birthday = u.Birthday.ToShortDateString(),
+                    Gender = u.Gender.ToString(),
+                    FacebookUrl = u.FacebookUrl,
+                    FavoriteSport = u.FavoriteSport
                 })
                 .FirstOrDefaultAsync();
         }
@@ -171,6 +174,9 @@
 
             return true;
         }
+
+        public async Task<int> GetCreatedEventsAmountByUser(string userId)
+            => await this.data.Events.CountAsync(e => e.CreatorId == userId);
 
         private async Task<Friend> GetFriendship(string userId, string friendId)
             => await this.data
