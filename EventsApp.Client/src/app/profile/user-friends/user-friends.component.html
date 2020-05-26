@@ -6,43 +6,15 @@
         </mat-toolbar-row>
     </mat-toolbar>
     <div class="list" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-        <div class="item" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="item" fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of (friends$ | async)">
             <img src="https://www.sideshow.com/storage/product-images/905139/tom-and-jerry-burger_tom-and-jerry_silo.png"
                 alt="...">
             <div class="info">
-                <h3> Kiril Kirov </h3>
+                <h3> {{friend.fullName}} </h3>
                 <span> Friends </span>
-                <span> -- 123 </span>
+                <span> -- {{friend.friendsCount}} </span>
             </div>
-            <button mat-button color="primary">View profile</button>
-        </div>
-        <div class="item" fxLayout="row" fxLayoutAlign="space-between center">
-            <img src="https://www.etro.com/on/demandware.static/-/Sites-etro_master/default/dw9cec508c/images/products/view_type_prod_details/201D1358272300990_D_01.jpg"
-                alt="...">
-            <div class="info">
-                <h3> Pesho Peshov </h3>
-                <span> Friends </span>
-                <span> -- 123 </span>
-            </div>
-            <button mat-button color="primary">View profile</button>
-        </div>
-        <div class="item" fxLayout="row" fxLayoutAlign="space-between center">
-            <img src="https://images-eu.ssl-images-amazon.com/images/I/815dEVoFqIL.png" alt="...">
-            <div class="info">
-                <h3> Georgi Peshov </h3>
-                <span> Friends </span>
-                <span> -- 13 </span>
-            </div>
-            <button mat-button color="primary">View profile</button>
-        </div>
-        <div class="item" fxLayout="row" fxLayoutAlign="space-between center">
-            <img src="https://images-eu.ssl-images-amazon.com/images/I/815dEVoFqIL.png" alt="...">
-            <div class="info">
-                <h3> Georgi Peshov </h3>
-                <span> Friends </span>
-                <span> -- 13 </span>
-            </div>
-            <button mat-button color="primary">View profile</button>
+            <button mat-button color="primary" [routerLink]="['/profile', friend.id]">View profile</button>
         </div>
     </div>
 </div>

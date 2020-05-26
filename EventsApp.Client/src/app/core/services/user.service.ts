@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { User } from "../models/user-model";
+import { Friend } from "../models/friend-model";
 
 @Injectable({
   providedIn: "root",
@@ -55,7 +56,12 @@ export class UserService {
     return localStorage.getItem("userId");
   }
 
-  update(data): Observable<any>{
+  update(data): Observable<any> {
     return this.http.put(this.path + "/updateuserinformation", data);
+  }
+
+  getFriends(userId: string) {
+    const params = new HttpParams().set("userId", userId);
+    return this.http.get<Array<Friend>>(this.path + "/getfriends", { params });
   }
 }

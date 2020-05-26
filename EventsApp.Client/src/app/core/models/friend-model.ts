@@ -1,0 +1,5 @@
+export interface Friend {
+  id: string;
+  fullName: string;
+  friendsCount: number;
+}
