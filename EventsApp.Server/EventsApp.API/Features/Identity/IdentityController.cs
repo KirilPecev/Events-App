@@ -9,7 +9,7 @@
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    
+
     using static Infrastructure.WebConstants;
 
     public class IdentityController : ApiController
@@ -80,13 +80,9 @@
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(MyFriends))]
-        public async Task<IEnumerable<UserListingServiceModel>> MyFriends()
-        {
-            string userId = this.User.GetId();
-
-            return await this.identityService.AcceptedFriends(userId);
-        }
+        [Route(nameof(GetFriends))]
+        public async Task<IEnumerable<UserListingServiceModel>> GetFriends(string userId)
+            => await this.identityService.AcceptedFriends(userId);
 
 
         [Authorize]

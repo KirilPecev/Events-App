@@ -74,24 +74,32 @@
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.Id,
-                    FullName = $"{u.FirstName} {u.LastName}",
-                    ProfilePictureUrl = u.ProfilePictureUrl
+                    FullName = $"{u.FirstName} {u.LastName}"
                 })
                 .ToListAsync();
 
         public async Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId)
-            => await this.userManager
-                 .Users
-                 .Where(u => u.Id == userId)
-                 .SelectMany(u => u.Friends) //TODO: Check results with u.MainUserFriends
-                 .Where(u => u.Status == FriendStatus.Accepted)
-                 .Select(u => new UserListingServiceModel()
-                 {
-                     Id = u.FriendId,
-                     FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
-                     ProfilePictureUrl = u.UserFriend.ProfilePictureUrl
-                 })
-                 .ToListAsync();
+        {
+            int friendsCount = await this.userManager
+                .Users
+                .Where(u => u.Id == userId)
+                .SelectMany(u => u.Friends) //TODO: Check results with u.MainUserFriends
+                .Where(u => u.Status == FriendStatus.Accepted)
+                .CountAsync();
+
+            return await this.userManager
+                .Users
+                .Where(u => u.Id == userId)
+                .SelectMany(u => u.Friends) //TODO: Check results with u.MainUserFriends
+                .Where(u => u.Status == FriendStatus.Accepted)
+                .Select(u => new UserListingServiceModel()
+                {
+                    Id = u.FriendId,
+                    FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
+                    FriendsCount = friendsCount
+                })
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId)
             => await this.userManager
@@ -102,8 +110,7 @@
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.FriendId,
-                    FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
-                    ProfilePictureUrl = u.UserFriend.ProfilePictureUrl
+                    FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}"
                 })
                 .ToListAsync();
 
