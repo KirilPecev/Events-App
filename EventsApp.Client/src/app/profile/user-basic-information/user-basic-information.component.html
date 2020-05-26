@@ -21,7 +21,7 @@
                     <mat-form-field>
                         <input formControlName="favoriteSport" matInput type="text" required>
                     </mat-form-field>
-                    <button class="edit-button" mat-raised-button color="primary" [disabled]="editForm.get('favoriteSport').untouched">EDIT</button>
+                    <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('favoriteSport').dirty">EDIT</button>
                 </div>
             </div>
         </form>

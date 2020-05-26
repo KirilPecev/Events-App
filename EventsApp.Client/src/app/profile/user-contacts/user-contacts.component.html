@@ -16,7 +16,7 @@
                         <input formControlName="mobile" matInput type="tel">
                     </mat-form-field>
                     <button class="edit-button" mat-raised-button color="primary"
-                        [disabled]="editForm.get('mobile').untouched">EDIT</button>
+                        [disabled]="!editForm.get('mobile').dirty">EDIT</button>
                 </div>
             </div>
             <hr>
@@ -28,7 +28,7 @@
                         <input formControlName="facebookUrl" matInput type="url">
                     </mat-form-field>
                     <button class="edit-button" mat-raised-button color="primary"
-                        [disabled]="editForm.get('facebookUrl').untouched">EDIT</button>
+                        [disabled]="!editForm.get('facebookUrl').dirty">EDIT</button>
                 </div>
             </div>
         </form>
