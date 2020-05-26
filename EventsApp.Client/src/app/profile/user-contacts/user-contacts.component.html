@@ -10,10 +10,10 @@
         <form [formGroup]="editForm" (ngSubmit)="edit()">
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
                 <h2 fxFlex="40%" class="mat-small">Mobile</h2>
-                <span *ngIf="user.mobile">{{user.mobile}}</span>
-                <div *ngIf="!user.mobile">
+                <span *ngIf="!isMyProfile">{{user.mobile}}</span>
+                <div *ngIf="isMyProfile">
                     <mat-form-field>
-                        <input formControlName="mobile" matInput type="tel" required>
+                        <input formControlName="mobile" matInput type="tel">
                     </mat-form-field>
                     <button class="edit-button" mat-raised-button color="primary"
                         [disabled]="editForm.get('mobile').untouched">EDIT</button>
@@ -22,10 +22,10 @@
             <hr>
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
                 <h2 fxFlex="40%">Facebook</h2>
-                <a [href]="user.facebookUrl" *ngIf="user.facebookUrl">{{user.fullName}}</a>
-                <div *ngIf="!user.facebookUrl">
+                <a [href]="user.facebookUrl" *ngIf="!isMyProfile && user.facebookUrl">{{user.fullName}}</a>
+                <div *ngIf="isMyProfile">
                     <mat-form-field>
-                        <input formControlName="facebookUrl" matInput type="url" required>
+                        <input formControlName="facebookUrl" matInput type="url">
                     </mat-form-field>
                     <button class="edit-button" mat-raised-button color="primary"
                         [disabled]="editForm.get('facebookUrl').untouched">EDIT</button>

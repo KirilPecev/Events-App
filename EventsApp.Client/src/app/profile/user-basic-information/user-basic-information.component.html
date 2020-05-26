@@ -2,33 +2,22 @@
     <h1 class="title">Basic information</h1>
     <hr>
     <div fxLayout="column">
-        <form [formGroup]="editForm" (ngSubmit)="edit()">
+       
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
                 <h2 fxFlex="40%">Birthday</h2>
                 <span *ngIf="user.birthday">{{user.birthday}}</span>
-                <div *ngIf="!user.birthday">
-                    <mat-form-field>
-                        <input formControlName="birthday" matInput type="date" required>
-                    </mat-form-field>
-                    <button class="edit-button" mat-raised-button color="primary" [disabled]="editForm.get('birthday').untouched">EDIT</button>
-                </div>
             </div>
             <hr>
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
                 <h2 fxFlex="40%">Gender</h2>
                 <span *ngIf="user.gender">{{user.gender}}</span>
-                <div *ngIf="!user.gender">
-                    <mat-form-field>
-                        <input formControlName="gender" matInput type="text" required>
-                    </mat-form-field>
-                    <button class="edit-button" mat-raised-button color="primary" [disabled]="editForm.get('gender').untouched">EDIT</button>
-                </div>
             </div>
             <hr>
+            <form [formGroup]="editForm" (ngSubmit)="edit()">
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
                 <h2 fxFlex="40%">Favourite sport</h2>
-                <span *ngIf="user.favoriteSport">{{user.favoriteSport}}</span>
-                <div *ngIf="!user.favoriteSport">
+                <span *ngIf="!isMyProfile">{{user.favoriteSport}}</span>
+                <div *ngIf="isMyProfile">
                     <mat-form-field>
                         <input formControlName="favoriteSport" matInput type="text" required>
                     </mat-form-field>

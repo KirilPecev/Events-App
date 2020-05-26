@@ -54,4 +54,8 @@ export class UserService {
   getUserId() {
     return localStorage.getItem("userId");
   }
+
+  update(data): Observable<any>{
+    return this.http.put(this.path + "/updateuserinformation", data);
+  }
 }
