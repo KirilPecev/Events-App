@@ -59,8 +59,8 @@
                     FullName = $"{u.FirstName} {u.LastName}",
                     Email = u.Email,
                     Mobile = u.PhoneNumber,
-                    Birthday = u.Birthday.ToShortDateString(),
-                    Gender = u.Gender.ToString(),
+                    Birthday = u.Birthday.CompareTo(new DateTime()) == 0 ? null : u.Birthday.ToShortDateString(),
+                    Gender = u.Gender == Gender.Default ? null : u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport
                 })
@@ -166,9 +166,9 @@
                 return false;
             }
 
-            user.PhoneNumber = mobile;
-            user.FacebookUrl = facebookUrl;
-            user.FavoriteSport = favoriteSport;
+            user.PhoneNumber = mobile ?? user.PhoneNumber;
+            user.FacebookUrl = facebookUrl ?? user.FacebookUrl;
+            user.FavoriteSport = favoriteSport ?? user.FavoriteSport;
 
             await this.data.SaveChangesAsync();
 
