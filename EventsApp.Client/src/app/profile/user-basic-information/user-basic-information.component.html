@@ -2,19 +2,39 @@
     <h1 class="title">Basic information</h1>
     <hr>
     <div fxLayout="column">
-        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-            <h2 fxFlex="40%">Birthday</h2>
-            <span>{{user.birthday}}</span>
-        </div>
-        <hr>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-            <h2 fxFlex="40%">Gender</h2>
-            <span>{{user.gender}}</span>
-        </div>
-        <hr>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-            <h2 fxFlex="40%">Favourite sport</h2>
-            <span>{{user.favouriteSport}}</span>
-        </div>
+        <form [formGroup]="editForm" (ngSubmit)="edit()">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+                <h2 fxFlex="40%">Birthday</h2>
+                <span *ngIf="user.birthday">{{user.birthday}}</span>
+                <div *ngIf="!user.birthday">
+                    <mat-form-field>
+                        <input formControlName="birthday" matInput type="date" required>
+                    </mat-form-field>
+                    <button class="edit-button" mat-raised-button color="primary" [disabled]="editForm.get('birthday').untouched">EDIT</button>
+                </div>
+            </div>
+            <hr>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+                <h2 fxFlex="40%">Gender</h2>
+                <span *ngIf="user.gender">{{user.gender}}</span>
+                <div *ngIf="!user.gender">
+                    <mat-form-field>
+                        <input formControlName="gender" matInput type="text" required>
+                    </mat-form-field>
+                    <button class="edit-button" mat-raised-button color="primary" [disabled]="editForm.get('gender').untouched">EDIT</button>
+                </div>
+            </div>
+            <hr>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+                <h2 fxFlex="40%">Favourite sport</h2>
+                <span *ngIf="user.favoriteSport">{{user.favoriteSport}}</span>
+                <div *ngIf="!user.favoriteSport">
+                    <mat-form-field>
+                        <input formControlName="favoriteSport" matInput type="text" required>
+                    </mat-form-field>
+                    <button class="edit-button" mat-raised-button color="primary" [disabled]="editForm.get('favoriteSport').untouched">EDIT</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
