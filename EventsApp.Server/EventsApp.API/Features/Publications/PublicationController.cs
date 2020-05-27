@@ -29,13 +29,9 @@
         }
 
         [HttpGet]
-        [Route(nameof(Mine))]
-        public async Task<IEnumerable<PublicationListingServiceModel>> Mine()
-        {
-            string userId = this.User.GetId();
-
-            return await this.publicationService.GetByUser(userId);
-        }
+        [Route(nameof(GetByUser))]
+        public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
+             => await this.publicationService.GetByUser(userId);
 
         [HttpPost]
         [Route(nameof(Create))]

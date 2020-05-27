@@ -75,7 +75,7 @@
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
         {
-            //Get all mine publications
+            //Get all user with userId publications
             List<PublicationListingServiceModel> publications = await this.data
                 .Publications
                 .Where(p => p.CreatorId == userId)
@@ -94,7 +94,7 @@
                 })
                 .ToListAsync();
 
-            //Get all mine shared publications
+            //Get all user with userId shared publications
             List<PublicationListingServiceModel> sharedPublications = await this.data
                 .Shares
                 .Where(s => s.UserId == userId)

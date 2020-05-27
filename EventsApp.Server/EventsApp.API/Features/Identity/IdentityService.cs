@@ -80,18 +80,14 @@
 
         public async Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId)
         {
-            int friendsCount = await this.userManager
-                .Users
-                .Where(u => u.Id == userId)
-                .SelectMany(u => u.Friends) //TODO: Check results with u.MainUserFriends
-                .Where(u => u.Status == FriendStatus.Accepted)
+            int friendsCount = await this.data
+                .Friends //TODO: Check results with u.MainUserFriends
+                .Where(u => u.UserId == userId && u.Status == FriendStatus.Accepted)
                 .CountAsync();
 
-            return await this.userManager
-                .Users
-                .Where(u => u.Id == userId)
-                .SelectMany(u => u.Friends) //TODO: Check results with u.MainUserFriends
-                .Where(u => u.Status == FriendStatus.Accepted)
+            return await this.data
+                .Friends
+                .Where(u => u.UserId == userId && u.Status == FriendStatus.Accepted)
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.FriendId,
