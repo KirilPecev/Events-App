@@ -81,7 +81,7 @@
         public async Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId)
         {
             int friendsCount = await this.data
-                .Friends //TODO: Check results with u.MainUserFriends
+                .Friends
                 .Where(u => u.UserId == userId && u.Status == FriendStatus.Accepted)
                 .CountAsync();
 
@@ -101,7 +101,7 @@
             => await this.userManager
                 .Users
                 .Where(u => u.Id == userId)
-                .SelectMany(u => u.Friends) //TODO: Check results with u.MainUserFriends
+                .SelectMany(u => u.Friends)
                 .Where(u => u.Status == FriendStatus.Pending)
                 .Select(u => new UserListingServiceModel()
                 {
