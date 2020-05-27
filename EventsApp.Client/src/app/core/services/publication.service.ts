@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { Publication } from "../models/publication-model";
@@ -28,8 +28,9 @@ export class PublicationService {
     return this.http.get<Array<Publication>>(this.publicationPath + "/getall");
   }
 
-  getMinePublications(): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>(this.publicationPath + "/mine");
+  getPublicationsByUser(userId: string): Observable<Array<Publication>> {
+    const params = new HttpParams().set("userId", userId);
+    return this.http.get<Array<Publication>>(this.publicationPath + "/getbyuser", {params});
   }
 
   like(id) {

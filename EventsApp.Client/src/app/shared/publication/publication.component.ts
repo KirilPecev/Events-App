@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { PublicationService } from "src/app/core/services/publication.service";
-import { Publication } from "src/app/core/models/publication-model";
+import { PublicationService } from "../../core/services/publication.service";
+import { Publication } from "../../core/models/publication-model";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 
@@ -24,7 +24,7 @@ export class PublicationComponent implements OnInit {
     if (this.route.outlet === "dashboard") {
       this.fetchPublications();
     } else {
-      this.fetchMinePublications();
+      this.fetchByUser();
     }
   }
 
@@ -32,8 +32,9 @@ export class PublicationComponent implements OnInit {
     this.publications$ = this.publicationService.getPublications();
   }
 
-  fetchMinePublications() {
-    this.publications$ = this.publicationService.getMinePublications();
+  fetchByUser() {
+    let userId = this.route.snapshot.pathFromRoot[2].params["userId"];
+    this.publications$ = this.publicationService.getPublicationsByUser(userId);
   }
 
   like(id) {
