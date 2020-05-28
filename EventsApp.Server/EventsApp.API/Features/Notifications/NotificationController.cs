@@ -20,8 +20,8 @@
         }
 
         [HttpGet]
-        [Route(nameof(GetByUser))]
-        public async Task<IEnumerable<NotificationListingServiceModel>> GetByUser()
+        [Route(nameof(ByUser))]
+        public async Task<IEnumerable<NotificationListingServiceModel>> ByUser()
         {
             string userId = this.User.GetId();
 
