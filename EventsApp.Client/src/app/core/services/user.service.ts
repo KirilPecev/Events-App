@@ -79,6 +79,6 @@ export class UserService {
 
   removeFriendship(friendId: string) {
     const params = new HttpParams().set("friendId", friendId);
-    return this.http.delete(this.path + "/removefriend", { params });
+    return this.http.delete(this.path + "/removefriendship", { params });
   }
 }
