@@ -80,8 +80,8 @@
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(GetFriends))]
-        public async Task<IEnumerable<UserListingServiceModel>> GetFriends(string userId)
+        [Route(nameof(Friends))]
+        public async Task<IEnumerable<UserListingServiceModel>> Friends(string userId)
             => await this.identityService.AcceptedFriends(userId);
 
 
