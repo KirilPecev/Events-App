@@ -23,6 +23,7 @@
                 .Where(n => n.UserId == userId)
                 .Select(n => new NotificationListingServiceModel
                 {
+                    Id = n.Id,
                     User = $"{n.User.FirstName} {n.User.LastName}",
                     ImageUrl = n.ImageUrl,
                     Description = n.Description
@@ -49,10 +50,15 @@
                 .Notifications
                 .FirstOrDefaultAsync(n => n.Id == id);
 
+
             if (notification == null)
             {
                 return false;
             }
+
+            this.data.Remove(notification);
+
+            await this.data.SaveChangesAsync();
 
             return true;
         }
