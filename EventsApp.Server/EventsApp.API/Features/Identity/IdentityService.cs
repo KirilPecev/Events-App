@@ -98,11 +98,9 @@
         }
 
         public async Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId)
-            => await this.userManager
-                .Users
-                .Where(u => u.Id == userId)
-                .SelectMany(u => u.Friends)
-                .Where(u => u.Status == FriendStatus.Pending)
+            => await this.data
+                .Friends
+                .Where(u => u.UserId == userId && u.Status == FriendStatus.Pending)
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.FriendId,

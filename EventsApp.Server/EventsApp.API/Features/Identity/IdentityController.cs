@@ -145,11 +145,11 @@
         [Authorize]
         [HttpPut]
         [Route(nameof(AcceptFriendship))]
-        public async Task<ActionResult> AcceptFriendship(string friendId)
+        public async Task<ActionResult> AcceptFriendship(AcceptFriendshipRequestModel model)
         {
             string userId = this.User.GetId();
 
-            bool accepted = await this.identityService.AcceptFriendship(userId, friendId);
+            bool accepted = await this.identityService.AcceptFriendship(userId, model.FriendId);
 
             if (!accepted)
             {
