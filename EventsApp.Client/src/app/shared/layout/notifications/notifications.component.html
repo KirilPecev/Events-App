@@ -1,23 +1,6 @@
 <mat-dialog-content fxFlex fxFlexFill>
     <ul>
-        <li>
-            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" >
-                <div>
-                    <img class="profile-picture"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-                <div class="content">
-                    <span><strong>Kiril Pecev</strong> like your picture</span>
-                </div>
-                <div>
-                    <img class="pic"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-            </div>
-        </li>
-        <li>
+        <li *ngFor="let notification of (notifications$ | async)" (click)="deleteNotification(notification.id)">
             <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
                 <div>
                     <img class="profile-picture"
@@ -25,53 +8,10 @@
                         alt="">
                 </div>
                 <div class="content">
-                    <span><strong>Kiril Pecev</strong> like your picture</span>
+                    <span><strong>{{notification.user}}</strong> {{notification.description}}</span>
                 </div>
                 <div>
-                    <img class="pic"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-            </div>
-        </li>
-        <li>
-            <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
-                <div>
-                    <img class="profile-picture"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-                <div fxFlex class="content">
-                    <span><strong>Kiril Pecev</strong> share your picture</span>
-                </div>
-                <div>
-                    <img class="pic"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-            </div>
-        </li>
-        <li>
-            <div fxFlex fxLayout="row" fxLayoutAlign="none center">
-                <div>
-                    <img class="profile-picture"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-                <div class="content">
-                    <span><strong>Kiril Pecev</strong> like your post</span>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div fxFlex fxLayout="row" fxLayoutAlign="none center">
-                <div>
-                    <img class="profile-picture"
-                        src="https://scontent.fsof3-1.fna.fbcdn.net/v/t1.0-9/s960x960/67104724_2834176489945617_5605573735990951936_o.jpg?_nc_cat=100&_nc_ohc=VABo3BSagmIAX8Pm_AT&_nc_ht=scontent.fsof3-1.fna&_nc_tp=7&oh=0cb8cc86fffbc35b413ab3dbb7367bbf&oe=5EFA3C3C"
-                        alt="">
-                </div>
-                <div class="content">
-                    <span><strong>Kiril Pecev</strong> share your post</span>
+                    <img class="pic" [src]="notification.imageUrl" alt="">
                 </div>
             </div>
         </li>

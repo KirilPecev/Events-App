@@ -17,4 +17,8 @@ export class NotificationService {
       this.notificationPath + "/byuser"
     );
   }
+
+  deleteNotification(id: number) {
+    return this.http.delete(this.notificationPath + "/" + id);
+  }
 }
