@@ -65,11 +65,8 @@ export class UserService {
     return this.http.get<Array<Friend>>(this.path + "/friends", { params });
   }
 
-  getPendingFriends(userId: string) {
-    const params = new HttpParams().set("userId", userId);
-    return this.http.get<Array<Friend>>(this.path + "/pendingfriends", {
-      params,
-    });
+  getPendingFriends(): Observable<Array<Friend>> {
+    return this.http.get<Array<Friend>>(this.path + "/pendingfriends");
   }
 
   acceptFriendship(friendId: string) {

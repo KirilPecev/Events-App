@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { tap } from "rxjs/operators";
 
 import {
   faHome,
@@ -15,6 +16,10 @@ import { NotificationsComponent } from "../notifications/notifications.component
 import { FriendsComponent } from "../friends/friends.component";
 import { UserService } from "../../../core/services/user.service";
 import { Router } from "@angular/router";
+import { NotificationService } from "../../../core/services/notification.service";
+import { from } from "rxjs";
+import { Notification } from "../../../core/models/notification-model";
+import { Friend } from "../../../core/models/friend-model";
 
 @Component({
   selector: "app-header",
@@ -32,15 +37,39 @@ export class HeaderComponent implements OnInit {
   faSignOutAlt = faSignOutAlt;
   faBars = faBars;
 
+  notifications: Array<Notification>;
+  friends: Array<Friend>;
+
+  newNotifications: number = 0;
+  newFriends: number = 0;
+
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {}
 
   isLoggedIn = () => this.userService.isLoggedIn();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getNotificationsData();
+    this.getFriendsData();
+  }
+
+  private getNotificationsData() {
+    this.notificationService.getNotifications().subscribe((data) => {
+      this.newNotifications = data.length;
+      this.notifications = data;
+    });
+  }
+
+  private getFriendsData() {
+    this.userService.getPendingFriends().subscribe((data) => {
+      this.newFriends = data.length;
+      this.friends = data;
+    });
+  }
 
   openNotificationsDialog() {
     const dialogConfig = this.getDialogConfig();
@@ -63,6 +92,10 @@ export class HeaderComponent implements OnInit {
     dialogConfig.hasBackdrop = true;
     dialogConfig.closeOnNavigation = true;
     dialogConfig.disableClose = false;
+    dialogConfig.data = {
+      notifications: this.notifications,
+      friends: this.friends,
+    };
 
     return dialogConfig;
   }

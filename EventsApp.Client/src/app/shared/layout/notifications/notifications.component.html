@@ -1,6 +1,6 @@
 <mat-dialog-content fxFlex fxFlexFill>
     <ul>
-        <li *ngFor="let notification of (notifications$ | async)" (click)="deleteNotification(notification.id)">
+        <li *ngFor="let notification of data.notifications" (click)="deleteNotification(notification.id)">
             <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
                 <div>
                     <img class="profile-picture"
