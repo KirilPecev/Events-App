@@ -62,6 +62,26 @@ export class UserService {
 
   getFriends(userId: string) {
     const params = new HttpParams().set("userId", userId);
-    return this.http.get<Array<Friend>>(this.path + "/getfriends", { params });
+    return this.http.get<Array<Friend>>(this.path + "/friends", { params });
+  }
+
+  getPendingFriends(userId: string) {
+    const params = new HttpParams().set("userId", userId);
+    return this.http.get<Array<Friend>>(this.path + "/pendingfriends", {
+      params,
+    });
+  }
+
+  acceptFriendship(friendId: string) {
+    let data = {
+      friendId: friendId,
+    };
+
+    return this.http.put(this.path + "/acceptfriendship", data);
+  }
+
+  removeFriendship(friendId: string) {
+    const params = new HttpParams().set("friendId", friendId);
+    return this.http.delete(this.path + "/removefriend", { params });
   }
 }
