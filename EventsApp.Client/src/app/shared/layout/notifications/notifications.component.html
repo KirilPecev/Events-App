@@ -1,4 +1,7 @@
 <mat-dialog-content fxFlex fxFlexFill>
+    <div *ngIf="data.notifications.length === 0">
+        No new notifications!
+    </div>
     <ul>
         <li *ngFor="let notification of data.notifications" (click)="deleteNotification(notification.id)">
             <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">

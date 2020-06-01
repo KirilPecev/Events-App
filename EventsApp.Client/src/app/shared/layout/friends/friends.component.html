@@ -1,4 +1,7 @@
 <mat-dialog-content fxFlex fxFlexFill>
+    <div *ngIf="data.friends.length === 0">
+        No new friend requests!
+    </div>
     <ul fxFlex fxLayout="column">
         <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of data.friends">
             <a [href]="friend.id" fxLayoutAlign="space-between center">
