@@ -87,12 +87,14 @@
 
             return await this.data
                 .Friends
-                .Where(u => u.UserId == userId && u.Status == FriendStatus.Accepted)
+                .Where(u => u.UserId == userId || u.FriendId == userId && u.Status == FriendStatus.Accepted )
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.FriendId,
                     FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
-                    FriendsCount = friendsCount
+                    FriendsCount = this.data
+                        .Friends
+                        .Count(f => f.FriendId == userId && f.Status == FriendStatus.Accepted),
                 })
                 .ToListAsync();
         }
