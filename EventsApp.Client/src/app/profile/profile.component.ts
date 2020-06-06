@@ -20,13 +20,25 @@ export class ProfileComponent implements OnInit, DoCheck {
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.userService.getUserId();
-    this.user$ = this.userService.getUserInformation(this.userId);
-    this.createdEventsByUser$ = this.userService.getCreatedEventsAmount(this.userId);
+    this.fetch();
   }
 
-  ngDoCheck(){
-    this.userId = this.route.snapshot.pathFromRoot[2].params["userId"];
-    console.log(this.userId + "from profile");
+  ngDoCheck() {
+    this.check();
+  }
+
+  check(): void {
+    if (this.userId != this.route.snapshot.pathFromRoot[2].params["userId"]) {
+      this.fetch();
+    }
+  }
+
+  fetch() {
+    const userId = this.route.snapshot.pathFromRoot[2].params["userId"];
+    this.userId = userId;
+    this.user$ = this.userService.getUserInformation(userId);
+    this.createdEventsByUser$ = this.userService.getCreatedEventsAmount(
+      this.userId
+    );
   }
 }
