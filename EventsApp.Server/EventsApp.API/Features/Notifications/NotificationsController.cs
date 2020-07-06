@@ -10,17 +10,16 @@
     using static Infrastructure.WebConstants;
 
     [Authorize]
-    public class NotificationController : ApiController
+    public class NotificationsController : ApiController
     {
         private readonly INotificationService notificationService;
 
-        public NotificationController(INotificationService notificationService)
+        public NotificationsController(INotificationService notificationService)
         {
             this.notificationService = notificationService;
         }
 
         [HttpGet]
-        [Route(nameof(ByUser))]
         public async Task<IEnumerable<NotificationListingServiceModel>> ByUser()
         {
             string userId = this.User.GetId();
@@ -29,7 +28,6 @@
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
         public async Task<ActionResult> Create(CreateNotificationRequestModel model)
         {
             string userId = this.User.GetId();

@@ -74,21 +74,21 @@
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(GetByName))]
+        [Route("ByName")]
         public async Task<IEnumerable<UserListingServiceModel>> GetByName(string name)
          => await this.identityService.GetByName(name);
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(Friends))]
-        public async Task<IEnumerable<UserListingServiceModel>> Friends(string userId)
+        [Route("Friends")]
+        public async Task<IEnumerable<UserListingServiceModel>> GetFriends(string userId)
             => await this.identityService.AcceptedFriends(userId);
 
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(PendingFriends))]
-        public async Task<IEnumerable<UserListingServiceModel>> PendingFriends()
+        [Route("PendingFriends")]
+        public async Task<IEnumerable<UserListingServiceModel>> GetPendingFriends()
         {
             string userId = this.User.GetId();
 
@@ -103,14 +103,14 @@
 
         [Authorize]
         [HttpGet]
-        [Route(nameof(CreatedEventsCount))]
-        public async Task<int> CreatedEventsCount(string userId)
+        [Route("Events")]
+        public async Task<int> GetCreatedEventsCount(string userId)
             => await this.identityService.GetCreatedEventsAmountByUser(userId);
 
 
         [Authorize]
         [HttpPut]
-        [Route(nameof(AddFriend))]
+        [Route("Friend")]
         public async Task<ActionResult> AddFriend(string friendId)
         {
             string userId = this.User.GetId();
@@ -127,12 +127,12 @@
 
         [Authorize]
         [HttpDelete]
-        [Route(nameof(RemoveFriendship))]
-        public async Task<ActionResult> RemoveFriendship(string friendId)
+        [Route(Id)]
+        public async Task<ActionResult> RemoveFriendship(string id)
         {
             string userId = this.User.GetId();
 
-            bool removed = await this.identityService.RemoveFriend(userId, friendId);
+            bool removed = await this.identityService.RemoveFriend(userId, id);
 
             if (!removed)
             {
@@ -144,7 +144,7 @@
 
         [Authorize]
         [HttpPut]
-        [Route(nameof(AcceptFriendship))]
+        [Route("Accept")]
         public async Task<ActionResult> AcceptFriendship(AcceptFriendshipRequestModel model)
         {
             string userId = this.User.GetId();
@@ -161,7 +161,6 @@
 
         [Authorize]
         [HttpPut]
-        [Route(nameof(UpdateUserInformation))]
         public async Task<ActionResult> UpdateUserInformation(UpdateUserRequestModel model)
         {
             string userId = this.User.GetId();

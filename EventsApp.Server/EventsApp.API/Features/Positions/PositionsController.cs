@@ -8,11 +8,11 @@
     using System.Threading.Tasks;
 
     [Authorize]
-    public class PositionController : ApiController
+    public class PositionsController : ApiController
     {
         private readonly IPositionService positionService;
 
-        public PositionController(IPositionService positionService)
+        public PositionsController(IPositionService positionService)
         {
             this.positionService = positionService;
         }
@@ -50,8 +50,8 @@
         }
 
         [HttpGet]
-        [Route(nameof(GetAvailablePositions))]
-        public async Task<IEnumerable<PositionListingServiceModel>> GetAvailablePositions(int eventId)
+        [Route(nameof(Available))]
+        public async Task<IEnumerable<PositionListingServiceModel>> Available(int eventId)
         {
             string userId = this.User.GetId();
 
@@ -59,8 +59,8 @@
         }
 
         [HttpGet]
-        [Route(nameof(GetBusyPositions))]
-        public async Task<IEnumerable<PositionListingServiceModel>> GetBusyPositions(int eventId)
+        [Route(nameof(Busy))]
+        public async Task<IEnumerable<PositionListingServiceModel>> Busy(int eventId)
         {
             string userId = this.User.GetId();
 

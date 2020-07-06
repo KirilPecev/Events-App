@@ -10,17 +10,16 @@
     using static Infrastructure.WebConstants;
 
     [Authorize]
-    public class PublicationController : ApiController
+    public class PublicationsController : ApiController
     {
         private readonly IPublicationService publicationService;
 
-        public PublicationController(IPublicationService publicationService)
+        public PublicationsController(IPublicationService publicationService)
         {
             this.publicationService = publicationService;
         }
 
         [HttpGet]
-        [Route(nameof(GetAll))]
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll()
         {
             string userId = this.User.GetId();
@@ -29,12 +28,11 @@
         }
 
         [HttpGet]
-        [Route(nameof(GetByUser))]
-        public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
+        [Route(nameof(ByUser))]
+        public async Task<IEnumerable<PublicationListingServiceModel>> ByUser(string userId)
              => await this.publicationService.GetByUser(userId);
 
         [HttpPost]
-        [Route(nameof(Create))]
         public async Task<ActionResult> Create(CreatePublicationRequestModel model)
         {
             string userId = this.User.GetId();
@@ -53,7 +51,6 @@
         }
 
         [HttpPut]
-        [Route(nameof(Update))]
         public async Task<ActionResult> Update(UpdatePublicationRequestModel model)
         {
             string userId = this.User.GetId();

@@ -10,17 +10,16 @@
     using static Infrastructure.WebConstants;
 
     [Authorize]
-    public class EventController : ApiController
+    public class EventsController : ApiController
     {
         private readonly IEventService eventService;
 
-        public EventController(IEventService eventService)
+        public EventsController(IEventService eventService)
         {
             this.eventService = eventService;
         }
 
         [HttpGet]
-        [Route(nameof(GetAll))]
         public async Task<IEnumerable<EventListingServiceModel>> GetAll()
             => await this.eventService.GetAll();
 
@@ -43,7 +42,6 @@
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
         public async Task<ActionResult> Create(CreateEventRequestModel model)
         {
             string userId = this.User.GetId();
@@ -54,7 +52,6 @@
         }
 
         [HttpPut]
-        [Route(nameof(Update))]
         public async Task<ActionResult> Update(UpdateEventRequestModel model)
         {
             string userId = this.User.GetId();
