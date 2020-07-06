@@ -8,14 +8,12 @@ import { Notification } from "../models/notification-model";
   providedIn: "root",
 })
 export class NotificationService {
-  private notificationPath = environment.apiUrl + "notification";
+  private notificationPath = environment.apiUrl + "notifications";
 
   constructor(private http: HttpClient) {}
 
   getNotifications(): Observable<Array<Notification>> {
-    return this.http.get<Array<Notification>>(
-      this.notificationPath + "/byuser"
-    );
+    return this.http.get<Array<Notification>>(this.notificationPath);
   }
 
   deleteNotification(id: number) {

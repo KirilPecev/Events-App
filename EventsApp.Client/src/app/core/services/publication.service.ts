@@ -8,16 +8,16 @@ import { Publication } from "../models/publication-model";
   providedIn: "root",
 })
 export class PublicationService {
-  private publicationPath = environment.apiUrl + "publication";
+  private publicationPath = environment.apiUrl + "publications";
 
   constructor(private http: HttpClient) {}
 
   create(data): Observable<Publication> {
-    return this.http.post<Publication>(this.publicationPath + "/create", data);
+    return this.http.post<Publication>(this.publicationPath, data);
   }
 
   edit(data): Observable<Publication> {
-    return this.http.put<Publication>(this.publicationPath + "/update", data);
+    return this.http.put<Publication>(this.publicationPath, data);
   }
 
   delete(id: number) {
@@ -25,12 +25,12 @@ export class PublicationService {
   }
 
   getPublications(): Observable<Array<Publication>> {
-    return this.http.get<Array<Publication>>(this.publicationPath + "/getall");
+    return this.http.get<Array<Publication>>(this.publicationPath);
   }
 
   getPublicationsByUser(userId: string): Observable<Array<Publication>> {
     const params = new HttpParams().set("userId", userId);
-    return this.http.get<Array<Publication>>(this.publicationPath + "/getbyuser", {params});
+    return this.http.get<Array<Publication>>(this.publicationPath + "/byuser", {params});
   }
 
   like(id) {

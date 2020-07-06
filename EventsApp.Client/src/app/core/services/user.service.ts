@@ -45,7 +45,7 @@ export class UserService {
 
   getCreatedEventsAmount(id: string) {
     const params = new HttpParams().set("userId", id);
-    return this.http.get<User>(this.path + "/createdeventscount", { params });
+    return this.http.get<User>(this.path + "/events", { params });
   }
 
   saveUserId(id) {
@@ -57,7 +57,7 @@ export class UserService {
   }
 
   update(data): Observable<any> {
-    return this.http.put(this.path + "/updateuserinformation", data);
+    return this.http.put(this.path, data);
   }
 
   getFriends(userId: string) {
@@ -74,11 +74,11 @@ export class UserService {
       friendId: friendId,
     };
 
-    return this.http.put(this.path + "/acceptfriendship", data);
+    return this.http.put(this.path + "/accept", data);
   }
 
   removeFriendship(friendId: string) {
     const params = new HttpParams().set("friendId", friendId);
-    return this.http.delete(this.path + "/removefriendship", { params });
+    return this.http.delete(this.path, { params });
   }
 }

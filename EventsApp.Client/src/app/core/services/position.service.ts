@@ -8,24 +8,18 @@ import { Position } from "../models/position-model";
   providedIn: "root",
 })
 export class PositionService {
-  private positionPath = environment.apiUrl + "position";
+  private positionPath = environment.apiUrl + "positions";
 
   constructor(private http: HttpClient) {}
 
   getAvailablePositions(eventId: number): Observable<Array<Position>> {
     const params = new HttpParams().set("eventId", eventId.toString());
-    return this.http.get<Array<Position>>(
-      this.positionPath + "/getavailablepositions",
-      { params }
-    );
+    return this.http.get<Array<Position>>(this.positionPath + "/available", { params });
   }
 
   getBusyPositions(eventId: number): Observable<Array<Position>> {
     const params = new HttpParams().set("eventId", eventId.toString());
-    return this.http.get<Array<Position>>(
-      this.positionPath + "/getbusypositions",
-      { params }
-    );
+    return this.http.get<Array<Position>>(this.positionPath + "/busy", { params });
   }
 
   join(data) {
