@@ -19,4 +19,8 @@ export class NotificationService {
   deleteNotification(id: number) {
     return this.http.delete(this.notificationPath + "/" + id);
   }
+
+  create(data): Observable<Notification>{
+    return this.http.post<Notification>(this.notificationPath, data);
+  }
 }
