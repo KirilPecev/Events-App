@@ -97,12 +97,12 @@
                  {
                      Id = e.Id,
                      Name = e.Name,
+                     CreatorId = e.CreatorId,
                      Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
                      IsAdmin = e.CreatorId == userId,
                      Location = e.Location,
                      Sport = e.Sport,
-                     Date = e.DateTime.ToDateFormat(),
-                     Time = e.DateTime.ToTimeFormat(),
+                     DateTime = e.DateTime,
                      AvailablePositions = availablePositions
                  })
                  .FirstOrDefaultAsync();
