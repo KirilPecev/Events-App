@@ -4,8 +4,8 @@ export interface Event {
   location: string;
   sport: string;
   availablePositions: number;
+  creatorId: string;
   creator: string;
-  date: string;
-  time: string;
+  dateTime: string;
   isAdmin: boolean;
 }

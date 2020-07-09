@@ -6,30 +6,54 @@
             </mat-card-title>
             <mat-card-subtitle>Creator - {{e.creator}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
-            <div>
-                <span>
-                    <h3>Sport:</h3>
-                    {{e.sport}}
-                </span>
-                <span>
-                    <h3>Location:</h3>
-                    {{e.location}}
-                </span>
-                <span>
-                    <h3>Date:</h3>
-                    {{e.date}}
-                </span>
-                <span>
-                    <h3>Time:</h3>
-                    {{e.time}}
-                </span>
-                <span>
-                    <h3>Available positions:</h3>
-                    {{positions.availablePositionsCount}}
-                </span>
+        <mat-card-content fxLayout="column" fxLayoutGap="1em">
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <div>
+                    <span>
+                        <h3>Sport:</h3>
+                        {{e.sport}}
+                    </span>
+                    <span>
+                        <h3>Location:</h3>
+                        {{e.location}}
+                    </span>
+                    <span>
+                        <h3>Date:</h3>
+                        {{this.dateTime.toLocaleDateString()}}
+                    </span>
+                    <span>
+                        <h3>Time:</h3>
+                        {{this.dateTime.toLocaleTimeString()}}
+                    </span>
+                    <span>
+                        <h3>Available positions:</h3>
+                        {{positions.availablePositionsCount}}
+                    </span>
+                </div>
+                <form [formGroup]="editForm" (ngSubmit)="edit()" *ngIf="this.userId === e.creatorId" fxLayout="column">
+                    <h2>Edit event</h2>
+                    <mat-form-field>
+                        <mat-label>Location</mat-label>
+                        <input type="text" matInput formControlName="location">
+                        <mat-error
+                            *ngIf="editForm.get('location').errors?.required && editForm.get('location').touched">
+                            Location is <strong>required</strong>!
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label type="text" matInput>Date and time</mat-label>
+                        <input type="datetime-local" matInput formControlName="dateTime">
+                        <mat-error
+                            *ngIf="editForm.get('dateTime').errors?.required && editForm.get('dateTime').touched">
+                            Date and time are <strong>required</strong>!
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-flat-button color="primary" [disabled]="!editForm.get('dateTime').dirty"
+                        [disabled]="!editForm.get('location').dirty">Edit</button>
+                    <button class="delete-btn" mat-stroked-button color="warn" (click)="deleteEvent()">Delete this
+                        event</button>
+                </form>
             </div>
-            <hr>
             <div>
                 <app-positions [eventId]="e.id" #positions></app-positions>
             </div>
