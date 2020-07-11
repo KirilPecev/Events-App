@@ -6,7 +6,7 @@ import { UserService } from "src/app/core/services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { tap } from "rxjs/operators";
-import { dateTimeValidator } from "src/app/shared/validators";;
+import { dateTimeValidator } from "src/app/shared/validators";
 
 @Component({
   selector: "app-event-details",
@@ -35,6 +35,10 @@ export class EventDetailsComponent implements OnInit {
   dateTime: Date;
   eventId: number;
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData(){
     const id = this.route.snapshot.paramMap.get("id");
     this.userId = this.userService.getUserId();
 
@@ -54,16 +58,14 @@ export class EventDetailsComponent implements OnInit {
       dateTime: this.editForm.value["dateTime"],
     };
 
-    console.log(data);
-
     this.eventService.edit(data).subscribe((data) => {
-      window.location.reload();
+      this.fetchData();
     });
   }
 
-  deleteEvent(){
-    this.eventService.delete(this.eventId).subscribe(data=>{
-      // this.router.navigate(["dashboard"]);
-    })
+  deleteEvent() {
+    this.eventService.delete(this.eventId).subscribe((data) => {
+      this.router.navigate(["dashboard"]);
+    });
   }
 }
