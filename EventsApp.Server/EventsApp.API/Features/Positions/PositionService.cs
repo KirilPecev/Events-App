@@ -5,6 +5,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.InteropServices.ComTypes;
     using System.Threading.Tasks;
     using Models;
 
@@ -31,6 +32,17 @@
             }
 
             await this.data.Positions.AddRangeAsync(newPositions);
+
+            var result = await this.data.SaveChangesAsync();
+
+            return result;
+        }
+
+        public async Task<int> Delete(int eventId)
+        {
+            var positions = this.data.Positions.Where(p => p.EventId == eventId);
+
+            this.data.Positions.RemoveRange(positions);
 
             var result = await this.data.SaveChangesAsync();
 

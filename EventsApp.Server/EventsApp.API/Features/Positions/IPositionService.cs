@@ -8,6 +8,8 @@
     {
         Task<int> Create(int eventId, string[] positions);
 
+        Task<int> Delete(int eventId);
+
         Task<bool> Join(int eventId, int positionId, string userId);
 
         Task<bool> Unjoin(int eventId, int positionId, string userId);

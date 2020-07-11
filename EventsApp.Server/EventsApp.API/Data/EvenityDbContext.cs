@@ -28,6 +28,8 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new EventEntityTypeConfiguration());
+            builder.ApplyConfiguration(new PositionEntityTypeConfiguration());
             builder.ApplyConfiguration(new UserEntityTypeConfiguration());
             builder.ApplyConfiguration(new FriendEntityTypeConfiguration());
             builder.ApplyConfiguration(new PublicationEntityTypeConfiguration());

@@ -75,6 +75,8 @@
                 return false;
             }
 
+            await this.positionService.Delete(id);
+
             this.data.Events.Remove(current);
 
             await this.data.SaveChangesAsync();
