@@ -8,4 +8,7 @@ export interface Event {
   creator: string;
   dateTime: string;
   isAdmin: boolean;
+  isSportEvent: boolean;
+  date: string;
+  time: string;
 }

@@ -1,4 +1,4 @@
-<mat-accordion>
+<mat-accordion *ngIf="this.isSportEvent">
     <mat-expansion-panel [ngClass.xs]="{'mobile-screen': true}">
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -11,7 +11,8 @@
         <div fxLayout="row wrap" fxLayoutGap="2em" class="container" *ngFor="let position of availablePositions">
             <div>
                 <span>{{position.name}}</span>
-                <button mat-flat-button color="primary" *ngIf="position.canJoin" (click)="join(position.id)">Join</button>
+                <button mat-flat-button color="primary" *ngIf="position.canJoin"
+                    (click)="join(position.id)">Join</button>
             </div>
         </div>
     </mat-expansion-panel>
@@ -28,8 +29,12 @@
             <div>
                 <span>{{position.name}}:</span>
                 <h3>{{position.participant}}</h3>
-                <button mat-flat-button color="accent" *ngIf="position.canQuit" (click)="quit(position.id)">Quitting</button>
+                <button mat-flat-button color="accent" *ngIf="position.canQuit"
+                    (click)="quit(position.id)">Quitting</button>
             </div>
         </div>
     </mat-expansion-panel>
 </mat-accordion>
+<div *ngIf="!this.isSportEvent" fxLayout="column">
+    <button mat-flat-button color="primary" (click)="joinToOtherKindEvent()">Join</button>
+</div>

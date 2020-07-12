@@ -55,6 +55,7 @@ export class SportEventComponent implements OnInit {
       sport: this.eventForm.value["sport"],
       dateTime: this.eventForm.value["dateTime"],
       positions: this.eventForm.value["positions"].map((x) => x.position),
+      isSportEvent: true
     };
    
     this.eventService.create(data).subscribe((data) => {

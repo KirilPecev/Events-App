@@ -6,8 +6,12 @@
         <mat-card-subtitle>Creator - {{e.creator}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <span>
+        <span *ngIf="e.isSportEvent">
             <h3>Sport:</h3>
+            {{e.sport}}
+        </span>
+        <span *ngIf="!e.isSportEvent" >
+            <h3>Topic:</h3>
             {{e.sport}}
         </span>
         <span>

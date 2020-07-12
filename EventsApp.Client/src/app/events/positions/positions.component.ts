@@ -10,6 +10,8 @@ import { Position } from "../../core/models/position-model";
 })
 export class PositionsComponent implements OnInit {
   @Input() eventId: number;
+  @Input() isSportEvent: boolean;
+  
   constructor(private positionService: PositionService) {}
 
   availablePositions: Array<Position>;
@@ -47,6 +49,16 @@ export class PositionsComponent implements OnInit {
     };
 
     this.positionService.unjoin(data).subscribe((data) => {
+      this.fetch();
+    });
+  }
+
+  joinToOtherKindEvent(){
+    let data = {
+      eventId: this.eventId,
+    };
+
+    this.positionService.join(data).subscribe((data) => {
       this.fetch();
     });
   }

@@ -32,7 +32,8 @@ export class OtherEventComponent implements OnInit {
       location: this.eventForm.value["location"],
       sport:this.eventForm.value["sport"],
       dateTime: this.eventForm.value["dateTime"],
-      positions: Array<string>(this.eventForm.value["availablePositions"])
+      positions: Array<string>(this.eventForm.value["availablePositions"]),
+      isSportEvent: false
     };
 
     this.eventService.create(data).subscribe((data) => {
