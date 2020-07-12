@@ -34,6 +34,8 @@
         public string CreatorId { get; set; }
         public User Creator { get; set; }
 
+        public bool IsSportEvent { get; set; }
+
         public ICollection<Position> Positions { get; set; }
     }
 }

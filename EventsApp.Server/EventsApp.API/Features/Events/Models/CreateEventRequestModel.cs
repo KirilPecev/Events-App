@@ -24,5 +24,7 @@
         public string DateTime { get; set; }
 
         public string[] Positions { get; set; }
+
+        public bool IsSportEvent { get; set; }
     }
 }

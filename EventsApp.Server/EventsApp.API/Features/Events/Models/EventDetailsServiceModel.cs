@@ -21,5 +21,7 @@
         public string Creator { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public bool IsSportEvent { get; set; }
     }
 }

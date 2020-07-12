@@ -46,7 +46,7 @@
         {
             string userId = this.User.GetId();
 
-            int id = await this.eventService.Create(model.Name, model.Sport, model.Location, model.DateTime, model.Positions, userId);
+            int id = await this.eventService.Create(model.Name, model.Sport, model.Location, model.DateTime, model.Positions, model.IsSportEvent, userId);
 
             return Created(nameof(this.Create), id);
         }

@@ -51,6 +51,14 @@
 
         public async Task<bool> Join(int eventId, int positionId, string userId)
         {
+            if (positionId == 0)
+            {
+                positionId = this.data.Positions
+                    .First(p => p.ParticipantId == null && p.EventId == eventId)
+                    .Id;
+
+            }
+
             Position position = await this.GetByIdAndEventId(eventId, positionId);
 
             bool isJoined = await this.CheckIfUserIsAlreadyJoined(eventId, userId);

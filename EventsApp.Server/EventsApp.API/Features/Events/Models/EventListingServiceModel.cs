@@ -17,5 +17,7 @@
         public int AvailablePositions { get; set; }
 
         public string Creator { get; set; }
+
+        public bool IsSportEvent { get; set; }
     }
 }

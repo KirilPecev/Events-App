@@ -6,7 +6,7 @@
 
     public interface IEventService
     {
-        public Task<int> Create(string name, string sport, string location, string dateTime, string[] positions, string userId);
+        public Task<int> Create(string name, string sport, string location, string dateTime, string[] positions, bool isSportEvent, string userId);
 
         public Task<bool> Update(int id, string location, string dateTime, string userId);
 

@@ -22,15 +22,16 @@
             this.positionService = positionService;
         }
 
-        public async Task<int> Create(string name, string sport, string location, string dateTime, string[] positions, string userId)
+        public async Task<int> Create(string name, string sport, string location, string dateTime, string[] positions, bool isSportEvent, string userId)
         {
             Event newEvent = new Event()
             {
                 Name = name,
-                Sport = sport ?? "other",
+                Sport = sport,
                 Location = location,
                 DateTime = DateTime.Parse(dateTime),
                 CreatorId = userId,
+                IsSportEvent = isSportEvent
             };
 
             await this.data.Events.AddAsync(newEvent);
@@ -105,7 +106,8 @@
                      Location = e.Location,
                      Sport = e.Sport,
                      DateTime = e.DateTime,
-                     AvailablePositions = availablePositions
+                     AvailablePositions = availablePositions,
+                     IsSportEvent = e.IsSportEvent
                  })
                  .FirstOrDefaultAsync();
         }
@@ -141,7 +143,8 @@
                     Sport = e.Sport,
                     Date = e.DateTime.ToDateFormat(),
                     Time = e.DateTime.ToTimeFormat(),
-                    AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
+                    AvailablePositions = e.Positions.Count(p => p.ParticipantId == null),
+                    IsSportEvent = e.IsSportEvent
                 })
                 .ToListAsync();
 
