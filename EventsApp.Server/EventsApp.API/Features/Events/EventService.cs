@@ -120,13 +120,20 @@
                 .Select(e => new EventListingServiceModel()
                 {
                     Id = e.Id,
-                    Name = e.Name,
-                    Creator = $"{e.Creator.FirstName} {e.Creator.LastName}",
-                    Location = e.Location,
-                    Sport = e.Sport,
-                    Date = e.DateTime.ToDateFormat(),
-                    Time = e.DateTime.ToTimeFormat(),
-                    AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
+                    Name = e.Name
+                })
+                .ToListAsync();
+
+        public async Task<IEnumerable<EventListingServiceModel>> GetEventsImJoined(string userId)
+            => await this.data
+                .Events
+                .SelectMany(e=>e.Positions)
+                .Where(p=>p.ParticipantId == userId)
+                .OrderByDescending(x => x.Id)
+                .Select(e => new EventListingServiceModel()
+                {
+                    Id = e.EventId,
+                    Name = e.Event.Name,
                 })
                 .ToListAsync();
 

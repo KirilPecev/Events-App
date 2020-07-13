@@ -16,6 +16,8 @@
 
         public Task<IEnumerable<EventListingServiceModel>> GetByUser(string userId);
 
+        public Task<IEnumerable<EventListingServiceModel>> GetEventsImJoined(string userId);
+
         public Task<IEnumerable<EventListingServiceModel>> GetAll();
     }
 }

@@ -33,6 +33,15 @@
         }
 
         [HttpGet]
+        [Route("Joined")]
+        public async Task<IEnumerable<EventListingServiceModel>> EventsImJoined()
+        {
+            string userId = this.User.GetId();
+
+            return await this.eventService.GetEventsImJoined(userId);
+        }
+
+        [HttpGet]
         [Route(Id)]
         public async Task<EventDetailsServiceModel> Details(int id)
         {
