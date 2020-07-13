@@ -18,6 +18,8 @@
 
         public Task<IEnumerable<EventListingServiceModel>> GetEventsImJoined(string userId);
 
+        public Task<IEnumerable<EventListingServiceModel>> GetUpcomingEvents();
+
         public Task<IEnumerable<EventListingServiceModel>> GetAll();
     }
 }

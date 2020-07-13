@@ -42,6 +42,15 @@
         }
 
         [HttpGet]
+        [Route("upcoming")]
+        public async Task<IEnumerable<EventListingServiceModel>> UpcomingEvents()
+        {
+            string userId = this.User.GetId();
+
+            return await this.eventService.GetUpcomingEvents();
+        }
+
+        [HttpGet]
         [Route(Id)]
         public async Task<EventDetailsServiceModel> Details(int id)
         {

@@ -137,6 +137,20 @@
                 })
                 .ToListAsync();
 
+
+        public async Task<IEnumerable<EventListingServiceModel>> GetUpcomingEvents()
+            => await this.data
+                .Events
+                .Where(e=>e.DateTime >= DateTime.Now && e.DateTime<= DateTime.Now.AddDays(7))
+                .OrderByDescending(x => x.DateTime)
+                .Select(e => new EventListingServiceModel()
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    AvailablePositions = e.Positions.Count(p => p.ParticipantId == null)
+                })
+                .ToListAsync();
+
         public async Task<IEnumerable<EventListingServiceModel>> GetAll()
             => await this.data
                 .Events
