@@ -1,17 +1,10 @@
 <div fxLayout="column" fxLayoutAlign="start start">
-    <h1>{{title}}</h1>
-    <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em">
+    <h1>Upcoming events</h1>
+    <p *ngIf="(this.events$|async)?.length == 0">Currently hasn't upcoming events!</p>
+    <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em" *ngFor="let e of (this.events$ | async)">
         <li fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap.xs="3.5em">
-            <a href="">Footbal in London</a>
-            <span class="info">Available spaces: 2</span>
-        </li>
-        <li fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap.xs="3.5em">
-            <a href="">.NET meeting in Sofia</a>
-            <span class="info">Available spaces: 1</span>
-        </li>
-        <li fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap.xs="3.5em">
-            <a href="">.NET meeting in Sofia</a>
-            <span class="info">Available spaces: 1 </span>
+            <a href="/events/details/{{e.id}}">{{e.name}}</a>
+            <p class="info">Available positions: {{e.availablePositions}}</p>
         </li>
     </ul>
 </div>

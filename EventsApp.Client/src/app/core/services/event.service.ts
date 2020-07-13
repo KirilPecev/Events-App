@@ -39,4 +39,8 @@ export class EventService {
   getEventsImJoined(): Observable<Array<Event>> {
     return this.http.get<Array<Event>>(this.eventPath + "/joined");
   }
+
+  getUpcomingevents(): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(this.eventPath + "/upcoming");
+  }
 }
