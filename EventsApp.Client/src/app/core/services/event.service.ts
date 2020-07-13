@@ -35,4 +35,8 @@ export class EventService {
   getDetails(id): Observable<Event> {
     return this.http.get<Event>(this.eventPath + "/" + id);
   }
+
+  getEventsImJoined(): Observable<Array<Event>> {
+    return this.http.get<Array<Event>>(this.eventPath + "/joined");
+  }
 }

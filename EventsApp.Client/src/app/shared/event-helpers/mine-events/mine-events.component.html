@@ -1,5 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="start start">
     <h1>Mine events</h1>
+    <p *ngIf="(this.events$|async)?.length == 0">Currently you don't have created events!</p>
     <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em" *ngFor="let e of (this.events$ | async)">
         <li><a href="/events/details/{{e.id}}">{{e.name}}</a></li>
     </ul>

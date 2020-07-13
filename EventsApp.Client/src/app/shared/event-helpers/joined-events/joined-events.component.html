@@ -1,8 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="start start">
     <h1>Events I'm joined</h1>
-    <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em">
-        <li><a href=""> Footbal in London</a></li>
-        <li><a href="">Basketball in London</a></li>
-        <li><a href="">.NET meeting in Sofia</a></li>
+    <p *ngIf="(this.events$|async)?.length == 0">Currently you aren't joined to events!</p>
+    <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em"*ngFor="let e of (this.events$ | async)">
+        <li><a href="/events/details/{{e.id}}">{{e.name}}</a></li>
     </ul>
 </div>

@@ -6,7 +6,7 @@ import { EventService } from 'src/app/core/services/event.service';
 @Component({
   selector: 'app-mine-events',
   templateUrl: './mine-events.component.html',
-  styleUrls: ['./mine-events.component.css']
+  styleUrls: ['./mine-events.component.css', '../styles.css']
 })
 export class MineEventsComponent implements OnInit {
 
@@ -19,6 +19,6 @@ export class MineEventsComponent implements OnInit {
   }
 
   fetch(){
-    this.events$ = this.eventService.getEvents();
+    this.events$ = this.eventService.getMineEvents();
   }
 }
