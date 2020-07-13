@@ -1,8 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="start start">
     <h1>Mine events</h1>
-    <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em">
-        <li><a href=""> Footbal in London</a></li>
-        <li><a href="">Basketball in London</a></li>
-        <li><a href="">.NET meeting in Sofia</a></li>
+    <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em" *ngFor="let e of (this.events$ | async)">
+        <li><a href="/events/details/{{e.id}}">{{e.name}}</a></li>
     </ul>
 </div>
