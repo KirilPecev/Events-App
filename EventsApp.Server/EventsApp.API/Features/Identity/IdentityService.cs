@@ -59,7 +59,7 @@
                     FullName = $"{u.FirstName} {u.LastName}",
                     Email = u.Email,
                     Mobile = u.PhoneNumber,
-                    Birthday = u.Birthday.CompareTo(new DateTime()) == 0 ? null : u.Birthday.ToShortDateString(),
+                    Birthday = u.Birthday.CompareTo(new DateTime()) == 0 ? null : u.Birthday.ToString("dd/MM/yyyy"),
                     Gender = u.Gender == Gender.Default ? null : u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport
