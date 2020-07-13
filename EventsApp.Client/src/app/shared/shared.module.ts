@@ -23,6 +23,7 @@ import { RightSidebarComponent } from "./layout/right-sidebar/right-sidebar.comp
 import { NotificationsComponent } from "./layout/notifications/notifications.component";
 import { PublicationComponent } from "./publication/publication.component";
 import { SharePublicationComponent } from "./publication/share-publication/share-publication.component";
+import { MineEventsComponent } from './event-helpers/mine-events/mine-events.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SharePublicationComponent } from "./publication/share-publication/share
     NotificationsComponent,
     PublicationComponent,
     SharePublicationComponent,
+    MineEventsComponent,
   ],
   imports: [
     CommonModule,
