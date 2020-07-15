@@ -13,7 +13,10 @@
                     <app-joined-events class="events"></app-joined-events>
                     <app-upcoming-events title="My upcoming events"></app-upcoming-events>
                 </mat-menu>
-                <h1 class="mat-title">{{title}} </h1>
+                <h1 *ngIf="!isLoggedIn()" class="mat-title">
+                    <a class="title" href="/dashboard">{{title}}</a>
+                </h1>
+                <h1 *ngIf="isLoggedIn()" class="mat-title">{{title}}</h1>
                 <div *ngIf="isLoggedIn()" class="header-buttons">
                     <button mat-icon-button title="Home" routerLink="/">
                         <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
