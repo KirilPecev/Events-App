@@ -3,6 +3,7 @@ import { UserService } from "../core/services/user.service";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "../core/models/user-model";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-profile",
@@ -13,6 +14,7 @@ export class ProfileComponent implements OnInit, DoCheck {
   createdEventsByUser$: Observable<any>;
   user$: Observable<User>;
   userId: string;
+  userProfilePic: string;
 
   constructor(
     private userService: UserService,
@@ -36,7 +38,13 @@ export class ProfileComponent implements OnInit, DoCheck {
   fetch() {
     const userId = this.route.snapshot.pathFromRoot[2].params["userId"];
     this.userId = userId;
-    this.user$ = this.userService.getUserInformation(userId);
+
+    this.user$ = this.userService.getUserInformation(userId).pipe(
+      tap((data) => {
+        this.userProfilePic = this.userService.getProfilePicture(data.gender);
+      })
+    );
+
     this.createdEventsByUser$ = this.userService.getCreatedEventsAmount(
       this.userId
     );

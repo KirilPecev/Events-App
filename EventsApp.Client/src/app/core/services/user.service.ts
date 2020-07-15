@@ -81,4 +81,10 @@ export class UserService {
     const params = new HttpParams().set("friendId", friendId);
     return this.http.delete(this.path, { params });
   }
+
+  getProfilePicture(gender: string) {
+    return gender == "Male"
+      ? "../../assets/images/male.png"
+      : "../../assets/images/female.jpg";
+  }
 }
