@@ -36,5 +36,6 @@
     </mat-expansion-panel>
 </mat-accordion>
 <div *ngIf="!this.isSportEvent" fxLayout="column">
-    <button mat-flat-button color="primary" (click)="joinToOtherKindEvent()">Join</button>
+    <button *ngIf="!this.isUserJoined" mat-flat-button color="primary" (click)="joinToOtherKindEvent()">Join</button>
+    <button *ngIf="this.isUserJoined" mat-flat-button color="warn" (click)="quitFromOtherKindEvent()">Quit</button>
 </div>

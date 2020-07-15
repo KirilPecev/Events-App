@@ -11,4 +11,5 @@ export interface Event {
   isSportEvent: boolean;
   date: string;
   time: string;
+  isUserJoined: boolean;
 }

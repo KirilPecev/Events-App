@@ -11,7 +11,8 @@ import { Position } from "../../core/models/position-model";
 export class PositionsComponent implements OnInit {
   @Input() eventId: number;
   @Input() isSportEvent: boolean;
-  
+  @Input() isUserJoined: boolean;
+
   constructor(private positionService: PositionService) {}
 
   availablePositions: Array<Position>;
@@ -60,6 +61,18 @@ export class PositionsComponent implements OnInit {
 
     this.positionService.join(data).subscribe((data) => {
       this.fetch();
+      this.isUserJoined = true;
+    });
+  }
+
+  quitFromOtherKindEvent(){
+    let data = {
+      eventId: this.eventId,
+    };
+
+    this.positionService.unjoin(data).subscribe((data) => {
+      this.fetch();
+      this.isUserJoined = false;
     });
   }
 }
