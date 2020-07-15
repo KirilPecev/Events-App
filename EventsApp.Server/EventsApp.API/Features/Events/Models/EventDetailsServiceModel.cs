@@ -23,5 +23,7 @@
         public bool IsAdmin { get; set; }
 
         public bool IsSportEvent { get; set; }
+
+        public bool IsUserJoined { get; set; }
     }
 }

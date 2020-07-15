@@ -93,6 +93,8 @@
                 .SelectMany(e => e.Positions)
                 .CountAsync(e => e.ParticipantId == null);
 
+            bool isUserJoined = await this.positionService.IsUserJoined(id, userId);
+
             return await this.data
                  .Events
                  .Where(e => e.Id == id)
@@ -107,7 +109,8 @@
                      Sport = e.Sport,
                      DateTime = e.DateTime,
                      AvailablePositions = availablePositions,
-                     IsSportEvent = e.IsSportEvent
+                     IsSportEvent = e.IsSportEvent,
+                     IsUserJoined = isUserJoined
                  })
                  .FirstOrDefaultAsync();
         }

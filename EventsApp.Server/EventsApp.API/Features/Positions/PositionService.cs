@@ -77,6 +77,14 @@
 
         public async Task<bool> Unjoin(int eventId, int positionId, string userId)
         {
+            if (positionId == 0)
+            {
+                positionId = this.data.Positions
+                    .First(p => p.ParticipantId == userId && p.EventId == eventId)
+                    .Id;
+
+            }
+
             Position position = await this.GetByIdAndEventId(eventId, positionId);
 
             bool isJoined = await this.CheckIfUserIsAlreadyJoined(eventId, userId);
@@ -124,6 +132,13 @@
                 CanQuit = p.ParticipantId == userId
             })
             .ToListAsync();
+
+        public async Task<bool> IsUserJoined(int eventId, string userId)
+        {
+            bool result = await this.data.Positions.AnyAsync(p => p.EventId == eventId && p.ParticipantId == userId);
+
+            return result;
+        }
 
         private async Task<Position> GetByIdAndEventId(int eventId, int positionId)
             => await this.data

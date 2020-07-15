@@ -17,5 +17,7 @@
         Task<IEnumerable<PositionListingServiceModel>> GetAvailablePositions(int eventId, string userId);
 
         Task<IEnumerable<PositionListingServiceModel>> GetBusyPositions(int eventId, string userId);
+
+        Task<bool> IsUserJoined(int eventId, string userId);
     }
 }
