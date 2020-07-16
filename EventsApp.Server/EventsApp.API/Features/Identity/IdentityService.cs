@@ -67,10 +67,9 @@
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<UserListingServiceModel>> GetByName(string name)
+        public async Task<IEnumerable<UserListingServiceModel>> GetAllUsers()
             => await this.userManager
                 .Users
-                .Where(u => u.FirstName.Contains(name) || u.LastName.Contains(name))
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.Id,
@@ -80,11 +79,6 @@
 
         public async Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId)
         {
-            int friendsCount = await this.data
-                .Friends
-                .Where(u => u.UserId == userId && u.Status == FriendStatus.Accepted)
-                .CountAsync();
-
             return await this.data
                 .Friends
                 .Where(u => u.UserId == userId || u.FriendId == userId && u.Status == FriendStatus.Accepted )
@@ -94,7 +88,7 @@
                     FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
                     FriendsCount = this.data
                         .Friends
-                        .Count(f => f.FriendId == userId && f.Status == FriendStatus.Accepted),
+                        .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
                 })
                 .ToListAsync();
         }

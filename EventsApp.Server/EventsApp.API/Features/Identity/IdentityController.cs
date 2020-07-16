@@ -79,9 +79,9 @@
 
         [Authorize]
         [HttpGet]
-        [Route("ByName")]
-        public async Task<IEnumerable<UserListingServiceModel>> GetByName(string name)
-         => await this.identityService.GetByName(name);
+        [Route("Users")]
+        public async Task<IEnumerable<UserListingServiceModel>> GetAll()
+         => await this.identityService.GetAllUsers();
 
         [Authorize]
         [HttpGet]

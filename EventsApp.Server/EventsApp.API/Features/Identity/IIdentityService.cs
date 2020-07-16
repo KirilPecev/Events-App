@@ -8,7 +8,7 @@
     {
         string GenerateJwtToken(string userId, string userEmail, string secret);
 
-        Task<IEnumerable<UserListingServiceModel>> GetByName(string name);
+        Task<IEnumerable<UserListingServiceModel>> GetAllUsers();
 
         Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId);
 
