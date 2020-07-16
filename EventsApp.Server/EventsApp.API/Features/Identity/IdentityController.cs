@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Features.Identity
 {
+    using System;
     using Data.Models;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
@@ -29,12 +30,16 @@
         [Route(nameof(Register))]
         public async Task<ActionResult> Register(RegisterRequestModel model)
         {
+            Enum.TryParse(model.Gender, true, out Gender gender);
+            
             User user = new User()
             {
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                UserName = model.Email
+                UserName = model.Email,
+                Birthday = DateTime.Parse(model.Birthday),
+                Gender = gender
             };
 
             IdentityResult result = await this.userManager.CreateAsync(user, model.Password);

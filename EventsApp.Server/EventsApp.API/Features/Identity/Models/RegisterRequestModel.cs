@@ -20,5 +20,11 @@
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string Gender { get; set; }
+
+        [Required]
+        public string Birthday { get; set; }
     }
 }
