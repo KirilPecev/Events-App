@@ -25,6 +25,28 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>
+                        Birthday
+                    </mat-label>
+                    <input formControlName="birthday" matInput type="date" required>
+                    <mat-error
+                        *ngIf="registerForm.get('birthday').errors?.required && registerForm.get('birthday').touched">
+                        Birthday is <strong>required</strong>!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
+                        Gender
+                    </mat-label>
+                    <mat-select formControlName="gender" required>
+                        <mat-option *ngFor="let key of genders" [value]="key">{{key}}</mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="registerForm.get('gender').errors?.required && registerForm.get('gender').touched">
+                        Gender is <strong>required</strong>!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
                         Email
                     </mat-label>
                     <input formControlName="email" matInput type="email" required>

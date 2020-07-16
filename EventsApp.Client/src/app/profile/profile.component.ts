@@ -39,7 +39,8 @@ export class ProfileComponent implements OnInit, DoCheck {
     const userId = this.route.snapshot.pathFromRoot[2].params["userId"];
     this.userId = userId;
 
-    this.user$ = this.userService.getUserInformation(userId).pipe(
+    this.user$ = this.userService.getUserInformation(userId)
+    .pipe(
       tap((data) => {
         this.userProfilePic = this.userService.getProfilePicture(data.gender);
       })

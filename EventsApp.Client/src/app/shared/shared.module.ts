@@ -14,6 +14,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatMenuModule } from "@angular/material/menu";
+import {MatSelectModule} from '@angular/material/select';
 
 import { JoinedEventsComponent } from "./event-helpers/joined-events/joined-events.component";
 import { UpcomingEventsComponent } from "./event-helpers/upcoming-events/upcoming-events.component";
@@ -52,6 +53,7 @@ import { MineEventsComponent } from './event-helpers/mine-events/mine-events.com
     MatButtonModule,
     MatCardModule,
     MatSidenavModule,
+    MatSelectModule,
     FlexLayoutModule,
   ],
   exports: [
@@ -69,6 +71,7 @@ import { MineEventsComponent } from './event-helpers/mine-events/mine-events.com
     MatButtonModule,
     MatCardModule,
     MatSidenavModule,
+    MatSelectModule,
     FlexLayoutModule,
     JoinedEventsComponent,
     UpcomingEventsComponent,
