@@ -82,6 +82,10 @@ export class UserService {
     return this.http.delete(this.path, { params });
   }
 
+  getAllUsers(): Observable<Array<User>> {
+    return this.http.get<Array<User>>(this.path + "/users");
+  }
+
   getProfilePicture(gender: string) {
     return gender == "Male"
       ? "../../assets/images/male.png"

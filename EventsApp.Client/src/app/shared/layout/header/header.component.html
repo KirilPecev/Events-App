@@ -17,6 +17,7 @@
                     <a class="title" href="/dashboard">{{title}}</a>
                 </h1>
                 <h1 *ngIf="isLoggedIn()" class="mat-title">{{title}}</h1>
+                <app-search *ngIf="isLoggedIn()"></app-search>
                 <div *ngIf="isLoggedIn()" class="header-buttons">
                     <button mat-icon-button title="Home" routerLink="/">
                         <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>

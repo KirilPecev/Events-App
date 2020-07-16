@@ -15,6 +15,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatMenuModule } from "@angular/material/menu";
 import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { JoinedEventsComponent } from "./event-helpers/joined-events/joined-events.component";
 import { UpcomingEventsComponent } from "./event-helpers/upcoming-events/upcoming-events.component";
@@ -25,6 +26,7 @@ import { NotificationsComponent } from "./layout/notifications/notifications.com
 import { PublicationComponent } from "./publication/publication.component";
 import { SharePublicationComponent } from "./publication/share-publication/share-publication.component";
 import { MineEventsComponent } from './event-helpers/mine-events/mine-events.component';
+import { SearchComponent } from './layout/search/search.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { MineEventsComponent } from './event-helpers/mine-events/mine-events.com
     PublicationComponent,
     SharePublicationComponent,
     MineEventsComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +58,7 @@ import { MineEventsComponent } from './event-helpers/mine-events/mine-events.com
     MatSidenavModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatAutocompleteModule
   ],
   exports: [
     CommonModule,
@@ -72,6 +76,7 @@ import { MineEventsComponent } from './event-helpers/mine-events/mine-events.com
     MatCardModule,
     MatSidenavModule,
     MatSelectModule,
+    MatAutocompleteModule,
     FlexLayoutModule,
     JoinedEventsComponent,
     UpcomingEventsComponent,
@@ -81,6 +86,7 @@ import { MineEventsComponent } from './event-helpers/mine-events/mine-events.com
     NotificationsComponent,
     PublicationComponent,
     SharePublicationComponent,
+    SearchComponent,
   ],
   entryComponents: [NotificationsComponent, FriendsComponent],
 })

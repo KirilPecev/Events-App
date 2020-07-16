@@ -1,0 +1,11 @@
+<form>
+    <fa-icon class="fa-lg" [icon]="faSearch"></fa-icon>
+    <mat-form-field>
+        <input type="text" matInput [formControl]="option" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="load()">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+                {{option.fullName}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

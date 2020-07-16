@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { tap } from "rxjs/operators";
-
 import {
   faHome,
   faUserFriends,
@@ -17,7 +15,6 @@ import { FriendsComponent } from "../friends/friends.component";
 import { UserService } from "../../../core/services/user.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../../core/services/notification.service";
-import { from } from "rxjs";
 import { Notification } from "../../../core/models/notification-model";
 import { Friend } from "../../../core/models/friend-model";
 
