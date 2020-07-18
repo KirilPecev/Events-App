@@ -50,6 +50,7 @@
 
         public async Task<UserDetailsServiceModel> Details(string userId, string mainUserId)
         {
+
             return await this.userManager
                 .Users
                 .Where(u => u.Id == userId)
@@ -64,7 +65,7 @@
                     Gender = u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport,
-                    IsMyFriend = u.Friends.Any(x => x.FriendId == mainUserId)
+                    IsMyFriend = u.Friends.Any(x => x.FriendId == mainUserId || x.UserId == mainUserId)
                 })
                 .FirstOrDefaultAsync();
         }
@@ -81,18 +82,33 @@
 
         public async Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId)
         {
-            return await this.data
+            var a = await this.data
                 .Friends
-                .Where(u => u.UserId == userId || u.FriendId == userId && u.Status == FriendStatus.Accepted)
+                .Where(u => u.UserId == userId && u.Status == FriendStatus.Accepted)
+                .Select(u => new UserListingServiceModel()
+                {
+                    Id = u.FriendId,
+                    FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
+                    FriendsCount = this.data
+                        .Friends
+                        .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
+                })
+                .ToListAsync();
+
+            var b =  await this.data
+                .Friends
+                .Where(u => u.FriendId == userId && u.Status == FriendStatus.Accepted)
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.UserId,
                     FullName = $"{u.User.FirstName} {u.User.LastName}",
                     FriendsCount = this.data
                         .Friends
-                        .Count(f => f.FriendId == u.FriendId || f.UserId == userId && f.Status == FriendStatus.Accepted),
+                        .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
                 })
                 .ToListAsync();
+
+            return a.Concat(b);
         }
 
         public async Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId)
