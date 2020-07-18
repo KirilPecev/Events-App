@@ -17,5 +17,7 @@
         public string Gender { get; set; }
 
         public string FavoriteSport { get; set; }
+
+        public bool IsMyFriend { get; set; }
     }
 }

@@ -48,11 +48,12 @@
             return encryptedToken;
         }
 
-        public async Task<UserDetailsServiceModel> Details(string userId)
+        public async Task<UserDetailsServiceModel> Details(string userId, string mainUserId)
         {
             return await this.userManager
                 .Users
                 .Where(u => u.Id == userId)
+                .Include(x => x.Friends)
                 .Select(u => new UserDetailsServiceModel()
                 {
                     Id = u.Id,
@@ -62,7 +63,8 @@
                     Birthday = u.Birthday.CompareTo(new DateTime()) == 0 ? null : u.Birthday.ToString("dd/MM/yyyy"),
                     Gender = u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
-                    FavoriteSport = u.FavoriteSport
+                    FavoriteSport = u.FavoriteSport,
+                    IsMyFriend = u.Friends.Any(x => x.FriendId == mainUserId)
                 })
                 .FirstOrDefaultAsync();
         }
@@ -81,14 +83,14 @@
         {
             return await this.data
                 .Friends
-                .Where(u => u.UserId == userId || u.FriendId == userId && u.Status == FriendStatus.Accepted )
+                .Where(u => u.UserId == userId || u.FriendId == userId && u.Status == FriendStatus.Accepted)
                 .Select(u => new UserListingServiceModel()
                 {
-                    Id = u.FriendId,
-                    FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
+                    Id = u.UserId,
+                    FullName = $"{u.User.FirstName} {u.User.LastName}",
                     FriendsCount = this.data
                         .Friends
-                        .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
+                        .Count(f => f.FriendId == u.FriendId || f.UserId == userId && f.Status == FriendStatus.Accepted),
                 })
                 .ToListAsync();
         }
@@ -96,11 +98,11 @@
         public async Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId)
             => await this.data
                 .Friends
-                .Where(u => u.UserId == userId && u.Status == FriendStatus.Pending)
+                .Where(u => u.FriendId == userId && u.Status == FriendStatus.Pending)
                 .Select(u => new UserListingServiceModel()
                 {
-                    Id = u.FriendId,
-                    FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}"
+                    Id = u.UserId,
+                    FullName = $"{u.User.FirstName} {u.User.LastName}"
                 })
                 .ToListAsync();
 
@@ -178,6 +180,6 @@
         private async Task<Friend> GetFriendship(string userId, string friendId)
             => await this.data
                 .Friends
-                .FirstOrDefaultAsync(u => u.UserId == userId && u.FriendId == friendId);
+                .FirstOrDefaultAsync(u => u.UserId == friendId && u.FriendId == userId);
     }
 }

@@ -104,7 +104,7 @@
         [HttpGet]
         [Route(Id)]
         public async Task<UserDetailsServiceModel> Details(string id)
-            => await this.identityService.Details(id);
+            => await this.identityService.Details(id, this.User.GetId());
 
         [Authorize]
         [HttpGet]
@@ -116,11 +116,11 @@
         [Authorize]
         [HttpPut]
         [Route("Friend")]
-        public async Task<ActionResult> AddFriend(string friendId)
+        public async Task<ActionResult> AddFriend(AddFriendRequestModel model)
         {
             string userId = this.User.GetId();
 
-            bool added = await this.identityService.AddFriend(userId, friendId);
+            bool added = await this.identityService.AddFriend(userId, model.FriendId);
 
             if (!added)
             {
