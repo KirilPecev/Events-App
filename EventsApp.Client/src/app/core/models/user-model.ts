@@ -7,4 +7,5 @@ export interface User {
     birthday: string;
     gender: string;
     favoriteSport: string;
+    isMyFriend: boolean;
 }

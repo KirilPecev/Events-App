@@ -77,6 +77,14 @@ export class UserService {
     return this.http.put(this.path + "/accept", data);
   }
 
+  addFriend(friendId: string){
+    let data = {
+      friendId: friendId,
+    };
+
+    return this.http.put(this.path + "/friend", data);
+  }
+
   removeFriendship(friendId: string) {
     const params = new HttpParams().set("friendId", friendId);
     return this.http.delete(this.path, { params });

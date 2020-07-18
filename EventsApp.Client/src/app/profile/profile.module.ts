@@ -9,6 +9,7 @@ import { UserDaybookComponent } from "./user-daybook/user-daybook.component";
 import { UserFriendsComponent } from "./user-friends/user-friends.component";
 import { UserInformationComponent } from './user-information/user-information.component';
 import { UserPicturesComponent } from './user-pictures/user-pictures.component';
+import { UserFriendButtonsComponent } from './user-friend-buttons/user-friend-buttons.component';
 
 @NgModule({
   imports: [SharedModule, ProfileRoutingModule],
@@ -19,7 +20,8 @@ import { UserPicturesComponent } from './user-pictures/user-pictures.component';
     UserDaybookComponent,
     UserFriendsComponent,
     UserInformationComponent,
-    UserPicturesComponent
+    UserPicturesComponent,
+    UserFriendButtonsComponent
   ]
 })
 export class ProfileModule {}

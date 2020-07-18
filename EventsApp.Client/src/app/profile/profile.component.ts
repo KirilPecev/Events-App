@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit, DoCheck {
   user$: Observable<User>;
   userId: string;
   userProfilePic: string;
+  isMyProfile: boolean;
+  isMyFriend: boolean;
 
   constructor(
     private userService: UserService,
@@ -43,11 +45,14 @@ export class ProfileComponent implements OnInit, DoCheck {
     .pipe(
       tap((data) => {
         this.userProfilePic = this.userService.getProfilePicture(data.gender);
+        this.isMyFriend = data.isMyFriend;
       })
     );
 
     this.createdEventsByUser$ = this.userService.getCreatedEventsAmount(
       this.userId
     );
+
+    this.isMyProfile = this.userId === localStorage.getItem("userId");
   }
 }

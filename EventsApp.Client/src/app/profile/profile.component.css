@@ -2,7 +2,7 @@
   border: 2px solid #673ab7;
 }
 
-.header{
+.header {
   width: 100%;
 }
 
@@ -17,13 +17,34 @@
   font-weight: bold;
 }
 
+.header > button {
+  margin-top: 7.5em;
+  margin-right: 1em;
+}
+
 .menu {
   margin-top: -1em;
+}
+
+@media (max-width: 970px) {
+  .header > button {
+    margin-top: 5em;
+  }
+}
+
+@media (max-width: 870px) {
+  .header > button {
+    margin-top: 3em;
+  }
 }
 
 @media (max-width: 620px) {
   .header > p {
     font-size: large;
+  }
+
+  .header > button {
+    margin-top: 1.5em;
   }
 }
 
@@ -32,4 +53,3 @@
     font-size: medium;
   }
 }
-
