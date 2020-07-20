@@ -1,11 +1,13 @@
 ﻿namespace EventsApp.API.Features.Publications
 {
+    using System;
     using Data;
     using Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
 
     public class PublicationService : IPublicationService
@@ -118,11 +120,33 @@
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
         {
-            //Get all friends publications
-            var friendPublications = await this.data
+            Expression<Func<Friend, bool>> expression = f => (f.UserId == userId || f.FriendId == userId) && f.Status == FriendStatus.Accepted;
+
+            IQueryable<Publication> userFriendPublications = this.data
                 .Friends
-                .Where(f => f.UserId == userId && f.Status == FriendStatus.Accepted)
-                .SelectMany(f => f.UserFriend.Publications)
+                .Where(expression)
+                .SelectMany(f => f.UserFriend.Publications);
+
+            IQueryable<Publication> userPublications = this.data
+                .Friends
+                .Where(expression)
+                .SelectMany(f => f.User.Publications);
+
+
+            IQueryable<Share> userSharedPublications = this.data
+                .Friends
+                .Where(expression)
+                .SelectMany(f => f.User.Shares);
+
+            
+            IQueryable<Share> userFriendSharedPublications = this.data
+                .Friends
+                .Where(expression)
+                .SelectMany(f => f.UserFriend.Shares);
+
+
+            var materializedPublications = await userPublications
+                .Union(userFriendPublications)
                 .Select(p => new PublicationListingServiceModel()
                 {
                     Id = p.Id,
@@ -137,11 +161,8 @@
                 })
                 .ToListAsync();
 
-            //Get all shared publications from friends
-            var friendSharedPublications = await this.data
-                .Friends
-                .Where(f => f.UserId == userId && f.Status == FriendStatus.Accepted)
-                .SelectMany(f => f.UserFriend.Shares)
+            var materializedSharedPublications = await userSharedPublications
+                .Union(userFriendSharedPublications)
                 .Select(s => new PublicationListingServiceModel()
                 {
                     Id = s.PublicationId,
@@ -156,11 +177,8 @@
                 })
                 .ToListAsync();
 
-            //Get all mine publications with all my shared publications
-            var mine = await this.GetByUser(userId);
-
             //Return all concatenated
-            return friendPublications.Concat(friendSharedPublications).Concat(mine).OrderByDescending(r => r.Id);
+            return materializedPublications.Concat(materializedSharedPublications).OrderByDescending(r => r.Id);
         }
 
         public async Task<bool> Like(int id, string userId)
