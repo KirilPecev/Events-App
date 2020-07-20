@@ -8,4 +8,5 @@ export interface Publication {
   userImgUrl: string;
   creator: string;
   isLiked: boolean;
+  sharedFrom: string;
 }

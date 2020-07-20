@@ -3,7 +3,7 @@
         <mat-card-header class="shared-by">
             <mat-card-title fxLayout="row" fxLayoutAlign="start" fxLayoutGap="0.5em">
                 <img [src]="publication.userImgUrl" alt="">
-                <h2> {{publication.creator}} shared a {{publication.type}}</h2>
+                <h2> {{publication.creator}} shared a {{publication.type}} <h2 *ngIf="publication.sharedFrom"> by {{publication.sharedFrom}}</h2></h2>
             </mat-card-title>
         </mat-card-header>
         <mat-card-content class="content">
