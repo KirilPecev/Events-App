@@ -60,7 +60,7 @@
             return true;
         }
 
-        public async Task<bool> Delete(int id, string userId)
+        public async Task<bool> DeletePublication(int id, string userId)
         {
             Publication publication = await this.GetByIdAndByUserId(id, userId);
 
@@ -69,19 +69,36 @@
                 return false;
             }
 
-            this.data.Remove(publication);
+            publication.IsDeleted = true;
 
             await this.data.SaveChangesAsync();
 
             return true;
         }
 
+        public async Task<bool> DeleteSharedPublication(int id, string userId)
+        {
+            Share publication = await this.GetByIdAndByUserIdFromShares(id, userId);
+
+            if (publication == null)
+            {
+                return false;
+            }
+
+            publication.IsDeleted = true;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+
         public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
         {
             //Get all user with userId publications
             List<PublicationListingServiceModel> publications = await this.data
                 .Publications
-                .Where(p => p.CreatorId == userId)
+                .Where(p => p.CreatorId == userId && !p.IsDeleted)
                 .Select(p => new PublicationListingServiceModel()
                 {
                     Id = p.Id,
@@ -101,10 +118,10 @@
             //Get all user with userId shared publications
             List<PublicationListingServiceModel> sharedPublications = await this.data
                 .Shares
-                .Where(s => s.UserId == userId)
+                .Where(s => s.UserId == userId && !s.IsDeleted)
                 .Select(s => new PublicationListingServiceModel()
                 {
-                    Id = s.PublicationId,
+                    Id = s.Id,
                     Type = s.Publication.Type.ToString().ToLower(),
                     Description = s.Publication.Description,
                     ImageUrl = s.Publication.ImageUrl,
@@ -152,6 +169,7 @@
 
             var materializedPublications = await userPublications
                 .Union(userFriendPublications)
+                .Where(x=> !x.IsDeleted)
                 .Select(p => new PublicationListingServiceModel()
                 {
                     Id = p.Id,
@@ -170,9 +188,10 @@
 
             var materializedSharedPublications = await userSharedPublications
                 .Union(userFriendSharedPublications)
+                .Where(x => !x.IsDeleted)
                 .Select(s => new PublicationListingServiceModel()
                 {
-                    Id = s.PublicationId,
+                    Id = s.Id,
                     Type = s.Publication.Type.ToString().ToLower(),
                     Description = s.Publication.Description,
                     ImageUrl = s.Publication.ImageUrl,
@@ -259,6 +278,12 @@
             => await this.data
                 .Publications
                 .Where(p => p.Id == id && p.CreatorId == userId)
+                .FirstOrDefaultAsync();
+
+        private async Task<Share> GetByIdAndByUserIdFromShares(int id, string userId)
+            => await this.data
+                .Shares
+                .Where(s => s.Id == id && s.UserId == userId)
                 .FirstOrDefaultAsync();
     }
 }

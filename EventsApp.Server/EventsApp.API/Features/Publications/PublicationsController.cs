@@ -74,7 +74,23 @@
         {
             string userId = this.User.GetId();
 
-            bool deleted = await this.publicationService.Delete(id, userId);
+            bool deleted = await this.publicationService.DeletePublication(id, userId);
+
+            if (!deleted)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Shared/{Id}")]
+        public async Task<ActionResult> DeleteShared(int id)
+        {
+            string userId = this.User.GetId();
+
+            bool deleted = await this.publicationService.DeleteSharedPublication(id, userId);
 
             if (!deleted)
             {

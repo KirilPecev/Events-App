@@ -10,7 +10,9 @@
 
         public Task<bool> Update(int id, string description, string userId);
 
-        public Task<bool> Delete(int id, string userId);
+        public Task<bool> DeletePublication(int id, string userId);
+
+        public Task<bool> DeleteSharedPublication(int id, string userId);
 
         public Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId);
 

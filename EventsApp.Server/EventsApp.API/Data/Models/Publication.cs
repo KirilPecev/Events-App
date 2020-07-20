@@ -27,6 +27,8 @@
 
         public DateTime DateTime { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public ICollection<Like> Likes { get; set; }
 
         public ICollection<Share> Shares { get; set; }
