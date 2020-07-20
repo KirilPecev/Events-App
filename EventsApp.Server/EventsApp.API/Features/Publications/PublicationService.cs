@@ -93,8 +93,8 @@
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares.Count,
-                    DateTime = p.DateTime
-
+                    DateTime = p.DateTime,
+                    CanDelete = p.Creator.Id == userId
                 })
                 .ToListAsync();
 
@@ -108,12 +108,14 @@
                     Type = s.Publication.Type.ToString().ToLower(),
                     Description = s.Publication.Description,
                     ImageUrl = s.Publication.ImageUrl,
-                    Creator = s.Publication.Creator.ToString(),
+                    Creator = s.User.ToString(),
                     UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
                     Likes = s.Publication.Likes.Count,
                     IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
                     Shares = s.Publication.Shares.Count,
-                    DateTime = s.DateTime
+                    DateTime = s.DateTime,
+                    SharedFrom = s.Publication.Creator.ToString(),
+                    CanDelete = s.UserId == userId
                 })
                .ToListAsync();
 
@@ -161,7 +163,8 @@
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares.Count,
-                    DateTime = p.DateTime
+                    DateTime = p.DateTime,
+                    CanDelete = p.Creator.Id == userId
                 })
                 .ToListAsync();
 
@@ -179,7 +182,8 @@
                     IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
                     Shares = s.Publication.Shares.Count,
                     SharedFrom = s.Publication.Creator.ToString(),
-                    DateTime = s.DateTime
+                    DateTime = s.DateTime,
+                    CanDelete = s.UserId == userId
                 })
                 .ToListAsync();
 

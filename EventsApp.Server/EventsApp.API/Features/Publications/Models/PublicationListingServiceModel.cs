@@ -25,5 +25,7 @@
         public string SharedFrom { get; set; }
 
         public DateTime DateTime { get; set; }
+
+        public bool CanDelete { get; set; }
     }
 }
