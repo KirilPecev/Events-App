@@ -34,6 +34,7 @@
                 Description = description,
                 ImageUrl = imageUrl,
                 CreatorId = userId,
+                DateTime = DateTime.UtcNow
             };
 
             this.data.Add(publication);
@@ -91,7 +92,8 @@
                     UserImgUrl = p.Creator.ProfilePictureUrl,
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
-                    Shares = p.Shares.Count
+                    Shares = p.Shares.Count,
+                    DateTime = p.DateTime
 
                 })
                 .ToListAsync();
@@ -110,12 +112,13 @@
                     UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
                     Likes = s.Publication.Likes.Count,
                     IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
-                    Shares = s.Publication.Shares.Count
+                    Shares = s.Publication.Shares.Count,
+                    DateTime = s.DateTime
                 })
-                .ToListAsync();
+               .ToListAsync();
 
             //Return all concatenated
-            return publications.Concat(sharedPublications).OrderByDescending(r => r.Id);
+            return publications.Concat(sharedPublications).OrderByDescending(x=>x.DateTime);
         }
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
@@ -138,7 +141,7 @@
                 .Where(expression)
                 .SelectMany(f => f.User.Shares);
 
-            
+
             IQueryable<Share> userFriendSharedPublications = this.data
                 .Friends
                 .Where(expression)
@@ -153,11 +156,12 @@
                     Type = p.Type.ToString().ToLower(),
                     Description = p.Description,
                     ImageUrl = p.ImageUrl,
-                    Creator = $"{p.Creator.FirstName} {p.Creator.LastName}",
+                    Creator = p.Creator.ToString(),
                     UserImgUrl = p.Creator.ProfilePictureUrl,
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
-                    Shares = p.Shares.Count
+                    Shares = p.Shares.Count,
+                    DateTime = p.DateTime
                 })
                 .ToListAsync();
 
@@ -169,16 +173,20 @@
                     Type = s.Publication.Type.ToString().ToLower(),
                     Description = s.Publication.Description,
                     ImageUrl = s.Publication.ImageUrl,
-                    Creator = $"{s.Publication.Creator.FirstName} {s.Publication.Creator.LastName}",
+                    Creator = s.User.ToString(),
                     UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
                     Likes = s.Publication.Likes.Count,
                     IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
-                    Shares = s.Publication.Shares.Count
+                    Shares = s.Publication.Shares.Count,
+                    SharedFrom = s.Publication.Creator.ToString(),
+                    DateTime = s.DateTime
                 })
                 .ToListAsync();
 
             //Return all concatenated
-            return materializedPublications.Concat(materializedSharedPublications).OrderByDescending(r => r.Id);
+            return materializedPublications
+                .Concat(materializedSharedPublications)
+                .OrderByDescending(x => x.DateTime);
         }
 
         public async Task<bool> Like(int id, string userId)
@@ -229,7 +237,8 @@
 
             Share share = new Share()
             {
-                UserId = userId
+                UserId = userId,
+                DateTime = DateTime.UtcNow
             };
 
             publication.Shares.Add(share);

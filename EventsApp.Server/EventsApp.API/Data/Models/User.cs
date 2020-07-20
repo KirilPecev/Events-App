@@ -56,5 +56,10 @@
         public ICollection<Like> Likes { get; set; }
 
         public ICollection<Share> Shares { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.FirstName} {this.LastName}";
+        }
     }
 }

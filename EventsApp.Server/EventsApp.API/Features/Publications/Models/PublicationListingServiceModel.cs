@@ -1,5 +1,7 @@
 ﻿namespace EventsApp.API.Features.Publications.Models
 {
+    using System;
+
     public class PublicationListingServiceModel
     {
         public int Id { get; set; }
@@ -19,5 +21,9 @@
         public string Creator { get; set; }
 
         public bool IsLiked { get; set; }
+
+        public string SharedFrom { get; set; }
+
+        public DateTime DateTime { get; set; }
     }
 }

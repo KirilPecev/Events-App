@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -23,6 +24,8 @@
         [Required]
         public string CreatorId { get; set; }
         public User Creator { get; set; }
+
+        public DateTime DateTime { get; set; }
 
         public ICollection<Like> Likes { get; set; }
 
