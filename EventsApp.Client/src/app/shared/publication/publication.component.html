@@ -5,7 +5,10 @@
                 <img [src]="publication.userImgUrl" alt="">
                 <h2> {{publication.creator}} shared a {{publication.type}} <span *ngIf="publication.sharedFrom"> by {{publication.sharedFrom}}</span></h2>
             </mat-card-title>
-            <button *ngIf="publication.canDelete" mat-icon-button color="warn" (click)="delete(publication.id)">
+            <button *ngIf="publication.canDelete && !publication.sharedFrom" mat-icon-button color="warn" (click)="deletePublication(publication.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button *ngIf="publication.canDelete && publication.sharedFrom" mat-icon-button color="warn" (click)="deleteSharedPublication(publication.id)">
                 <mat-icon>delete</mat-icon>
             </button>
         </mat-card-header>

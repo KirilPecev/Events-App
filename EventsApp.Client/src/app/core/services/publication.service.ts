@@ -20,7 +20,11 @@ export class PublicationService {
     return this.http.put<Publication>(this.publicationPath, data);
   }
 
-  delete(id: number) {
+  delete(id: number, isShared: boolean) {
+    if(isShared){
+      return this.http.delete(this.publicationPath + "/shared/" + id);
+    }
+
     return this.http.delete(this.publicationPath + "/" + id);
   }
 
@@ -30,7 +34,9 @@ export class PublicationService {
 
   getPublicationsByUser(userId: string): Observable<Array<Publication>> {
     const params = new HttpParams().set("userId", userId);
-    return this.http.get<Array<Publication>>(this.publicationPath + "/byuser", {params});
+    return this.http.get<Array<Publication>>(this.publicationPath + "/byuser", {
+      params,
+    });
   }
 
   like(id) {

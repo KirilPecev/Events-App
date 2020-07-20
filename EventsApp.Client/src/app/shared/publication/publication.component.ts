@@ -55,9 +55,14 @@ export class PublicationComponent implements OnInit {
     });
   }
 
-  delete(id: number) {
-    this.publicationService.delete(id)
-    .subscribe((data) => {
+  deletePublication(id: number) {
+    this.publicationService.delete(id, false).subscribe((data) => {
+      this.fetch();
+    });
+  }
+
+  deleteSharedPublication(id: number) {
+    this.publicationService.delete(id, true).subscribe((data) => {
       this.fetch();
     });
   }
