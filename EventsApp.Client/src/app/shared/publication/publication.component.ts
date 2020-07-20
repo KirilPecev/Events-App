@@ -54,4 +54,11 @@ export class PublicationComponent implements OnInit {
       this.fetch();
     });
   }
+
+  delete(id: number) {
+    this.publicationService.delete(id)
+    .subscribe((data) => {
+      this.fetch();
+    });
+  }
 }

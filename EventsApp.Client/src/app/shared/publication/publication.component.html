@@ -1,10 +1,13 @@
 <div fxLayout="column" fxLayoutGap="2%" class="container">
     <mat-card *ngFor="let publication of publications$ | async">
-        <mat-card-header class="shared-by">
+        <mat-card-header class="shared-by"fxLayout="row" fxLayoutAlign="space-between center" >
             <mat-card-title fxLayout="row" fxLayoutAlign="start" fxLayoutGap="0.5em">
                 <img [src]="publication.userImgUrl" alt="">
-                <h2> {{publication.creator}} shared a {{publication.type}} <h2 *ngIf="publication.sharedFrom"> by {{publication.sharedFrom}}</h2></h2>
+                <h2> {{publication.creator}} shared a {{publication.type}} <span *ngIf="publication.sharedFrom"> by {{publication.sharedFrom}}</span></h2>
             </mat-card-title>
+            <button *ngIf="publication.canDelete" mat-icon-button color="warn" (click)="delete(publication.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
         </mat-card-header>
         <mat-card-content class="content">
             <figure *ngIf="publication.imageUrl != null">

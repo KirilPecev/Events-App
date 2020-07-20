@@ -9,4 +9,5 @@ export interface Publication {
   creator: string;
   isLiked: boolean;
   sharedFrom: string;
+  canDelete: boolean;
 }

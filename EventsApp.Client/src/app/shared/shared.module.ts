@@ -16,6 +16,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatMenuModule } from "@angular/material/menu";
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatIconModule} from '@angular/material/icon';
 
 import { JoinedEventsComponent } from "./event-helpers/joined-events/joined-events.component";
 import { UpcomingEventsComponent } from "./event-helpers/upcoming-events/upcoming-events.component";
@@ -58,7 +59,8 @@ import { SearchComponent } from './layout/search/search.component';
     MatSidenavModule,
     MatSelectModule,
     FlexLayoutModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatIconModule
   ],
   exports: [
     CommonModule,
@@ -78,6 +80,7 @@ import { SearchComponent } from './layout/search/search.component';
     MatSelectModule,
     MatAutocompleteModule,
     FlexLayoutModule,
+    MatIconModule,
     JoinedEventsComponent,
     UpcomingEventsComponent,
     FriendsComponent,
