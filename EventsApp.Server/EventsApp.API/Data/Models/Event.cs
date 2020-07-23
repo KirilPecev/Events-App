@@ -36,6 +36,8 @@
 
         public bool IsSportEvent { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public ICollection<Position> Positions { get; set; }
     }
 }

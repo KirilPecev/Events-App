@@ -98,7 +98,7 @@
             //Get all user with userId publications
             List<PublicationListingServiceModel> publications = await this.data
                 .Publications
-                .Where(p => p.CreatorId == userId && !p.IsDeleted)
+                .Where(p => p.CreatorId == userId)
                 .Select(p => new PublicationListingServiceModel()
                 {
                     Id = p.Id,
@@ -118,7 +118,7 @@
             //Get all user with userId shared publications
             List<PublicationListingServiceModel> sharedPublications = await this.data
                 .Shares
-                .Where(s => s.UserId == userId && !s.IsDeleted)
+                .Where(s => s.UserId == userId)
                 .Select(s => new PublicationListingServiceModel()
                 {
                     Id = s.Id,
@@ -169,7 +169,6 @@
 
             var materializedPublications = await userPublications
                 .Union(userFriendPublications)
-                .Where(x=> !x.IsDeleted)
                 .Select(p => new PublicationListingServiceModel()
                 {
                     Id = p.Id,
@@ -188,7 +187,6 @@
 
             var materializedSharedPublications = await userSharedPublications
                 .Union(userFriendSharedPublications)
-                .Where(x => !x.IsDeleted)
                 .Select(s => new PublicationListingServiceModel()
                 {
                     Id = s.Id,

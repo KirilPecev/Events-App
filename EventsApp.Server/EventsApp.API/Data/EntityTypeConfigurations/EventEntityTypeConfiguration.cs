@@ -12,6 +12,9 @@
                 .HasMany(e => e.Positions)
                 .WithOne(p => p.Event)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .HasQueryFilter(e => !e.IsDeleted);
         }
     }
 }

@@ -14,6 +14,9 @@
             builder
                 .Property(p => p.Type)
                 .HasConversion(converter);
+
+            builder
+                .HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

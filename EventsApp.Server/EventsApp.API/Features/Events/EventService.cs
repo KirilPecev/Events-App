@@ -76,9 +76,7 @@
                 return false;
             }
 
-            await this.positionService.Delete(id);
-
-            this.data.Events.Remove(current);
+            current.IsDeleted = true;
 
             await this.data.SaveChangesAsync();
 
@@ -119,7 +117,7 @@
             => await this.data
                 .Events
                 .Where(e => e.CreatorId == userId)
-                .OrderByDescending(x => x.Id)
+                .OrderByDescending(x => x.DateTime)
                 .Select(e => new EventListingServiceModel()
                 {
                     Id = e.Id,
