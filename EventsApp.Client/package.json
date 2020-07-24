@@ -16,6 +16,7 @@
     "@angular/common": "~9.0.1",
     "@angular/compiler": "~9.0.1",
     "@angular/core": "~9.0.1",
+    "@angular/fire": "^6.0.2",
     "@angular/flex-layout": "^9.0.0-beta.29",
     "@angular/forms": "~9.0.1",
     "@angular/localize": "^9.0.1",
@@ -28,6 +29,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-regular-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "firebase": "^7.17.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

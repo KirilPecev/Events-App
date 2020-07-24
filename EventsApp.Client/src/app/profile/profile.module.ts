@@ -1,5 +1,8 @@
 import { NgModule } from "@angular/core";
 
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "../../environments/environment";
+
 import { SharedModule } from "../shared/shared.module";
 import { ProfileRoutingModule } from "./profile-routing.module";
 import { ProfileComponent } from "./profile.component";
@@ -12,7 +15,7 @@ import { UserPicturesComponent } from './user-pictures/user-pictures.component';
 import { UserFriendButtonsComponent } from './user-friend-buttons/user-friend-buttons.component';
 
 @NgModule({
-  imports: [SharedModule, ProfileRoutingModule],
+  imports: [SharedModule, ProfileRoutingModule, AngularFireModule.initializeApp(environment.firebase, "evenity")],
   declarations: [
     ProfileComponent,
     UserBasicInformationComponent,

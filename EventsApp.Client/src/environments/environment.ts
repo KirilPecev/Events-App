@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://localhost:44320/api/"
+  apiUrl: "https://localhost:44320/api/",
+  firebase: {
+    apiKey: "AIzaSyCt7kx5TI0EBnScWTC6FMVZvIW3EYCRcgU",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "evenity-ea94e",
+    storageBucket: "gs://evenity-ea94e.appspot.com",
+    messagingSenderId: "",
+  },
 };
 
 /*

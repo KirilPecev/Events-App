@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { Friend } from "../../core/models/friend-model";
 import { UserService } from "../../core/services/user.service";
 import { ActivatedRoute } from "@angular/router";
-import { tap } from 'rxjs/operators';
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-user-friends",
@@ -23,9 +23,8 @@ export class UserFriendsComponent implements OnInit {
 
   ngOnInit(): void {
     let userId = this.route.snapshot.pathFromRoot[2].params["userId"];
-    this.friends$ = this.userService.getFriends(userId)
-    .pipe(
-      tap(data => {
+    this.friends$ = this.userService.getFriends(userId).pipe(
+      tap((data) => {
         this.myFriendsCount = data.length;
       })
     );
