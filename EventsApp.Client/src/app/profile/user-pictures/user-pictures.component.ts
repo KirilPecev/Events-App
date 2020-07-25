@@ -4,8 +4,10 @@ import { faImages } from "@fortawesome/free-solid-svg-icons";
 
 import { AngularFireStorage } from "@angular/fire/storage";
 import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
+import { finalize, tap } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
+import { ArrayDataSource } from "@angular/cdk/collections";
+import { promise } from "protractor";
 
 @Component({
   selector: "app-user-pictures",
@@ -15,7 +17,7 @@ import { ActivatedRoute } from "@angular/router";
 export class UserPicturesComponent implements OnInit {
   faImages = faImages;
   userId: string;
-  images: string[] = [];
+  images: any[];
 
   constructor(
     private storage: AngularFireStorage,
@@ -30,13 +32,27 @@ export class UserPicturesComponent implements OnInit {
   fetch() {
     const storageRef = this.storage.ref(`users/${this.userId}`);
 
-    storageRef.listAll().subscribe((data) => {
-      data.items.map((x) =>
-        x.getDownloadURL().then((x) => this.images.push(x))
-      );
-    });
+    let map = [];
 
-    console.log(this.images)
+    storageRef.listAll().subscribe((data) => {
+      data.items.forEach((x) => {
+        x.getMetadata().then((a) => {
+          x.getDownloadURL()
+            .then((b) => {
+              map.push({
+                url: b,
+                date: new Date(a.updated),
+              });
+              map = map.sort((a, b) => {
+                return a.date - b.date;
+              });
+            })
+            .then((x) => {
+              this.images = map;
+            });
+        });
+      });
+    });
   }
 
   selectedFile: File = null;
@@ -48,7 +64,12 @@ export class UserPicturesComponent implements OnInit {
     const filePath = `users/${this.userId}/${title}`;
     const fileRef = this.storage.ref(filePath);
     console.log(fileRef);
-    const task = this.storage.upload(`users/${this.userId}/kirilPecev`, file);
+    const task = this.storage
+      .upload(`users/${this.userId}/${title}`, file)
+      .then((x) => {
+        this.fetch();
+      });
+
     // task
     //   .snapshotChanges()
     //   .pipe(
