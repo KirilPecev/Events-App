@@ -1,7 +1,6 @@
 <div class="container site-wrapper" fxLayout="column" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="user$|async as user">
-        <img *ngIf="!user.profilePictureUrl" src="{{this.userProfilePic}}">
-        <img *ngIf="user.profilePictureUrl" src="{{user.profilePictureUrl}}">
+        <img src="{{user.profilePictureUrl}}">
         <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
             {{user.fullName}}</p>
         <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId"
