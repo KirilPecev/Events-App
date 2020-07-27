@@ -93,9 +93,9 @@ export class PictureService {
     return downloadURL;
   }
 
-  getProfilePicture(gender: string) {
+  getDefaultProfilePicture(gender: string) {
     return gender == "Male"
-      ? "../../assets/images/male.png"
-      : "../../assets/images/female.jpg";
+      ? "https://firebasestorage.googleapis.com/v0/b/evenity-ea94e.appspot.com/o/defaultProfilePic%2Fmale.png?alt=media&token=20dc886f-1376-4abe-93b2-8b1e60378247"
+      : "https://firebasestorage.googleapis.com/v0/b/evenity-ea94e.appspot.com/o/defaultProfilePic%2Ffemale.jpg?alt=media&token=dc54d91d-64de-4546-a0ad-0dd733084be8";
   }
 }

@@ -4,6 +4,7 @@ import { passwordMatch } from "../../shared/validators";
 import { UserService } from "../../core/services/user.service";
 import { Router } from "@angular/router";
 import { Gender } from 'src/app/core/models/gender-enum';
+import { PictureService } from 'src/app/core/services/picture.service';
 
 @Component({
   selector: "app-register",
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private userService: UserService,
+    private pictureService: PictureService,
     private router: Router
   ) {
     this.registerForm = fb.group({
@@ -44,6 +46,9 @@ export class RegisterComponent implements OnInit {
       gender: this.registerForm.value["gender"],
       password: this.registerForm.value["passwords"].password,
     }
+    
+    data.profilePictureUrl = this.pictureService.getDefaultProfilePicture(data.gender);
+
     this.userService.register(data).subscribe((data) => {
       this.router.navigate(["login"]);
       this.registerForm.reset();
