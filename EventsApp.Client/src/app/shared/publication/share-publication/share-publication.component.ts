@@ -2,8 +2,6 @@ import { Component, OnInit, Output } from "@angular/core";
 import { PublicationService } from "src/app/core/services/publication.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { EventEmitter } from "@angular/core";
-
 @Component({
   selector: "app-share-publication",
   templateUrl: "./share-publication.component.html",
