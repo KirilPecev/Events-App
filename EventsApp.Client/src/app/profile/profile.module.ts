@@ -1,8 +1,5 @@
 import { NgModule } from "@angular/core";
 
-import { AngularFireModule } from "@angular/fire";
-import { environment } from "../../environments/environment";
-
 import { SharedModule } from "../shared/shared.module";
 import { ProfileRoutingModule } from "./profile-routing.module";
 import { ProfileComponent } from "./profile.component";
@@ -10,12 +7,12 @@ import { UserBasicInformationComponent } from "./user-basic-information/user-bas
 import { UserContactsComponent } from "./user-contacts/user-contacts.component";
 import { UserDaybookComponent } from "./user-daybook/user-daybook.component";
 import { UserFriendsComponent } from "./user-friends/user-friends.component";
-import { UserInformationComponent } from './user-information/user-information.component';
-import { UserPicturesComponent } from './user-pictures/user-pictures.component';
-import { UserFriendButtonsComponent } from './user-friend-buttons/user-friend-buttons.component';
+import { UserInformationComponent } from "./user-information/user-information.component";
+import { UserPicturesComponent } from "./user-pictures/user-pictures.component";
+import { UserFriendButtonsComponent } from "./user-friend-buttons/user-friend-buttons.component";
 
 @NgModule({
-  imports: [SharedModule, ProfileRoutingModule, AngularFireModule.initializeApp(environment.firebase, "evenity")],
+  imports: [SharedModule, ProfileRoutingModule],
   declarations: [
     ProfileComponent,
     UserBasicInformationComponent,
@@ -24,7 +21,7 @@ import { UserFriendButtonsComponent } from './user-friend-buttons/user-friend-bu
     UserFriendsComponent,
     UserInformationComponent,
     UserPicturesComponent,
-    UserFriendButtonsComponent
-  ]
+    UserFriendButtonsComponent,
+  ],
 })
 export class ProfileModule {}

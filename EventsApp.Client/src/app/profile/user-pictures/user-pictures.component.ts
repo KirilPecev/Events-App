@@ -1,13 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-
 import { faImages } from "@fortawesome/free-solid-svg-icons";
-
-import { AngularFireStorage } from "@angular/fire/storage";
-import { Observable } from "rxjs";
-import { finalize, tap } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
-import { ArrayDataSource } from "@angular/cdk/collections";
-import { promise } from "protractor";
+import { PictureService } from "src/app/core/services/picture.service";
 
 @Component({
   selector: "app-user-pictures",
@@ -20,8 +14,8 @@ export class UserPicturesComponent implements OnInit {
   images: any[];
 
   constructor(
-    private storage: AngularFireStorage,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private pictureService: PictureService
   ) {}
 
   ngOnInit(): void {
@@ -30,63 +24,13 @@ export class UserPicturesComponent implements OnInit {
   }
 
   fetch() {
-    const storageRef = this.storage.ref(`users/${this.userId}`);
-
-    let map = [];
-
-    storageRef.listAll().subscribe((data) => {
-      data.items.forEach((x) => {
-        x.getMetadata().then((a) => {
-          x.getDownloadURL()
-            .then((b) => {
-              map.push({
-                url: b,
-                date: new Date(a.updated),
-              });
-              map = map.sort((a, b) => {
-                return a.date - b.date;
-              });
-            })
-            .then((x) => {
-              this.images = map;
-            });
-        });
-      });
-    });
+    this.images = this.pictureService.getAllByUser(this.userId);
   }
 
-  selectedFile: File = null;
-  downloadURL: Observable<string>;
-  fb;
   onFileSelected(event) {
-    var title = Date.now();
     const file = event.target.files[0];
-    const filePath = `users/${this.userId}/${title}`;
-    const fileRef = this.storage.ref(filePath);
-    console.log(fileRef);
-    const task = this.storage
-      .upload(`users/${this.userId}/${title}`, file)
-      .then((x) => {
-        this.fetch();
-      });
-
-    // task
-    //   .snapshotChanges()
-    //   .pipe(
-    //     finalize(() => {
-    //       this.downloadURL = fileRef.getDownloadURL();
-    //       this.downloadURL.subscribe((url) => {
-    //         if (url) {
-    //           this.fb = url;
-    //         }
-    //         console.log(this.fb);
-    //       });
-    //     })
-    //   )
-    //   .subscribe((url) => {
-    //     if (url) {
-    //       console.log(url);
-    //     }
-    //   });
+    this.pictureService.upload(file, this.userId).then((data) => {
+      this.fetch();
+    });
   }
 }
