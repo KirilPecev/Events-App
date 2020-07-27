@@ -45,7 +45,6 @@ export class ProfileComponent implements OnInit, DoCheck {
     this.user$ = this.userService.getUserInformation(userId).pipe(
       tap((data) => {
         this.isMyFriend = data.isMyFriend;
-        console.log(this.isMyFriend);
       })
     );
 
