@@ -4,7 +4,7 @@
         <input type="text" matInput [formControl]="option" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="load()">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
-                {{option.fullName}}
+                <span>{{option.fullName}}</span>
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>

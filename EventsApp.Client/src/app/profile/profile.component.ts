@@ -45,13 +45,14 @@ export class ProfileComponent implements OnInit, DoCheck {
 
     this.user$ = this.userService.getUserInformation(userId).pipe(
       tap((data) => {
-        if (!data.ProfilePictureUrl) {
+        if (!data.profilePictureUrl) {
           this.userProfilePic = this.pictureService.getProfilePicture(
             data.gender
           );
         }
 
         this.isMyFriend = data.isMyFriend;
+        console.log(this.isMyFriend);
       })
     );
 

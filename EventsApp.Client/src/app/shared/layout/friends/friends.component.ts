@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { UserService } from "../../../core/services/user.service";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Observable } from 'rxjs';
-import { Friend } from 'src/app/core/models/friend-model';
+import { Observable } from "rxjs";
+import { Friend } from "src/app/core/models/friend-model";
 
 @Component({
   selector: "app-friends",
@@ -11,9 +11,7 @@ import { Friend } from 'src/app/core/models/friend-model';
 })
 export class FriendsComponent implements OnInit {
   friends$: Observable<Array<Friend>>;
-  constructor(
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.fetch();

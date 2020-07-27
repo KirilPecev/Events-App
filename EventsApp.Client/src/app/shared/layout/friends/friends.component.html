@@ -4,9 +4,9 @@
     </div>
     <ul fxFlex fxLayout="column">
         <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of (this.friends$ | async)">
-            <a [href]="friend.id" fxLayoutAlign="space-between center">
+            <a [routerLink]="['/profile/', friend.id]" fxLayoutAlign="space-between center">
                 <img class="profile-picture"
-                    src=""
+                    src="{{friend.profilePictureUrl}}"
                     alt="">
                 <span class="name">{{friend.fullName}}</span>
             </a>
