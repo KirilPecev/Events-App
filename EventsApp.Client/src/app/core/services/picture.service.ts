@@ -92,4 +92,10 @@ export class PictureService {
 
     return downloadURL;
   }
+
+  getProfilePicture(gender: string) {
+    return gender == "Male"
+      ? "../../assets/images/male.png"
+      : "../../assets/images/female.jpg";
+  }
 }

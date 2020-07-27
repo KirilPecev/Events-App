@@ -93,10 +93,4 @@ export class UserService {
   getAllUsers(): Observable<Array<User>> {
     return this.http.get<Array<User>>(this.path + "/users");
   }
-
-  getProfilePicture(gender: string) {
-    return gender == "Male"
-      ? "../../assets/images/male.png"
-      : "../../assets/images/female.jpg";
-  }
 }

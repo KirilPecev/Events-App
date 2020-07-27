@@ -1,9 +1,11 @@
 <div class="container site-wrapper" fxLayout="column" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="space-between center" class="header">
-        <img fxFlex="20%" src="{{this.userProfilePic}}">
-        <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end" *ngIf="user$|async as user">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="user$|async as user">
+        <img *ngIf="!user.profilePictureUrl" src="{{this.userProfilePic}}">
+        <img *ngIf="user.profilePictureUrl" src="{{user.profilePictureUrl}}">
+        <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
             {{user.fullName}}</p>
-        <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId" [isMyFriend]="this.isMyFriend"></app-user-friend-buttons>
+        <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId"
+            [isMyFriend]="this.isMyFriend"></app-user-friend-buttons>
         <p fxFlex="20%" fxFlexAlign="end">Played events: {{createdEventsByUser$ | async}}</p>
     </div>
     <mat-toolbar color="primary" class="menu">

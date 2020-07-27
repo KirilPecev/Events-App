@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "../core/models/user-model";
 import { tap } from "rxjs/operators";
+import { PictureService } from "../core/services/picture.service";
 
 @Component({
   selector: "app-profile",
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit, DoCheck {
 
   constructor(
     private userService: UserService,
+    private pictureService: PictureService,
     private route: ActivatedRoute
   ) {}
 
@@ -41,10 +43,14 @@ export class ProfileComponent implements OnInit, DoCheck {
     const userId = this.route.snapshot.pathFromRoot[2].params["userId"];
     this.userId = userId;
 
-    this.user$ = this.userService.getUserInformation(userId)
-    .pipe(
+    this.user$ = this.userService.getUserInformation(userId).pipe(
       tap((data) => {
-        this.userProfilePic = this.userService.getProfilePicture(data.gender);
+        if (!data.ProfilePictureUrl) {
+          this.userProfilePic = this.pictureService.getProfilePicture(
+            data.gender
+          );
+        }
+
         this.isMyFriend = data.isMyFriend;
       })
     );

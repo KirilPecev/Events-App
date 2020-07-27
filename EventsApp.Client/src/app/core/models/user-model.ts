@@ -8,4 +8,5 @@ export interface User {
     gender: string;
     favoriteSport: string;
     isMyFriend: boolean;
+    profilePictureUrl: string;
 }
