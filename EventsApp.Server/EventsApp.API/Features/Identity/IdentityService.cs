@@ -65,7 +65,8 @@
                     Gender = u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport,
-                    IsMyFriend = u.Friends.Any(x => x.FriendId == mainUserId || x.UserId == mainUserId)
+                    IsMyFriend = u.Friends.Any(x => x.FriendId == mainUserId || x.UserId == mainUserId),
+                    ProfilePictureUrl = u.ProfilePictureUrl
                 })
                 .FirstOrDefaultAsync();
         }
@@ -76,7 +77,8 @@
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.Id,
-                    FullName = $"{u.FirstName} {u.LastName}"
+                    FullName = $"{u.FirstName} {u.LastName}",
+                    ProfilePictureUrl = u.ProfilePictureUrl
                 })
                 .ToListAsync();
 
@@ -92,6 +94,7 @@
                     FriendsCount = this.data
                         .Friends
                         .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
+                    ProfilePictureUrl = u.UserFriend.ProfilePictureUrl
                 })
                 .ToListAsync();
 
@@ -105,6 +108,7 @@
                     FriendsCount = this.data
                         .Friends
                         .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
+                    ProfilePictureUrl = u.User.ProfilePictureUrl
                 })
                 .ToListAsync();
 
@@ -118,7 +122,8 @@
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.UserId,
-                    FullName = $"{u.User.FirstName} {u.User.LastName}"
+                    FullName = $"{u.User.FirstName} {u.User.LastName}",
+                    ProfilePictureUrl = u.User.ProfilePictureUrl
                 })
                 .ToListAsync();
 

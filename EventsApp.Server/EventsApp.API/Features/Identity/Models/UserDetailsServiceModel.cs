@@ -19,5 +19,7 @@
         public string FavoriteSport { get; set; }
 
         public bool IsMyFriend { get; set; }
+
+        public string ProfilePictureUrl { get; set; }
     }
 }

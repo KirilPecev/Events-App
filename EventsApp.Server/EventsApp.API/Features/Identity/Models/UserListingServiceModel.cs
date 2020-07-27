@@ -7,5 +7,7 @@
         public string FullName { get; set; }
 
         public int FriendsCount { get; set; }
+
+        public string ProfilePictureUrl { get; set; }
     }
 }
