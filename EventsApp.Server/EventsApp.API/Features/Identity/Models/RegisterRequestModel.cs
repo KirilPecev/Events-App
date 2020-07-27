@@ -26,5 +26,7 @@
 
         [Required]
         public string Birthday { get; set; }
+
+        public string ProfilePictureUrl { get; set; }
     }
 }

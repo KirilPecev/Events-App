@@ -39,7 +39,8 @@
                 LastName = model.LastName,
                 UserName = model.Email,
                 Birthday = DateTime.Parse(model.Birthday),
-                Gender = gender
+                Gender = gender,
+                ProfilePictureUrl = model.ProfilePictureUrl
             };
 
             IdentityResult result = await this.userManager.CreateAsync(user, model.Password);
