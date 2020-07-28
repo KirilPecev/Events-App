@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { finalize } from "rxjs/operators";
+import { TmplAstElement } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root",
@@ -65,12 +66,12 @@ export class PictureService {
     var title = Date.now();
     const filePath = `users/${userId}/${title}`;
     const fileRef = this.storage.ref(filePath);
-    console.log(fileRef);
-    const task = this.storage.upload(`users/${userId}/${title}`, file);
+    const task = this.storage.upload(filePath, file);
 
     task.snapshotChanges().subscribe((data) => {
       data.ref.getDownloadURL().then((url) => {
         downloadURL = url;
+        console.log(downloadURL);
       });
     });
 
@@ -91,6 +92,17 @@ export class PictureService {
     //   });
 
     return downloadURL;
+  }
+
+  uploadPublicationPic(file: any, userId: string) {
+    let downloadURL = "";
+    var title = Date.now();
+    const filePath = `publications/${userId}/${title}`;
+    const fileRef = this.storage.ref(filePath);
+    return {
+      task: this.storage.upload(filePath, file),
+      fileRef
+    };
   }
 
   getDefaultProfilePicture(gender: string) {

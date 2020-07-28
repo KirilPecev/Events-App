@@ -5,7 +5,7 @@
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form [formGroup]="publicationForm" (ngSubmit)="share()">
+        <form [formGroup]="publicationForm" (ngSubmit)="share(hiddenfileinput)">
             <mat-form-field appearance="fill">
                 <mat-label>What you think?</mat-label>
                 <textarea formControlName="description" matInput type="text" rows="4" cols="500"></textarea>
@@ -13,7 +13,8 @@
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>UPLOAD PICTURE</button>
-        <button mat-button (click)="share()">SHARE</button>
+        <input style="display: none" type="file" #hiddenfileinput>
+        <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
+        <button mat-button (click)="share(hiddenfileinput)">SHARE</button>
     </mat-card-actions>
 </mat-card>
