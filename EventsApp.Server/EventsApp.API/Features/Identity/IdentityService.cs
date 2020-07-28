@@ -48,9 +48,8 @@
             return encryptedToken;
         }
 
-        public async Task<UserDetailsServiceModel> Details(string userId, string mainUserId)
+        public async Task<UserDetailsServiceModel> Details(string userId, string friendId)
         {
-
             return await this.userManager
                 .Users
                 .Where(u => u.Id == userId)
@@ -65,7 +64,7 @@
                     Gender = u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport,
-                    IsMyFriend = u.Friends.Any(x => x.FriendId == mainUserId || x.UserId == mainUserId),
+                    IsMyFriend = this.data.Friends.Any(f => (f.UserId == userId && f.FriendId == friendId || f.UserId==friendId && f.FriendId == userId) && f.Status == FriendStatus.Accepted),
                     ProfilePictureUrl = u.ProfilePictureUrl
                 })
                 .FirstOrDefaultAsync();

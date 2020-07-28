@@ -18,7 +18,7 @@
 
         Task<bool> RemoveFriend(string userId, string friendId);
 
-        Task<UserDetailsServiceModel> Details(string userId, string mainUserId);
+        Task<UserDetailsServiceModel> Details(string userId, string friendId);
 
         Task<bool> AcceptFriendship(string userId, string friendId);
 
