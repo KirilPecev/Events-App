@@ -98,7 +98,7 @@
                 })
                 .ToListAsync();
 
-            var b =  await this.data
+            var b = await this.data
                 .Friends
                 .Where(u => u.FriendId == userId && u.Status == FriendStatus.Accepted)
                 .Select(u => new UserListingServiceModel()
@@ -129,6 +129,13 @@
 
         public async Task<bool> AddFriend(string userId, string friendId)
         {
+            bool hasRequest = await this.data.Friends.AnyAsync(f => f.UserId == friendId && f.FriendId == userId);
+
+            if (hasRequest)
+            {
+                return await this.AcceptFriendship(userId, friendId);
+            }
+
             Friend friendship = new Friend()
             {
                 UserId = userId,
