@@ -41,67 +41,28 @@ export class PictureService {
     const fileRef = this.storage.ref(filePath);
     console.log(fileRef);
     return this.storage.upload(`users/${userId}/${title}`, file);
-    // task
-    //   .snapshotChanges()
-    //   .pipe(
-    //     finalize(() => {
-    //       this.downloadURL = fileRef.getDownloadURL();
-    //       this.downloadURL.subscribe((url) => {
-    //         if (url) {
-    //           this.fb = url;
-    //         }
-    //         console.log(this.fb);
-    //       });
-    //     })
-    //   )
-    //   .subscribe((url) => {
-    //     if (url) {
-    //       console.log(url);
-    //     }
-    //   });
   }
 
-  uploadProfilePic(file: any, userId: string): string {
-    let downloadURL = "";
+  uploadProfilePic(file: any, userId: string) {
     var title = Date.now();
     const filePath = `users/${userId}/${title}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 
-    task.snapshotChanges().subscribe((data) => {
-      data.ref.getDownloadURL().then((url) => {
-        downloadURL = url;
-        console.log(downloadURL);
-      });
-    });
-
-    //   .pipe(
-    //     finalize(() => {
-    //       const downloadURL = fileRef.getDownloadURL();
-    //       downloadURL.subscribe((url) => {
-    //         if (url) {
-    //           this.fb = url;
-    //         }
-    //       });
-    //     })
-    //   )
-    //   .subscribe((url) => {
-    //     if (url) {
-    //       downloadURL = url;
-    //     }
-    //   });
-
-    return downloadURL;
+    return {
+      task,
+      fileRef,
+    };
   }
 
   uploadPublicationPic(file: any, userId: string) {
-    let downloadURL = "";
     var title = Date.now();
     const filePath = `publications/${userId}/${title}`;
     const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
     return {
-      task: this.storage.upload(filePath, file),
-      fileRef
+      task,
+      fileRef,
     };
   }
 
