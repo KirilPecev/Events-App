@@ -93,7 +93,7 @@
                     FullName = $"{u.UserFriend.FirstName} {u.UserFriend.LastName}",
                     FriendsCount = this.data
                         .Friends
-                        .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
+                        .Count(f => f.UserId == u.FriendId || f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
                     ProfilePictureUrl = u.UserFriend.ProfilePictureUrl
                 })
                 .ToListAsync();
@@ -107,7 +107,7 @@
                     FullName = $"{u.User.FirstName} {u.User.LastName}",
                     FriendsCount = this.data
                         .Friends
-                        .Count(f => f.FriendId == u.FriendId && f.Status == FriendStatus.Accepted),
+                        .Count(f => f.FriendId == u.UserId || f.UserId == u.UserId && f.Status == FriendStatus.Accepted),
                     ProfilePictureUrl = u.User.ProfilePictureUrl
                 })
                 .ToListAsync();
