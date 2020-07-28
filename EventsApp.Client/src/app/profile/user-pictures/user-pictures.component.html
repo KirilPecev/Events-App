@@ -4,8 +4,8 @@
             <fa-icon class="fa-lg" [icon]="faImages"> </fa-icon>
             <h1>PICTURES</h1>
             <div>
-                <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image"
-                    autocomplete="off" />
+                <input style="display: none" type="file" #hiddenfileinput (change)="onFileSelected($event)">
+                <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
