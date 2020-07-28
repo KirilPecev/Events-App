@@ -25,7 +25,7 @@ export class PictureService {
               date: new Date(a.updated),
             });
             map = map.sort((a, b) => {
-              return a.date - b.date;
+              return b.date - a.date;
             });
           });
         });
