@@ -142,6 +142,13 @@
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
         {
+            bool hasFriends = await this.data.Friends.AnyAsync(f => f.UserId == userId || f.FriendId == userId);
+            if (!hasFriends)
+            {
+                return await this.GetByUser(userId);
+            }
+
+
             Expression<Func<Friend, bool>> expression = f => (f.UserId == userId || f.FriendId == userId) && f.Status == FriendStatus.Accepted;
 
             IQueryable<Publication> userFriendPublications = this.data
