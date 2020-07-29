@@ -37,15 +37,17 @@ export class PublicationComponent implements OnInit {
     this.publications$ = this.publicationService.getPublicationsByUser(userId);
   }
 
-  like(id) {
+  like(id, p) {
     this.publicationService.like(id).subscribe((data) => {
-      this.fetch();
+      p.likes++;
+      p.isLiked = true;
     });
   }
 
-  unlike(id) {
+  unlike(id, p) {
     this.publicationService.unlike(id).subscribe((data) => {
-      this.fetch();
+      p.likes--;
+      p.isLiked = false;
     });
   }
 
