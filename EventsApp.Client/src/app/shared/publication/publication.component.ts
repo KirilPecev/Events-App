@@ -3,7 +3,6 @@ import { PublicationService } from "../../core/services/publication.service";
 import { Publication } from "../../core/models/publication-model";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
-import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: "app-publication",
@@ -13,16 +12,13 @@ import { UserService } from 'src/app/core/services/user.service';
 export class PublicationComponent implements OnInit, DoCheck {
   publications$: Observable<Array<Publication>>;
   userId: string;
-  //isMyProfile: boolean;
 
   constructor(
     private publicationService: PublicationService,
-    private userService: UserService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    //this.isMyProfile = true;
     this.fetch();
   }
 
@@ -30,8 +26,6 @@ export class PublicationComponent implements OnInit, DoCheck {
      if(this.route.snapshot.pathFromRoot[2].params["userId"] != this.userId){
        this.fetchByUser();
      }
-
-     //this.isMyProfile = this.userId === this.userService.getUserId();
   }
 
   fetch() {
@@ -73,12 +67,6 @@ export class PublicationComponent implements OnInit, DoCheck {
 
   deletePublication(id: number) {
     this.publicationService.delete(id, false).subscribe((data) => {
-      this.fetch();
-    });
-  }
-
-  deleteSharedPublication(id: number) {
-    this.publicationService.delete(id, true).subscribe((data) => {
       this.fetch();
     });
   }
