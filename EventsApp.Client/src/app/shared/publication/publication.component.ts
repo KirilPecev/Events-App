@@ -3,6 +3,7 @@ import { PublicationService } from "../../core/services/publication.service";
 import { Publication } from "../../core/models/publication-model";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: "app-publication",
@@ -12,12 +13,16 @@ import { ActivatedRoute } from "@angular/router";
 export class PublicationComponent implements OnInit, DoCheck {
   publications$: Observable<Array<Publication>>;
   userId: string;
+  //isMyProfile: boolean;
+
   constructor(
     private publicationService: PublicationService,
+    private userService: UserService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    //this.isMyProfile = true;
     this.fetch();
   }
 
@@ -25,6 +30,8 @@ export class PublicationComponent implements OnInit, DoCheck {
      if(this.route.snapshot.pathFromRoot[2].params["userId"] != this.userId){
        this.fetchByUser();
      }
+
+     //this.isMyProfile = this.userId === this.userService.getUserId();
   }
 
   fetch() {
