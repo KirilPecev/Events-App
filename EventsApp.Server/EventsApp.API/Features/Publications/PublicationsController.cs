@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     using static Infrastructure.WebConstants;
@@ -30,7 +31,7 @@
         [HttpGet]
         [Route(nameof(ByUser))]
         public async Task<IEnumerable<PublicationListingServiceModel>> ByUser(string userId)
-             => await this.publicationService.GetByUser(userId);
+             => await this.publicationService.GetByUser(userId, this.User.GetId());
 
         [HttpPost]
         public async Task<ActionResult> Create(CreatePublicationRequestModel model)

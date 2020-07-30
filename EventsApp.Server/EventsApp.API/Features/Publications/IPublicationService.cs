@@ -14,7 +14,7 @@
 
         public Task<bool> DeleteSharedPublication(int id, string userId);
 
-        public Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId);
+        public Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId, string loggedInUser);
 
         public Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId);
 

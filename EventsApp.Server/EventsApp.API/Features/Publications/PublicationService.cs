@@ -98,7 +98,7 @@
         }
 
 
-        public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
+        public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId, string loggedInUser)
             => await this.data
                  .Publications
                  .Where(p => (p.CreatorId == userId && p.SharedById == null) || p.SharedById == userId)
@@ -111,10 +111,10 @@
                      Creator = p.Creator.ToString(),
                      UserImgUrl = p.SharedBy.ProfilePictureUrl ?? p.Creator.ProfilePictureUrl,
                      Likes = p.Likes.Count,
-                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
+                     IsLiked = p.Likes.Any(l => l.LikerId == loggedInUser),
                      Shares = p.Shares.Count,
                      CreatedOn = p.CreatedOn,
-                     CanDelete = p.Creator.Id == userId || p.SharedBy.Id == userId,
+                     CanDelete = p.SharedBy != null ? p.SharedBy.Id == loggedInUser : p.CreatorId == loggedInUser,
                      SharedFrom = p.SharedBy != null ? p.SharedBy.ToString() : null
                  })
                  .OrderByDescending(x => x.CreatedOn)
@@ -125,7 +125,7 @@
             bool hasFriends = await this.data.Friends.AnyAsync(f => f.UserId == userId || f.FriendId == userId);
             if (!hasFriends)
             {
-                return await this.GetByUser(userId);
+                return await this.GetByUser(userId, userId);
             }
 
 
@@ -155,7 +155,7 @@
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares.Count,
                     CreatedOn = p.CreatedOn,
-                    CanDelete = p.Creator.Id == userId || p.SharedBy.Id == userId,
+                    CanDelete = p.SharedBy != null ? p.SharedBy.Id == userId : p.CreatorId == userId,
                     SharedFrom = p.SharedBy != null ? p.SharedBy.ToString() : null
                 })
                 .OrderByDescending(x => x.CreatedOn)
