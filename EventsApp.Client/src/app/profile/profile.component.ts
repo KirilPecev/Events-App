@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit, DoCheck {
 
   constructor(
     private userService: UserService,
-    private pictureService: PictureService,
     private route: ActivatedRoute
   ) {}
 
@@ -52,6 +51,6 @@ export class ProfileComponent implements OnInit, DoCheck {
       this.userId
     );
 
-    this.isMyProfile = this.userId === localStorage.getItem("userId");
+    this.isMyProfile = this.userId === this.userService.getUserId();
   }
 }
