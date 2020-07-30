@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, DoCheck } from "@angular/core";
 import { PublicationService } from "../../core/services/publication.service";
 import { Publication } from "../../core/models/publication-model";
 import { Observable } from "rxjs";
@@ -9,8 +9,9 @@ import { ActivatedRoute } from "@angular/router";
   templateUrl: "./publication.component.html",
   styleUrls: ["./publication.component.css"],
 })
-export class PublicationComponent implements OnInit {
+export class PublicationComponent implements OnInit, DoCheck {
   publications$: Observable<Array<Publication>>;
+  userId: string;
   constructor(
     private publicationService: PublicationService,
     private route: ActivatedRoute
@@ -18,6 +19,12 @@ export class PublicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetch();
+  }
+
+  ngDoCheck(){
+     if(this.route.snapshot.pathFromRoot[2].params["userId"] != this.userId){
+       this.fetchByUser();
+     }
   }
 
   fetch() {
@@ -33,8 +40,8 @@ export class PublicationComponent implements OnInit {
   }
 
   fetchByUser() {
-    let userId = this.route.snapshot.pathFromRoot[2].params["userId"];
-    this.publications$ = this.publicationService.getPublicationsByUser(userId);
+   this.userId = this.route.snapshot.pathFromRoot[2].params["userId"];
+    this.publications$ = this.publicationService.getPublicationsByUser(this.userId);
   }
 
   like(id, p) {
