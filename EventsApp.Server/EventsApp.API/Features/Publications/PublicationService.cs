@@ -67,7 +67,7 @@
 
         public async Task<bool> DeletePublication(int id, string userId)
         {
-            Publication publication = await this.GetByIdAndByUserId(id, userId);
+            Publication publication = await this.GetByIdAndByUserId(id, userId) ?? await this.GetShared(id, userId);
 
             if (publication == null)
             {
