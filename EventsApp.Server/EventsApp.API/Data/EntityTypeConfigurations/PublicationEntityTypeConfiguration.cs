@@ -17,6 +17,10 @@
 
             builder
                 .HasQueryFilter(p => !p.IsDeleted);
+
+            builder
+                .HasOne(p => p.Creator)
+                .WithMany(u => u.Publications);
         }
     }
 }

@@ -25,7 +25,10 @@
         public string CreatorId { get; set; }
         public User Creator { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public string SharedById { get; set; }
+        public User SharedBy { get; set; }
 
         public bool IsDeleted { get; set; }
 

@@ -34,7 +34,7 @@
                 Description = description,
                 ImageUrl = imageUrl,
                 CreatorId = userId,
-                DateTime = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow
             };
 
             this.data.Add(publication);
@@ -85,7 +85,7 @@
                 return false;
             }
 
-            publication.IsDeleted = true;
+           // publication.IsDeleted = true;
 
             await this.data.SaveChangesAsync();
 
@@ -110,7 +110,7 @@
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares.Count,
-                    DateTime = p.DateTime,
+                    CreatedOn = p.CreatedOn,
                     CanDelete = p.Creator.Id == userId
                 })
                 .ToListAsync();
@@ -130,14 +130,14 @@
                     Likes = s.Publication.Likes.Count,
                     IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
                     Shares = s.Publication.Shares.Count,
-                    DateTime = s.DateTime,
+                    //CreatedOn = s.DateTime,
                     SharedFrom = s.Publication.Creator.ToString(),
                     CanDelete = s.UserId == userId
                 })
                .ToListAsync();
 
             //Return all concatenated
-            return publications.Concat(sharedPublications).OrderByDescending(x=>x.DateTime);
+            return publications.Concat(sharedPublications).OrderByDescending(x => x.CreatedOn);
         }
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
@@ -187,7 +187,7 @@
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares.Count,
-                    DateTime = p.DateTime,
+                    CreatedOn = p.CreatedOn,
                     CanDelete = p.Creator.Id == userId
                 })
                 .ToListAsync();
@@ -206,7 +206,7 @@
                     IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
                     Shares = s.Publication.Shares.Count,
                     SharedFrom = s.Publication.Creator.ToString(),
-                    DateTime = s.DateTime,
+                    //CreatedOn = s.DateTime,
                     CanDelete = s.UserId == userId
                 })
                 .ToListAsync();
@@ -214,12 +214,12 @@
             //Return all concatenated
             return materializedPublications
                 .Concat(materializedSharedPublications)
-                .OrderByDescending(x => x.DateTime);
+                .OrderByDescending(x => x.CreatedOn);
         }
 
         public async Task<bool> Like(int id, string userId)
         {
-            Publication publication = await this.GetById(id);
+            Publication publication = this.GetById(id);
 
             if (publication == null)
             {
@@ -238,7 +238,7 @@
 
         public async Task<bool> Unlike(int id, string userId)
         {
-            Publication publication = await this.GetById(id);
+            Publication publication = this.GetById(id);
 
             if (publication == null)
             {
@@ -256,7 +256,7 @@
 
         public async Task<bool> Share(int id, string userId)
         {
-            Publication publication = await this.GetById(id);
+            Publication publication = this.GetById(id);
 
             if (publication == null)
             {
@@ -266,7 +266,7 @@
             Share share = new Share()
             {
                 UserId = userId,
-                DateTime = DateTime.UtcNow
+                //DateTime = DateTime.UtcNow
             };
 
             publication.Shares.Add(share);
@@ -276,8 +276,21 @@
             return true;
         }
 
-        private async Task<Publication> GetById(int id)
-            => await this.data.Publications.FirstOrDefaultAsync(p => p.Id == id);
+        private Publication GetById(int id)
+        {
+            Publication publication = this.data.Publications.FirstOrDefault(p => p.Id == id);
+
+            if (publication == null)
+            {
+                publication = this.data
+                    .Shares
+                    .Include(x => x.Publication)
+                    .FirstOrDefault(s => s.Id == id)
+                    .Publication;
+            }
+
+            return publication;
+        }
 
         private async Task<Publication> GetByIdAndByUserId(int id, string userId)
             => await this.data
