@@ -6,7 +6,7 @@
 
     public interface IPublicationService
     {
-        public Task<int> Create(string imageUrl, string description, string userId);
+        public Task<int> Create(string imageUrl, string description, string userId, string sharedBy = null);
 
         public Task<bool> Update(int id, string description, string userId);
 

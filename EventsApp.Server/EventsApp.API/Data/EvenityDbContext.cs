@@ -16,8 +16,6 @@
 
         public DbSet<Notification> Notifications { get; set; }
 
-        public DbSet<Picture> Pictures { get; set; }
-
         public DbSet<Position> Positions { get; set; }
 
         public DbSet<Publication> Publications { get; set; }

@@ -19,7 +19,7 @@
             this.data = data;
         }
 
-        public async Task<int> Create(string imageUrl, string description, string userId)
+        public async Task<int> Create(string imageUrl, string description, string userId, string sharedBy)
         {
             PublicationTypes type = string.IsNullOrEmpty(imageUrl) ? PublicationTypes.Post : PublicationTypes.Image;
 
@@ -36,6 +36,11 @@
                 CreatorId = userId,
                 CreatedOn = DateTime.UtcNow
             };
+
+            if (!String.IsNullOrEmpty(sharedBy))
+            {
+                publication.SharedById = sharedBy;
+            }
 
             this.data.Add(publication);
 
@@ -78,14 +83,14 @@
 
         public async Task<bool> DeleteSharedPublication(int id, string userId)
         {
-            Share publication = await this.GetByIdAndByUserIdFromShares(id, userId);
+            Publication publication = await this.GetShared(id, userId);
 
             if (publication == null)
             {
                 return false;
             }
 
-           // publication.IsDeleted = true;
+            publication.IsDeleted = true;
 
             await this.data.SaveChangesAsync();
 
@@ -94,51 +99,26 @@
 
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
-        {
-            //Get all user with userId publications
-            List<PublicationListingServiceModel> publications = await this.data
-                .Publications
-                .Where(p => p.CreatorId == userId)
-                .Select(p => new PublicationListingServiceModel()
-                {
-                    Id = p.Id,
-                    Type = p.Type.ToString().ToLower(),
-                    Description = p.Description,
-                    ImageUrl = p.ImageUrl,
-                    Creator = p.Creator.ToString(),
-                    UserImgUrl = p.Creator.ProfilePictureUrl,
-                    Likes = p.Likes.Count,
-                    IsLiked = p.Likes.Any(l => l.LikerId == userId),
-                    Shares = p.Shares.Count,
-                    CreatedOn = p.CreatedOn,
-                    CanDelete = p.Creator.Id == userId
-                })
-                .ToListAsync();
-
-            //Get all user with userId shared publications
-            List<PublicationListingServiceModel> sharedPublications = await this.data
-                .Shares
-                .Where(s => s.UserId == userId)
-                .Select(s => new PublicationListingServiceModel()
-                {
-                    Id = s.Id,
-                    Type = s.Publication.Type.ToString().ToLower(),
-                    Description = s.Publication.Description,
-                    ImageUrl = s.Publication.ImageUrl,
-                    Creator = s.User.ToString(),
-                    UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
-                    Likes = s.Publication.Likes.Count,
-                    IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
-                    Shares = s.Publication.Shares.Count,
-                    //CreatedOn = s.DateTime,
-                    SharedFrom = s.Publication.Creator.ToString(),
-                    CanDelete = s.UserId == userId
-                })
-               .ToListAsync();
-
-            //Return all concatenated
-            return publications.Concat(sharedPublications).OrderByDescending(x => x.CreatedOn);
-        }
+            => await this.data
+                 .Publications
+                 .Where(p => (p.CreatorId == userId && p.SharedById == null) || p.SharedById == userId)
+                 .Select(p => new PublicationListingServiceModel()
+                 {
+                     Id = p.Id,
+                     Type = p.Type.ToString().ToLower(),
+                     Description = p.Description,
+                     ImageUrl = p.ImageUrl,
+                     Creator = p.Creator.ToString(),
+                     UserImgUrl = p.SharedBy.ProfilePictureUrl ?? p.Creator.ProfilePictureUrl,
+                     Likes = p.Likes.Count,
+                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
+                     Shares = p.Shares.Count,
+                     CreatedOn = p.CreatedOn,
+                     CanDelete = p.Creator.Id == userId || p.SharedBy.Id == userId,
+                     SharedFrom = p.SharedBy != null ? p.SharedBy.ToString() : null
+                 })
+                 .OrderByDescending(x => x.CreatedOn)
+                 .ToListAsync();
 
         public async Task<IEnumerable<PublicationListingServiceModel>> GetAll(string userId)
         {
@@ -161,20 +141,7 @@
                 .Where(expression)
                 .SelectMany(f => f.User.Publications);
 
-
-            IQueryable<Share> userSharedPublications = this.data
-                .Friends
-                .Where(expression)
-                .SelectMany(f => f.User.Shares);
-
-
-            IQueryable<Share> userFriendSharedPublications = this.data
-                .Friends
-                .Where(expression)
-                .SelectMany(f => f.UserFriend.Shares);
-
-
-            var materializedPublications = await userPublications
+            return await userPublications
                 .Union(userFriendPublications)
                 .Select(p => new PublicationListingServiceModel()
                 {
@@ -183,43 +150,21 @@
                     Description = p.Description,
                     ImageUrl = p.ImageUrl,
                     Creator = p.Creator.ToString(),
-                    UserImgUrl = p.Creator.ProfilePictureUrl,
+                    UserImgUrl = p.SharedBy.ProfilePictureUrl ?? p.Creator.ProfilePictureUrl,
                     Likes = p.Likes.Count,
                     IsLiked = p.Likes.Any(l => l.LikerId == userId),
                     Shares = p.Shares.Count,
                     CreatedOn = p.CreatedOn,
-                    CanDelete = p.Creator.Id == userId
+                    CanDelete = p.Creator.Id == userId || p.SharedBy.Id == userId,
+                    SharedFrom = p.SharedBy != null ? p.SharedBy.ToString() : null
                 })
+                .OrderByDescending(x => x.CreatedOn)
                 .ToListAsync();
-
-            var materializedSharedPublications = await userSharedPublications
-                .Union(userFriendSharedPublications)
-                .Select(s => new PublicationListingServiceModel()
-                {
-                    Id = s.Id,
-                    Type = s.Publication.Type.ToString().ToLower(),
-                    Description = s.Publication.Description,
-                    ImageUrl = s.Publication.ImageUrl,
-                    Creator = s.User.ToString(),
-                    UserImgUrl = s.Publication.Creator.ProfilePictureUrl,
-                    Likes = s.Publication.Likes.Count,
-                    IsLiked = s.Publication.Likes.Any(l => l.LikerId == userId),
-                    Shares = s.Publication.Shares.Count,
-                    SharedFrom = s.Publication.Creator.ToString(),
-                    //CreatedOn = s.DateTime,
-                    CanDelete = s.UserId == userId
-                })
-                .ToListAsync();
-
-            //Return all concatenated
-            return materializedPublications
-                .Concat(materializedSharedPublications)
-                .OrderByDescending(x => x.CreatedOn);
         }
 
         public async Task<bool> Like(int id, string userId)
         {
-            Publication publication = this.GetById(id);
+            Publication publication = await this.GetById(id);
 
             if (publication == null)
             {
@@ -238,7 +183,7 @@
 
         public async Task<bool> Unlike(int id, string userId)
         {
-            Publication publication = this.GetById(id);
+            Publication publication = await this.GetById(id);
 
             if (publication == null)
             {
@@ -256,7 +201,7 @@
 
         public async Task<bool> Share(int id, string userId)
         {
-            Publication publication = this.GetById(id);
+            Publication publication = await this.GetById(id);
 
             if (publication == null)
             {
@@ -266,31 +211,19 @@
             Share share = new Share()
             {
                 UserId = userId,
-                //DateTime = DateTime.UtcNow
             };
 
             publication.Shares.Add(share);
 
             await this.data.SaveChangesAsync();
 
+            await this.Create(publication.ImageUrl, publication.Description, publication.CreatorId, userId);
+
             return true;
         }
 
-        private Publication GetById(int id)
-        {
-            Publication publication = this.data.Publications.FirstOrDefault(p => p.Id == id);
-
-            if (publication == null)
-            {
-                publication = this.data
-                    .Shares
-                    .Include(x => x.Publication)
-                    .FirstOrDefault(s => s.Id == id)
-                    .Publication;
-            }
-
-            return publication;
-        }
+        private async Task<Publication> GetById(int id)
+            => await this.data.Publications.FirstOrDefaultAsync(p => p.Id == id);
 
         private async Task<Publication> GetByIdAndByUserId(int id, string userId)
             => await this.data
@@ -298,10 +231,10 @@
                 .Where(p => p.Id == id && p.CreatorId == userId)
                 .FirstOrDefaultAsync();
 
-        private async Task<Share> GetByIdAndByUserIdFromShares(int id, string userId)
+        private async Task<Publication> GetShared(int id, string userId)
             => await this.data
-                .Shares
-                .Where(s => s.Id == id && s.UserId == userId)
+                .Publications
+                .Where(p => p.Id == id && p.SharedById == userId)
                 .FirstOrDefaultAsync();
     }
 }

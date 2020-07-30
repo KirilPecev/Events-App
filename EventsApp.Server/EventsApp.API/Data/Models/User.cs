@@ -11,7 +11,6 @@
     {
         public User()
         {
-            this.Pictures = new HashSet<Picture>();
             this.Friends = new HashSet<Friend>();
             this.MainUserFriends = new HashSet<Friend>();
             this.Notifications = new HashSet<Notification>();
@@ -40,8 +39,6 @@
         public string FavoriteSport { get; set; }
 
         public string ProfilePictureUrl { get; set; }
-
-        public ICollection<Picture> Pictures { get; set; }
 
         public ICollection<Friend> Friends { get; set; }
 
