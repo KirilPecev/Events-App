@@ -3,7 +3,8 @@
         <mat-card-header class="shared-by"fxLayout="row" fxLayoutAlign="space-between center" >
             <mat-card-title fxLayout="row" fxLayoutAlign="start" fxLayoutGap="0.5em">
                 <img [src]="publication.userImgUrl" alt="">
-                <h2> {{publication.creator}} shared a {{publication.type}} <span *ngIf="publication.sharedFrom"> by {{publication.sharedFrom}}</span></h2>
+                <h2 *ngIf="!publication.sharedFrom"> {{publication.creator}} shared a {{publication.type}}</h2>
+                <h2 *ngIf="publication.sharedFrom"> {{publication.sharedFrom}} shared a {{publication.type}} by {{publication.creator}}</h2>
             </mat-card-title>
             <button *ngIf="publication.canDelete && !publication.sharedFrom" mat-icon-button color="warn" (click)="deletePublication(publication.id)">
                 <mat-icon>delete</mat-icon>
