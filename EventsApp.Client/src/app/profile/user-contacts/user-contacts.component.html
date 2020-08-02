@@ -22,7 +22,7 @@
             <hr>
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
                 <h2 fxFlex="40%">Facebook</h2>
-                <a [href]="user.facebookUrl" *ngIf="!isMyProfile && user.facebookUrl">{{user.fullName}}</a>
+                <a [href]="user.facebookUrl" *ngIf="!isMyProfile && user.facebookUrl" target="_blank">{{user.fullName}}</a>
                 <div *ngIf="isMyProfile">
                     <mat-form-field>
                         <input formControlName="facebookUrl" matInput type="url">
