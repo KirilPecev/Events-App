@@ -14,6 +14,7 @@ const dashboardRoutes: Routes = [
     children: [
       { path: "", component: PublicationComponent, outlet: "dashboard" },
       { path: "events", component: EventsComponent, outlet: "dashboard" },
+      { path: "events/details:id", component: EventsComponent, outlet: "dashboard" },
     ],
   },
 ];
