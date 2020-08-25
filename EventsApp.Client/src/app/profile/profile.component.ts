@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "../core/models/user-model";
 import { tap } from "rxjs/operators";
-import { PictureService } from "../core/services/picture.service";
 
 @Component({
   selector: "app-profile",

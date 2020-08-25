@@ -36,9 +36,9 @@ export class HeaderComponent implements OnInit {
 
   notifications: Array<Notification>;
   friends: Array<Friend>;
-
   newNotifications: number = 0;
   newFriends: number = 0;
+  userId: string;  
 
   constructor(
     private dialog: MatDialog,
@@ -47,11 +47,14 @@ export class HeaderComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  isLoggedIn = () => this.userService.isLoggedIn();
-
+  isLoggedIn = () => this.userService.isLoggedIn(); 
+  
   ngOnInit(): void {
-    this.getNotificationsData();
-    this.getFriendsData();
+    if (this.isLoggedIn()) {
+      this.userId = this.userService.getUserId();
+      this.getNotificationsData();
+      this.getFriendsData();
+    }
   }
 
   private getNotificationsData() {
