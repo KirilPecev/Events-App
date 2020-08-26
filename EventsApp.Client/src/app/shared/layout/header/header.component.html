@@ -2,7 +2,7 @@
     <div class="site-wrapper">
         <mat-toolbar color="primary" class="site-header">
             <mat-toolbar-row fxFlex fxLayout fxLayoutAlign="space-between center">
-                <div *ngIf="this.isLoggedIn()">
+                <div *ngIf="this.isLoggedIn()" fxHide fxShow.lt-sm>
                     <button mat-icon-button title="Menu" [matMenuTriggerFor]="menu" fxHide fxShow.lt-sm>
                         <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
                     </button>
