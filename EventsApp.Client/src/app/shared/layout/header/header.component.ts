@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, DoCheck } from "@angular/core";
 import {
   faHome,
   faUserFriends,
@@ -23,7 +23,7 @@ import { Friend } from "../../../core/models/friend-model";
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.css"],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
   title = "Evenity";
   faHome = faHome;
   faUserFriends = faUserFriends;
@@ -36,8 +36,8 @@ export class HeaderComponent implements OnInit {
 
   notifications: Array<Notification>;
   friends: Array<Friend>;
-  newNotifications: number = 0;
-  newFriends: number = 0;
+  newNotifications: number;
+  newFriends: number;
   userId: string;
 
   constructor(
@@ -51,10 +51,23 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isLoggedIn()) {
-      this.userId = this.userService.getUserId();
-      this.getNotificationsData();
-      this.getFriendsData();
+      this.fetch();
     }
+  }
+
+  checked: boolean = false;
+
+  ngDoCheck(): void {
+    if (this.isLoggedIn() && !this.checked) {
+      this.checked = true;
+      this.fetch();
+    }
+  }
+
+  private fetch() {
+    this.userId = this.userService.getUserId();
+    this.getNotificationsData();
+    this.getFriendsData();
   }
 
   private getNotificationsData() {
@@ -82,6 +95,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.checked = false;
     this.userService.logout();
     this.router.navigate([""]);
   }
