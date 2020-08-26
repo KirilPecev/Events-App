@@ -1,7 +1,5 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { NotificationService } from "../../../core/services/notification.service";
-import { Observable } from "rxjs";
-import { Notification } from "../../../core/models/notification-model";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
@@ -10,7 +8,6 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
   styleUrls: ["./notifications.component.css"],
 })
 export class NotificationsComponent implements OnInit {
-  notifications$: Observable<Array<Notification>>;
   constructor(
     private notificationService: NotificationService,
     @Inject(MAT_DIALOG_DATA) public data: any

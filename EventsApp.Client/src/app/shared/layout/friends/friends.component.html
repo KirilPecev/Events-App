@@ -1,9 +1,9 @@
 <mat-dialog-content fxFlex fxFlexFill>
-    <div *ngIf="(this.friends$ | async).length === 0">
+    <div *ngIf="this.data.friends.length === 0">
         No new friend requests!
     </div>
     <ul fxFlex fxLayout="column">
-        <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of (this.friends$ | async)">
+        <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of this.data.friends">
             <a [routerLink]="['/profile/', friend.id]" fxLayoutAlign="space-between center">
                 <img class="profile-picture"
                     src="{{friend.profilePictureUrl}}"

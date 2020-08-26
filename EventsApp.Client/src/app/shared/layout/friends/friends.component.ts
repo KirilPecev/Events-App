@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { UserService } from "../../../core/services/user.service";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { Friend } from "src/app/core/models/friend-model";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: "app-friends",
@@ -11,14 +11,19 @@ import { Friend } from "src/app/core/models/friend-model";
 })
 export class FriendsComponent implements OnInit {
   friends$: Observable<Array<Friend>>;
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit(): void {
     this.fetch();
   }
 
   private fetch() {
-    this.friends$ = this.userService.getPendingFriends();
+    this.userService
+      .getPendingFriends()
+      .subscribe((data) => (this.data.friends = data));
   }
 
   accept(friendId: string) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   faHome,
   faUserFriends,
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   friends: Array<Friend>;
   newNotifications: number = 0;
   newFriends: number = 0;
-  userId: string;  
+  userId: string;
 
   constructor(
     private dialog: MatDialog,
@@ -47,8 +47,8 @@ export class HeaderComponent implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  isLoggedIn = () => this.userService.isLoggedIn(); 
-  
+  isLoggedIn = () => this.userService.isLoggedIn();
+
   ngOnInit(): void {
     if (this.isLoggedIn()) {
       this.userId = this.userService.getUserId();
@@ -59,8 +59,8 @@ export class HeaderComponent implements OnInit {
 
   private getNotificationsData() {
     this.notificationService.getNotifications().subscribe((data) => {
-      this.newNotifications = data.length;
       this.notifications = data;
+      this.newNotifications = data.length;
     });
   }
 
