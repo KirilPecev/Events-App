@@ -9,7 +9,7 @@
                     <mat-menu #menu="matMenu" fxHide fxShow.lt-sm>
                         <button mat-menu-item [routerLink]="['/profile', userId]">My Profile</button>
                         <button mat-menu-item routerLink="events/create-event">Create event</button>
-                        <button mat-menu-item [routerLink]="[{ outlets: { dashboard: ['events'] } }]">Events</button>
+                        <button mat-menu-item [routerLink]="['/dashboard', { outlets: { dashboard: ['events'] } }]">Events</button>
                         <hr>
                         <app-joined-events class="events"></app-joined-events>
                         <app-upcoming-events title="My upcoming events"></app-upcoming-events>
