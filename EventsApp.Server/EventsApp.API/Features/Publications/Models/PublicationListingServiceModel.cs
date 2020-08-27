@@ -16,6 +16,8 @@
 
         public int Shares { get; set; }
 
+        public string UserId { get; set; }
+
         public string UserImgUrl { get; set; }
 
         public string Creator { get; set; }
