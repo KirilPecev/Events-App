@@ -1,32 +1,34 @@
 <div fxLayout="column" fxLayoutGap="2%" class="container">
-    <mat-card *ngFor="let publication of publications$ | async">
-        <mat-card-header class="shared-by" fxLayout="row" fxLayoutAlign="space-between center">
-            <mat-card-title fxLayout="row" fxLayoutAlign="start" fxLayoutGap="0.5em">
-                <img [src]="publication.userImgUrl" alt="">
-                <h2 *ngIf="!publication.sharedFrom"> {{publication.creator}} shared a {{publication.type}}</h2>
-                <h2 *ngIf="publication.sharedFrom"> {{publication.sharedFrom}} shared a {{publication.type}} by
-                    {{publication.creator}}</h2>
-            </mat-card-title>
-                <button *ngIf="publication.canDelete" mat-icon-button color="warn"
-                    (click)="deletePublication(publication.id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-        </mat-card-header>
-        <mat-card-content class="content">
-            <figure *ngIf="publication.imageUrl != null">
-                <figcaption>{{publication.description}}</figcaption>
-                <img [src]=" publication.imageUrl" alt="">
-            </figure>
-            <p class="post" *ngIf="publication.imageUrl == null">{{publication.description}}</p>
-            <div class="info" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="1em">
-                <p>Likes: {{publication.likes}}</p>
-                <p>Shares: {{publication.shares}}</p>
-            </div>
-        </mat-card-content>
-        <mat-card-actions>
-            <button *ngIf="!publication.isLiked" mat-button (click)="like(publication.id, publication)">LIKE</button>
-            <button *ngIf="publication.isLiked" mat-button (click)="unlike(publication.id, publication)">UNLIKE</button>
-            <button mat-button (click)="share(publication.id)">SHARE</button>
-        </mat-card-actions>
-    </mat-card>
+  <mat-card *ngFor="let publication of publications$ | async">
+    <mat-card-header class="shared-by" fxLayout="row" fxLayoutAlign="space-between center">
+      <mat-card-title fxLayout="row" fxLayoutAlign="start" fxLayoutGap="0.5em">
+        <a [routerLink]="['/profile', publication.userId]">
+          <img [src]="publication.userImgUrl" alt=""></a>
+        <h2 *ngIf="!publication.sharedFrom"> <a [routerLink]="['/profile', publication.userId]">{{publication.creator}}</a> shared a {{publication.type}}
+        </h2>
+        <h2 *ngIf="publication.sharedFrom"> <a [routerLink]="['/profile', publication.userId]">{{publication.sharedFrom}}</a> shared a
+          {{publication.type}} by
+          {{publication.creator}}</h2>
+      </mat-card-title>
+      <button *ngIf="publication.canDelete" mat-icon-button color="warn" (click)="deletePublication(publication.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content class="content">
+      <figure *ngIf="publication.imageUrl != null">
+        <figcaption>{{publication.description}}</figcaption>
+        <img [src]=" publication.imageUrl" alt="">
+      </figure>
+      <p class="post" *ngIf="publication.imageUrl == null">{{publication.description}}</p>
+      <div class="info" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="1em">
+        <p>Likes: {{publication.likes}}</p>
+        <p>Shares: {{publication.shares}}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button *ngIf="!publication.isLiked" mat-button (click)="like(publication.id, publication)">LIKE</button>
+      <button *ngIf="publication.isLiked" mat-button (click)="unlike(publication.id, publication)">UNLIKE</button>
+      <button mat-button (click)="share(publication.id)">SHARE</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

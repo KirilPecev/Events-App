@@ -30,6 +30,10 @@
   margin: auto;
 }
 
+.shared-by h2 > a {
+  text-decoration: none;
+}
+
 .info {
   margin-top: 1em;
 }
