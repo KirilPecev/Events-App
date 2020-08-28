@@ -40,7 +40,7 @@
 
         public static class Notification
         {
-            public const int DescriptionMaxLength = 30;
+            public const int DescriptionMaxLength = 130;
 
             public const int DescriptionMinLength = 2;
         }
