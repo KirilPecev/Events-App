@@ -1,20 +1,23 @@
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>
-            <h3>Share publication</h3>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form [formGroup]="publicationForm" (ngSubmit)="share(hiddenfileinput)">
-            <mat-form-field appearance="fill">
-                <mat-label>What you think?</mat-label>
-                <textarea formControlName="description" matInput type="text" rows="4" cols="500"></textarea>
-            </mat-form-field>
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <input style="display: none" type="file" #hiddenfileinput>
-        <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
-        <button mat-button (click)="share(hiddenfileinput)">SHARE</button>
-    </mat-card-actions>
+  <mat-card-header>
+    <mat-card-title>
+      <h3>Share publication</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="publicationForm" (ngSubmit)="share(hiddenfileinput)">
+      <mat-form-field appearance="fill">
+        <mat-label>What you think?</mat-label>
+        <textarea formControlName="description" matInput type="text" rows="4" cols="500"></textarea>
+      </mat-form-field>
+    </form>
+    <div>
+      <img [src]="imgURL" height="200" *ngIf="imgURL"  class="preview-img">
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <input class="file" type="file" #hiddenfileinput (change)="upload(hiddenfileinput.files)" accept='image/*'>
+    <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
+    <button mat-button (click)="share(hiddenfileinput)">SHARE</button>
+  </mat-card-actions>
 </mat-card>

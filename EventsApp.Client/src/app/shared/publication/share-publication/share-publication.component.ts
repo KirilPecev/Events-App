@@ -1,10 +1,10 @@
 import { Component, OnInit, Output } from "@angular/core";
 import { PublicationService } from "src/app/core/services/publication.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { PictureService } from "src/app/core/services/picture.service";
 import { UserService } from "src/app/core/services/user.service";
 import { finalize } from "rxjs/operators";
+
 @Component({
   selector: "app-share-publication",
   templateUrl: "./share-publication.component.html",
@@ -24,6 +24,8 @@ export class SharePublicationComponent implements OnInit {
     });
   }
 
+  imgURL: any;
+
   ngOnInit(): void {}
 
   share(input: HTMLInputElement) {
@@ -36,22 +38,15 @@ export class SharePublicationComponent implements OnInit {
       const userId = this.userService.getUserId();
       const a = this.pictureService.uploadPublicationPic(file, userId);
 
-      a.task
-        .snapshotChanges()
-        .pipe(
-          finalize(() => {
-            const downloadURL = a.fileRef.getDownloadURL();
-            downloadURL.subscribe((url) => {
-              data.imageUrl = url;
-              this.sharePost(data);
-            });
-          })
-        )
-        .subscribe((url) => {
-          if (url) {
-            console.log(url);
-          }
-        });
+      a.task.snapshotChanges().pipe(
+        finalize(() => {
+          const downloadURL = a.fileRef.getDownloadURL();
+          downloadURL.subscribe((url) => {
+            data.imageUrl = url;
+            this.sharePost(data);
+          });
+        })
+      );
     } else {
       this.sharePost(data);
     }
@@ -60,6 +55,16 @@ export class SharePublicationComponent implements OnInit {
   private sharePost(data) {
     this.publicationService.create(data).subscribe((data) => {
       this.publicationForm.reset();
+      this.imgURL = "";
     });
+  }
+
+  upload(files) {
+    var reader = new FileReader();
+
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   }
 }

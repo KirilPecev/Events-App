@@ -10,3 +10,11 @@ mat-card-header {
 mat-form-field {
   width: 100%;
 }
+
+.preview-img {
+  max-width: 100%;
+}
+
+.file {
+  display: none;
+}
