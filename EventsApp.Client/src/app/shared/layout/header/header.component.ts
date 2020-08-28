@@ -17,6 +17,7 @@ import { Router } from "@angular/router";
 import { NotificationService } from "../../../core/services/notification.service";
 import { Notification } from "../../../core/models/notification-model";
 import { Friend } from "../../../core/models/friend-model";
+import { interval } from "rxjs";
 
 @Component({
   selector: "app-header",
@@ -60,7 +61,9 @@ export class HeaderComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     if (this.isLoggedIn() && !this.checked) {
       this.checked = true;
-      this.fetch();
+      interval(2 * 60 * 1000).subscribe((x) => {
+        this.fetch();
+      });
     }
   }
 
