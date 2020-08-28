@@ -48,12 +48,17 @@ export class UserService {
     return this.http.get<User>(this.path + "/events", { params });
   }
 
-  saveUserId(id) {
+  saveUserInfo(id, fullName) {
     localStorage.setItem("userId", id);
+    localStorage.setItem("fullName", fullName);
   }
 
   getUserId() {
     return localStorage.getItem("userId");
+  }
+
+  getUserFullName() {
+    return localStorage.getItem("fullName");
   }
 
   update(data): Observable<any> {

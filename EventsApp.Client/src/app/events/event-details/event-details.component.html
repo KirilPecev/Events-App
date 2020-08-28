@@ -55,7 +55,7 @@
                 </form>
             </div>
             <div>
-                <app-positions [eventId]="e.id" #positions [isSportEvent]="e.isSportEvent" [isUserJoined]="e.isUserJoined"></app-positions>
+                <app-positions [eventId]="e.id" [creatorId]="e.creatorId" [eventTitle]="e.name" #positions [isSportEvent]="e.isSportEvent" [isUserJoined]="e.isUserJoined"></app-positions>
             </div>
         </mat-card-content>
     </mat-card>
