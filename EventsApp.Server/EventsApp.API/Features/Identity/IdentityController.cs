@@ -74,7 +74,8 @@
             return new LoginResponseModel()
             {
                 Token = token,
-                UserId = user.Id
+                UserId = user.Id,
+                FullName = user.ToString()
             };
         }
 

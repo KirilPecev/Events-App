@@ -18,6 +18,16 @@
     <Compile Remove="Data\Migrations\20200730125600_SharedByAndRenamedDateTimeToCreatedOn.Designer.cs" />
     <Compile Remove="Data\Migrations\20200730131056_AddedSharedOn.cs" />
     <Compile Remove="Data\Migrations\20200730131056_AddedSharedOn.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200828155217_AddedCreatorToNotificationsTable.cs" />
+    <Compile Remove="Data\Migrations\20200828155217_AddedCreatorToNotificationsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200828155606_AddedCreatorAndIsDeletedToNotificationsTable.cs" />
+    <Compile Remove="Data\Migrations\20200828155606_AddedCreatorAndIsDeletedToNotificationsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200828160330_AddedCreatorAndIsDeletedToNotificationsTable.cs" />
+    <Compile Remove="Data\Migrations\20200828160330_AddedCreatorAndIsDeletedToNotificationsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200828160940_AddedCreatorAndIsDeletedToNotificationsTable.cs" />
+    <Compile Remove="Data\Migrations\20200828160940_AddedCreatorAndIsDeletedToNotificationsTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200828162020_AddedCreatorAndIsDeletedToNotificationsTable.cs" />
+    <Compile Remove="Data\Migrations\20200828162020_AddedCreatorAndIsDeletedToNotificationsTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -30,9 +30,9 @@
         [HttpPost]
         public async Task<ActionResult> Create(CreateNotificationRequestModel model)
         {
-            string userId = this.User.GetId();
+            string currentUserId = this.User.GetId();
 
-            int id = await this.notificationService.Create(model.Description, model.ImageUrl, userId);
+            int id = await this.notificationService.Create(model.Description, model.ImageUrl, model.UserId, currentUserId);
 
             return Created(nameof(Create), id);
         }

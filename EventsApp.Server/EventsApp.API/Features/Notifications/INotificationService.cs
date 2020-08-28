@@ -8,7 +8,7 @@
     {
         Task<IEnumerable<NotificationListingServiceModel>> GetByUser(string userId);
 
-        Task<int> Create(string description, string imageUrl, string userId);
+        Task<int> Create(string description, string imageUrl, string userId, string currentUserId);
 
         Task<bool> Delete(int id, string userId);
     }

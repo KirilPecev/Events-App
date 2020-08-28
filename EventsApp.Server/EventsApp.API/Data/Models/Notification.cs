@@ -16,5 +16,12 @@
         [Required]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        [Required]
+        public string CreatorId { get; set; }
+
+        public User Creator { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

@@ -33,6 +33,7 @@
             builder.ApplyConfiguration(new PublicationEntityTypeConfiguration());
             builder.ApplyConfiguration(new LikeEntityTypeConfiguration());
             builder.ApplyConfiguration(new ShareEntityTypeConfiguration());
+            builder.ApplyConfiguration(new NotificationEntityTypeConfiguration());
 
             base.OnModelCreating(builder);
         }

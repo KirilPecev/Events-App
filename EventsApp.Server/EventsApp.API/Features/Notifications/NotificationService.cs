@@ -24,19 +24,20 @@
                 .Select(n => new NotificationListingServiceModel
                 {
                     Id = n.Id,
-                    User = $"{n.User.FirstName} {n.User.LastName}",
+                    UserPic = this.data.Users.FirstOrDefault(u=>u.Id == n.CreatorId).ProfilePictureUrl,
                     ImageUrl = n.ImageUrl,
                     Description = n.Description
                 })
                 .ToListAsync();
 
-        public async Task<int> Create(string description, string imageUrl, string userId)
+        public async Task<int> Create(string description, string imageUrl, string userId, string currentUserId)
         {
             Notification notification = new Notification()
             {
                 Description = description,
                 ImageUrl = imageUrl,
-                UserId = userId
+                UserId = userId,
+                CreatorId = currentUserId
             };
 
             this.data.Add(notification);
@@ -56,7 +57,7 @@
                 return false;
             }
 
-            this.data.Remove(notification);
+            notification.IsDeleted = true;
 
             await this.data.SaveChangesAsync();
 

@@ -8,6 +8,6 @@
 
         public string ImageUrl { get; set; }
 
-        public string User { get; set; }
+        public string UserPic { get; set; }
     }
 }
