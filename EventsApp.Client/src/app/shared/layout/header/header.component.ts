@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from "@angular/core";
+import { Component, OnInit, DoCheck, OnDestroy } from "@angular/core";
 import {
   faHome,
   faUserFriends,
@@ -64,6 +64,8 @@ export class HeaderComponent implements OnInit, DoCheck {
       interval(2 * 60 * 1000).subscribe((x) => {
         this.fetch();
       });
+
+      this.fetch();
     }
   }
 
@@ -89,12 +91,22 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   openNotificationsDialog() {
     const dialogConfig = this.getDialogConfig();
-    this.dialog.open(NotificationsComponent, dialogConfig);
+    this.dialog
+      .open(NotificationsComponent, dialogConfig)
+      .afterClosed()
+      .subscribe((x) => {
+        this.fetch();
+      });
   }
 
   openFriendsDialog() {
     const dialogConfig = this.getDialogConfig();
-    this.dialog.open(FriendsComponent, dialogConfig);
+    this.dialog
+      .open(FriendsComponent, dialogConfig)
+      .afterClosed()
+      .subscribe((x) => {
+        this.fetch();
+      });
   }
 
   logout() {
