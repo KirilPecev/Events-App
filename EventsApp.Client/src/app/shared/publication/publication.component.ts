@@ -3,6 +3,8 @@ import { PublicationService } from "../../core/services/publication.service";
 import { Publication } from "../../core/models/publication-model";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
+import { NotificationService } from "src/app/core/services/notification.service";
+import { UserService } from "src/app/core/services/user.service";
 
 @Component({
   selector: "app-publication",
@@ -15,6 +17,8 @@ export class PublicationComponent implements OnInit, DoCheck {
 
   constructor(
     private publicationService: PublicationService,
+    private notificationService: NotificationService,
+    private userService: UserService,
     private route: ActivatedRoute
   ) {}
 
@@ -22,10 +26,10 @@ export class PublicationComponent implements OnInit, DoCheck {
     this.fetch();
   }
 
-  ngDoCheck(){
-     if(this.route.snapshot.pathFromRoot[2].params["userId"] != this.userId){
-       this.fetchByUser();
-     }
+  ngDoCheck() {
+    if (this.route.snapshot.pathFromRoot[2].params["userId"] != this.userId) {
+      this.fetchByUser();
+    }
   }
 
   fetch() {
@@ -41,27 +45,31 @@ export class PublicationComponent implements OnInit, DoCheck {
   }
 
   fetchByUser() {
-   this.userId = this.route.snapshot.pathFromRoot[2].params["userId"];
-    this.publications$ = this.publicationService.getPublicationsByUser(this.userId);
+    this.userId = this.route.snapshot.pathFromRoot[2].params["userId"];
+    this.publications$ = this.publicationService.getPublicationsByUser(
+      this.userId
+    );
   }
 
-  like(id, p) {
-    this.publicationService.like(id).subscribe((data) => {
-      p.likes++;
-      p.isLiked = true;
+  like(publication) {
+    this.publicationService.like(publication.id).subscribe((data) => {
+      publication.likes++;
+      publication.isLiked = true;
+      this.createNotification(publication, "like");
     });
   }
 
-  unlike(id, p) {
-    this.publicationService.unlike(id).subscribe((data) => {
-      p.likes--;
-      p.isLiked = false;
+  unlike(publication) {
+    this.publicationService.unlike(publication.id).subscribe((data) => {
+      publication.likes--;
+      publication.isLiked = false;
     });
   }
 
-  share(id) {
-    this.publicationService.share(id).subscribe((data) => {
+  share(publication) {
+    this.publicationService.share(publication.id).subscribe((data) => {
       this.fetch();
+      this.createNotification(publication, "share");
     });
   }
 
@@ -69,5 +77,15 @@ export class PublicationComponent implements OnInit, DoCheck {
     this.publicationService.delete(id, false).subscribe((data) => {
       this.fetch();
     });
+  }
+
+  private createNotification(publication: Publication, action: string) {
+    const data = {
+      userId: publication.userId,
+      description: `${this.userService.getUserFullName()} ${action} your post`,
+      imageUrl: publication.imageUrl,
+    };
+
+    this.notificationService.create(data).subscribe();
   }
 }

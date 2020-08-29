@@ -26,9 +26,9 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button *ngIf="!publication.isLiked" mat-button (click)="like(publication.id, publication)">LIKE</button>
-      <button *ngIf="publication.isLiked" mat-button (click)="unlike(publication.id, publication)">UNLIKE</button>
-      <button mat-button (click)="share(publication.id)">SHARE</button>
+      <button *ngIf="!publication.isLiked" mat-button (click)="like(publication)">LIKE</button>
+      <button *ngIf="publication.isLiked" mat-button (click)="unlike(publication)">UNLIKE</button>
+      <button mat-button (click)="share(publication)">SHARE</button>
     </mat-card-actions>
   </mat-card>
 </div>
