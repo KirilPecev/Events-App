@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { tap } from "rxjs/operators";
 import { dateTimeValidator } from "src/app/shared/validators";
+import { PositionService } from "src/app/core/services/position.service";
+import { NotificationService } from "src/app/core/services/notification.service";
+import { Position } from "src/app/core/models/position-model";
 
 @Component({
   selector: "app-event-details",
@@ -21,6 +24,8 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private userService: UserService,
+    private positionService: PositionService,
+    private notificationService: NotificationService,
     private route: ActivatedRoute,
     private router: Router,
     fb: FormBuilder
@@ -34,17 +39,20 @@ export class EventDetailsComponent implements OnInit {
 
   dateTime: Date;
   eventId: number;
+  eventName: string;
+
   ngOnInit(): void {
     this.fetchData();
   }
 
-  fetchData(){
+  fetchData() {
     const id = this.route.snapshot.paramMap.get("id");
     this.userId = this.userService.getUserId();
 
     this.event$ = this.eventService.getDetails(id).pipe(
       tap((data) => {
         this.eventId = data.id;
+        this.eventName = data.name;
         this.dateTime = new Date(data.dateTime);
         this.editForm.patchValue(data);
       })
@@ -64,8 +72,25 @@ export class EventDetailsComponent implements OnInit {
   }
 
   deleteEvent() {
+    let busyPositions: Array<Position>;
+
+    this.positionService.getBusyPositions(this.eventId).subscribe((c) => {
+      busyPositions = c;
+    });
+
     this.eventService.delete(this.eventId).subscribe((data) => {
       this.router.navigate(["dashboard"]);
+      busyPositions.forEach((element) => {
+        this.createNotification(element.participantId);
+      });
     });
+  }
+
+  private createNotification(userId: string) {
+    const data = {
+      userId,
+      description: `Event "${this.eventName}" was deleted!`,
+    };
+    this.notificationService.create(data).subscribe();
   }
 }
