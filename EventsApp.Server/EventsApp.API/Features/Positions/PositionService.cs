@@ -128,7 +128,8 @@
             {
                 Id = p.Id,
                 Name = p.Name,
-                Participant = $"{p.Participant.FirstName} {p.Participant.LastName}",
+                ParticipantId = p.ParticipantId,
+                Participant = p.Participant.ToString(),
                 CanQuit = p.ParticipantId == userId
             })
             .ToListAsync();

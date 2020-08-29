@@ -6,6 +6,8 @@
 
         public string Name { get; set; }
 
+        public string ParticipantId { get; set; }
+
         public string Participant { get; set; }
 
         public bool CanQuit { get; set; }
