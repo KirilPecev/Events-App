@@ -9,8 +9,9 @@ import {
 import { dateTimeValidator } from "../../shared/validators";
 import { EventService } from "src/app/core/services/event.service";
 import { Router } from "@angular/router";
-import { ToastrService } from 'ngx-toastr';
-import { Event } from 'src/app/core/message-constants';
+import { ToastrService } from "ngx-toastr";
+import { Event } from "src/app/core/message-constants";
+import { Event as EventConstants, Position } from "src/app/core/validation-constants";
 
 @Component({
   selector: "app-sport-event",
@@ -27,9 +28,29 @@ export class SportEventComponent implements OnInit {
     private toastrService: ToastrService
   ) {
     this.eventForm = fb.group({
-      name: ["", [Validators.required, Validators.minLength(4)]],
-      location: ["", [Validators.required]],
-      sport: ["", [Validators.required]],
+      name: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(EventConstants.TITLE_MIN_LENGTH),
+          Validators.maxLength(EventConstants.TITLE_MAX_LENGTH),
+        ],
+      ],
+      location: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(EventConstants.LOCATION_MIN_LENGTH),
+        ],
+      ],
+      sport: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(EventConstants.SPORT_MIN_LENGTH),
+          Validators.maxLength(EventConstants.SPORT_MAX_LENGTH),
+        ],
+      ],
       dateTime: ["", [Validators.required, dateTimeValidator]],
       positions: fb.array([]),
     });
@@ -37,7 +58,14 @@ export class SportEventComponent implements OnInit {
 
   addPosition() {
     const position = this.fb.group({
-      position: ["", [Validators.required]],
+      position: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(Position.TITLE_MIN_LENGTH),
+          Validators.maxLength(Position.TITLE_MIN_LENGTH),
+        ],
+      ],
     });
 
     this.positionForms.push(position);
@@ -58,7 +86,7 @@ export class SportEventComponent implements OnInit {
       sport: this.eventForm.value["sport"],
       dateTime: this.eventForm.value["dateTime"],
       positions: this.eventForm.value["positions"].map((x) => x.position),
-      isSportEvent: true
+      isSportEvent: true,
     };
 
     this.eventService.create(data).subscribe((data) => {

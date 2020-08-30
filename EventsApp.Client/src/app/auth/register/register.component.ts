@@ -7,6 +7,7 @@ import { Gender } from "src/app/core/models/gender-enum";
 import { PictureService } from "src/app/core/services/picture.service";
 import { ToastrService } from "ngx-toastr";
 import { Auth } from "src/app/core/message-constants";
+import { User } from "src/app/core/validation-constants";
 
 @Component({
   selector: "app-register",
@@ -25,14 +26,34 @@ export class RegisterComponent implements OnInit {
     private toastrService: ToastrService
   ) {
     this.registerForm = fb.group({
-      firstName: ["", [Validators.required, Validators.minLength(2)]],
-      lastName: ["", [Validators.required, Validators.minLength(2)]],
+      firstName: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(User.FIRST_NAME_MIN_LENGTH),
+          Validators.maxLength(User.FIRST_NAME_MAX_LENGTH),
+        ],
+      ],
+      lastName: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(User.LAST_NAME_MIN_LENGTH),
+          Validators.maxLength(User.LAST_NAME_MAX_LENGTH),
+        ],
+      ],
       email: ["", [Validators.required, Validators.email]],
       birthday: ["", [Validators.required]],
       gender: ["", [Validators.required]],
       passwords: fb.group(
         {
-          password: ["", [Validators.required, Validators.minLength(6)]],
+          password: [
+            "",
+            [
+              Validators.required,
+              Validators.minLength(User.PASSWORD_MIN_LENGTH),
+            ],
+          ],
           confirmPassword: ["", [Validators.required]],
         },
         { validators: [passwordMatch] }

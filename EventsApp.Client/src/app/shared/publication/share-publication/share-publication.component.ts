@@ -6,6 +6,8 @@ import { UserService } from "src/app/core/services/user.service";
 import { finalize } from "rxjs/operators";
 import { ToastrService } from "ngx-toastr";
 import { Post } from "src/app/core/message-constants";
+import { Publication } from "src/app/core/validation-constants";
+import { error } from "console";
 
 @Component({
   selector: "app-share-publication",
@@ -23,7 +25,10 @@ export class SharePublicationComponent implements OnInit {
     private toastrService: ToastrService
   ) {
     this.publicationForm = fb.group({
-      description: [""],
+      description: [
+        "",
+        [Validators.maxLength(Publication.DESCRIPTION_MAX_LENGTH)],
+      ],
     });
   }
 
@@ -56,11 +61,16 @@ export class SharePublicationComponent implements OnInit {
   }
 
   private sharePost(data) {
-    this.publicationService.create(data).subscribe((data) => {
-      this.toastrService.success(Post.SUCCESSFULL_CREATE);
-      this.publicationForm.reset();
-      this.imgURL = "";
-    });
+    this.publicationService.create(data).subscribe(
+      (data) => {
+        this.toastrService.success(Post.SUCCESSFULL_CREATE);
+        this.publicationForm.reset();
+        this.imgURL = "";
+      },
+      (error) => {
+        this.toastrService.error(Post.ERROR_400);
+      }
+    );
   }
 
   upload(files) {

@@ -10,9 +10,13 @@
         <mat-label>What you think?</mat-label>
         <textarea formControlName="description" matInput type="text" rows="4" cols="500"></textarea>
       </mat-form-field>
+      <mat-error
+        *ngIf="publicationForm.get('description').errors?.maxlength && publicationForm.get('description').touched">
+        Description max length is <strong>200</strong> symbols!
+      </mat-error>
     </form>
     <div>
-      <img [src]="imgURL" height="200" *ngIf="imgURL"  class="preview-img">
+      <img [src]="imgURL" height="200" *ngIf="imgURL" class="preview-img">
     </div>
   </mat-card-content>
   <mat-card-actions>
