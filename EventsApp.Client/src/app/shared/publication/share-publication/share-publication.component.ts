@@ -7,7 +7,6 @@ import { finalize } from "rxjs/operators";
 import { ToastrService } from "ngx-toastr";
 import { Post } from "src/app/core/message-constants";
 import { Publication } from "src/app/core/validation-constants";
-import { error } from "console";
 
 @Component({
   selector: "app-share-publication",
