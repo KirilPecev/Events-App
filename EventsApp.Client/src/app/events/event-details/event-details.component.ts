@@ -10,6 +10,8 @@ import { dateTimeValidator } from "src/app/shared/validators";
 import { PositionService } from "src/app/core/services/position.service";
 import { NotificationService } from "src/app/core/services/notification.service";
 import { Position } from "src/app/core/models/position-model";
+import { ToastrService } from 'ngx-toastr';
+import { Event as EventConstants } from 'src/app/core/message-constants';
 
 @Component({
   selector: "app-event-details",
@@ -28,6 +30,7 @@ export class EventDetailsComponent implements OnInit {
     private notificationService: NotificationService,
     private route: ActivatedRoute,
     private router: Router,
+    private toastrService: ToastrService,
     fb: FormBuilder
   ) {
     this.editForm = fb.group({
@@ -67,6 +70,7 @@ export class EventDetailsComponent implements OnInit {
     };
 
     this.eventService.edit(data).subscribe((data) => {
+      this.toastrService.success(EventConstants.SUCCESSFULL_EDIT)
       this.fetchData();
     });
   }
@@ -79,6 +83,7 @@ export class EventDetailsComponent implements OnInit {
     });
 
     this.eventService.delete(this.eventId).subscribe((data) => {
+      this.toastrService.success(EventConstants.SUCCESSFULL_DELETE)
       this.router.navigate(["dashboard"]);
       busyPositions.forEach((element) => {
         this.createNotification(element.participantId);

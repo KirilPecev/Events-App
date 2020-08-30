@@ -3,8 +3,10 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { passwordMatch } from "../../shared/validators";
 import { UserService } from "../../core/services/user.service";
 import { Router } from "@angular/router";
-import { Gender } from 'src/app/core/models/gender-enum';
-import { PictureService } from 'src/app/core/services/picture.service';
+import { Gender } from "src/app/core/models/gender-enum";
+import { PictureService } from "src/app/core/services/picture.service";
+import { ToastrService } from "ngx-toastr";
+import { Auth } from "src/app/core/message-constants";
 
 @Component({
   selector: "app-register",
@@ -19,7 +21,8 @@ export class RegisterComponent implements OnInit {
     fb: FormBuilder,
     private userService: UserService,
     private pictureService: PictureService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.registerForm = fb.group({
       firstName: ["", [Validators.required, Validators.minLength(2)]],
@@ -45,11 +48,14 @@ export class RegisterComponent implements OnInit {
       birthday: this.registerForm.value["birthday"],
       gender: this.registerForm.value["gender"],
       password: this.registerForm.value["passwords"].password,
-    }
+    };
 
-    data.profilePictureUrl = this.pictureService.getDefaultProfilePicture(data.gender);
+    data.profilePictureUrl = this.pictureService.getDefaultProfilePicture(
+      data.gender
+    );
 
     this.userService.register(data).subscribe((data) => {
+      this.toastrService.success(Auth.SUCCESSFULL_REGISTER);
       this.router.navigate(["login"]);
       this.registerForm.reset();
     });

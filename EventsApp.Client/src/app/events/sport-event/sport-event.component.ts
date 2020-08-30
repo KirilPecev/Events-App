@@ -9,6 +9,8 @@ import {
 import { dateTimeValidator } from "../../shared/validators";
 import { EventService } from "src/app/core/services/event.service";
 import { Router } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
+import { Event } from 'src/app/core/message-constants';
 
 @Component({
   selector: "app-sport-event",
@@ -21,7 +23,8 @@ export class SportEventComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private eventService: EventService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.eventForm = fb.group({
       name: ["", [Validators.required, Validators.minLength(4)]],
@@ -57,8 +60,9 @@ export class SportEventComponent implements OnInit {
       positions: this.eventForm.value["positions"].map((x) => x.position),
       isSportEvent: true
     };
-   
+
     this.eventService.create(data).subscribe((data) => {
+      this.toastrService.success(Event.SUCCESSFULL_CREATE);
       this.eventForm.reset();
       this.router.navigate(["dashboard"]);
     });

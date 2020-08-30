@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { PictureService } from "src/app/core/services/picture.service";
 import { UserService } from "src/app/core/services/user.service";
 import { finalize } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import { Post } from "src/app/core/message-constants";
 
 @Component({
   selector: "app-share-publication",
@@ -17,7 +19,8 @@ export class SharePublicationComponent implements OnInit {
     fb: FormBuilder,
     private publicationService: PublicationService,
     private pictureService: PictureService,
-    private userService: UserService
+    private userService: UserService,
+    private toastrService: ToastrService
   ) {
     this.publicationForm = fb.group({
       description: [""],
@@ -54,6 +57,7 @@ export class SharePublicationComponent implements OnInit {
 
   private sharePost(data) {
     this.publicationService.create(data).subscribe((data) => {
+      this.toastrService.success(Post.SUCCESSFULL_CREATE);
       this.publicationForm.reset();
       this.imgURL = "";
     });

@@ -5,6 +5,8 @@ import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { NotificationService } from "src/app/core/services/notification.service";
 import { UserService } from "src/app/core/services/user.service";
+import { ToastrService } from 'ngx-toastr';
+import { Post } from 'src/app/core/message-constants';
 
 @Component({
   selector: "app-publication",
@@ -19,7 +21,8 @@ export class PublicationComponent implements OnInit, DoCheck {
     private publicationService: PublicationService,
     private notificationService: NotificationService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +71,7 @@ export class PublicationComponent implements OnInit, DoCheck {
 
   share(publication) {
     this.publicationService.share(publication.id).subscribe((data) => {
+      this.toastrService.success(Post.SUCCESSFULL_CREATE);
       this.fetch();
       this.createNotification(publication, "share");
     });
@@ -75,6 +79,7 @@ export class PublicationComponent implements OnInit, DoCheck {
 
   deletePublication(id: number) {
     this.publicationService.delete(id, false).subscribe((data) => {
+      this.toastrService.success(Post.SUCCESSFULL_DELETE);
       this.fetch();
     });
   }
