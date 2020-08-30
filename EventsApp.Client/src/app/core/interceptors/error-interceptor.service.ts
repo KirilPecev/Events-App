@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorInterceptorService implements  HttpInterceptor {
+
+  constructor(private toastrServise: ToastrService){}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -15,7 +18,7 @@ export class ErrorInterceptorService implements  HttpInterceptor {
         let message = ""
         if (err.status === 401) {
           //refresh token or navigate to login
-          message = "Token has expired or you should be logged in"
+          message = "Token has expired or you should be logged in!"
         }
         else if (err.status === 404) {
           message = "404"
@@ -24,8 +27,10 @@ export class ErrorInterceptorService implements  HttpInterceptor {
           message = "400"
         }
         else {
-          message = "Unexpected error"
+          message = "Unexpected error!"
         }
+
+        this.toastrServise.error(message);
         return throwError(err)
       })
     )

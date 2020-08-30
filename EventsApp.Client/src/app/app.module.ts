@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
@@ -18,7 +19,7 @@ import { TokenInterceptorService } from "./core/interceptors/token-interceptor.s
 import { ErrorInterceptorService } from "./core/interceptors/error-interceptor.service";
 import { UserService } from "./core/services/user.service";
 import { PublicationService } from "./core/services/publication.service";
-import { EventService } from './core/services/event.service';
+import { EventService } from "./core/services/event.service";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -30,7 +31,8 @@ import { EventService } from './core/services/event.service';
     HomeModule,
     DashboardModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase, "evenity")
+    AngularFireModule.initializeApp(environment.firebase, "evenity"),
+    ToastrModule.forRoot(),
   ],
   providers: [
     UserService,
