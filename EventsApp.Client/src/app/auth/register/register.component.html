@@ -12,6 +12,10 @@
                         *ngIf="registerForm.get('firstName').errors?.required && registerForm.get('firstName').touched">
                         First name is <strong>required</strong>!
                     </mat-error>
+                    <mat-error
+                        *ngIf="registerForm.get('firstName').errors?.minlength && registerForm.get('firstName').touched">
+                        First name must be more than <strong>1</strong> symbol!
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>
@@ -21,6 +25,10 @@
                     <mat-error
                         *ngIf="registerForm.get('lastName').errors?.required && registerForm.get('lastName').touched">
                         Last name is <strong>required</strong>!
+                    </mat-error>
+                    <mat-error
+                        *ngIf="registerForm.get('lastName').errors?.minlength && registerForm.get('lastName').touched">
+                        Last name must be more than <strong>1</strong> symbol!
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>

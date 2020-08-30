@@ -24,7 +24,7 @@ export class ErrorInterceptorService implements  HttpInterceptor {
           message = "404"
         }
         else if (err.status === 400) {
-          message = "400"
+         message = err.error[0].description;
         }
         else {
           message = "Unexpected error!"

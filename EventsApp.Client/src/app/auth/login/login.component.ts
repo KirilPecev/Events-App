@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { UserService } from "../../core/services/user.service";
 import { Router } from "@angular/router";
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: "app-login",

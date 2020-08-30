@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {
     this.registerForm = fb.group({
-      firstName: ["", [Validators.required]],
-      lastName: ["", [Validators.required]],
+      firstName: ["", [Validators.required, Validators.minLength(2)]],
+      lastName: ["", [Validators.required, Validators.minLength(2)]],
       email: ["", [Validators.required, Validators.email]],
       birthday: ["", [Validators.required]],
       gender: ["", [Validators.required]],
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
       gender: this.registerForm.value["gender"],
       password: this.registerForm.value["passwords"].password,
     }
-    
+
     data.profilePictureUrl = this.pictureService.getDefaultProfilePicture(data.gender);
 
     this.userService.register(data).subscribe((data) => {
