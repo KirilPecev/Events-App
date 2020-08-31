@@ -208,6 +208,6 @@
         private async Task<Friend> GetFriendship(string userId, string friendId)
             => await this.data
                 .Friends
-                .FirstOrDefaultAsync(u => u.UserId == friendId && u.FriendId == userId);
+                .FirstOrDefaultAsync(u => (u.UserId == userId && u.FriendId == friendId) || (u.UserId == friendId && u.FriendId == userId));
     }
 }

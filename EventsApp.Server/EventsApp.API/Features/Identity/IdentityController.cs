@@ -134,7 +134,7 @@
 
         [Authorize]
         [HttpDelete]
-        [Route(Id)]
+        [Route(nameof(RemoveFriendship))]
         public async Task<ActionResult> RemoveFriendship(string id)
         {
             string userId = this.User.GetId();
