@@ -20,6 +20,8 @@
 
         public bool IsMyFriend { get; set; }
 
+        public bool IsSentFriendRequest { get; set; }
+
         public string ProfilePictureUrl { get; set; }
     }
 }

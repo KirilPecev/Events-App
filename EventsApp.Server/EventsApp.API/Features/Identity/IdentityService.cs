@@ -65,6 +65,7 @@
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport,
                     IsMyFriend = this.data.Friends.Any(f => (f.UserId == userId && f.FriendId == friendId || f.UserId==friendId && f.FriendId == userId) && f.Status == FriendStatus.Accepted),
+                    IsSentFriendRequest = this.data.Friends.Any(f => (f.UserId == friendId || f.FriendId == friendId ) && f.Status == FriendStatus.Pending),
                     ProfilePictureUrl = u.ProfilePictureUrl
                 })
                 .FirstOrDefaultAsync();
