@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit, DoCheck {
   userId: string;
   isMyProfile: boolean;
   isMyFriend: boolean;
+  isSentFriendRequest: boolean;
 
   constructor(
     private userService: UserService,
@@ -43,6 +44,7 @@ export class ProfileComponent implements OnInit, DoCheck {
     this.user$ = this.userService.getUserInformation(userId).pipe(
       tap((data) => {
         this.isMyFriend = data.isMyFriend;
+        this.isSentFriendRequest = data.isSentFriendRequest;
       })
     );
 

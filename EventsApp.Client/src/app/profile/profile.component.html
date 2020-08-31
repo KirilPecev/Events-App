@@ -4,7 +4,7 @@
         <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
             {{user.fullName}}</p>
         <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId"
-            [isMyFriend]="this.isMyFriend"></app-user-friend-buttons>
+            [isMyFriend]="this.isMyFriend" [isSentFriendRequest]="this.isSentFriendRequest"></app-user-friend-buttons>
         <p fxFlex="20%" fxFlexAlign="end">Played events: {{createdEventsByUser$ | async}}</p>
     </div>
     <mat-toolbar color="primary" class="menu">

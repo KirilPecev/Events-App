@@ -10,6 +10,7 @@ import { ActivatedRoute } from "@angular/router";
 export class UserFriendButtonsComponent implements OnInit {
   @Input() userId: string;
   @Input() isMyFriend: boolean;
+  @Input() isSentFriendRequest: boolean;
 
   constructor(
     private userService: UserService,
@@ -21,10 +22,12 @@ export class UserFriendButtonsComponent implements OnInit {
   }
 
   add() {
-    this.userService.addFriend(this.userId).subscribe();
+    this.userService.addFriend(this.userId).subscribe((x) => {
+      this.isSentFriendRequest = true;
+    });
   }
 
   remove() {
-    this.userService.removeFriendship(this.userId);
+    this.userService.removeFriendship(this.userId).subscribe();
   }
 }
