@@ -91,8 +91,8 @@ export class UserService {
   }
 
   removeFriendship(friendId: string) {
-    const params = new HttpParams().set("friendId", friendId);
-    return this.http.delete(this.path, { params });
+    const params = new HttpParams().set("id", friendId);
+    return this.http.delete(this.path + "/removefriendship", { params });
   }
 
   getAllUsers(): Observable<Array<User>> {
