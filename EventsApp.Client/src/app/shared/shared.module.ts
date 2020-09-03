@@ -17,6 +17,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { JoinedEventsComponent } from "./event-helpers/joined-events/joined-events.component";
 import { UpcomingEventsComponent } from "./event-helpers/upcoming-events/upcoming-events.component";
@@ -28,6 +29,7 @@ import { PublicationComponent } from "./publication/publication.component";
 import { SharePublicationComponent } from "./publication/share-publication/share-publication.component";
 import { MineEventsComponent } from './event-helpers/mine-events/mine-events.component';
 import { SearchComponent } from './layout/search/search.component';
+import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { SearchComponent } from './layout/search/search.component';
     PublicationComponent,
     SharePublicationComponent,
     MineEventsComponent,
-    SearchComponent
+    SearchComponent,
+    SpinnerOverlayComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +63,8 @@ import { SearchComponent } from './layout/search/search.component';
     MatSelectModule,
     FlexLayoutModule,
     MatAutocompleteModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -81,6 +85,7 @@ import { SearchComponent } from './layout/search/search.component';
     MatAutocompleteModule,
     FlexLayoutModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     JoinedEventsComponent,
     UpcomingEventsComponent,
     FriendsComponent,

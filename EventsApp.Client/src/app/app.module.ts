@@ -20,6 +20,7 @@ import { ErrorInterceptorService } from "./core/interceptors/error-interceptor.s
 import { UserService } from "./core/services/user.service";
 import { PublicationService } from "./core/services/publication.service";
 import { EventService } from "./core/services/event.service";
+import { SpinnerInterceptor } from './core/interceptors/spinner-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -48,6 +49,11 @@ import { EventService } from "./core/services/event.service";
       useClass: ErrorInterceptorService,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent],
 })
