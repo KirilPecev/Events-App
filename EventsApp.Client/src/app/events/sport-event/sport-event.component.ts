@@ -63,7 +63,7 @@ export class SportEventComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(Position.TITLE_MIN_LENGTH),
-          Validators.maxLength(Position.TITLE_MIN_LENGTH),
+          Validators.maxLength(Position.TITLE_MAX_LENGTH),
         ],
       ],
     });
