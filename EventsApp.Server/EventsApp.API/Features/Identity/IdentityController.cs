@@ -181,5 +181,22 @@
 
             return Ok();
         }
+
+        [Authorize]
+        [HttpPut]
+        [Route("Picture")]
+        public async Task<ActionResult> UpdateProfilePicture(string pictureUrl)
+        {
+            string userId = this.User.GetId();
+
+            bool updated = await this.identityService.UpdateProfilePicture(pictureUrl, userId);
+
+            if (!updated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

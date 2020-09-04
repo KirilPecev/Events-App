@@ -202,6 +202,24 @@
             return true;
         }
 
+        public async Task<bool> UpdateProfilePicture(string pictureUrl, string userId)
+        {
+            User user = await this.userManager
+                .Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null && !string.IsNullOrEmpty(pictureUrl))
+            {
+                return false;
+            }
+
+            user.ProfilePictureUrl = pictureUrl;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<int> GetCreatedEventsAmountByUser(string userId)
             => await this.data.Events.CountAsync(e => e.CreatorId == userId);
 

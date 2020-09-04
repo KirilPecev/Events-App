@@ -24,6 +24,8 @@
 
         Task<bool> UpdateUserInformation(string mobile, string facebookUrl, string favoriteSport, string userId);
 
+        Task<bool> UpdateProfilePicture(string pictureUrl, string userId);
+
         Task<int> GetCreatedEventsAmountByUser(string userId);
     }
 }
