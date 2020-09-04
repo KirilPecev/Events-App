@@ -1,19 +1,23 @@
 <div class="container site-wrapper" fxLayout="column" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="user$|async as user">
-        <img src="{{user.profilePictureUrl}}">
-        <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
-            {{user.fullName}}</p>
-        <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId"
-            [isMyFriend]="this.isMyFriend" [isSentFriendRequest]="this.isSentFriendRequest"></app-user-friend-buttons>
-        <p fxFlex="20%" fxFlexAlign="end">Played events: {{createdEventsByUser$ | async}}</p>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="user$|async as user">
+    <div class="wrapper">
+      <img src="{{user.profilePictureUrl}}">
+      <input class="file" type="file" #hiddenFileInput (change)="upload(hiddenFileInput)" accept='image/*'>
+      <button class="button"  mat-flat-button color="primary"(click)="hiddenFileInput.click()">Upload New</button>
     </div>
-    <mat-toolbar color="primary" class="menu">
-        <mat-toolbar-row fxLayoutAlign="space-evenly end">
-            <button mat-button [routerLink]="['/profile', userId]">Daybook</button>
-            <button mat-button [routerLink]="[{ outlets: { profile: ['information'] } }]">Information</button>
-            <button mat-button [routerLink]="[{ outlets: { profile: ['friends'] } }]">Friends</button>
-            <button mat-button [routerLink]="[{ outlets: { profile: ['pictures'] } }]">Pictures</button>
-        </mat-toolbar-row>
-    </mat-toolbar>
+    <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
+      {{user.fullName}}</p>
+    <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId"
+      [isMyFriend]="this.isMyFriend" [isSentFriendRequest]="this.isSentFriendRequest"></app-user-friend-buttons>
+    <p fxFlex="20%" fxFlexAlign="end">Played events: {{createdEventsByUser$ | async}}</p>
+  </div>
+  <mat-toolbar color="primary" class="menu">
+    <mat-toolbar-row fxLayoutAlign="space-evenly end">
+      <button mat-button [routerLink]="['/profile', userId]">Daybook</button>
+      <button mat-button [routerLink]="[{ outlets: { profile: ['information'] } }]">Information</button>
+      <button mat-button [routerLink]="[{ outlets: { profile: ['friends'] } }]">Friends</button>
+      <button mat-button [routerLink]="[{ outlets: { profile: ['pictures'] } }]">Pictures</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>
 <router-outlet name="profile"></router-outlet>

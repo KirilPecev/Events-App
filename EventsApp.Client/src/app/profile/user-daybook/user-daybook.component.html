@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-between start" class="container site-wrapper">
-    <app-upcoming-events fxHide.xs fxFlex="20%" [title]="'My upcoming events'"></app-upcoming-events>
-    <div fxFlex="60%" fxFlex.lt-md="100%" fxFlex.xs="100%">
-        <app-share-publication *ngIf="this.isMyProfile"></app-share-publication>
-        <app-publication></app-publication>
-    </div>
+  <app-upcoming-events fxHide.xs fxFlex="20%"></app-upcoming-events>
+  <div fxFlex="60%" fxFlex.lt-md="100%" fxFlex.xs="100%">
+    <app-share-publication *ngIf="this.isMyProfile"></app-share-publication>
+    <app-publication></app-publication>
+  </div>
 </div>

@@ -1,9 +1,12 @@
-import { Component, OnInit, OnChanges, DoCheck } from "@angular/core";
+import { Component, OnInit, DoCheck } from "@angular/core";
 import { UserService } from "../core/services/user.service";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "../core/models/user-model";
-import { tap } from "rxjs/operators";
+import { tap, finalize } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import { PictureService } from "../core/services/picture.service";
+import { Profile } from "../core/message-constants";
 
 @Component({
   selector: "app-profile",
@@ -20,7 +23,9 @@ export class ProfileComponent implements OnInit, DoCheck {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastrService: ToastrService,
+    private pictureService: PictureService
   ) {}
 
   ngOnInit(): void {
@@ -53,5 +58,37 @@ export class ProfileComponent implements OnInit, DoCheck {
     );
 
     this.isMyProfile = this.userId === this.userService.getUserId();
+  }
+
+  upload(input: HTMLInputElement) {
+    const file = input.files[0];
+
+    if (file) {
+      const userId = this.userService.getUserId();
+      const result = this.pictureService.uploadProfilePic(file, userId);
+      console.log(result.fileRef);
+
+      result.task.snapshotChanges().pipe(
+        finalize(() => {
+          const downloadURL = result.fileRef.getDownloadURL();
+          downloadURL.subscribe((url) => {
+            console.log(url);
+
+            this.update(url);
+          });
+        })
+      );
+    }
+  }
+
+  private update(pictureUrl: string) {
+    this.userService.updateProfilePicture(pictureUrl).subscribe(
+      (data) => {
+        this.toastrService.success(Profile.SUCCESSFULL_UPLOAD);
+      },
+      (error) => {
+        this.toastrService.error(Profile.ERROR_400);
+      }
+    );
   }
 }

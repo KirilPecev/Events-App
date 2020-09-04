@@ -9,8 +9,6 @@
 .header > img {
   height: 16em;
   width: 16em;
-  border-radius: 50%;
-  z-index: 1;
 }
 
 .header > p {
@@ -22,6 +20,28 @@
 .header > button {
   margin-top: 7.5em;
   margin-right: 1em;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.wrapper > .button {
+  display: none;
+  position: absolute;
+  bottom: 15%;
+  left: 25%;
+  width: 50%;
+}
+
+.wrapper:hover .button{
+  display: inline-block;
+}
+
+.file {
+  display: none;
 }
 
 .menu {

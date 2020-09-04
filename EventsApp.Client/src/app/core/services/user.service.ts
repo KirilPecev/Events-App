@@ -95,6 +95,11 @@ export class UserService {
     return this.http.delete(this.path + "/removefriendship", { params });
   }
 
+  updateProfilePicture(pictureUrl: string) {
+    const params = new HttpParams().set("pictureUrl", pictureUrl);
+    return this.http.put(this.path + "/picture", { params });
+  }
+
   getAllUsers(): Observable<Array<User>> {
     return this.http.get<Array<User>>(this.path + "/users");
   }
