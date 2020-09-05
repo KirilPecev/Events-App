@@ -14,6 +14,8 @@ export class SpinnerInterceptor implements HttpInterceptor {
   httpRequestUrls: Array<string> = [
     "api/notifications",
     "api/identity/pendingfriends",
+    "api/publications/like",
+    "api/publications/unlike"
   ];
 
   constructor(private readonly spinnerOverlayService: SpinnerOverlayService) {}
