@@ -96,8 +96,7 @@ export class UserService {
   }
 
   updateProfilePicture(pictureUrl: string) {
-    const params = new HttpParams().set("pictureUrl", pictureUrl);
-    return this.http.put(this.path + "/picture", { params });
+    return this.http.put(this.path + "/picture", { pictureUrl });
   }
 
   getAllUsers(): Observable<Array<User>> {

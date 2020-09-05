@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit, DoCheck {
   isMyProfile: boolean;
   isMyFriend: boolean;
   isSentFriendRequest: boolean;
+  imgURL: string;
 
   constructor(
     private userService: UserService,
@@ -66,18 +67,15 @@ export class ProfileComponent implements OnInit, DoCheck {
     if (file) {
       const userId = this.userService.getUserId();
       const result = this.pictureService.uploadProfilePic(file, userId);
-      console.log(result.fileRef);
 
       result.task.snapshotChanges().pipe(
         finalize(() => {
           const downloadURL = result.fileRef.getDownloadURL();
           downloadURL.subscribe((url) => {
-            console.log(url);
-
-            this.update(url);
+           this.update(url);
           });
         })
-      );
+      ).subscribe();
     }
   }
 

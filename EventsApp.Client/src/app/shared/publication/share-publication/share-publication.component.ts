@@ -45,15 +45,18 @@ export class SharePublicationComponent implements OnInit {
       const userId = this.userService.getUserId();
       const a = this.pictureService.uploadPublicationPic(file, userId);
 
-      a.task.snapshotChanges().pipe(
-        finalize(() => {
-          const downloadURL = a.fileRef.getDownloadURL();
-          downloadURL.subscribe((url) => {
-            data.imageUrl = url;
-            this.sharePost(data);
-          });
-        })
-      );
+      a.task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            const downloadURL = a.fileRef.getDownloadURL();
+            downloadURL.subscribe((url) => {
+              data.imageUrl = url;
+              this.sharePost(data);
+            });
+          })
+        )
+        .subscribe();
     } else {
       this.sharePost(data);
     }
