@@ -185,11 +185,11 @@
         [Authorize]
         [HttpPut]
         [Route("Picture")]
-        public async Task<ActionResult> UpdateProfilePicture(string pictureUrl)
+        public async Task<ActionResult> UpdateProfilePicture(UploadProfilePictureRequestModel model)
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.identityService.UpdateProfilePicture(pictureUrl, userId);
+            bool updated = await this.identityService.UpdateProfilePicture(model.PictureUrl, userId);
 
             if (!updated)
             {
