@@ -51,6 +51,7 @@ export class ProfileComponent implements OnInit, DoCheck {
       tap((data) => {
         this.isMyFriend = data.isMyFriend;
         this.isSentFriendRequest = data.isSentFriendRequest;
+        this.imgURL = data.profilePictureUrl;
       })
     );
 
@@ -83,6 +84,7 @@ export class ProfileComponent implements OnInit, DoCheck {
     this.userService.updateProfilePicture(pictureUrl).subscribe(
       (data) => {
         this.toastrService.success(Profile.SUCCESSFULL_UPLOAD);
+        this.imgURL = pictureUrl;
       },
       (error) => {
         this.toastrService.error(Profile.ERROR_400);

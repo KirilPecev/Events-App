@@ -1,9 +1,9 @@
 <div class="container site-wrapper" fxLayout="column" fxLayoutAlign="space-between center">
   <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="user$|async as user">
     <div class="wrapper">
-      <img src="{{user.profilePictureUrl}}">
+      <img src="{{this.imgURL}}">
       <input class="file" type="file" #hiddenFileInput (change)="upload(hiddenFileInput)" accept='image/*'>
-      <button class="button"  mat-flat-button color="primary"(click)="hiddenFileInput.click()">Upload New</button>
+      <button *ngIf="this.isMyProfile" class="button"  mat-flat-button color="primary"(click)="hiddenFileInput.click()">Upload New</button>
     </div>
     <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
       {{user.fullName}}</p>
