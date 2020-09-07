@@ -9,7 +9,6 @@ import { UserBasicInformationComponent } from "./user-basic-information/user-bas
 import { UserFriendsComponent } from "./user-friends/user-friends.component";
 import { UserPicturesComponent } from "./user-pictures/user-pictures.component";
 import { AuthGuard } from "../guards/auth/auth.guard";
-import { UserSettingsComponent } from "./user-settings/user-settings.component";
 
 const profileRoutes: Routes = [
   {

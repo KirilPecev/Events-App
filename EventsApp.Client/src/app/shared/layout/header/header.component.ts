@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, OnDestroy } from "@angular/core";
+import { Component, OnInit, DoCheck } from "@angular/core";
 import {
   faHome,
   faUserFriends,
