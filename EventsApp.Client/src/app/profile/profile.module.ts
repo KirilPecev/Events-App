@@ -10,7 +10,6 @@ import { UserFriendsComponent } from "./user-friends/user-friends.component";
 import { UserInformationComponent } from "./user-information/user-information.component";
 import { UserPicturesComponent } from "./user-pictures/user-pictures.component";
 import { UserFriendButtonsComponent } from "./user-friend-buttons/user-friend-buttons.component";
-import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 @NgModule({
   imports: [SharedModule, ProfileRoutingModule],
@@ -23,7 +22,6 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     UserInformationComponent,
     UserPicturesComponent,
     UserFriendButtonsComponent,
-    UserSettingsComponent,
   ],
 })
 export class ProfileModule {}
