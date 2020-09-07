@@ -38,7 +38,7 @@
             <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
           </button>
           <mat-menu #settings>
-            <button mat-menu-item [routerLink]>
+            <button mat-menu-item [routerLink]="['/settings', userId]">
               <fa-icon class="fa-lg" [icon]="faCog"></fa-icon>
               Settings
             </button>

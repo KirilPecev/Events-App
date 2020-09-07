@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { UserSettingsComponent } from "./profile/user-settings/user-settings.component";
 
 const routes: Routes = [
   {
@@ -21,7 +22,10 @@ const routes: Routes = [
     loadChildren: () =>
       import("./profile/profile.module").then((m) => m.ProfileModule),
   },
-
+  {
+    path: "settings/:userId",
+    component: UserSettingsComponent,
+  },
   { path: "**", redirectTo: "" },
 ];
 
