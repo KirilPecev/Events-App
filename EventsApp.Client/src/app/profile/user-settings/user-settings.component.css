@@ -1,0 +1,14 @@
+.container {
+  height: 50em;
+}
+
+.side-nav {
+  width: 20em;
+  border: 1px solid #673ab7;
+}
+
+.title {
+  color: #673ab7;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
