@@ -6,8 +6,8 @@ import {
   faCalendarWeek,
   faSignInAlt,
   faUserPlus,
-  faSignOutAlt,
-  faBars,
+  faUsersCog,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { NotificationsComponent } from "../notifications/notifications.component";
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   faCalendarWeek = faCalendarWeek;
   faSignInAlt = faSignInAlt;
   faUserPlus = faUserPlus;
-  faSignOutAlt = faSignOutAlt;
+  faUsersCog = faUsersCog;
   faBars = faBars;
 
   notifications: Array<Notification>;

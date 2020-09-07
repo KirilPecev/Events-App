@@ -35,9 +35,13 @@
                         (click)="openNotificationsDialog()">
                         <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
                     </button>
-                    <button mat-icon-button title="Logout" (click)="logout()">
-                        <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
+                    <button mat-icon-button title="Settings" [matMenuTriggerFor]="settings">
+                        <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
                     </button>
+                    <mat-menu #settings>
+                        <button mat-menu-item>Settings</button>
+                        <button mat-menu-item (click)="logout()">Logout</button>
+                    </mat-menu>
                 </div>
                 <div *ngIf="!this.isLoggedIn()" class="header-buttons">
                     <button mat-button routerLink="/auth/login">
