@@ -1,57 +1,62 @@
 <header class="fixed-top">
-    <div class="site-wrapper">
-        <mat-toolbar color="primary" class="site-header">
-            <mat-toolbar-row fxFlex fxLayout fxLayoutAlign="space-between center">
-                <div *ngIf="this.isLoggedIn()" fxHide fxShow.lt-sm>
-                    <button mat-icon-button title="Menu" [matMenuTriggerFor]="menu" fxHide fxShow.lt-sm>
-                        <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
-                    </button>
-                    <mat-menu #menu="matMenu" fxHide fxShow.lt-sm>
-                        <button mat-menu-item [routerLink]="['/profile', userId]">My Profile</button>
-                        <button mat-menu-item routerLink="events/create-event">Create event</button>
-                        <button mat-menu-item [routerLink]="['/dashboard', { outlets: { dashboard: ['events'] } }]">Events</button>
-                        <hr>
-                        <app-joined-events class="events"></app-joined-events>
-                        <app-upcoming-events title="My upcoming events"></app-upcoming-events>
-                    </mat-menu>
-                </div>
-                <h1 *ngIf="this.isLoggedIn()" class="mat-title">
-                    <a class="title" routerLink="/dashboard">{{title}}</a>
-                </h1>
-                <h1 *ngIf="!this.isLoggedIn()" class="mat-title">
-                    <a class="title" routerLink="/">{{title}}</a>
-                </h1>
-                <app-search *ngIf="this.isLoggedIn()"></app-search>
-                <div *ngIf="this.isLoggedIn()" class="header-buttons">
-                    <button mat-icon-button title="Home" routerLink="/">
-                        <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
-                    </button>
-                    <button mat-icon-button title="Friends" [matBadge]="newFriends" matBadgePosition="above after"
-                        matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
-                        <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
-                    </button>
-                    <button mat-icon-button title="Notifications" [matBadge]="newNotifications"
-                        matBadgePosition="above after" matBadgeColor="warn" matBadgeSize="small"
-                        (click)="openNotificationsDialog()">
-                        <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
-                    </button>
-                    <button mat-icon-button title="Settings" [matMenuTriggerFor]="settings">
-                        <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
-                    </button>
-                    <mat-menu #settings>
-                        <button mat-menu-item>Settings</button>
-                        <button mat-menu-item (click)="logout()">Logout</button>
-                    </mat-menu>
-                </div>
-                <div *ngIf="!this.isLoggedIn()" class="header-buttons">
-                    <button mat-button routerLink="/auth/login">
-                        <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
-                    </button>
-                    <button mat-button routerLink="/auth/register">
-                        <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
-                    </button>
-                </div>
-            </mat-toolbar-row>
-        </mat-toolbar>
-    </div>
+  <div class="site-wrapper">
+    <mat-toolbar color="primary" class="site-header">
+      <mat-toolbar-row fxFlex fxLayout fxLayoutAlign="space-between center">
+        <div *ngIf="this.isLoggedIn()" fxHide fxShow.lt-sm>
+          <button mat-icon-button title="Menu" [matMenuTriggerFor]="menu" fxHide fxShow.lt-sm>
+            <fa-icon class="fa-lg" [icon]="faBars"></fa-icon>
+          </button>
+          <mat-menu #menu="matMenu" fxHide fxShow.lt-sm>
+            <button mat-menu-item [routerLink]="['/profile', userId]">My Profile</button>
+            <button mat-menu-item routerLink="events/create-event">Create event</button>
+            <button mat-menu-item [routerLink]="['/dashboard', { outlets: { dashboard: ['events'] } }]">Events</button>
+            <hr>
+            <app-joined-events class="events"></app-joined-events>
+            <app-upcoming-events title="My upcoming events"></app-upcoming-events>
+          </mat-menu>
+        </div>
+        <h1 *ngIf="this.isLoggedIn()" class="mat-title">
+          <a class="title" routerLink="/dashboard">{{title}}</a>
+        </h1>
+        <h1 *ngIf="!this.isLoggedIn()" class="mat-title">
+          <a class="title" routerLink="/">{{title}}</a>
+        </h1>
+        <app-search *ngIf="this.isLoggedIn()"></app-search>
+        <div *ngIf="this.isLoggedIn()" class="header-buttons">
+          <button mat-icon-button title="Home" routerLink="/">
+            <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
+          </button>
+          <button mat-icon-button title="Friends" [matBadge]="newFriends" matBadgePosition="above after"
+            matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
+            <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
+          </button>
+          <button mat-icon-button title="Notifications" [matBadge]="newNotifications" matBadgePosition="above after"
+            matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
+            <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
+          </button>
+          <button mat-icon-button title="Settings" [matMenuTriggerFor]="settings">
+            <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
+          </button>
+          <mat-menu #settings>
+            <button mat-menu-item [routerLink]>
+              <fa-icon class="fa-lg" [icon]="faCog"></fa-icon>
+              Settings
+            </button>
+            <button mat-menu-item (click)="logout()">
+              <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
+              Logout
+            </button>
+          </mat-menu>
+        </div>
+        <div *ngIf="!this.isLoggedIn()" class="header-buttons">
+          <button mat-button routerLink="/auth/login">
+            <fa-icon class="fa-lg" [icon]="faSignInAlt"></fa-icon> Login
+          </button>
+          <button mat-button routerLink="/auth/register">
+            <fa-icon class="fa-lg" [icon]="faUserPlus"></fa-icon> Register
+          </button>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
 </header>

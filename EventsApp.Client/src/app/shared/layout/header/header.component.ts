@@ -7,6 +7,8 @@ import {
   faSignInAlt,
   faUserPlus,
   faUsersCog,
+  faSignOutAlt,
+  faCog,
   faBars
 } from "@fortawesome/free-solid-svg-icons";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
@@ -34,6 +36,8 @@ export class HeaderComponent implements OnInit, DoCheck {
   faUserPlus = faUserPlus;
   faUsersCog = faUsersCog;
   faBars = faBars;
+  faSignOutAlt = faSignOutAlt;
+  faCog = faCog;
 
   notifications: Array<Notification>;
   friends: Array<Friend>;
