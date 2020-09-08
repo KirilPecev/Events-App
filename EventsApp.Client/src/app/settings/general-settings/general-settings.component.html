@@ -1,1 +1,50 @@
-<p>general-settings works!</p>
+<div fxLayout="column" class="container">
+  <mat-card>
+    <mat-card-title-group>
+      <mat-card-title>
+        General account settings
+      </mat-card-title>
+      <mat-card-subtitle>Change your account information</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content fxLayout="column" fxLayoutGap="1em">
+      <form action="">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Name</h2>
+          <input type="text" required>
+          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Mobile</h2>
+          <input type="tel" required>
+          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Facebook profile</h2>
+          <input type="url" required>
+          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Birthday</h2>
+          <input type="date" required>
+          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Favourite sport</h2>
+          <input type="text" required>
+          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+        </div>
+      </form>
+      <hr>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h2 fxFlex="30%">Deactivate your account </h2>
+        <h4>You can activate it anytime</h4>
+        <button mat-button color="accent">Deactivate</button>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <h2 fxFlex="30%">Delete your account </h2>
+        <h4>You can't restore it after deletion</h4>
+        <button mat-button color="warn">Delete</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

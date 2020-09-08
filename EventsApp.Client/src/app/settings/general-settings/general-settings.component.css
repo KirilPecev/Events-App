@@ -1,0 +1,7 @@
+.container{
+  height: 100%;
+}
+
+.container > mat-card{
+  height: 100%;
+}
