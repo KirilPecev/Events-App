@@ -10,4 +10,5 @@ export interface User {
     isMyFriend: boolean;
     isSentFriendRequest: boolean;
     profilePictureUrl: string;
+    isDeactivated: boolean;
 }

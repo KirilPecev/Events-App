@@ -7,35 +7,45 @@
       <mat-card-subtitle>Change your account information</mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content fxLayout="column" fxLayoutGap="1em">
-      <form action="">
+      <form [formGroup]="editForm" (ngSubmit)="edit()">
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <h2 fxFlex="20%">Name</h2>
-          <input type="text" required>
-          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+          <h2 fxFlex="20%">First name</h2>
+          <input formControlName="firstName" type="text" required>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('firstName').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <h2 fxFlex="20%">Mobile</h2>
-          <input type="tel" required>
-          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <h2 fxFlex="20%">Facebook profile</h2>
-          <input type="url" required>
-          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+          <h2 fxFlex="20%">Last name</h2>
+          <input formControlName="lastName" type="text" required>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('lastName').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="20%">Birthday</h2>
-          <input type="date" required>
-          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+          <input formControlName="birthday" type="date" required>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('birthday').dirty">EDIT</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Mobile</h2>
+          <input formControlName="mobile" type="tel" required>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('mobile').dirty">EDIT</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="20%">Facebook profile</h2>
+          <input formControlName="facebookUrl" type="url" required>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('facebookUrl').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="20%">Favourite sport</h2>
-          <input type="text" required>
-          <button class="edit-button" mat-raised-button color="primary">EDIT</button>
+          <input formControlName="favoriteSport" type="text" required>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('favoriteSport').dirty">EDIT</button>
         </div>
       </form>
       <hr>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div *ngIf="this.isDeactivated" fxLayout="row" fxLayoutAlign="space-between center">
+        <h2 fxFlex="30%">Activate your account </h2>
+        <h4>You can deactivate it anytime</h4>
+        <button mat-button color="primary">Activate</button>
+      </div>
+      <div *ngIf="!this.isDeactivated" fxLayout="row" fxLayoutAlign="space-between center">
         <h2 fxFlex="30%">Deactivate your account </h2>
         <h4>You can activate it anytime</h4>
         <button mat-button color="accent">Deactivate</button>
