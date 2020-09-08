@@ -38,11 +38,11 @@
             <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
           </button>
           <mat-menu #settings>
-            <button mat-menu-item [routerLink]="['/settings', userId]">
+            <button mat-menu-item class="menu-button" [routerLink]="['/settings', userId]">
               <fa-icon class="fa-lg" [icon]="faCog"></fa-icon>
               Settings
             </button>
-            <button mat-menu-item (click)="logout()">
+            <button mat-menu-item class="menu-button" (click)="logout()">
               <fa-icon class="fa-lg" [icon]="faSignOutAlt"></fa-icon>
               Logout
             </button>
