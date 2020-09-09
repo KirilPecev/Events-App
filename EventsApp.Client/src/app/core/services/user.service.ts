@@ -82,7 +82,7 @@ export class UserService {
     return this.http.put(this.path + "/accept", data);
   }
 
-  addFriend(friendId: string){
+  addFriend(friendId: string) {
     let data = {
       friendId: friendId,
     };
@@ -101,5 +101,13 @@ export class UserService {
 
   getAllUsers(): Observable<Array<User>> {
     return this.http.get<Array<User>>(this.path + "/users");
+  }
+
+  deactivateAccount() {
+    return this.http.put(this.path + "/deactivate", {});
+  }
+
+  deleteAccount() {
+    return this.http.delete(this.path);
   }
 }

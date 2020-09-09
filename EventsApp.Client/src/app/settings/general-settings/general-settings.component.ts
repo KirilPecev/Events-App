@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { User } from "src/app/core/models/user-model";
 import { UserService } from "src/app/core/services/user.service";
-import { ActivatedRoute } from "@angular/router";
-import { User as UserVC } from 'src/app/core/validation-constants';
-import { formatDate } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
-import { Profile } from 'src/app/core/message-constants';
+import { ActivatedRoute, Router } from "@angular/router";
+import { User as UserVC } from "src/app/core/validation-constants";
+import { formatDate } from "@angular/common";
+import { ToastrService } from "ngx-toastr";
+import { Profile } from "src/app/core/message-constants";
 
 @Component({
   selector: "app-general-settings",
@@ -23,12 +23,33 @@ export class GeneralSettingsComponent implements OnInit {
     fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     private toastrService: ToastrService
   ) {
     this.editForm = fb.group({
-      firstName: ["",[Validators.required, Validators.minLength(UserVC.FIRST_NAME_MIN_LENGTH), Validators.maxLength(UserVC.FIRST_NAME_MAX_LENGTH)]],
-      lastName: ["", [Validators.required, Validators.minLength(UserVC.LAST_NAME_MIN_LENGTH), Validators.maxLength(UserVC.LAST_NAME_MAX_LENGTH)]],
-      mobile: ["", [Validators.minLength(UserVC.MOBILE_MIN_LENGTH), Validators.maxLength(UserVC.MOBILE_MAX_LENGTH)]],
+      firstName: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(UserVC.FIRST_NAME_MIN_LENGTH),
+          Validators.maxLength(UserVC.FIRST_NAME_MAX_LENGTH),
+        ],
+      ],
+      lastName: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(UserVC.LAST_NAME_MIN_LENGTH),
+          Validators.maxLength(UserVC.LAST_NAME_MAX_LENGTH),
+        ],
+      ],
+      mobile: [
+        "",
+        [
+          Validators.minLength(UserVC.MOBILE_MIN_LENGTH),
+          Validators.maxLength(UserVC.MOBILE_MAX_LENGTH),
+        ],
+      ],
       facebookUrl: ["", [Validators.minLength(UserVC.FACEBOOK_URL_MIN_LENGTH)]],
       birthday: [""],
       favoriteSport: [""],
@@ -63,11 +84,18 @@ export class GeneralSettingsComponent implements OnInit {
     });
   }
 
-  deactivateAcc(){
-
+  deactivateAcc() {
+    this.userService.deactivateAccount().subscribe((data) => {
+      this.toastrService.success(Profile.SUCCESSFULL_DEACTIVATE);
+      this.getInformation();
+    });
   }
 
-  deleteAcc(){
-
+  deleteAcc() {
+    this.userService.deleteAccount().subscribe((data) => {
+      this.toastrService.success(Profile.SUCCESSFULL_DELETE);
+      this.userService.logout();
+      this.router.navigate([""]);
+    });
   }
 }
