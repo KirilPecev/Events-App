@@ -6,6 +6,8 @@ import { UserService } from "src/app/core/services/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { User as UserVC } from 'src/app/core/validation-constants';
 import { formatDate } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { Profile } from 'src/app/core/message-constants';
 
 @Component({
   selector: "app-general-settings",
@@ -20,7 +22,8 @@ export class GeneralSettingsComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastrService: ToastrService;
   ) {
     this.editForm = fb.group({
       firstName: ["",[Validators.required, Validators.minLength(UserVC.FIRST_NAME_MIN_LENGTH), Validators.maxLength(UserVC.FIRST_NAME_MAX_LENGTH)]],
@@ -55,7 +58,9 @@ export class GeneralSettingsComponent implements OnInit {
       sport: this.editForm.value["favoriteSport"],
     };
 
-    this.userService.update(data).subscribe((data) => {});
+    this.userService.update(data).subscribe((data) => {
+      this.toastrService.success(Profile.SUCCESSFULL_UPDATE);
+    });
   }
 
   deactivateAcc(){

@@ -21,6 +21,7 @@ export class Event{
 //Profile Messages
 export class Profile{
   static SUCCESSFULL_UPLOAD = "Successfully uploaded!";
+  static SUCCESSFULL_UPDATE = "Successfully updated!";
   static ERROR_400 = "Something went wrong! Please try again!";
 }
 
