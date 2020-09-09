@@ -184,7 +184,7 @@
             return true;
         }
 
-        public async Task<bool> UpdateUserInformation(string mobile, string facebookUrl, string favoriteSport, string userId)
+        public async Task<bool> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId)
         {
             User user = await this.userManager
                 .Users
@@ -195,6 +195,9 @@
                 return false;
             }
 
+            user.FirstName = firstName ?? user.FirstName;
+            user.LastName = lastName ?? user.LastName;
+            user.Birthday = birthday != null ? DateTime.Parse(birthday) : user.Birthday;
             user.PhoneNumber = mobile ?? user.PhoneNumber;
             user.FacebookUrl = facebookUrl ?? user.FacebookUrl;
             user.FavoriteSport = favoriteSport ?? user.FavoriteSport;

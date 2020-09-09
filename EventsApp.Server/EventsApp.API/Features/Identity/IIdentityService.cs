@@ -13,7 +13,7 @@
         Task<IEnumerable<UserListingServiceModel>> AcceptedFriends(string userId);
 
         Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId);
-        
+
         Task<bool> AddFriend(string userId, string friendId);
 
         Task<bool> RemoveFriend(string userId, string friendId);
@@ -22,7 +22,7 @@
 
         Task<bool> AcceptFriendship(string userId, string friendId);
 
-        Task<bool> UpdateUserInformation(string mobile, string facebookUrl, string favoriteSport, string userId);
+        Task<bool> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId);
 
         Task<bool> UpdateProfilePicture(string pictureUrl, string userId);
 

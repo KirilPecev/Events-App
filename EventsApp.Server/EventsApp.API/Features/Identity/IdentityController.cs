@@ -31,7 +31,7 @@
         public async Task<ActionResult> Register(RegisterRequestModel model)
         {
             Enum.TryParse(model.Gender, true, out Gender gender);
-            
+
             User user = new User()
             {
                 Email = model.Email,
@@ -172,7 +172,7 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.identityService.UpdateUserInformation(model.Mobile, model.FacebookUrl, model.FavoriteSport, userId);
+            bool updated = await this.identityService.UpdateUserInformation(model.FirstName, model.LastName, model.Birthday, model.Mobile, model.FacebookUrl, model.FavoriteSport, userId);
 
             if (!updated)
             {
