@@ -24,6 +24,8 @@
 
         public string FavoriteSport { get; set; }
 
+        public bool IsDeactivated { get; set; }
+
         public bool IsMyFriend { get; set; }
 
         public bool IsSentFriendRequest { get; set; }

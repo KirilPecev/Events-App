@@ -198,5 +198,38 @@
 
             return Ok();
         }
+
+        [Authorize]
+        [HttpPut]
+        [Route("Deactivate")]
+        public async Task<ActionResult> Deactivate()
+        {
+            string userId = this.User.GetId();
+
+            bool deactivated = await this.identityService.DeactivateAccount(userId);
+
+            if (!deactivated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpDelete]
+        public async Task<ActionResult> Delete()
+        {
+            string userId = this.User.GetId();
+
+            bool deleted = await this.identityService.DeleteAccount(userId);
+
+            if (!deleted)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -17,9 +17,6 @@
 
             builder
                 .HasQueryFilter(p => !p.IsDeleted);
-
-            builder
-                .HasQueryFilter(p => !p.IsDeactivated);
         }
     }
 }

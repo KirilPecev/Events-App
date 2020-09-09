@@ -27,5 +27,9 @@
         Task<bool> UpdateProfilePicture(string pictureUrl, string userId);
 
         Task<int> GetCreatedEventsAmountByUser(string userId);
+
+        Task<bool> DeactivateAccount(string userId);
+
+        Task<bool> DeleteAccount(string userId);
     }
 }

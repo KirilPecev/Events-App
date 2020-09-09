@@ -66,6 +66,7 @@
                     Gender = u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport,
+                    IsDeactivated = u.IsDeactivated,
                     IsMyFriend = this.data.Friends.Any(f => (f.UserId == userId && f.FriendId == friendId || f.UserId == friendId && f.FriendId == userId) && f.Status == FriendStatus.Accepted),
                     IsSentFriendRequest = this.data.Friends.Any(f => (f.UserId == friendId || f.FriendId == friendId) && f.Status == FriendStatus.Pending),
                     ProfilePictureUrl = u.ProfilePictureUrl
@@ -76,6 +77,7 @@
         public async Task<IEnumerable<UserListingServiceModel>> GetAllUsers()
             => await this.userManager
                 .Users
+                .Where(u => !u.IsDeactivated)
                 .Select(u => new UserListingServiceModel()
                 {
                     Id = u.Id,
@@ -186,9 +188,7 @@
 
         public async Task<bool> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId)
         {
-            User user = await this.userManager
-                .Users
-                .FirstOrDefaultAsync(u => u.Id == userId);
+            User user = await this.GetUser(userId);
 
             if (user == null)
             {
@@ -209,9 +209,7 @@
 
         public async Task<bool> UpdateProfilePicture(string pictureUrl, string userId)
         {
-            User user = await this.userManager
-                .Users
-                .FirstOrDefaultAsync(u => u.Id == userId);
+            User user = await this.GetUser(userId);
 
             if (user == null && !string.IsNullOrEmpty(pictureUrl))
             {
@@ -227,6 +225,43 @@
 
         public async Task<int> GetCreatedEventsAmountByUser(string userId)
             => await this.data.Events.CountAsync(e => e.CreatorId == userId);
+
+        public async Task<bool> DeactivateAccount(string userId)
+        {
+            User user = await this.GetUser(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.IsDeactivated = true;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteAccount(string userId)
+        {
+            User user = await this.GetUser(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.IsDeleted = true;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<User> GetUser(string userId)
+            => await this.userManager
+                .Users
+                .FirstOrDefaultAsync(u => u.Id == userId);
 
         private async Task<Friend> GetFriendship(string userId, string friendId)
             => await this.data
