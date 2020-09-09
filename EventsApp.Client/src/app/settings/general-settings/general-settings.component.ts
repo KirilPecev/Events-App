@@ -23,7 +23,7 @@ export class GeneralSettingsComponent implements OnInit {
     fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
-    private toastrService: ToastrService;
+    private toastrService: ToastrService
   ) {
     this.editForm = fb.group({
       firstName: ["",[Validators.required, Validators.minLength(UserVC.FIRST_NAME_MIN_LENGTH), Validators.maxLength(UserVC.FIRST_NAME_MAX_LENGTH)]],
