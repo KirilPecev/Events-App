@@ -51,7 +51,7 @@ export class GeneralSettingsComponent implements OnInit {
         ],
       ],
       facebookUrl: ["", [Validators.minLength(UserVC.FACEBOOK_URL_MIN_LENGTH)]],
-      birthday: [""],
+      birthday: ["", [Validators.required]],
       favoriteSport: [""],
     });
   }

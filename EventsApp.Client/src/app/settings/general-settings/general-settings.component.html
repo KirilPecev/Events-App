@@ -11,26 +11,51 @@
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="45%">First name</h2>
           <input matInput formControlName="firstName" type="text" required>
+          <mat-error *ngIf="editForm.get('firstName').errors?.required && editForm.get('firstName').touched">
+            First name is <strong>required</strong>!
+          </mat-error>
+          <mat-error
+            *ngIf="editForm.get('firstName').errors?.minlength || editForm.get('firstName').errors?.maxlength && editForm.get('firstName').touched">
+            First name must be between <strong>2</strong> and <strong>50</strong> symbols!
+          </mat-error>
           <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('firstName').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="45%">Last name</h2>
           <input matInput formControlName="lastName" type="text" required>
+          <mat-error *ngIf="editForm.get('lastName').errors?.required && editForm.get('lastName').touched">
+            Last name is <strong>required</strong>!
+          </mat-error>
+          <mat-error
+            *ngIf="editForm.get('lastName').errors?.minlength || editForm.get('lastName').errors?.maxlength && editForm.get('lastName').touched">
+            Last name must be between <strong>2</strong> and <strong>50</strong> symbols!
+          </mat-error>
           <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('lastName').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="45%">Birthday</h2>
           <input matInput fxflex="50%" matInput formControlName="birthday" type="date">
+          <mat-error *ngIf="editForm.get('birthday').errors?.required && editForm.get('birthday').touched">
+            Birthday is <strong>required</strong>!
+          </mat-error>
           <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('birthday').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="45%">Mobile</h2>
           <input matInput formControlName="mobile" type="tel">
+          <mat-error
+            *ngIf="editForm.get('mobile').errors?.minlength || editForm.get('mobile').errors?.maxlength && editForm.get('mobile').touched">
+            Phone number must be between <strong>10</strong> and <strong>15</strong> symbols!
+          </mat-error>
           <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('mobile').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="36%">Facebook profile</h2>
           <input matInput formControlName="facebookUrl" type="url">
+          <mat-error
+            *ngIf="editForm.get('facebookUrl').errors?.minlength || editForm.get('facebookUrl').errors?.maxlength && editForm.get('facebookUrl').touched">
+            Facebook link must be more than <strong>25</strong> symbols!
+          </mat-error>
           <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('facebookUrl').dirty">EDIT</button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -52,7 +77,7 @@
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <h2 fxFlex="30%">Delete your account </h2>
-        <h4>You can't restore it after deletion</h4>
+        <h4>You can't restore it after deletion!</h4>
         <button mat-button color="warn" (click)="deleteAcc()">Delete</button>
       </div>
     </mat-card-content>
