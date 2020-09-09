@@ -57,15 +57,17 @@
                 .Select(u => new UserDetailsServiceModel()
                 {
                     Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
                     FullName = $"{u.FirstName} {u.LastName}",
                     Email = u.Email,
                     Mobile = u.PhoneNumber,
-                    Birthday = u.Birthday.CompareTo(new DateTime()) == 0 ? null : u.Birthday.ToString("dd/MM/yyyy"),
+                    Birthday = u.Birthday,
                     Gender = u.Gender.ToString(),
                     FacebookUrl = u.FacebookUrl,
                     FavoriteSport = u.FavoriteSport,
-                    IsMyFriend = this.data.Friends.Any(f => (f.UserId == userId && f.FriendId == friendId || f.UserId==friendId && f.FriendId == userId) && f.Status == FriendStatus.Accepted),
-                    IsSentFriendRequest = this.data.Friends.Any(f => (f.UserId == friendId || f.FriendId == friendId ) && f.Status == FriendStatus.Pending),
+                    IsMyFriend = this.data.Friends.Any(f => (f.UserId == userId && f.FriendId == friendId || f.UserId == friendId && f.FriendId == userId) && f.Status == FriendStatus.Accepted),
+                    IsSentFriendRequest = this.data.Friends.Any(f => (f.UserId == friendId || f.FriendId == friendId) && f.Status == FriendStatus.Pending),
                     ProfilePictureUrl = u.ProfilePictureUrl
                 })
                 .FirstOrDefaultAsync();
