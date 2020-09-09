@@ -4,7 +4,8 @@ import { Observable } from "rxjs";
 import { User } from "src/app/core/models/user-model";
 import { UserService } from "src/app/core/services/user.service";
 import { ActivatedRoute } from "@angular/router";
-import { tap } from "rxjs/operators";
+import { User as UserVC } from 'src/app/core/validation-constants';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: "app-general-settings",
@@ -22,10 +23,10 @@ export class GeneralSettingsComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.editForm = fb.group({
-      firstName: [""],
-      lastName: [""],
-      mobile: ["", [Validators.minLength(2)]],
-      facebookUrl: ["", [Validators.minLength(2)]],
+      firstName: ["",[Validators.required, Validators.minLength(UserVC.FIRST_NAME_MIN_LENGTH), Validators.maxLength(UserVC.FIRST_NAME_MAX_LENGTH)]],
+      lastName: ["", [Validators.required, Validators.minLength(UserVC.LAST_NAME_MIN_LENGTH), Validators.maxLength(UserVC.LAST_NAME_MAX_LENGTH)]],
+      mobile: ["", [Validators.minLength(UserVC.MOBILE_MIN_LENGTH), Validators.maxLength(UserVC.MOBILE_MAX_LENGTH)]],
+      facebookUrl: ["", [Validators.minLength(UserVC.FACEBOOK_URL_MIN_LENGTH)]],
       birthday: [""],
       favoriteSport: [""],
     });
@@ -39,6 +40,7 @@ export class GeneralSettingsComponent implements OnInit {
     let userId = this.route.snapshot.pathFromRoot[2].params["userId"];
     this.userService.getUserInformation(userId).subscribe((data) => {
       this.isDeactivated = data.isDeactivated;
+      data.birthday = formatDate(data.birthday, "yyyy-MM-dd", "en_US");
       this.editForm.patchValue(data);
     });
   }
@@ -54,5 +56,13 @@ export class GeneralSettingsComponent implements OnInit {
     };
 
     this.userService.update(data).subscribe((data) => {});
+  }
+
+  deactivateAcc(){
+
+  }
+
+  deleteAcc(){
+
   }
 }

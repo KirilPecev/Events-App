@@ -4,6 +4,9 @@ export class User {
   static LAST_NAME_MAX_LENGTH = 50;
   static LAST_NAME_MIN_LENGTH = 2;
   static PASSWORD_MIN_LENGTH = 6;
+  static MOBILE_MIN_LENGTH = 10;
+  static MOBILE_MAX_LENGTH = 15;
+  static FACEBOOK_URL_MIN_LENGTH = 25;
 }
 
 export class Event {
