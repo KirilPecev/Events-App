@@ -40,6 +40,10 @@
 
         public string ProfilePictureUrl { get; set; }
 
+        public bool IsDeactivated { get; set; }
+
+        public bool IsDeleted { get; set; }
+
         public ICollection<Friend> Friends { get; set; }
 
         public ICollection<Friend> MainUserFriends { get; set; }
