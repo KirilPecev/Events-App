@@ -1,36 +1,20 @@
 <div fxLayout="column" *ngIf="(this.contacts$ | async) as user">
-    <h1 class="title">Contacts</h1>
-    <hr>
-    <div fxLayout="column">
-        <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-            <h2 fxFlex="40%">Email</h2>
-            <span>{{user.email}}</span>
-        </div>
-        <hr>
-        <form [formGroup]="editForm" (ngSubmit)="edit()">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-                <h2 fxFlex="40%" class="mat-small">Mobile</h2>
-                <span *ngIf="!isMyProfile">{{user.mobile}}</span>
-                <div *ngIf="isMyProfile">
-                    <mat-form-field>
-                        <input formControlName="mobile" matInput type="tel">
-                    </mat-form-field>
-                    <button class="edit-button" mat-raised-button color="primary"
-                        [disabled]="!editForm.get('mobile').dirty">EDIT</button>
-                </div>
-            </div>
-            <hr>
-            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-                <h2 fxFlex="40%">Facebook</h2>
-                <a [href]="user.facebookUrl" *ngIf="!isMyProfile && user.facebookUrl" target="_blank">{{user.fullName}}</a>
-                <div *ngIf="isMyProfile">
-                    <mat-form-field>
-                        <input formControlName="facebookUrl" matInput type="url">
-                    </mat-form-field>
-                    <button class="edit-button" mat-raised-button color="primary"
-                        [disabled]="!editForm.get('facebookUrl').dirty">EDIT</button>
-                </div>
-            </div>
-        </form>
+  <h1 class="title">Contacts</h1>
+  <hr>
+  <div fxLayout="column">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+      <h2 fxFlex="40%">Email</h2>
+      <span>{{user.email}}</span>
     </div>
+    <hr>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+      <h2 fxFlex="40%" class="mat-small">Mobile</h2>
+      <span>{{user.mobile}}</span>
+    </div>
+    <hr>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+      <h2 fxFlex="40%">Facebook</h2>
+      <a [href]="user.facebookUrl" *ngIf="user.facebookUrl" target="_blank">{{user.fullName}}</a>
+    </div>
+  </div>
 </div>

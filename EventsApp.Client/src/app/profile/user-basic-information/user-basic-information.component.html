@@ -1,29 +1,20 @@
 <div fxLayout="column" *ngIf="(this.information$ | async) as user">
-    <h1 class="title">Basic information</h1>
-    <hr>
-    <div fxLayout="column">
-
-            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-                <h2 fxFlex="40%">Birthday</h2>
-                <span *ngIf="user.birthday">{{user.birthday}}</span>
-            </div>
-            <hr>
-            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-                <h2 fxFlex="40%">Gender</h2>
-                <span *ngIf="user.gender">{{user.gender}}</span>
-            </div>
-            <hr>
-            <form [formGroup]="editForm" (ngSubmit)="edit()">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-                <h2 fxFlex="40%">Favourite sport</h2>
-                <span *ngIf="!isMyProfile">{{user.favoriteSport}}</span>
-                <div *ngIf="isMyProfile">
-                    <mat-form-field>
-                        <input formControlName="favoriteSport" matInput type="text" required>
-                    </mat-form-field>
-                    <button class="edit-button" mat-raised-button color="primary" [disabled]="!editForm.get('favoriteSport').dirty">EDIT</button>
-                </div>
-            </div>
-        </form>
+  <h1 class="title">Basic information</h1>
+  <hr>
+  <div fxLayout="column">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+      <h2 fxFlex="40%">Birthday</h2>
+      <span *ngIf="user.birthday">{{user.birthday}}</span>
     </div>
+    <hr>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+      <h2 fxFlex="40%">Gender</h2>
+      <span *ngIf="user.gender">{{user.gender}}</span>
+    </div>
+    <hr>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
+      <h2 fxFlex="40%">Favourite sport</h2>
+      <span>{{user.favoriteSport}}</span>
+    </div>
+  </div>
 </div>
