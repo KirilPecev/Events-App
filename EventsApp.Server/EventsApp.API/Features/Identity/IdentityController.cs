@@ -217,6 +217,23 @@
         }
 
         [Authorize]
+        [HttpPut]
+        [Route("Activate")]
+        public async Task<ActionResult> Activate()
+        {
+            string userId = this.User.GetId();
+
+            bool deactivated = await this.identityService.ActivateAccount(userId);
+
+            if (!deactivated)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
         [HttpDelete]
         public async Task<ActionResult> Delete()
         {

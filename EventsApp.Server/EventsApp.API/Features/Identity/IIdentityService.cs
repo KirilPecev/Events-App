@@ -31,5 +31,7 @@
         Task<bool> DeactivateAccount(string userId);
 
         Task<bool> DeleteAccount(string userId);
+
+        Task<bool> ActivateAccount(string userId);
     }
 }

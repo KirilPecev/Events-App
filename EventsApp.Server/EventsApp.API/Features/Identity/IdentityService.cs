@@ -242,6 +242,22 @@
             return true;
         }
 
+        public async Task<bool> ActivateAccount(string userId)
+        {
+            User user = await this.GetUser(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.IsDeactivated = false;
+
+            await this.data.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<bool> DeleteAccount(string userId)
         {
             User user = await this.GetUser(userId);
