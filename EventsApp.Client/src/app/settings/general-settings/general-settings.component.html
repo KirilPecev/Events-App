@@ -68,7 +68,7 @@
       <div *ngIf="this.isDeactivated" fxLayout="row" fxLayoutAlign="space-between center">
         <h2 fxFlex="30%">Activate your account </h2>
         <h4>You can deactivate it anytime</h4>
-        <button mat-button color="primary">Activate</button>
+        <button mat-button color="primary"(click)="activateAccount()">Activate</button>
       </div>
       <div *ngIf="!this.isDeactivated" fxLayout="row" fxLayoutAlign="space-between center">
         <h2 fxFlex="30%">Deactivate your account </h2>

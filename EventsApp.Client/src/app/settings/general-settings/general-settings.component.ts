@@ -91,6 +91,13 @@ export class GeneralSettingsComponent implements OnInit {
     });
   }
 
+  activateAccount() {
+    this.userService.activateAccount().subscribe((data) => {
+      this.toastrService.success(Profile.SUCCESSFULL_ACTIVATE);
+      this.getInformation();
+    });
+  }
+
   deleteAcc() {
     this.userService.deleteAccount().subscribe((data) => {
       this.toastrService.success(Profile.SUCCESSFULL_DELETE);

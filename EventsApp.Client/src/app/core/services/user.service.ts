@@ -107,6 +107,10 @@ export class UserService {
     return this.http.put(this.path + "/deactivate", {});
   }
 
+  activateAccount(){
+    return this.http.put(this.path + "/activate", {});
+  }
+
   deleteAccount() {
     return this.http.delete(this.path);
   }
