@@ -1,1 +1,36 @@
-<p>security-settings works!</p>
+<div fxLayout="column" class="container">
+  <mat-card>
+    <mat-card-title-group>
+      <mat-card-title>
+        Security account settings
+      </mat-card-title>
+      <mat-card-subtitle>Change your account security information</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content fxLayout="column" fxLayoutGap="1em">
+      <form [formGroup]="editForm" (ngSubmit)="edit()">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <h2 fxFlex="45%">Change your email</h2>
+          <input matInput formControlName="email" type="email" required>
+          <button class="edit-button" mat-raised-button color="primary"
+            [disabled]="!editForm.get('email').dirty">EDIT</button>
+        </div>
+        <div class="passwords">
+          <h1>Change your account password</h1>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h2>Current password</h2>
+            <input type="text">
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h2>New password</h2>
+            <input type="text">
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h2>Repeat new password</h2>
+            <input type="text">
+          </div>
+          <button mat-flat-button color="primary">Change</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
