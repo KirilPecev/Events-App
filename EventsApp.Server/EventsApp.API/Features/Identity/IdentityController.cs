@@ -9,6 +9,7 @@
     using Microsoft.Extensions.Options;
     using Models;
     using System.Collections.Generic;
+    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using static Infrastructure.WebConstants;
@@ -242,6 +243,40 @@
             bool deleted = await this.identityService.DeleteAccount(userId);
 
             if (!deleted)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("Email")]
+        public async Task<ActionResult> ChangeEmail(ChangeEmailRequestModel model)
+        {
+            User user = await this.userManager.GetUserAsync(ClaimsPrincipal.Current);
+
+            IdentityResult result = await this.userManager.ChangeEmailAsync(user, model.Email, model.Token);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("Password")]
+        public async Task<ActionResult> ChangePassword(ChangePasswordRequestModel model)
+        {
+            User user = await this.userManager.GetUserAsync(ClaimsPrincipal.Current);
+
+            IdentityResult result = await this.userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+
+            if (!result.Succeeded)
             {
                 return BadRequest();
             }
