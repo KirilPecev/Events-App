@@ -103,11 +103,21 @@ export class UserService {
     return this.http.get<Array<User>>(this.path + "/users");
   }
 
+  changeEmail(email: string) {
+    const token = this.getToken();
+    return this.http.post(this.path + "/email", {email, token});
+  }
+
+  changePassword(currentPassword: string, newPassword: string) {
+    const token = this.getToken();
+    return this.http.post(this.path + "/password", {currentPassword, newPassword});
+  }
+
   deactivateAccount() {
     return this.http.put(this.path + "/deactivate", {});
   }
 
-  activateAccount(){
+  activateAccount() {
     return this.http.put(this.path + "/activate", {});
   }
 

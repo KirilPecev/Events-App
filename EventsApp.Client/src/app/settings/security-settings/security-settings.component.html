@@ -7,30 +7,53 @@
       <mat-card-subtitle>Change your account security information</mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content fxLayout="column" fxLayoutGap="1em">
-      <form [formGroup]="editForm" (ngSubmit)="edit()">
+      <form [formGroup]="emailForm" (ngSubmit)="changeEmail()" action="POST">
         <div fxLayout="row" fxLayoutAlign="space-between center">
           <h2 fxFlex="45%">Change your email</h2>
           <input matInput formControlName="email" type="email" required>
-          <button class="edit-button" mat-raised-button color="primary"
-            [disabled]="!editForm.get('email').dirty">EDIT</button>
-        </div>
-        <div class="passwords">
-          <h1>Change your account password</h1>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <h2>Current password</h2>
-            <input type="text">
-          </div>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <h2>New password</h2>
-            <input type="text">
-          </div>
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <h2>Repeat new password</h2>
-            <input type="text">
-          </div>
-          <button mat-flat-button color="primary">Change</button>
+          <mat-error *ngIf="emailForm.get('email').errors?.required && emailForm.get('email').touched">
+            Email is <strong>required</strong>!
+          </mat-error>
+          <mat-error *ngIf="emailForm.get('email').errors?.email && emailForm.get('email').touched">
+            Please check your <strong>email</strong>!
+          </mat-error>
+          <button class="edit-button" mat-raised-button color="primary" [disabled]="!emailForm.get('email').dirty"
+            (click)="changeEmail()">EDIT</button>
         </div>
       </form>
+      <div class="passwords">
+        <h1>Change your account password</h1>
+        <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+          <div formGroupName="passwords">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <h2>Current password</h2>
+              <input formControlName="currentPassword" type="password" required>
+              <mat-error *ngIf="passwordForm.get('passwords').get('currentPassword').errors?.required && passwordForm.get('passwords').get('currentPassword').dirty">
+                Password is <strong>required</strong>!
+              </mat-error>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <h2>New password</h2>
+              <input formControlName="password" type="password" required>
+              <mat-error *ngIf="passwordForm.get('passwords').get('password').errors?.required && passwordForm.get('passwords').get('password').dirty">
+                Password is <strong>required</strong>!
+              </mat-error>
+              <mat-error *ngIf="passwordForm.get('passwords').get('password').errors?.minlength">
+                Password must be at least <strong>6</strong> symbols!
+              </mat-error>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <h2>Repeat new password</h2>
+              <input formControlName="confirmPassword" type="password" required>
+              <mat-error
+                *ngIf="passwordForm.get('passwords').errors?.passwordMatch && passwordForm.get('passwords').get('confirmPassword').dirty">
+                Passwords do not match!
+              </mat-error>
+            </div>
+          </div>
+        </form>
+        <button mat-flat-button color="primary" (click)="changePassword()">CHANGE</button>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
