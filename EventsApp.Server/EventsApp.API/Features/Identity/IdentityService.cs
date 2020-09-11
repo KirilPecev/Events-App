@@ -258,6 +258,53 @@
             return true;
         }
 
+        public async Task<bool> ChangeEmail(string userId, string newEmail, string token)
+        {
+            User user = await this.GetUser(userId);
+
+            if (!string.IsNullOrWhiteSpace(newEmail) && user.Email != newEmail)
+            {
+                var emailExists = await this.data
+                    .Users
+                    .AnyAsync(u => u.Id != userId && u.Email == newEmail);
+
+                if (emailExists)
+                {
+                    return false;
+                }
+
+                user.Email = newEmail;
+                user.NormalizedEmail = newEmail.ToUpper();
+                user.UserName = newEmail;
+                user.NormalizedUserName = newEmail.ToUpper();
+
+                await this.data.SaveChangesAsync();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> ChangePassword(string userId, string currentPassword, string newPassword)
+        {
+            User user = await this.GetUser(userId);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            IdentityResult result = await this.userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+
+            if (!result.Succeeded)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public async Task<bool> DeleteAccount(string userId)
         {
             User user = await this.GetUser(userId);

@@ -33,5 +33,9 @@
         Task<bool> DeleteAccount(string userId);
 
         Task<bool> ActivateAccount(string userId);
+
+        Task<bool> ChangeEmail(string userId, string newEmail, string token);
+
+        Task<bool> ChangePassword(string userId, string currentPassword, string newPassword);
     }
 }

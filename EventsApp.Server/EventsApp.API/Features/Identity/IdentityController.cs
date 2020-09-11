@@ -255,11 +255,11 @@
         [Route("Email")]
         public async Task<ActionResult> ChangeEmail(ChangeEmailRequestModel model)
         {
-            User user = await this.userManager.GetUserAsync(ClaimsPrincipal.Current);
+            string userId = this.User.GetId();
 
-            IdentityResult result = await this.userManager.ChangeEmailAsync(user, model.Email, model.Token);
+            bool result = await this.identityService.ChangeEmail(userId, model.Email, model.Token);
 
-            if (!result.Succeeded)
+            if (!result)
             {
                 return BadRequest();
             }
@@ -272,11 +272,11 @@
         [Route("Password")]
         public async Task<ActionResult> ChangePassword(ChangePasswordRequestModel model)
         {
-            User user = await this.userManager.GetUserAsync(ClaimsPrincipal.Current);
+            string userId = this.User.GetId();
 
-            IdentityResult result = await this.userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            bool result = await this.identityService.ChangePassword(userId, model.CurrentPassword, model.NewPassword);
 
-            if (!result.Succeeded)
+            if (!result)
             {
                 return BadRequest();
             }
