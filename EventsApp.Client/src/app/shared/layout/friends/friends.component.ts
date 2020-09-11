@@ -1,8 +1,7 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { UserService } from "../../../core/services/user.service";
 import { Observable } from "rxjs";
 import { Friend } from "src/app/core/models/friend-model";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { NotificationService } from "src/app/core/services/notification.service";
 
 @Component({
@@ -15,7 +14,6 @@ export class FriendsComponent implements OnInit {
   constructor(
     private userService: UserService,
     private notificationService: NotificationService,
-    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
@@ -23,9 +21,8 @@ export class FriendsComponent implements OnInit {
   }
 
   private fetch() {
-    this.userService
-      .getPendingFriends()
-      .subscribe((data) => (this.data.friends = data));
+    this.friends$ = this.userService
+      .getPendingFriends();
   }
 
   accept(friendId: string) {

@@ -9,11 +9,9 @@ import {
   faUsersCog,
   faSignOutAlt,
   faCog,
-  faBars
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
-import { NotificationsComponent } from "../notifications/notifications.component";
-import { FriendsComponent } from "../friends/friends.component";
+import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "../../../core/services/user.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../../core/services/notification.service";
@@ -93,43 +91,9 @@ export class HeaderComponent implements OnInit, DoCheck {
     });
   }
 
-  openNotificationsDialog() {
-    const dialogConfig = this.getDialogConfig();
-    this.dialog
-      .open(NotificationsComponent, dialogConfig)
-      .afterClosed()
-      .subscribe((x) => {
-        this.fetch();
-      });
-  }
-
-  openFriendsDialog() {
-    const dialogConfig = this.getDialogConfig();
-    this.dialog
-      .open(FriendsComponent, dialogConfig)
-      .afterClosed()
-      .subscribe((x) => {
-        this.fetch();
-      });
-  }
-
   logout() {
     this.checked = false;
     this.userService.logout();
     this.router.navigate([""]);
-  }
-
-  private getDialogConfig() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.hasBackdrop = true;
-    dialogConfig.closeOnNavigation = true;
-    dialogConfig.disableClose = false;
-    dialogConfig.data = {
-      notifications: this.notifications,
-      friends: this.friends,
-    };
-
-    return dialogConfig;
   }
 }

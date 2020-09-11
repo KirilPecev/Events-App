@@ -1,9 +1,9 @@
-<mat-dialog-content fxFlex fxFlexFill>
-  <div *ngIf="data.notifications.length === 0">
+<div fxFlex fxFlexFill class="container" (click)="$event.stopPropagation()">
+  <div *ngIf="!this.notificatios$">
     No new notifications!
   </div>
-  <ul>
-    <li *ngFor="let notification of data.notifications" (click)="deleteNotification(notification.id)">
+  <ul fxFlex fxLayout="column" fxLayoutGap="0.5em">
+    <li *ngFor="let notification of this.notificatios$|async" (click)="deleteNotification(notification.id)">
       <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
         <div>
           <img class="profile-picture" [src]="notification.userPic" alt="">
@@ -17,4 +17,4 @@
       </div>
     </li>
   </ul>
-</mat-dialog-content>
+</div>

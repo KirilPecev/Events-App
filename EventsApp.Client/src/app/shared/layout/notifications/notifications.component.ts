@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NotificationService } from "../../../core/services/notification.service";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Notification } from "../../../core/models/notification-model";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-notifications",
@@ -8,17 +9,16 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
   styleUrls: ["./notifications.component.css"],
 })
 export class NotificationsComponent implements OnInit {
-  constructor(
-    private notificationService: NotificationService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  constructor(private notificationService: NotificationService) {
+    this.fetch();
+  }
+
+  notificatios$: Observable<Array<Notification>>;
 
   ngOnInit(): void {}
 
   private fetch() {
-    this.notificationService.getNotifications().subscribe((data) => {
-      this.data.notifications = data;
-    });
+    this.notificatios$ = this.notificationService.getNotifications();
   }
 
   deleteNotification(id: number) {

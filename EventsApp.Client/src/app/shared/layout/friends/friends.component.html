@@ -1,19 +1,17 @@
-<mat-dialog-content fxFlex fxFlexFill>
-    <div *ngIf="this.data.friends.length === 0">
-        No new friend requests!
-    </div>
-    <ul fxFlex fxLayout="column">
-        <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of this.data.friends">
-            <a [routerLink]="['/profile/', friend.id]" fxLayoutAlign="space-between center">
-                <img class="profile-picture"
-                    src="{{friend.profilePictureUrl}}"
-                    alt="">
-                <span class="name">{{friend.fullName}}</span>
-            </a>
-            <div fxFlex class="buttons">
-                <button mat-raised-button color="primary" (click)="accept(friend.id)">Accept</button>
-                <button mat-raised-button color="primary" (click)="remove(friend.id)">Delete</button>
-            </div>
-        </li>
-    </ul>
-</mat-dialog-content>
+<div fxFlex fxFlexFill class="container" (click)="$event.stopPropagation()">
+  <div *ngIf="!this.friends$">
+    No new friend requests!
+  </div>
+  <ul fxFlex fxLayout="column" fxLayoutGap="0.5em">
+    <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of this.friends$ | async">
+      <a [routerLink]="['/profile/', friend.id]" fxLayoutAlign="space-between center">
+        <img class="profile-picture" src="{{friend.profilePictureUrl}}" alt="">
+        <span class="name">{{friend.fullName}}</span>
+      </a>
+      <div fxFlex fxLayout="row" class="buttons" fxLayoutGap="0.1em">
+        <button mat-raised-button color="primary" (click)="accept(friend.id)">Accept</button>
+        <button mat-raised-button color="primary" (click)="remove(friend.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+</div>

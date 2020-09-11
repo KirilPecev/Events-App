@@ -1,5 +1,10 @@
-li{
-    padding-bottom: 0.8em;
+.container {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+li {
+  padding-bottom: 0.8em;
 }
 
 .profile-picture {
@@ -7,8 +12,8 @@ li{
   width: 3em;
 }
 
-.name{
-    padding-left: 0.3em;
+.name {
+  padding-left: 0.3em;
 }
 
 .buttons {

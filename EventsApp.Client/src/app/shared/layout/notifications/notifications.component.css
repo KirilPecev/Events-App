@@ -1,4 +1,9 @@
-mat-dialog-content li:hover {
+.container {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+li:hover {
   background-color: aqua;
   cursor: pointer;
 }

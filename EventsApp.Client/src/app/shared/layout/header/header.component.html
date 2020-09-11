@@ -27,13 +27,19 @@
             <fa-icon class="fa-lg" [icon]="faHome"></fa-icon>
           </button>
           <button mat-icon-button title="Friends" [matBadge]="newFriends" matBadgePosition="above after"
-            matBadgeColor="warn" matBadgeSize="small" (click)="openFriendsDialog()">
+            matBadgeColor="warn" matBadgeSize="small" [matMenuTriggerFor]="friendsMenu">
             <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
           </button>
-          <button mat-icon-button title="Notifications" [matBadge]="newNotifications" matBadgePosition="above after"
-            matBadgeColor="warn" matBadgeSize="small" (click)="openNotificationsDialog()">
+          <mat-menu #friendsMenu>
+            <app-friends></app-friends>
+          </mat-menu>
+          <button mat-icon-button title="Notif" [matBadge]="newNotifications" matBadgePosition="above after"
+            matBadgeColor="warn" matBadgeSize="small" [matMenuTriggerFor]="notificationsMenu">
             <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
           </button>
+          <mat-menu #notificationsMenu>
+            <app-notifications></app-notifications>
+          </mat-menu>
           <button mat-icon-button title="Settings" [matMenuTriggerFor]="settings">
             <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
           </button>
