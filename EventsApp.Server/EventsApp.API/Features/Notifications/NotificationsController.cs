@@ -21,7 +21,7 @@
         }
 
         [HttpGet]
-        public async Task<IEnumerable<NotificationListingServiceModel>> ByUser()
+        public async Task<IEnumerable<NotificationListingServiceModel>> GetByUser()
         {
             string userId = this.User.GetId();
 

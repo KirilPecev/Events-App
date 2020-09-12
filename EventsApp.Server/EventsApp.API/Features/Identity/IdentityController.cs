@@ -96,7 +96,7 @@
 
         [Authorize]
         [HttpGet]
-        [Route("PendingFriends")]
+        [Route("Friends/Pending")]
         public async Task<IEnumerable<UserListingServiceModel>> GetPendingFriends()
         {
             string userId = this.User.GetId();
@@ -136,7 +136,7 @@
 
         [Authorize]
         [HttpDelete]
-        [Route(nameof(RemoveFriendship))]
+        [Route("Friend")]
         public async Task<ActionResult> RemoveFriendship(string id)
         {
             string userId = this.User.GetId();

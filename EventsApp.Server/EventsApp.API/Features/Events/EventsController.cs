@@ -25,8 +25,8 @@
             => await this.eventService.GetAll();
 
         [HttpGet]
-        [Route(nameof(Mine))]
-        public async Task<IEnumerable<EventListingServiceModel>> Mine()
+        [Route("My")]
+        public async Task<IEnumerable<EventListingServiceModel>> GetMine()
         {
             string userId = this.User.GetId();
 
@@ -35,7 +35,7 @@
 
         [HttpGet]
         [Route("Joined")]
-        public async Task<IEnumerable<EventListingServiceModel>> EventsImJoined()
+        public async Task<IEnumerable<EventListingServiceModel>> GetEventsImJoined()
         {
             string userId = this.User.GetId();
 
@@ -44,12 +44,9 @@
 
         [HttpGet]
         [Route("Upcoming")]
-        public async Task<IEnumerable<EventListingServiceModel>> UpcomingEvents()
-        {
-            string userId = this.User.GetId();
+        public async Task<IEnumerable<EventListingServiceModel>> GetUpcomingEvents()
+            => await this.eventService.GetUpcomingEvents();
 
-            return await this.eventService.GetUpcomingEvents();
-        }
 
         [HttpGet]
         [Route(Id)]
