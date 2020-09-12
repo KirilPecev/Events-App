@@ -1,15 +1,15 @@
 ﻿namespace EventsApp.API.Features.Identity
 {
-    using System;
     using Data.Models;
+    using Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
     using Models;
+    using System;
     using System.Collections.Generic;
-    using System.Security.Claims;
     using System.Threading.Tasks;
 
     using static Infrastructure.WebConstants;
@@ -46,12 +46,13 @@
 
             IdentityResult result = await this.userManager.CreateAsync(user, model.Password);
 
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return Ok();
+                return BadRequest(result.Errors);
+
             }
 
-            return BadRequest(result.Errors);
+            return Ok();
         }
 
         [HttpPost]
@@ -123,11 +124,11 @@
         {
             string userId = this.User.GetId();
 
-            bool added = await this.identityService.AddFriend(userId, model.FriendId);
+            Result result = await this.identityService.AddFriend(userId, model.FriendId);
 
-            if (!added)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -140,11 +141,11 @@
         {
             string userId = this.User.GetId();
 
-            bool removed = await this.identityService.RemoveFriend(userId, id);
+            Result result = await this.identityService.RemoveFriend(userId, id);
 
-            if (!removed)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -157,11 +158,11 @@
         {
             string userId = this.User.GetId();
 
-            bool accepted = await this.identityService.AcceptFriendship(userId, model.FriendId);
+            Result result = await this.identityService.AcceptFriendship(userId, model.FriendId);
 
-            if (!accepted)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -173,11 +174,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.identityService.UpdateUserInformation(model.FirstName, model.LastName, model.Birthday, model.Mobile, model.FacebookUrl, model.FavoriteSport, userId);
+            Result result = await this.identityService.UpdateUserInformation(model.FirstName, model.LastName, model.Birthday, model.Mobile, model.FacebookUrl, model.FavoriteSport, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -190,11 +191,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.identityService.UpdateProfilePicture(model.PictureUrl, userId);
+            Result result = await this.identityService.UpdateProfilePicture(model.PictureUrl, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -207,11 +208,11 @@
         {
             string userId = this.User.GetId();
 
-            bool deactivated = await this.identityService.DeactivateAccount(userId);
+            Result result = await this.identityService.DeactivateAccount(userId);
 
-            if (!deactivated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -224,11 +225,11 @@
         {
             string userId = this.User.GetId();
 
-            bool deactivated = await this.identityService.ActivateAccount(userId);
+            Result result = await this.identityService.ActivateAccount(userId);
 
-            if (!deactivated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -240,11 +241,11 @@
         {
             string userId = this.User.GetId();
 
-            bool deleted = await this.identityService.DeleteAccount(userId);
+            Result result = await this.identityService.DeleteAccount(userId);
 
-            if (!deleted)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -257,11 +258,11 @@
         {
             string userId = this.User.GetId();
 
-            bool result = await this.identityService.ChangeEmail(userId, model.Email, model.Token);
+            Result result = await this.identityService.ChangeEmail(userId, model.Email, model.Token);
 
-            if (!result)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -274,11 +275,11 @@
         {
             string userId = this.User.GetId();
 
-            bool result = await this.identityService.ChangePassword(userId, model.CurrentPassword, model.NewPassword);
+            Result result = await this.identityService.ChangePassword(userId, model.CurrentPassword, model.NewPassword);
 
-            if (!result)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();

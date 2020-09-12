@@ -3,6 +3,7 @@
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Infrastructure;
 
     public interface IIdentityService
     {
@@ -14,28 +15,28 @@
 
         Task<IEnumerable<UserListingServiceModel>> PendingFriends(string userId);
 
-        Task<bool> AddFriend(string userId, string friendId);
+        Task<Result> AddFriend(string userId, string friendId);
 
-        Task<bool> RemoveFriend(string userId, string friendId);
+        Task<Result> RemoveFriend(string userId, string friendId);
 
         Task<UserDetailsServiceModel> Details(string userId, string friendId);
 
-        Task<bool> AcceptFriendship(string userId, string friendId);
+        Task<Result> AcceptFriendship(string userId, string friendId);
 
-        Task<bool> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId);
+        Task<Result> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId);
 
-        Task<bool> UpdateProfilePicture(string pictureUrl, string userId);
+        Task<Result> UpdateProfilePicture(string pictureUrl, string userId);
 
         Task<int> GetCreatedEventsAmountByUser(string userId);
 
-        Task<bool> DeactivateAccount(string userId);
+        Task<Result> DeactivateAccount(string userId);
 
-        Task<bool> DeleteAccount(string userId);
+        Task<Result> DeleteAccount(string userId);
 
-        Task<bool> ActivateAccount(string userId);
+        Task<Result> ActivateAccount(string userId);
 
-        Task<bool> ChangeEmail(string userId, string newEmail, string token);
+        Task<Result> ChangeEmail(string userId, string newEmail, string token);
 
-        Task<bool> ChangePassword(string userId, string currentPassword, string newPassword);
+        Task<Result> ChangePassword(string userId, string currentPassword, string newPassword);
     }
 }

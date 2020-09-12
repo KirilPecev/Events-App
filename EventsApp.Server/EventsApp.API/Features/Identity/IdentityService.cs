@@ -13,6 +13,9 @@
     using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
+    using Infrastructure;
+
+    using static ResponseErrorMessages;
 
     public class IdentityService : IIdentityService
     {
@@ -131,7 +134,7 @@
                 })
                 .ToListAsync();
 
-        public async Task<bool> AddFriend(string userId, string friendId)
+        public async Task<Result> AddFriend(string userId, string friendId)
         {
             bool hasRequest = await this.data.Friends.AnyAsync(f => f.UserId == friendId && f.FriendId == userId);
 
@@ -149,18 +152,18 @@
 
             this.data.Add(friendship);
 
-            int result = await this.data.SaveChangesAsync();
+            await this.data.SaveChangesAsync();
 
-            return result > 0;
+            return true;
         }
 
-        public async Task<bool> RemoveFriend(string userId, string friendId)
+        public async Task<Result> RemoveFriend(string userId, string friendId)
         {
             Friend friendship = await this.GetFriendship(userId, friendId);
 
             if (friendship == null)
             {
-                return false;
+                return Identity.FriendshipNotFound;
             }
 
             this.data.Friends.Remove(friendship);
@@ -170,13 +173,13 @@
             return true;
         }
 
-        public async Task<bool> AcceptFriendship(string userId, string friendId)
+        public async Task<Result> AcceptFriendship(string userId, string friendId)
         {
             Friend friendship = await this.GetFriendship(userId, friendId);
 
             if (friendship == null)
             {
-                return false;
+                return Identity.FriendshipNotFound;
             }
 
             friendship.Status = FriendStatus.Accepted;
@@ -186,13 +189,13 @@
             return true;
         }
 
-        public async Task<bool> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId)
+        public async Task<Result> UpdateUserInformation(string firstName, string lastName, string birthday, string mobile, string facebookUrl, string favoriteSport, string userId)
         {
             User user = await this.GetUser(userId);
 
             if (user == null)
             {
-                return false;
+                return Identity.UserNotFound;
             }
 
             user.FirstName = firstName ?? user.FirstName;
@@ -207,16 +210,16 @@
             return true;
         }
 
-        public async Task<bool> UpdateProfilePicture(string pictureUrl, string userId)
+        public async Task<Result> UpdateProfilePicture(string pictureUrl, string userId)
         {
             User user = await this.GetUser(userId);
 
-            if (user == null && !string.IsNullOrEmpty(pictureUrl))
+            if (user == null)
             {
-                return false;
+                return Identity.UserNotFound;
             }
 
-            user.ProfilePictureUrl = pictureUrl;
+            user.ProfilePictureUrl = pictureUrl ?? user.ProfilePictureUrl;
 
             await this.data.SaveChangesAsync();
 
@@ -226,13 +229,13 @@
         public async Task<int> GetCreatedEventsAmountByUser(string userId)
             => await this.data.Events.CountAsync(e => e.CreatorId == userId);
 
-        public async Task<bool> DeactivateAccount(string userId)
+        public async Task<Result> DeactivateAccount(string userId)
         {
             User user = await this.GetUser(userId);
 
             if (user == null)
             {
-                return false;
+                return Identity.UserNotFound;
             }
 
             user.IsDeactivated = true;
@@ -242,13 +245,13 @@
             return true;
         }
 
-        public async Task<bool> ActivateAccount(string userId)
+        public async Task<Result> ActivateAccount(string userId)
         {
             User user = await this.GetUser(userId);
 
             if (user == null)
             {
-                return false;
+                return Identity.UserNotFound;
             }
 
             user.IsDeactivated = false;
@@ -258,7 +261,7 @@
             return true;
         }
 
-        public async Task<bool> ChangeEmail(string userId, string newEmail, string token)
+        public async Task<Result> ChangeEmail(string userId, string newEmail, string token)
         {
             User user = await this.GetUser(userId);
 
@@ -270,7 +273,7 @@
 
                 if (emailExists)
                 {
-                    return false;
+                    return Identity.TakenEmail;
                 }
 
                 user.Email = newEmail;
@@ -286,32 +289,32 @@
             return false;
         }
 
-        public async Task<bool> ChangePassword(string userId, string currentPassword, string newPassword)
+        public async Task<Result> ChangePassword(string userId, string currentPassword, string newPassword)
         {
             User user = await this.GetUser(userId);
 
             if (user == null)
             {
-                return false;
+                return Identity.UserNotFound;
             }
 
             IdentityResult result = await this.userManager.ChangePasswordAsync(user, currentPassword, newPassword);
 
             if (!result.Succeeded)
             {
-                return false;
+                return Identity.PasswordError;
             }
 
             return true;
         }
 
-        public async Task<bool> DeleteAccount(string userId)
+        public async Task<Result> DeleteAccount(string userId)
         {
             User user = await this.GetUser(userId);
 
             if (user == null)
             {
-                return false;
+                return Identity.UserNotFound;
             }
 
             user.IsDeleted = true;
