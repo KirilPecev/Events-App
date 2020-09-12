@@ -81,7 +81,7 @@ export class UserService {
   }
 
   getPendingFriends(): Observable<Array<Friend>> {
-    return this.http.get<Array<Friend>>(this.path + "/pendingfriends");
+    return this.http.get<Array<Friend>>(this.path + "/friends/pending");
   }
 
   acceptFriendship(friendId: string) {
@@ -102,7 +102,7 @@ export class UserService {
 
   removeFriendship(friendId: string) {
     const params = new HttpParams().set("id", friendId);
-    return this.http.delete(this.path + "/removefriendship", { params });
+    return this.http.delete(this.path + "/friend", { params });
   }
 
   updateProfilePicture(pictureUrl: string) {

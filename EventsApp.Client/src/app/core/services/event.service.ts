@@ -29,7 +29,7 @@ export class EventService {
   }
 
   getMineEvents(): Observable<Array<Event>> {
-    return this.http.get<Array<Event>>(this.eventPath + "/mine");
+    return this.http.get<Array<Event>>(this.eventPath + "/my");
   }
 
   getDetails(id): Observable<Event> {
