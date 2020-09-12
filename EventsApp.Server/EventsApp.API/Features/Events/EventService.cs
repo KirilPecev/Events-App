@@ -2,6 +2,7 @@
 {
     using Data;
     using Data.Models;
+    using Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.EntityFrameworkCore;
     using Models;
@@ -10,6 +11,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using static ResponseErrorMessages;
 
     public class EventService : IEventService
     {
@@ -38,18 +41,18 @@
 
             await this.data.SaveChangesAsync();
 
-            int positionResult = await this.positionService.Create(newEvent.Id, positions);
+            await this.positionService.Create(newEvent.Id, positions);
 
             return newEvent.Id;
         }
 
-        public async Task<bool> Update(int id, string location, string dateTime, string userId)
+        public async Task<Result> Update(int id, string location, string dateTime, string userId)
         {
             Event current = await this.GetByIdAndUserId(id, userId);
 
             if (current == null)
             {
-                return false;
+                return Events.EventNotFound;
             }
 
             if (!string.IsNullOrEmpty(location))
@@ -67,13 +70,13 @@
             return true;
         }
 
-        public async Task<bool> Delete(int id, string userId)
+        public async Task<Result> Delete(int id, string userId)
         {
             Event current = await this.GetByIdAndUserId(id, userId);
 
             if (current == null)
             {
-                return false;
+                return Events.EventNotFound;
             }
 
             current.IsDeleted = true;
@@ -128,8 +131,8 @@
         public async Task<IEnumerable<EventListingServiceModel>> GetEventsImJoined(string userId)
             => await this.data
                 .Events
-                .SelectMany(e=>e.Positions)
-                .Where(p=>p.ParticipantId == userId)
+                .SelectMany(e => e.Positions)
+                .Where(p => p.ParticipantId == userId)
                 .OrderByDescending(x => x.Id)
                 .Select(e => new EventListingServiceModel()
                 {
@@ -142,7 +145,7 @@
         public async Task<IEnumerable<EventListingServiceModel>> GetUpcomingEvents()
             => await this.data
                 .Events
-                .Where(e=>e.DateTime >= DateTime.Now && e.DateTime<= DateTime.Now.AddDays(7))
+                .Where(e => e.DateTime >= DateTime.Now && e.DateTime <= DateTime.Now.AddDays(7))
                 .OrderByDescending(x => x.DateTime)
                 .Select(e => new EventListingServiceModel()
                 {

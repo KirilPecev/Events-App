@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Features.Events
 {
+    using Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -42,7 +43,7 @@
         }
 
         [HttpGet]
-        [Route("upcoming")]
+        [Route("Upcoming")]
         public async Task<IEnumerable<EventListingServiceModel>> UpcomingEvents()
         {
             string userId = this.User.GetId();
@@ -74,11 +75,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.eventService.Update(model.Id, model.Location, model.DateTime, userId);
+            Result result = await this.eventService.Update(model.Id, model.Location, model.DateTime, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -90,11 +91,11 @@
         {
             string userId = this.User.GetId();
 
-            bool deleted = await this.eventService.Delete(id, userId);
+            Result result = await this.eventService.Delete(id, userId);
 
-            if (!deleted)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();

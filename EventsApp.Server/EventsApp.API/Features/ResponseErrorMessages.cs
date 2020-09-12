@@ -30,5 +30,10 @@
         {
             public const string PublicationNotFound = "Does not exist publication with this ID!";
         }
+
+        public static class Events
+        {
+            public const string EventNotFound = "Does not exist event with this ID!";
+        }
     }
 }
