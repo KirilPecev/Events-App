@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Features.Notifications
 {
+    using Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -43,11 +44,11 @@
         {
             string userId = this.User.GetId();
 
-            bool deleted = await this.notificationService.Delete(id, userId);
+            Result result = await this.notificationService.Delete(id, userId);
 
-            if (!deleted)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();

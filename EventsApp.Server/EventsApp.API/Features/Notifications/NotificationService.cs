@@ -2,11 +2,14 @@
 {
     using Data;
     using Data.Models;
+    using Infrastructure;
     using Microsoft.EntityFrameworkCore;
     using Models;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using static ResponseErrorMessages;
 
     public class NotificationService : INotificationService
     {
@@ -24,7 +27,7 @@
                 .Select(n => new NotificationListingServiceModel
                 {
                     Id = n.Id,
-                    UserPic = this.data.Users.FirstOrDefault(u=>u.Id == n.CreatorId).ProfilePictureUrl,
+                    UserPic = this.data.Users.FirstOrDefault(u => u.Id == n.CreatorId).ProfilePictureUrl,
                     ImageUrl = n.ImageUrl,
                     Description = n.Description
                 })
@@ -45,7 +48,7 @@
             return await this.data.SaveChangesAsync();
         }
 
-        public async Task<bool> Delete(int id, string userId)
+        public async Task<Result> Delete(int id, string userId)
         {
             Notification notification = await this.data
                 .Notifications
@@ -54,7 +57,7 @@
 
             if (notification == null)
             {
-                return false;
+                return Notifications.NotificationNotFound;
             }
 
             notification.IsDeleted = true;

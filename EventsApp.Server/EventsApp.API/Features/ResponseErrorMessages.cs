@@ -13,5 +13,10 @@
             public const string PasswordError = "Changing password was failed!";
 
         }
+
+        public static class Notifications
+        {
+            public const string NotificationNotFound = "Does not exist notification with this ID!";
+        }
     }
 }

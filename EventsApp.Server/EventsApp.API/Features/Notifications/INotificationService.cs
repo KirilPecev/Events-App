@@ -3,6 +3,7 @@
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Infrastructure;
 
     public interface INotificationService
     {
@@ -10,6 +11,6 @@
 
         Task<int> Create(string description, string imageUrl, string userId, string currentUserId);
 
-        Task<bool> Delete(int id, string userId);
+        Task<Result> Delete(int id, string userId);
     }
 }
