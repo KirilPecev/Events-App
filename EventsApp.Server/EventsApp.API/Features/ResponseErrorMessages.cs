@@ -21,9 +21,9 @@
 
         public static class Positions
         {
-            public const string PositionIsBusy = "The position is already busy!";
+            public const string PositionIsBusy = "The position is already busy or you are already joined!";
 
-            public const string PositionIsFree = "The position is already available!";
+            public const string PositionIsFree = "The position is already available ot you are already unjoined!";
         }
     }
 }
