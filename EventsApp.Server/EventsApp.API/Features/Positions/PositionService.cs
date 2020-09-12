@@ -2,12 +2,14 @@
 {
     using Data;
     using Data.Models;
+    using Infrastructure;
     using Microsoft.EntityFrameworkCore;
+    using Models;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.InteropServices.ComTypes;
     using System.Threading.Tasks;
-    using Models;
+
+    using static ResponseErrorMessages;
 
     public class PositionService : IPositionService
     {
@@ -49,14 +51,13 @@
             return result;
         }
 
-        public async Task<bool> Join(int eventId, int positionId, string userId)
+        public async Task<Result> Join(int eventId, int positionId, string userId)
         {
             if (positionId == 0)
             {
                 positionId = this.data.Positions
                     .First(p => p.ParticipantId == null && p.EventId == eventId)
                     .Id;
-
             }
 
             Position position = await this.GetByIdAndEventId(eventId, positionId);
@@ -65,7 +66,7 @@
 
             if (isJoined || position.ParticipantId != null)
             {
-                return false;
+                return Positions.PositionIsBusy;
             }
 
             position.ParticipantId = userId;
@@ -75,7 +76,7 @@
             return true;
         }
 
-        public async Task<bool> Unjoin(int eventId, int positionId, string userId)
+        public async Task<Result> Unjoin(int eventId, int positionId, string userId)
         {
             if (positionId == 0)
             {
@@ -91,7 +92,7 @@
 
             if (!isJoined)
             {
-                return false;
+                return Positions.PositionIsFree;
             }
 
             position.ParticipantId = null;
@@ -135,11 +136,7 @@
             .ToListAsync();
 
         public async Task<bool> IsUserJoined(int eventId, string userId)
-        {
-            bool result = await this.data.Positions.AnyAsync(p => p.EventId == eventId && p.ParticipantId == userId);
-
-            return result;
-        }
+            => await this.data.Positions.AnyAsync(p => p.EventId == eventId && p.ParticipantId == userId);
 
         private async Task<Position> GetByIdAndEventId(int eventId, int positionId)
             => await this.data

@@ -3,6 +3,7 @@
     using Models;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Infrastructure;
 
     public interface IPositionService
     {
@@ -10,9 +11,9 @@
 
         Task<int> Delete(int eventId);
 
-        Task<bool> Join(int eventId, int positionId, string userId);
+        Task<Result> Join(int eventId, int positionId, string userId);
 
-        Task<bool> Unjoin(int eventId, int positionId, string userId);
+        Task<Result> Unjoin(int eventId, int positionId, string userId);
 
         Task<IEnumerable<PositionListingServiceModel>> GetAvailablePositions(int eventId, string userId);
 

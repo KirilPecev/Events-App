@@ -18,5 +18,12 @@
         {
             public const string NotificationNotFound = "Does not exist notification with this ID!";
         }
+
+        public static class Positions
+        {
+            public const string PositionIsBusy = "The position is already busy!";
+
+            public const string PositionIsFree = "The position is already available!";
+        }
     }
 }

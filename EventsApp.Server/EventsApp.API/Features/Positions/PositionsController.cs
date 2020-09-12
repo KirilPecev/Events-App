@@ -1,5 +1,6 @@
 ﻿namespace EventsApp.API.Features.Positions
 {
+    using Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -23,11 +24,11 @@
         {
             string userId = this.User.GetId();
 
-            bool isJoined = await this.positionService.Join(model.EventId, model.PositionId, userId);
+            Result result = await this.positionService.Join(model.EventId, model.PositionId, userId);
 
-            if (!isJoined)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -39,11 +40,11 @@
         {
             string userId = this.User.GetId();
 
-            bool isUnjoined = await this.positionService.Unjoin(model.EventId, model.PositionId, userId);
+            Result result = await this.positionService.Unjoin(model.EventId, model.PositionId, userId);
 
-            if (!isUnjoined)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
