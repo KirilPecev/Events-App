@@ -41,14 +41,8 @@ export class UserService {
 
   isTokenExpired(): boolean {
     const token = this.getToken();
-    console.log(token);
-
     const jwtToken = JSON.parse(atob(token.split(".")[1]));
-    console.log(jwtToken);
-
     const tokenExpired = Date.now() > jwtToken.exp * 1000;
-
-    console.log(tokenExpired);
 
     if (tokenExpired) return false;
 
