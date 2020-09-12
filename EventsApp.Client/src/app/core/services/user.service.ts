@@ -39,6 +39,22 @@ export class UserService {
     return this.getToken() ? true : false;
   }
 
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    console.log(token);
+
+    const jwtToken = JSON.parse(atob(token.split(".")[1]));
+    console.log(jwtToken);
+
+    const tokenExpired = Date.now() > jwtToken.exp * 1000;
+
+    console.log(tokenExpired);
+
+    if (tokenExpired) return false;
+
+    return false;
+  }
+
   getUserInformation(id: string) {
     return this.http.get<User>(this.path + "/" + id);
   }
@@ -105,12 +121,15 @@ export class UserService {
 
   changeEmail(email: string) {
     const token = this.getToken();
-    return this.http.post(this.path + "/email", {email, token});
+    return this.http.post(this.path + "/email", { email, token });
   }
 
   changePassword(currentPassword: string, newPassword: string) {
     const token = this.getToken();
-    return this.http.post(this.path + "/password", {currentPassword, newPassword});
+    return this.http.post(this.path + "/password", {
+      currentPassword,
+      newPassword,
+    });
   }
 
   deactivateAccount() {
