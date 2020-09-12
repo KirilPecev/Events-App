@@ -25,5 +25,10 @@
 
             public const string PositionIsFree = "The position is already available ot you are already unjoined!";
         }
+
+        public static class Publications
+        {
+            public const string PublicationNotFound = "Does not exist publication with this ID!";
+        }
     }
 }

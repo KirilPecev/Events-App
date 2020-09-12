@@ -1,11 +1,11 @@
 ﻿namespace EventsApp.API.Features.Publications
 {
+    using Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     using static Infrastructure.WebConstants;
@@ -56,14 +56,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.publicationService.Update(
-                model.Id,
-                model.Description,
-                userId);
+            Result result = await this.publicationService.Update(model.Id, model.Description, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -75,11 +72,11 @@
         {
             string userId = this.User.GetId();
 
-            bool deleted = await this.publicationService.DeletePublication(id, userId);
+            Result result = await this.publicationService.DeletePublication(id, userId);
 
-            if (!deleted)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -91,11 +88,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.publicationService.Like(id, userId);
+            Result result = await this.publicationService.Like(id, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -107,11 +104,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.publicationService.Unlike(id, userId);
+            Result result = await this.publicationService.Unlike(id, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();
@@ -123,11 +120,11 @@
         {
             string userId = this.User.GetId();
 
-            bool updated = await this.publicationService.Share(id, userId);
+            Result result = await this.publicationService.Share(id, userId);
 
-            if (!updated)
+            if (!result.Succeeded)
             {
-                return BadRequest();
+                return BadRequest(result.Error);
             }
 
             return Ok();

@@ -1,14 +1,17 @@
 ﻿namespace EventsApp.API.Features.Publications
 {
-    using System;
     using Data;
     using Data.Models;
+    using Infrastructure;
     using Microsoft.EntityFrameworkCore;
     using Models;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
+
+    using static ResponseErrorMessages;
 
     public class PublicationService : IPublicationService
     {
@@ -49,13 +52,13 @@
             return publication.Id;
         }
 
-        public async Task<bool> Update(int id, string description, string userId)
+        public async Task<Result> Update(int id, string description, string userId)
         {
             Publication publication = await this.GetByIdAndByUserId(id, userId);
 
             if (publication == null)
             {
-                return false;
+                return Publications.PublicationNotFound;
             }
 
             publication.Description = description;
@@ -65,13 +68,13 @@
             return true;
         }
 
-        public async Task<bool> DeletePublication(int id, string userId)
+        public async Task<Result> DeletePublication(int id, string userId)
         {
             Publication publication = await this.GetByIdAndByUserId(id, userId) ?? await this.GetShared(id, userId);
 
             if (publication == null)
             {
-                return false;
+                return Publications.PublicationNotFound;
             }
 
             publication.IsDeleted = true;
@@ -81,13 +84,13 @@
             return true;
         }
 
-        public async Task<bool> DeleteSharedPublication(int id, string userId)
+        public async Task<Result> DeleteSharedPublication(int id, string userId)
         {
             Publication publication = await this.GetShared(id, userId);
 
             if (publication == null)
             {
-                return false;
+                return Publications.PublicationNotFound;
             }
 
             publication.IsDeleted = true;
@@ -164,13 +167,13 @@
                 .ToListAsync();
         }
 
-        public async Task<bool> Like(int id, string userId)
+        public async Task<Result> Like(int id, string userId)
         {
             Publication publication = await this.GetById(id);
 
             if (publication == null)
             {
-                return false;
+                return Publications.PublicationNotFound;
             }
 
             publication.Likes.Add(new Like()
@@ -183,13 +186,13 @@
             return true;
         }
 
-        public async Task<bool> Unlike(int id, string userId)
+        public async Task<Result> Unlike(int id, string userId)
         {
             Publication publication = await this.GetById(id);
 
             if (publication == null)
             {
-                return false;
+                return Publications.PublicationNotFound;
             }
 
             Like like = await this.data.Likes.FirstOrDefaultAsync(l => l.LikerId == userId && l.PublicationId == id);
@@ -201,13 +204,13 @@
             return true;
         }
 
-        public async Task<bool> Share(int id, string userId)
+        public async Task<Result> Share(int id, string userId)
         {
             Publication publication = await this.GetById(id);
 
             if (publication == null)
             {
-                return false;
+                return Publications.PublicationNotFound;
             }
 
             Share share = new Share()
