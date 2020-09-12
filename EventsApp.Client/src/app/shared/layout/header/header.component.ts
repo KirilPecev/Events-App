@@ -11,7 +11,6 @@ import {
   faCog,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import { MatDialog } from "@angular/material/dialog";
 import { UserService } from "../../../core/services/user.service";
 import { Router } from "@angular/router";
 import { NotificationService } from "../../../core/services/notification.service";
@@ -44,7 +43,6 @@ export class HeaderComponent implements OnInit, DoCheck {
   userId: string;
 
   constructor(
-    private dialog: MatDialog,
     private router: Router,
     private userService: UserService,
     private notificationService: NotificationService
@@ -69,6 +67,14 @@ export class HeaderComponent implements OnInit, DoCheck {
 
       this.fetch();
     }
+  }
+
+  updateFriendsCount(count: number){
+    this.newFriends = count;
+  }
+
+  updateNotificationsCount(count: number){
+    this.newNotifications = count;
   }
 
   private fetch() {

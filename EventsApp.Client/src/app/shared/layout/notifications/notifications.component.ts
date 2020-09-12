@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { NotificationService } from "../../../core/services/notification.service";
 import { Notification } from "../../../core/models/notification-model";
 import { Observable } from "rxjs";
+import { Output, EventEmitter } from "@angular/core";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-notifications",
@@ -14,11 +16,16 @@ export class NotificationsComponent implements OnInit {
   }
 
   notificatios$: Observable<Array<Notification>>;
+  @Output() notificationsCount = new EventEmitter<number>();
 
   ngOnInit(): void {}
 
   private fetch() {
-    this.notificatios$ = this.notificationService.getNotifications();
+    this.notificatios$ = this.notificationService.getNotifications().pipe(
+      tap((data) => {
+        this.notificationsCount.emit(data.length);
+      })
+    );
   }
 
   deleteNotification(id: number) {

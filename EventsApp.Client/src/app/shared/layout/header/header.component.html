@@ -31,14 +31,14 @@
             <fa-icon class="fa-lg" [icon]="faUserFriends"></fa-icon>
           </button>
           <mat-menu #friendsMenu>
-            <app-friends></app-friends>
+            <app-friends (friendsCount)="updateFriendsCount($event)"></app-friends>
           </mat-menu>
           <button mat-icon-button title="Notif" [matBadge]="newNotifications" matBadgePosition="above after"
             matBadgeColor="warn" matBadgeSize="small" [matMenuTriggerFor]="notificationsMenu">
             <fa-icon class="fa-lg" [icon]="faFlag"></fa-icon>
           </button>
           <mat-menu #notificationsMenu>
-            <app-notifications></app-notifications>
+            <app-notifications (notificationsCount)="updateNotificationsCount($event)"></app-notifications>
           </mat-menu>
           <button mat-icon-button title="Settings" [matMenuTriggerFor]="settings">
             <fa-icon class="fa-lg" [icon]="faUsersCog"></fa-icon>
