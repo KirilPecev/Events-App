@@ -29,7 +29,7 @@
         }
 
         [HttpGet]
-        [Route("ByUser")]
+        [Route(ByUser)]
         public async Task<IEnumerable<PublicationListingServiceModel>> GetByUser(string userId)
              => await this.publicationService.GetByUser(userId, this.User.GetId());
 

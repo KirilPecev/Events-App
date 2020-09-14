@@ -83,20 +83,20 @@
 
         [Authorize]
         [HttpGet]
-        [Route("Users")]
+        [Route(Users)]
         public async Task<IEnumerable<UserListingServiceModel>> GetAll()
          => await this.identityService.GetAllUsers();
 
         [Authorize]
         [HttpGet]
-        [Route("Friends")]
+        [Route(Friends)]
         public async Task<IEnumerable<UserListingServiceModel>> GetFriends(string userId)
             => await this.identityService.AcceptedFriends(userId);
 
 
         [Authorize]
         [HttpGet]
-        [Route("Friends/Pending")]
+        [Route(PendingFriends)]
         public async Task<IEnumerable<UserListingServiceModel>> GetPendingFriends()
         {
             string userId = this.User.GetId();
@@ -112,14 +112,14 @@
 
         [Authorize]
         [HttpGet]
-        [Route("Events")]
+        [Route(Events)]
         public async Task<int> GetCreatedEventsCount(string userId)
             => await this.identityService.GetCreatedEventsAmountByUser(userId);
 
 
         [Authorize]
         [HttpPut]
-        [Route("Friend")]
+        [Route(WebConstants.Friend)]
         public async Task<ActionResult> AddFriend(AddFriendRequestModel model)
         {
             string userId = this.User.GetId();
@@ -136,7 +136,7 @@
 
         [Authorize]
         [HttpDelete]
-        [Route("Friend")]
+        [Route(WebConstants.Friend)]
         public async Task<ActionResult> RemoveFriendship(string id)
         {
             string userId = this.User.GetId();
@@ -153,7 +153,7 @@
 
         [Authorize]
         [HttpPut]
-        [Route("Accept")]
+        [Route(Accept)]
         public async Task<ActionResult> AcceptFriendship(AcceptFriendshipRequestModel model)
         {
             string userId = this.User.GetId();
@@ -186,7 +186,7 @@
 
         [Authorize]
         [HttpPut]
-        [Route("Picture")]
+        [Route(Picture)]
         public async Task<ActionResult> UpdateProfilePicture(UploadProfilePictureRequestModel model)
         {
             string userId = this.User.GetId();
@@ -203,7 +203,7 @@
 
         [Authorize]
         [HttpPut]
-        [Route("Deactivate")]
+        [Route(nameof(Deactivate))]
         public async Task<ActionResult> Deactivate()
         {
             string userId = this.User.GetId();
@@ -220,7 +220,7 @@
 
         [Authorize]
         [HttpPut]
-        [Route("Activate")]
+        [Route(nameof(Activate))]
         public async Task<ActionResult> Activate()
         {
             string userId = this.User.GetId();
@@ -253,7 +253,7 @@
 
         [Authorize]
         [HttpPost]
-        [Route("Email")]
+        [Route(Email)]
         public async Task<ActionResult> ChangeEmail(ChangeEmailRequestModel model)
         {
             string userId = this.User.GetId();
@@ -270,7 +270,7 @@
 
         [Authorize]
         [HttpPost]
-        [Route("Password")]
+        [Route(Password)]
         public async Task<ActionResult> ChangePassword(ChangePasswordRequestModel model)
         {
             string userId = this.User.GetId();
