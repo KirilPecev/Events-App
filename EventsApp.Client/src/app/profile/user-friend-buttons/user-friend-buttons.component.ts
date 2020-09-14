@@ -28,6 +28,10 @@ export class UserFriendButtonsComponent implements OnInit {
   }
 
   remove() {
-    this.userService.removeFriendship(this.userId).subscribe();
+    this.userService.removeFriendship(this.userId).subscribe(
+      () => {
+        this.isMyFriend = false;
+      }
+    );
   }
 }
