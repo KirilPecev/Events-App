@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { NotificationService } from "../../../core/services/notification.service";
 import { Notification } from "../../../core/models/notification-model";
 import { Observable } from "rxjs";
@@ -16,16 +16,16 @@ export class NotificationsComponent implements OnInit {
   }
 
   notificatios$: Observable<Array<Notification>>;
+  @Input() notificationsData = Array<Notification>();
   @Output() notificationsCount = new EventEmitter<number>();
 
   ngOnInit(): void {}
 
   private fetch() {
-    this.notificatios$ = this.notificationService.getNotifications().pipe(
-      tap((data) => {
-        this.notificationsCount.emit(data.length);
-      })
-    );
+    this.notificationService.getNotifications().subscribe((data) => {
+      this.notificationsData = data;
+      this.notificationsCount.emit(data.length);
+    });
   }
 
   deleteNotification(id: number) {

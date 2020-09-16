@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { UserService } from "../../../core/services/user.service";
 import { Observable } from "rxjs";
 import { Friend } from "src/app/core/models/friend-model";
@@ -14,6 +14,7 @@ import { tap } from "rxjs/operators";
 export class FriendsComponent implements OnInit {
   friends$: Observable<Array<Friend>>;
   @Output() friendsCount = new EventEmitter<number>();
+  @Input() friendsData = Array<Friend>();
 
   constructor(
     private userService: UserService,
@@ -25,11 +26,10 @@ export class FriendsComponent implements OnInit {
   }
 
   private fetch() {
-    this.friends$ = this.userService.getPendingFriends().pipe(
-      tap((data) => {
-        this.friendsCount.emit(data.length);
-      })
-    );
+    this.userService.getPendingFriends().subscribe((data) => {
+      this.friendsData = data;
+      this.friendsCount.emit(data.length);
+    });
   }
 
   accept(friendId: string) {

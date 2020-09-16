@@ -1,9 +1,9 @@
 <div fxFlex fxFlexFill class="container" (click)="$event.stopPropagation()">
-  <div *ngIf="!this.friends$">
+  <div *ngIf="!this.friendsData">
     No new friend requests!
   </div>
   <ul fxFlex fxLayout="column" fxLayoutGap="0.5em">
-    <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of this.friends$ | async">
+    <li fxFlex fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let friend of this.friendsData">
       <a [routerLink]="['/profile/', friend.id]" fxLayoutAlign="space-between center">
         <img class="profile-picture" src="{{friend.profilePictureUrl}}" alt="">
         <span class="name">{{friend.fullName}}</span>
