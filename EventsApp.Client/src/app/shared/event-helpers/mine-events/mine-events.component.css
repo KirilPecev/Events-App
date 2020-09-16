@@ -1,0 +1,6 @@
+.event-title{
+  text-decoration: none;
+}
+.event-title:hover{
+  font-size: 150% !important;
+}

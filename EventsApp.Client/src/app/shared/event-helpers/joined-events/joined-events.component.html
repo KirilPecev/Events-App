@@ -2,6 +2,6 @@
     <h1>Events I'm joined</h1>
     <p *ngIf="(this.events$|async)?.length == 0">Currently you aren't joined to events!</p>
     <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em"*ngFor="let e of (this.events$ | async)">
-        <li><a routerLink="/events/details/{{e.id}}">{{e.name}}</a></li>
+        <li><a class="event-title" routerLink="/events/details/{{e.id}}">{{e.name}}</a></li>
     </ul>
 </div>

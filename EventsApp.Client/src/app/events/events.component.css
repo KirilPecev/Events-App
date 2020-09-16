@@ -15,6 +15,10 @@ mat-card-content span {
   font-size: 1.3em;
 }
 
+.event-title{
+  text-decoration: none;
+}
+
 .info {
   padding-top: 1em;
 }

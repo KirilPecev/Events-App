@@ -2,3 +2,11 @@
   font-size: small;
   padding-left: 0.8em;
 }
+
+.event-title{
+  text-decoration: none;
+}
+
+.event-title:hover{
+  font-size: 150% !important;
+}

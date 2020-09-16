@@ -3,7 +3,7 @@
     <p *ngIf="(this.events$|async)?.length == 0">Currently hasn't upcoming events!</p>
     <ul fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="1.2em" *ngFor="let e of (this.events$ | async)">
         <li fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap.xs="3.5em">
-            <a routerLink="/events/details/{{e.id}}">{{e.name}}</a>
+            <a class="event-title" routerLink="/events/details/{{e.id}}">{{e.name}}</a>
             <p class="info">Available positions: {{e.availablePositions}}</p>
         </li>
     </ul>
