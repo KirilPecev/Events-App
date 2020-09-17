@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
 import { faCog, faShieldAlt } from "@fortawesome/free-solid-svg-icons";
-import { UserService } from '../core/services/user.service';
+import { UserService } from "../core/services/user.service";
+
 @Component({
   selector: "app-settings",
   templateUrl: "./settings.component.html",

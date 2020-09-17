@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
 import { SettingsComponent } from "./settings.component";
 import { AuthGuard } from "../guards/auth/auth.guard";
 import { GeneralSettingsComponent } from './general-settings/general-settings.component';
