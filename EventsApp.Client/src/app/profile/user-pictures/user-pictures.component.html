@@ -3,7 +3,7 @@
         <mat-toolbar-row fxLayoutGap="0.5em">
             <fa-icon class="fa-lg" [icon]="faImages"> </fa-icon>
             <h1>PICTURES</h1>
-            <div>
+            <div *ngIf="this.isMyProfile">
                 <input style="display: none" type="file" #hiddenfileinput (change)="onFileSelected($event)">
                 <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
             </div>

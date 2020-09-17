@@ -75,6 +75,10 @@
     margin-top: 1.5em;
   }
 
+  .played-events{
+    font-size: large;
+  }
+
   .profile-img {
     height: 13em;
     width: 13em;
@@ -94,6 +98,10 @@
 
 @media (max-width: 340px) {
   .header > p {
+    font-size: medium;
+  }
+
+  .played-events{
     font-size: medium;
   }
 }
