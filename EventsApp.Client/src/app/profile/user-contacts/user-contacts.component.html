@@ -1,20 +1,25 @@
 <div fxLayout="column" *ngIf="(this.contacts$ | async) as user">
-  <h1 class="title">Contacts</h1>
-  <hr>
-  <div fxLayout="column">
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-      <h2 fxFlex="40%">Email</h2>
-      <span>{{user.email}}</span>
-    </div>
-    <hr>
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-      <h2 fxFlex="40%" class="mat-small">Mobile</h2>
-      <span>{{user.mobile}}</span>
-    </div>
-    <hr>
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-      <h2 fxFlex="40%">Facebook</h2>
-      <a [href]="user.facebookUrl" *ngIf="user.facebookUrl" target="_blank">{{user.fullName}}</a>
-    </div>
-  </div>
+  <mat-card class="container">
+    <mat-card-title-group>
+      <mat-card-title>
+        Contacts information
+      </mat-card-title>
+      <mat-card-subtitle>{{user.fullName}} contacts</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content fxLayout="column" fxLayoutGap="1em">
+      <div fxLayout="row" fxLayoutAlign="none center">
+        <h2 fxFlex="30%">Email</h2>
+        <h3>{{user.email}}</h3>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="none center">
+        <h2 fxFlex="30%">Mobile</h2>
+        <h3>{{user.mobile}}</h3>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="none center">
+        <h2 fxFlex="30%" fxFlex.xs="35%">Facebook</h2>
+        <h3><a class="fb-link" [href]="user.facebookUrl" *ngIf="user.facebookUrl" target="_blank">{{user.fullName}}</a>
+        </h3>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

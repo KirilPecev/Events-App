@@ -1,20 +1,24 @@
 <div fxLayout="column" *ngIf="(this.information$ | async) as user">
-  <h1 class="title">Basic information</h1>
-  <hr>
-  <div fxLayout="column">
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-      <h2 fxFlex="40%">Birthday</h2>
-      <span *ngIf="user.birthday">{{user.birthday}}</span>
-    </div>
-    <hr>
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-      <h2 fxFlex="40%">Gender</h2>
-      <span *ngIf="user.gender">{{user.gender}}</span>
-    </div>
-    <hr>
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="content">
-      <h2 fxFlex="40%">Favourite sport</h2>
-      <span>{{user.favoriteSport}}</span>
-    </div>
-  </div>
+  <mat-card class="container">
+    <mat-card-title-group>
+      <mat-card-title>
+        General information
+      </mat-card-title>
+      <mat-card-subtitle>{{user.fullName}} general information</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content fxLayout="column" fxLayoutGap="1em">
+      <div fxLayout="row" fxLayoutAlign="none center">
+        <h2 fxFlex="30%">Birthday</h2>
+        <h3>{{user.birthday | date}}</h3>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="none center">
+        <h2 fxFlex="30%">Gender</h2>
+        <h3>{{user.gender}}</h3>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="none center">
+        <h2 fxFlex="30%">Favourite sport</h2>
+        <h3>{{user.favoriteSport}}</h3>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -8,9 +8,14 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 })
 export class UserInformationComponent implements OnInit {
   faUser = faUser;
+  screenWidth: number;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+    window.onresize = () => {
+      this.screenWidth = window.innerWidth;
+    };
   }
 }
