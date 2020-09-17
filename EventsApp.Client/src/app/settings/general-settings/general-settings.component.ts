@@ -76,7 +76,7 @@ export class GeneralSettingsComponent implements OnInit {
       mobile: this.editForm.value["mobile"],
       facebookUrl: this.editForm.value["facebookUrl"],
       birthday: this.editForm.value["birthday"],
-      sport: this.editForm.value["favoriteSport"],
+      favoriteSport: this.editForm.value["favoriteSport"],
     };
 
     this.userService.update(data).subscribe((data) => {
