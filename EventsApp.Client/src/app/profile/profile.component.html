@@ -1,15 +1,17 @@
 <div class="container site-wrapper" fxLayout="column" fxLayoutAlign="space-between center">
   <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="user$|async as user">
     <div class="wrapper">
-      <img src="{{this.imgURL}}">
+      <img class="profile-img" src="{{this.imgURL}}">
       <input class="file" type="file" #hiddenFileInput (change)="upload(hiddenFileInput)" accept='image/*'>
-      <button *ngIf="this.isMyProfile" class="button"  mat-flat-button color="primary"(click)="hiddenFileInput.click()">Upload New</button>
+      <button *ngIf="this.isMyProfile" class="button" mat-flat-button color="primary"
+        (click)="hiddenFileInput.click()">Upload New</button>
     </div>
-    <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">
-      {{user.fullName}}</p>
-    <app-user-friend-buttons *ngIf="!this.isMyProfile" fxFlex="12%" [userId]="this.userId"
-      [isMyFriend]="this.isMyFriend" [isSentFriendRequest]="this.isSentFriendRequest"></app-user-friend-buttons>
-    <p fxFlex="20%" fxFlexAlign="end">Played events: {{createdEventsByUser$ | async}}</p>
+    <p fxFlex="60%" fxFlex.lt-md="50%" fxFlex.xs="40%" fxFlexAlign="end">{{user.fullName}}</p>
+    <div fxFlexAlign="end" fxLayout="column" fxLayoutGap="2em" fxFlex="0%">
+      <app-user-friend-buttons class="fr-btn" *ngIf="!this.isMyProfile" [userId]="this.userId"
+        [isMyFriend]="this.isMyFriend" [isSentFriendRequest]="this.isSentFriendRequest"></app-user-friend-buttons>
+      <p class="played-events" >Played events: {{createdEventsByUser$ | async}}</p>
+    </div>
   </div>
   <mat-toolbar color="primary" class="menu">
     <mat-toolbar-row fxLayoutAlign="space-evenly end">
