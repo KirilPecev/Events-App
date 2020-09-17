@@ -13,7 +13,7 @@ const settingsRoutes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {
-        path: "account",
+        path: "",
         component: GeneralSettingsComponent,
         outlet: "settings"
       },

@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import { faCog, faShieldAlt } from "@fortawesome/free-solid-svg-icons";
+import { UserService } from '../core/services/user.service';
 @Component({
   selector: "app-settings",
   templateUrl: "./settings.component.html",
@@ -8,7 +10,11 @@ import { faCog, faShieldAlt } from "@fortawesome/free-solid-svg-icons";
 export class SettingsComponent implements OnInit {
   faCog = faCog;
   faShieldAlt = faShieldAlt;
-  constructor() {}
+  userId: string;
 
-  ngOnInit(): void {}
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userId = this.userService.getUserId();
+  }
 }
