@@ -11,10 +11,15 @@ export class SettingsComponent implements OnInit {
   faCog = faCog;
   faShieldAlt = faShieldAlt;
   userId: string;
+  screenWidth: number;
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.userId = this.userService.getUserId();
+    this.screenWidth = window.innerWidth;
+    window.onresize = () => {
+      this.screenWidth = window.innerWidth;
+    };
   }
 }

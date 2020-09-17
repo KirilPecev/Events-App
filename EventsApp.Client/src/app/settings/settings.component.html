@@ -1,6 +1,6 @@
 <div class="site-wrapper">
   <mat-sidenav-container class="container">
-    <mat-sidenav mode="side" opened class="side-nav">
+    <mat-sidenav #sidenav [mode]="screenWidth > 840 ? 'side' : 'over'" [opened]="screenWidth > 840" class="side-nav">
       <h1 class="title">Settings</h1>
       <div fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="0.5em">
         <button mat-button color="primary" [routerLink]="['/settings', userId]"> <fa-icon class="fa-lg" [icon]="faCog"></fa-icon> General</button>
@@ -8,6 +8,7 @@
       </div>
     </mat-sidenav>
     <mat-sidenav-content>
+      <button *ngIf="screenWidth < 840" mat-button (click)="sidenav.toggle()">Toggle menu</button>
       <router-outlet name="settings"></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
