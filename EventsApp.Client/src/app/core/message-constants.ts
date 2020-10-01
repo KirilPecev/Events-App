@@ -33,5 +33,5 @@ export class Profile{
 export class Post{
   static SUCCESSFULL_CREATE = "Successfully created!";
   static SUCCESSFULL_DELETE = "Successfully deleted!";
-  static ERROR_400 = "Please check you post!";
+  static ERROR_400 = "Please check your post!";
 }

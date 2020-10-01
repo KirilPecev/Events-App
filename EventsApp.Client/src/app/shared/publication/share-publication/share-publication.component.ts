@@ -43,13 +43,13 @@ export class SharePublicationComponent implements OnInit {
     const file = input.files[0];
     if (file) {
       const userId = this.userService.getUserId();
-      const a = this.pictureService.uploadPublicationPic(file, userId);
+      const task = this.pictureService.uploadPublicationPic(file, userId);
 
-      a.task
+      task.task
         .snapshotChanges()
         .pipe(
           finalize(() => {
-            const downloadURL = a.fileRef.getDownloadURL();
+            const downloadURL = task.fileRef.getDownloadURL();
             downloadURL.subscribe((url) => {
               data.imageUrl = url;
               this.sharePost(data);
@@ -76,11 +76,13 @@ export class SharePublicationComponent implements OnInit {
   }
 
   upload(files) {
-    var reader = new FileReader();
-
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.imgURL = reader.result;
-    };
+    this.imgURL = "";
+    if (files.length > 0) {
+      var reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      };
+    }
   }
 }
