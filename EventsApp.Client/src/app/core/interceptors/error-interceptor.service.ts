@@ -25,8 +25,9 @@ export class ErrorInterceptorService implements HttpInterceptor {
       catchError((err) => {
         let message = "";
         if (err.status === 401) {
-          //refresh token or navigate to login
-          message = ErrorInterceptor.ERROR_401;
+          err.url.includes("/login")
+            ? (message = ErrorInterceptor.INVALID_CREDENTIALS)
+            : (message = ErrorInterceptor.ERROR_401);
         } else if (err.status === 404) {
           message = ErrorInterceptor.ERROR_404;
         } else if (err.status === 400) {

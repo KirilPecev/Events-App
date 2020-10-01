@@ -3,6 +3,7 @@ export class ErrorInterceptor {
   static ERROR_401 = "Token has expired or you should be logged in!";
   static ERROR_404 = "404";
   static UNEXPECTED_ERROR = "Unexpected error!";
+  static INVALID_CREDENTIALS = "Invalid credentials!";
 }
 
 //Auth Messages

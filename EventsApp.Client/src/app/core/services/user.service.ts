@@ -44,9 +44,10 @@ export class UserService {
     const jwtToken = JSON.parse(atob(token.split(".")[1]));
     const tokenExpired = Date.now() > jwtToken.exp * 1000;
 
-    if (tokenExpired) return false;
-
-    return false;
+    if(tokenExpired){
+      this.logout();
+    }
+    return tokenExpired;
   }
 
   getUserInformation(id: string) {
