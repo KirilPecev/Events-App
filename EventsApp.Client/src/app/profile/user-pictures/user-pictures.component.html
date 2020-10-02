@@ -1,15 +1,20 @@
 <div class="container site-wrapper" fxLayout="column">
-    <mat-toolbar color="primary">
-        <mat-toolbar-row fxLayoutGap="0.5em">
-            <fa-icon class="fa-lg" [icon]="faImages"> </fa-icon>
-            <h1>PICTURES</h1>
-            <div *ngIf="this.isMyProfile">
-                <input style="display: none" type="file" #hiddenfileinput (change)="onFileSelected($event)">
-                <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
-            </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
-    <div class="pictures" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between center" sort_by="date-sdate:d:s">
-        <img fxFlex="33%" src="{{img.url}}" alt="" *ngFor="let img of this.images">
-    </div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayoutGap="0.5em">
+      <fa-icon class="fa-lg" [icon]="faImages"> </fa-icon>
+      <h1>PICTURES</h1>
+      <div *ngIf="this.isMyProfile">
+        <input style="display: none" type="file" #hiddenfileinput (change)="onFileSelected($event)">
+        <button mat-button (click)="hiddenfileinput.click()">UPLOAD PICTURE</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="pictures" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between center"
+    sort_by="date-sdate:d:s">
+    <img fxFlex="33%" src="{{img.url}}" alt="" *ngFor="let img of this.images" (click)="open(img.url)">
+  </div>
+</div>
+<div class="modal" *ngIf="this.showModal">
+  <span class="close" (click)="close()">&times;</span>
+  <img src="{{this.img}}" alt="">
 </div>

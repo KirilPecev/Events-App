@@ -4,7 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { PictureService } from "src/app/core/services/picture.service";
 import { ToastrService } from "ngx-toastr";
 import { Profile } from "src/app/core/message-constants";
-import { UserService } from 'src/app/core/services/user.service';
+import { UserService } from "src/app/core/services/user.service";
 
 @Component({
   selector: "app-user-pictures",
@@ -16,6 +16,8 @@ export class UserPicturesComponent implements OnInit {
   userId: string;
   images: any[];
   isMyProfile: boolean;
+  img: string;
+  showModal: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,5 +42,14 @@ export class UserPicturesComponent implements OnInit {
       this.toastrService.success(Profile.SUCCESSFULL_UPLOAD);
       this.fetch();
     });
+  }
+
+  open(img: string) {
+    this.showModal = true;
+    this.img = img;
+  }
+
+  close() {
+    this.showModal = false;
   }
 }
