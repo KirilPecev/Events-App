@@ -17,7 +17,7 @@
     <mat-card-content class="content">
       <figure *ngIf="publication.imageUrl != null">
         <figcaption>{{publication.description}}</figcaption>
-        <img [src]=" publication.imageUrl" alt="">
+        <img [src]="publication.imageUrl" alt="">
       </figure>
       <p class="post" *ngIf="publication.imageUrl == null">{{publication.description}}</p>
       <div class="info" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="1em">
