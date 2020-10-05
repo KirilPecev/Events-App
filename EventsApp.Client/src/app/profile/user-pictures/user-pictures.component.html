@@ -14,7 +14,4 @@
     <img fxFlex="33%" src="{{img.url}}" alt="" *ngFor="let img of this.images" (click)="open(img.url)">
   </div>
 </div>
-<div class="modal" *ngIf="this.showModal">
-  <span class="close" (click)="close()">&times;</span>
-  <img src="{{this.img}}" alt="">
-</div>
+<app-photo-modal *ngIf="this.showModal" [imgUrl]="this.imgUrl" (isClosed)="close($event)"></app-photo-modal>

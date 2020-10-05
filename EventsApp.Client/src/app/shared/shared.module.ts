@@ -30,6 +30,7 @@ import { SharePublicationComponent } from "./publication/share-publication/share
 import { MineEventsComponent } from './event-helpers/mine-events/mine-events.component';
 import { SearchComponent } from './layout/search/search.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
+import { PhotoModalComponent } from './photo-modal/photo-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.compo
     SharePublicationComponent,
     MineEventsComponent,
     SearchComponent,
-    SpinnerOverlayComponent
+    SpinnerOverlayComponent,
+    PhotoModalComponent
   ],
   imports: [
     CommonModule,
@@ -95,6 +97,7 @@ import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.compo
     PublicationComponent,
     SharePublicationComponent,
     SearchComponent,
+    PhotoModalComponent
   ],
   entryComponents: [NotificationsComponent, FriendsComponent],
 })

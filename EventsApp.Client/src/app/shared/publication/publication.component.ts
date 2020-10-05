@@ -16,6 +16,8 @@ import { Post } from 'src/app/core/message-constants';
 export class PublicationComponent implements OnInit, DoCheck {
   publications$: Observable<Array<Publication>>;
   userId: string;
+  showModal: boolean;
+  imgUrl: string;
 
   constructor(
     private publicationService: PublicationService,
@@ -92,5 +94,14 @@ export class PublicationComponent implements OnInit, DoCheck {
     };
 
     this.notificationService.create(data).subscribe();
+  }
+
+  open(imgUrl: string) {
+    this.showModal = true;
+    this.imgUrl = imgUrl;
+  }
+
+  close(event){
+    this.showModal = !event;
   }
 }

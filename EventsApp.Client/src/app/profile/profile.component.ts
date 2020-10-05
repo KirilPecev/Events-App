@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit, DoCheck {
   isMyFriend: boolean;
   isSentFriendRequest: boolean;
   imgURL: string;
+  showModal: boolean;
 
   constructor(
     private userService: UserService,
@@ -90,5 +91,13 @@ export class ProfileComponent implements OnInit, DoCheck {
         this.toastrService.error(Profile.ERROR_400);
       }
     );
+  }
+
+  open() {
+    this.showModal = true;
+  }
+
+  close(event){
+    this.showModal = !event;
   }
 }

@@ -11,7 +11,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 3;
+  z-index: 2;
 }
 
 .header-buttons button {
@@ -23,14 +23,14 @@ header {
 }
 
 .title,
-.title>a:hover {
+.title > a:hover {
   text-decoration: none;
 }
 
-.events{
+.events {
   padding: 0 0;
 }
 
-.menu-button{
+.menu-button {
   color: #673ab7;
 }

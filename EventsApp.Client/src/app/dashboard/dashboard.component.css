@@ -1,5 +1,13 @@
-.container {
-  z-index: -1;
+mat-sidenav {
+  z-index: 5 !important;
+}
+
+mat-sidenav-content {
+  z-index: auto !important;
+}
+
+mat-sidenav-container {
+  z-index: auto !important;
 }
 
 .sidebar {
@@ -12,7 +20,7 @@
 .feed {
   width: 50em;
   padding: 0 1em;
-  height: 100vh;
+  height: 87vh;
 }
 
 .feed::-webkit-scrollbar {

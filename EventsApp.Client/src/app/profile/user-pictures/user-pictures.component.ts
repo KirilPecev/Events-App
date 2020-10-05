@@ -16,7 +16,7 @@ export class UserPicturesComponent implements OnInit {
   userId: string;
   images: any[];
   isMyProfile: boolean;
-  img: string;
+  imgUrl: string;
   showModal: boolean = false;
 
   constructor(
@@ -44,12 +44,12 @@ export class UserPicturesComponent implements OnInit {
     });
   }
 
-  open(img: string) {
+  open(imgUrl: string) {
     this.showModal = true;
-    this.img = img;
+    this.imgUrl = imgUrl;
   }
 
-  close() {
-    this.showModal = false;
+  close(event){
+    this.showModal = !event;
   }
 }
