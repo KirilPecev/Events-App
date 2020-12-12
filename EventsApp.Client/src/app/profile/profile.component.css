@@ -39,6 +39,7 @@
   height: 16em;
   width: 16em;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .file {

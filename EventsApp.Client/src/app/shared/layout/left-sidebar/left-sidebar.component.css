@@ -1,6 +1,8 @@
 .sidebar img {
-  border-radius: 50%;
-  width: 1.9em;
+  border-radius: 30%;
+  width: 25%;
+  object-fit: cover;
+  margin-right: 1em;
 }
 
 .sidebar span{

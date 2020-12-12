@@ -18,6 +18,7 @@
 .item img {
   height: 7em;
   width: 7em;
+  object-fit: cover;
 }
 
 @media (max-width: 420px) {
