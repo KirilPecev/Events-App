@@ -20,7 +20,7 @@ mat-sidenav-container {
 .feed {
   width: 50em;
   padding: 0 1em;
-  height: 87vh;
+  height: 92vh;
 }
 
 .feed::-webkit-scrollbar {
