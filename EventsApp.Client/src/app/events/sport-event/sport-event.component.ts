@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import {
   Validators,
-  FormGroup,
-  FormBuilder,
-  FormArray,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormBuilder,
+  UntypedFormArray,
+  UntypedFormControl,
 } from "@angular/forms";
 import { dateTimeValidator } from "../../shared/validators";
 import { EventService } from "src/app/core/services/event.service";
@@ -19,10 +19,10 @@ import { Event as EventConstants, Position } from "src/app/core/validation-const
   styleUrls: ["./sport-event.component.css"],
 })
 export class SportEventComponent implements OnInit {
-  eventForm: FormGroup;
+  eventForm: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private eventService: EventService,
     private router: Router,
     private toastrService: ToastrService
@@ -72,11 +72,11 @@ export class SportEventComponent implements OnInit {
   }
 
   get positionForms() {
-    return this.eventForm.get("positions") as FormArray;
+    return this.eventForm.get("positions") as UntypedFormArray;
   }
 
   get position() {
-    return this.positionForms.get("position") as FormControl;
+    return this.positionForms.get("position") as UntypedFormControl;
   }
 
   create() {

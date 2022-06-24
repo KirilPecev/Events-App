@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Validators, FormGroup, FormBuilder } from "@angular/forms";
+import { Validators, UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
 import { dateTimeValidator } from "../../shared/validators";
 import { EventService } from "src/app/core/services/event.service";
 import { Router } from "@angular/router";
@@ -13,10 +13,10 @@ import { Event as EventConstants } from "src/app/core/validation-constants";
   styleUrls: ["./other-event.component.css"],
 })
 export class OtherEventComponent implements OnInit {
-  eventForm: FormGroup;
+  eventForm: UntypedFormGroup;
 
   constructor(
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private eventService: EventService,
     private router: Router,
     private toastrService: ToastrService

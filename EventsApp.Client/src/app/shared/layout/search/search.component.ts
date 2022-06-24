@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { FormControl } from "@angular/forms";
+import { UntypedFormControl } from "@angular/forms";
 import { User } from "src/app/core/models/user-model";
 import { map } from "rxjs/operators";
 import { UserService } from "src/app/core/services/user.service";
@@ -13,7 +13,7 @@ import {faSearch} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ["./search.component.css"],
 })
 export class SearchComponent implements OnInit {
-  option = new FormControl();
+  option = new UntypedFormControl();
   filteredOptions: Observable<Array<User>>;
 
   private allData: Array<User>;

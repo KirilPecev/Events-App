@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { Validators, UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
 import { passwordMatch } from "src/app/shared/validators";
 import { UserService } from "src/app/core/services/user.service";
 import { ActivatedRoute } from "@angular/router";
@@ -13,11 +13,11 @@ import { Profile } from "src/app/core/message-constants";
   styleUrls: ["./security-settings.component.css"],
 })
 export class SecuritySettingsComponent implements OnInit {
-  emailForm: FormGroup;
-  passwordForm: FormGroup;
+  emailForm: UntypedFormGroup;
+  passwordForm: UntypedFormGroup;
 
   constructor(
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
     private toastrService: ToastrService

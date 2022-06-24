@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from "@angular/core";
 import { PublicationService } from "src/app/core/services/publication.service";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { PictureService } from "src/app/core/services/picture.service";
 import { UserService } from "src/app/core/services/user.service";
 import { finalize } from "rxjs/operators";
@@ -14,10 +14,10 @@ import { Publication } from "src/app/core/validation-constants";
   styleUrls: ["./share-publication.component.css"],
 })
 export class SharePublicationComponent implements OnInit {
-  publicationForm: FormGroup;
+  publicationForm: UntypedFormGroup;
 
   constructor(
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private publicationService: PublicationService,
     private pictureService: PictureService,
     private userService: UserService,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { User } from "src/app/core/models/user-model";
 import { UserService } from "src/app/core/services/user.service";
@@ -15,12 +15,12 @@ import { Profile } from "src/app/core/message-constants";
   styleUrls: ["./general-settings.component.css"],
 })
 export class GeneralSettingsComponent implements OnInit {
-  editForm: FormGroup;
+  editForm: UntypedFormGroup;
   user$: Observable<User>;
   isDeactivated: boolean;
 
   constructor(
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,

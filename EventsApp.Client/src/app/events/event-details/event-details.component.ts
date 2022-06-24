@@ -4,7 +4,7 @@ import { Event } from "src/app/core/models/event-model";
 import { EventService } from "src/app/core/services/event.service";
 import { UserService } from "src/app/core/services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { tap } from "rxjs/operators";
 import { dateTimeValidator } from "src/app/shared/validators";
 import { PositionService } from "src/app/core/services/position.service";
@@ -21,7 +21,7 @@ import { Event as EventConstants } from 'src/app/core/message-constants';
 export class EventDetailsComponent implements OnInit {
   event$: Observable<Event>;
   userId: string;
-  editForm: FormGroup;
+  editForm: UntypedFormGroup;
 
   constructor(
     private eventService: EventService,
@@ -31,7 +31,7 @@ export class EventDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toastrService: ToastrService,
-    fb: FormBuilder
+    fb: UntypedFormBuilder
   ) {
     this.editForm = fb.group({
       id: ["", [Validators.required]],

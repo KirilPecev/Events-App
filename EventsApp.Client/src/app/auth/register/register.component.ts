@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { passwordMatch } from "../../shared/validators";
 import { UserService } from "../../core/services/user.service";
 import { Router } from "@angular/router";
@@ -15,11 +15,11 @@ import { User } from "src/app/core/validation-constants";
   styleUrls: ["./register.component.css"],
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   genders: any[];
 
   constructor(
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     private userService: UserService,
     private pictureService: PictureService,
     private router: Router,
