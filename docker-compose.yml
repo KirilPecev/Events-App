@@ -4,16 +4,25 @@ services:
   eventsapp.api:
     image: events-api
     build:
-      context: .
-      dockerfile: EventsApp.API/Dockerfile
+      context: EventsApp.Server/
+      dockerfile: /EventsApp.API/Dockerfile
     ports:
       - "8000:80"
-    depends_on:
-      - db
     environment:
       ConnectionStrings__DefaultConnection: "Server=db;Database=Evenity;User Id=sa;Password=${SA_PASSWORD};"
+    depends_on:
+      - db
   db:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
       SA_PASSWORD: "${SA_PASSWORD}"
       ACCEPT_EULA: "Y"
+  ui:
+    build:
+      context: EventsApp.Client/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+      - eventsapp.api
