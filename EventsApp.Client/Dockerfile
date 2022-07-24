@@ -11,6 +11,6 @@ RUN npm run build
 
 FROM nginx:latest
 
-COPY --from=build /usr/local/app/dist/eventsapp.client /usr/share/nginx/html
+COPY --from=build /usr/local/app/dist/EventsApp /usr/share/nginx/html
 
-EXPOSE 3000
+EXPOSE 80
