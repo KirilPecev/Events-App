@@ -21,6 +21,7 @@ import { UserService } from "./core/services/user.service";
 import { PublicationService } from "./core/services/publication.service";
 import { EventService } from "./core/services/event.service";
 import { SpinnerInterceptor } from './core/interceptors/spinner-interceptor.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -34,6 +35,7 @@ import { SpinnerInterceptor } from './core/interceptors/spinner-interceptor.serv
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, "evenity"),
     ToastrModule.forRoot(),
+    FontAwesomeModule,
   ],
   providers: [
     UserService,
