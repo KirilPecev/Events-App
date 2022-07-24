@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsApp.API", "EventsApp.API\EventsApp.API.csproj", "{1B7FAFD9-C968-499E-A436-9915896F9880}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A31F3C78-A764-4673-BB6C-2D72005F05C3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{1B7FAFD9-C968-499E-A436-9915896F9880}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B7FAFD9-C968-499E-A436-9915896F9880}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B7FAFD9-C968-499E-A436-9915896F9880}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A31F3C78-A764-4673-BB6C-2D72005F05C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A31F3C78-A764-4673-BB6C-2D72005F05C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A31F3C78-A764-4673-BB6C-2D72005F05C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A31F3C78-A764-4673-BB6C-2D72005F05C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
