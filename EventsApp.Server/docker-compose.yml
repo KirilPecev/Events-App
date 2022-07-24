@@ -10,8 +10,10 @@ services:
       - "8000:80"
     depends_on:
       - db
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db;Database=Evenity;User Id=sa;Password=${SA_PASSWORD};"
   db:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
-      SA_PASSWORD: "SwN12345678"
+      SA_PASSWORD: "${SA_PASSWORD}"
       ACCEPT_EULA: "Y"
